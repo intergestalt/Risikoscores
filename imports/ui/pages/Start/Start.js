@@ -12,7 +12,7 @@ class Start extends React.Component {
       <ul>{
       rooms.map((room)=>{
       return (<li>
-          <NavLink to={'room/'+room._id}>{room.name}</NavLink>
+          <NavLink to={'rooms/'+room._id}>{room.name}</NavLink>
         </li>)
     })}</ul>
     )

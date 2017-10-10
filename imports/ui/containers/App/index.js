@@ -18,7 +18,7 @@ const App = appProps => (
         <Route exact name="index" path="/" component={Start} />
         <Route exact name="admin-rooms-index" path="/admin/rooms" component={AdminRooms} {...appProps} />
         <Route exact name="admin-room-edit" path="/admin/rooms/:_id" component={AdminEditRoom} {...appProps} />
-        <Route name="room" path="/room/:_id" component={Room} />
+        <Route name="room" path="/rooms/:_id" component={Room} />
       </Switch>
     </div>
   </Router>
