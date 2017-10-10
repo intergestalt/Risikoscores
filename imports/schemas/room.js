@@ -1,15 +1,14 @@
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
-import LongTextField from 'uniforms-antd/LongTextField';
+import { MultilingualStringSchema, MultilingualTextSchema } from './multilingual';
 
 const RoomSchema = new SimpleSchema({
+    
     name: {
-      type: String
+      type: MultilingualStringSchema
     },
+
     mainText: {
-      type:String,
-      uniforms: {
-        component: LongTextField,
-      },
+      type: MultilingualTextSchema
     },
 
     subsections: {
@@ -18,14 +17,11 @@ const RoomSchema = new SimpleSchema({
     },
 
     'subsections.$.title': {
-      type:String
+      type: MultilingualStringSchema
     },
 
     'subsections.$.text': {
-      type:String,
-      uniforms: {
-        component: LongTextField,
-      },
+      type: MultilingualTextSchema,
     },
 
     

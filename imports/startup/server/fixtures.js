@@ -31,8 +31,9 @@ Meteor.startup(() => {
   rooms.forEach((room)=>{
     if (!Rooms.findOne(room)) {
       console.log("inserting room " + room)
+      const name = room[0].toUpperCase() + room.substring(1);
       Rooms.insert({
-        ...RoomSchema.clean({}), _id: room, name: room[0].toUpperCase() + room.substring(1)
+        ...RoomSchema.clean({}), _id: room, name: {en: name, de: name} 
       })
     }
   })

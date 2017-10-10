@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
 import { NavLink } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import Rooms from '../../../collections/rooms';
 
@@ -12,7 +12,7 @@ class Start extends React.Component {
       <ul>{
       rooms.map((room)=>{
       return (<li>
-          <NavLink to={'rooms/'+room._id}>{room.name}</NavLink>
+          <NavLink to={'rooms/'+room._id}>{room.name[this.props.language]}</NavLink>
         </li>)
     })}</ul>
     )

@@ -16,7 +16,8 @@ class Room extends React.Component {
       {
         this.props.room.subsections.map((tab)=>{
           return (<li>
-            {tab.text}
+            {tab.title[this.props.language]}
+            {tab.text[this.props.language]}
             </li>)
         })
       }
@@ -27,7 +28,7 @@ class Room extends React.Component {
     console.log(this.props.room)
     return ( // why do I still have to return a useless wrapper? see https://reactjs.org/blog/2017/09/26/react-v16.0.html
       <div className="roomColumns">
-        <div className="roomColumn">{this.props.room.name}</div>
+        <div className="roomColumn">{this.props.room.name[this.props.language]}</div>
         <div className="roomColumn">
           {this.props.room.subsections && this.renderTabs()}
         </div>
