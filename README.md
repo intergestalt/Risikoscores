@@ -9,6 +9,8 @@ meteor yarn install
 ```
 meteor
 ```
+Visit `localhost:3000`. Page updates automatically when files change.
+
 ## Add Rooms
 Edit array in `meteor/imports/startup/server/fixtures`
 
