@@ -1,0 +1,14 @@
+/* CSS declarations go here */
+
+.roomColumns {
+  display:flex;
+  flex-direction:row;
+}
+
+.roomColumn {
+  flex: 1;
+}
+
+.roomColumn:nth-child(2) {
+  background-color: #eee;
+}
