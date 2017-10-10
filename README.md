@@ -1,10 +1,10 @@
 ## Install
-`
+```
 git clone https://github.com/intergestalt/Risikoscores
 cd Risikoscores
 meteor npm install -g yarn
 meteor yarn install
-`
+```
 ## Run
 ```
 meteor
