@@ -1,46 +1,52 @@
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import LongTextField from 'uniforms-antd/LongTextField';
 
-const MultilingualTextSchema = new SimpleSchema({
-    en: {
-      type:String,
-      uniforms: {
-        component: LongTextField,
-        className: "languageField",
-      },
-    },
+const MultilingualTextSchema = new SimpleSchema(
+  {
     de: {
-      type:String,
+      type: String,
       uniforms: {
         component: LongTextField,
-        className: "languageField",
+        className: 'languageField'
+      }
+    },
+    en: {
+      type: String,
+      uniforms: {
+        component: LongTextField,
+        className: 'languageField'
       },
-    },    
-  }, {
+      optional: true
+    }
+  },
+  {
     clean: {
-      getAutoValues: true,
+      getAutoValues: true
     }
   }
 );
 
-const MultilingualStringSchema = new SimpleSchema({
-  en: {
-    type: String,
-    uniforms: {
-      className: "languageField",
+const MultilingualStringSchema = new SimpleSchema(
+  {
+    de: {
+      type: String,
+      uniforms: {
+        className: 'languageField'
+      }
+    },
+    en: {
+      type: String,
+      uniforms: {
+        className: 'languageField'
+      },
+      optional: true
     }
   },
-  de: {
-    type: String,
-    uniforms: {
-      className: "languageField",
-    }    
-  },
-}, {
-  clean: {
-    getAutoValues: true,
+  {
+    clean: {
+      getAutoValues: true
+    }
   }
-}
 );
 
 export { MultilingualStringSchema, MultilingualTextSchema };

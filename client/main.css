@@ -1,6 +1,5 @@
 /* CSS declarations go here */
 
-
 /*** ADMIN ***/
 
 .AdminEditRoom {
@@ -11,16 +10,29 @@
 
 /*** Room ***/
 
-.roomColumns {
-  display:flex;
-  flex-direction:row;
+.Room {
 }
 
-.roomColumn {
-  flex: 1;
+.MainColumn {
 }
 
-.roomColumn:nth-child(2) {
-  background-color: #eee;
+.MainImages {
 }
 
+.MainContent {
+}
+
+.TabColumn {
+}
+.TabBar {
+}
+.TabContent {
+}
+
+.RightColumn {
+}
+
+.Glossar {
+}
+.Navigation {
+}
