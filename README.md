@@ -24,3 +24,13 @@ Edit array in `meteor/imports/startup/server/fixtures`
 /admin/rooms/:_id
 /rooms/:_id
 ```
+
+## Auto Format
+create a file in .vscode. 
+Name it settings.json.
+Copy the following settings into it:
+
+{
+  "prettier.singleQuote": true,
+  "editor.formatOnSave": true
+}

@@ -6,15 +6,20 @@ import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'antd/dist/antd.css';
 
+import { cleanForSave} from '../../../helper/room';
+
 class AdminEditRoom extends React.Component {
 
   save(doc) {
-    if (!doc._id) {
-      Rooms.insert(doc, this.saveCallback)
+    console.log(doc);
+    let room=cleanForSave(doc);
+    console.log(room);
+    if (!room._id) {
+      Rooms.insert(room, this.saveCallback)
     }
     else
-      Rooms.update(doc._id, {
-        $set: doc,
+      Rooms.update(room._id, {
+        $set: room,
       },
         this.saveCallback
       );
