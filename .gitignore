@@ -1,2 +1,5 @@
 node_modules/
 .meteor/local
+.vscode/settings.json
+yarn.lock
+.gitignore
