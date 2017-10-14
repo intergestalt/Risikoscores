@@ -41,7 +41,7 @@ class Room extends React.Component {
           selectedTabId={this.state.selectedTabId}
           preSelectedTabId={this.state.preSelectedTabId}
           tabs={this.props.room.subsections}
-          roomFolder={this.props.room.folder}
+          roomFolder={this.props.room.identifier}
         />
         <RightColumn room={this.props.room} />
       </div>

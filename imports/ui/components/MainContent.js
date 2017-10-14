@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Markdown from 'react-markdown';
 
 import { localeStr } from '../../helper/global';
-import { diyMarkdown } from '../../helper/content';
+import { diyMarkdown, createDangerHtml } from '../../helper/diyMarkdown';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -12,11 +12,11 @@ class MainContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.room.mainText);
-    //text = diyMarkdown(text);
+    textBlocks = diyMarkdown(text);
     return (
       <div className="MainContent">
         <h1>{localeStr(this.props.room.name)}</h1>
-        <Markdown source={text} />
+        {textBlocks}
       </div>
     );
   }
