@@ -11,7 +11,7 @@ class MainColumn extends React.Component {
     return (
       <div className="MainColumn">
         <MainImages
-          roomFolder={this.props.room.folder}
+          roomFolder={this.props.room.identifier}
           images={this.props.room.images}
         />
         <MainContent room={this.props.room} />

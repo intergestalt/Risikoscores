@@ -9,7 +9,7 @@ const RoomSchema = new SimpleSchema(
     name: {
       type: MultilingualStringSchema
     },
-    folder: {
+    identifier: {
       type: String
     },
     mainText: {
@@ -36,7 +36,7 @@ const RoomSchema = new SimpleSchema(
     'subsections.$.title': {
       type: MultilingualStringSchema
     },
-    'subsections.$.subfolder': {
+    'subsections.$.identifier': {
       type: String
     },
     'subsections.$.text': {
