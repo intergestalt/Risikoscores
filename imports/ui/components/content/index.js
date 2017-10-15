@@ -1,5 +1,6 @@
 import ExternalLink from './ExternalLink';
 import Link from './Link';
-import Glossar from './Glossar';
+import GlossarLink from './GlossarLink';
+import Timeline from './Timeline';
 
-export { ExternalLink, Link, Glossar };
+export { ExternalLink, Link, GlossarLink, Timeline };

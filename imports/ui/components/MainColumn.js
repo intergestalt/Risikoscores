@@ -11,16 +11,20 @@ class MainColumn extends React.Component {
     return (
       <div className="MainColumn">
         <MainImages
-          roomFolder={this.props.room.identifier}
+          roomFolder={this.props.room._id}
           images={this.props.room.images}
         />
-        <MainContent room={this.props.room} />
+        <MainContent
+          room={this.props.room}
+          glossarCallback={this.props.glossarCallback}
+        />
       </div>
     );
   }
 }
 MainColumn.propTypes = {
-  room: PropTypes.object
+  room: PropTypes.object,
+  glossarCallback: PropTypes.func
 };
 
 export default MainColumn;

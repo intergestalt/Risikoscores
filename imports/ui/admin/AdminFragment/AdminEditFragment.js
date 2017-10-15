@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import Rooms from '../../../collections/rooms';
-import RoomSchema from '../../../schemas/room';
+import TextFragments from '../../../collections/textFragments';
+import TextFragmentSchema from '../../../schemas/textFragment';
 import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'antd/dist/antd.css';
 
-import { cleanForSave } from '../../../helper/room';
+import { cleanForSave } from '../../../helper/fragments';
 
-class AdminEditRoom extends React.Component {
+class AdminEditFragment extends React.Component {
   save(doc) {
-    let room = cleanForSave(doc);
-    if (!room._id) {
-      Rooms.insert(room, this.saveCallback);
+    let fragment = cleanForSave(doc);
+    if (!fragment._id) {
+      TextFragments.insert(fragment, this.saveCallback);
     } else
-      Rooms.update(
-        room._id,
+      TextFragments.update(
+        fragment._id,
         {
-          $set: room
+          $set: fragment
         },
         this.saveCallback
       );
@@ -34,9 +34,9 @@ class AdminEditRoom extends React.Component {
   renderForm() {
     return (
       <AutoForm
-        schema={RoomSchema}
+        schema={TextFragmentSchema}
         onSubmit={doc => this.save(doc)}
-        model={this.props.room}
+        model={this.props.fragment}
       />
     );
   }
@@ -47,8 +47,8 @@ class AdminEditRoom extends React.Component {
 
   render() {
     return (
-      <div className="AdminEditRoom">
-        <h2>Edit Room</h2>
+      <div className="AdminEditFragment">
+        <h2>Edit Text Fragment</h2>
         {this.props.ready ? this.renderForm() : this.renderLoading()}
       </div>
     );
@@ -56,11 +56,11 @@ class AdminEditRoom extends React.Component {
 }
 
 export default withTracker(props => {
-  const room_id = props.match.params._id;
-  const sub = Meteor.subscribe('room', room_id);
+  const fragment_id = props.match.params._id;
+  const sub = Meteor.subscribe('fragments', fragment_id);
 
   return {
-    room: Rooms.findOne(room_id),
+    fragment: TextFragments.findOne(fragment_id),
     ready: sub.ready()
   };
-})(AdminEditRoom);
+})(AdminEditFragment);

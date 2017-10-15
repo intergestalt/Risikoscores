@@ -12,7 +12,7 @@ class ExternalLink extends React.Component {
       url = 'http://' + url;
     }
     return (
-      <a className="ExternalLink" href={url}>
+      <a className="SCExternalLink" target="_blank" href={url}>
         {this.props.text}
       </a>
     );

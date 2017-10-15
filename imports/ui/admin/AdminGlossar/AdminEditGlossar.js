@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import Rooms from '../../../collections/rooms';
-import RoomSchema from '../../../schemas/room';
+import Glossar from '../../../collections/glossar';
+import GlossarSchema from '../../../schemas/glossar';
 import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'antd/dist/antd.css';
 
-import { cleanForSave } from '../../../helper/room';
+import { cleanForSave } from '../../../helper/glossar';
 
-class AdminEditRoom extends React.Component {
+class AdminEditGlossar extends React.Component {
   save(doc) {
-    let room = cleanForSave(doc);
-    if (!room._id) {
-      Rooms.insert(room, this.saveCallback);
+    let glossar = cleanForSave(doc);
+    if (!glossar._id) {
+      Glossar.insert(glossar, this.saveCallback);
     } else
-      Rooms.update(
-        room._id,
+      Glossar.update(
+        glossar._id,
         {
-          $set: room
+          $set: glossar
         },
         this.saveCallback
       );
@@ -34,9 +34,9 @@ class AdminEditRoom extends React.Component {
   renderForm() {
     return (
       <AutoForm
-        schema={RoomSchema}
+        schema={GlossarSchema}
         onSubmit={doc => this.save(doc)}
-        model={this.props.room}
+        model={this.props.glossar}
       />
     );
   }
@@ -47,8 +47,8 @@ class AdminEditRoom extends React.Component {
 
   render() {
     return (
-      <div className="AdminEditRoom">
-        <h2>Edit Room</h2>
+      <div className="AdminEditGlossar">
+        <h2>Edit Glossar</h2>
         {this.props.ready ? this.renderForm() : this.renderLoading()}
       </div>
     );
@@ -56,11 +56,11 @@ class AdminEditRoom extends React.Component {
 }
 
 export default withTracker(props => {
-  const room_id = props.match.params._id;
-  const sub = Meteor.subscribe('room', room_id);
+  const glossar_id = props.match.params._id;
+  const sub = Meteor.subscribe('glossar', glossar_id);
 
   return {
-    room: Rooms.findOne(room_id),
+    glossar: Glossar.findOne(glossar_id),
     ready: sub.ready()
   };
-})(AdminEditRoom);
+})(AdminEditGlossar);

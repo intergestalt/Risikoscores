@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Markdown from 'react-markdown';
 
 import { localeStr } from '../../helper/global';
-import { diyMarkdown, createDangerHtml } from '../../helper/diyMarkdown';
+import { diyMarkdown } from '../../helper/diyMarkdown';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -12,10 +11,11 @@ class MainContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.room.mainText);
-    textBlocks = diyMarkdown(text);
+    const textBlocks = diyMarkdown(text, false, this.props.glossarCallback);
+    const title = localeStr(this.props.room.name);
     return (
       <div className="MainContent">
-        <h1>{localeStr(this.props.room.name)}</h1>
+        <h1>{title}</h1>
         {textBlocks}
       </div>
     );
@@ -23,7 +23,8 @@ class MainContent extends React.Component {
 }
 
 MainContent.propTypes = {
-  room: PropTypes.object
+  room: PropTypes.object,
+  glossarCallback: PropTypes.func
 };
 
 export default MainContent;
