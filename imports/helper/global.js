@@ -19,19 +19,19 @@ export function existsString(v) {
 }
 
 export function localeStr(obj) {
+  if (!exists(obj)) return '';
   const fallBack = true;
   const defaultLanguage = 'de';
 
   var lang = Session.get('language');
   var result = obj[lang];
-  console.log('lang ' + lang);
   if (existsString(result)) {
-    return result;
+    return result.trim();
   } else {
     if (fallBack) {
       result = obj[defaultLanguage];
       if (existsString(result)) {
-        return result;
+        return result.trim();
       }
     }
   }

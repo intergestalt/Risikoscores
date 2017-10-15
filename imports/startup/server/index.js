@@ -1,5 +1,6 @@
 // register collections
 import '../../collections/rooms';
+import '../../collections/glossar';
 
 // register apis
 import './publications';

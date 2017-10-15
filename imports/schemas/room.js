@@ -9,9 +9,6 @@ const RoomSchema = new SimpleSchema(
     name: {
       type: MultilingualStringSchema
     },
-    identifier: {
-      type: String
-    },
     mainText: {
       type: MultilingualTextSchema
     },
@@ -42,7 +39,9 @@ const RoomSchema = new SimpleSchema(
     'subsections.$.text': {
       type: MultilingualTextSchema
     },
-
+    'subsections.$.color': {
+      type: String
+    },
     'subsections.$.order': {
       type: Number,
       optional: true

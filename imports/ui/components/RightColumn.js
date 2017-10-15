@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigation, Glossar } from './';
+import { Navigation, GlossarArea } from './';
 import PropTypes from 'prop-types';
 
 class RightColumn extends React.Component {
@@ -10,15 +10,33 @@ class RightColumn extends React.Component {
   render() {
     return (
       <div className="RightColumn">
-        <Glossar room={this.props.room} />
-        <Navigation room={this.props.room} />
+        <GlossarArea
+          room={this.props.room}
+          roomGlossar={this.props.roomGlossar}
+          glossarDetailId={this.props.glossarDetailId}
+          glossarExpanded={this.props.glossarExpanded}
+          toggleExpandGlossar={this.props.toggleExpandGlossar}
+          glossarCallback={this.props.glossarCallback}
+          closeGlossarDetail={this.props.closeGlossarDetail}
+        />
+        <Navigation
+          room={this.props.room}
+          navigationExpanded={!this.props.glossarExpanded}
+          toggleExpandGlossar={this.props.toggleExpandGlossar}
+        />
       </div>
     );
   }
 }
 
 RightColumn.propTypes = {
-  room: PropTypes.object
+  room: PropTypes.object,
+  glossarExpanded: PropTypes.bool,
+  glossarDetailId: PropTypes.string,
+  roomGlossar: PropTypes.object,
+  toggleExpandGlossar: PropTypes.func,
+  glossarCallback: PropTypes.func,
+  closeGlossarDetail: PropTypes.func
 };
 
 export default RightColumn;

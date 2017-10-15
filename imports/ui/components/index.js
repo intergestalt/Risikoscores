@@ -7,7 +7,11 @@ import TabBar from './TabBar';
 import TabContent from './TabContent';
 
 import RightColumn from './RightColumn';
-import Glossar from './Glossar';
+import GlossarArea from './GlossarArea';
+import GlossarList from './GlossarList';
+import GlossarDetail from './GlossarDetail';
+import GlossarClose from './GlossarClose';
+import GlossarExpander from './GlossarExpander';
 import Navigation from './Navigation';
 
 export {
@@ -18,6 +22,10 @@ export {
   TabBar,
   TabContent,
   RightColumn,
-  Glossar,
+  GlossarArea,
+  GlossarList,
+  GlossarDetail,
+  GlossarClose,
+  GlossarExpander,
   Navigation
 };

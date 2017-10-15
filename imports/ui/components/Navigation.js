@@ -7,12 +7,18 @@ class Navigation extends React.Component {
   }
 
   render() {
-    return <div className="Navigation" />;
+    var expanded = null;
+    if (this.props.navigationExpanded) {
+      expanded = <div>NAVIGATION EXPANDED</div>;
+    }
+    return <div className="Navigation">{expanded}</div>;
   }
 }
 
 Navigation.propTypes = {
-  room: PropTypes.object
+  room: PropTypes.object,
+  toggleExpandGlossar: PropTypes.func,
+  navigationExpanded: PropTypes.bool
 };
 
 export default Navigation;

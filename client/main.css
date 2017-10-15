@@ -24,8 +24,17 @@
 
 .TabColumn {
 }
+
 .TabBar {
 }
+
+.Tab {
+}
+
+.SelectedTab {
+  border: 5px solid grey;
+}
+
 .TabContent {
 }
 
@@ -34,5 +43,16 @@
 
 .Glossar {
 }
+
 .Navigation {
+}
+
+/* Special Components*/
+.SCLink {
+}
+
+.SCExternalLink {
+}
+
+.SCGlossarLink {
 }

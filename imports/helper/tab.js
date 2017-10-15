@@ -27,10 +27,20 @@ export function getSelectedTab(selectedTabId, tabs) {
   if (existsString(selectedTabId)) {
     for (var i = 0; i < tabs.length; i++) {
       const tab = tabs[i];
-      if (tab._id === id) {
+      if (tab.identifier === selectedTabId) {
         return tab;
       }
     }
   }
-  return tab[0];
+  return tabs[0];
+}
+
+export function getDefaultTabId(tabs) {
+  if (!exists(tabs)) {
+    return null;
+  }
+  if (tabs.length === 0) {
+    return null;
+  }
+  return tabs[0].identifier;
 }

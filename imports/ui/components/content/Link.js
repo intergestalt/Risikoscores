@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 class Link extends React.Component {
   constructor(props) {
@@ -8,16 +9,17 @@ class Link extends React.Component {
 
   render() {
     return (
-      <a className="Link" href="#">
-        {this.props.text} : {this.props.room} : {this.props.tab}
-      </a>
+      <NavLink to={'/rooms/' + this.props.room + '?tabId=' + this.props.tab}>
+        {this.props.text}
+      </NavLink>
     );
   }
 }
 Link.propTypes = {
   text: PropTypes.string,
   room: PropTypes.string,
-  tab: PropTypes.string
+  tab: PropTypes.string,
+  callback: PropTypes.func
 };
 
 export default Link;
