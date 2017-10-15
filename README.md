@@ -37,6 +37,8 @@ Copy the following settings into it:
 
 ## Syntax für Textblöcke
 
+Allgemein sind unsere BEfehle in [[...]] eingebettet. Außer sie sind ihrerseits in einer Datenstruktur enthalten wie unten in der Timeline. Dann müssen sie bis jetzt mit <<...>> Ummantelt werden, da sonst der Parser durcheinanderkommt. Kann man aber nochmal überlegen. :)
+
 Es gibt 
 Glossarlinks (Text, GlossarId)
 ExternalLinks (Text, url)
