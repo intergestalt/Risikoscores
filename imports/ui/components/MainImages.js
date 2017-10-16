@@ -9,14 +9,16 @@ class MainImages extends React.Component {
   render() {
     return (
       <div className="MainImages">
-        <img
-          src={
-            '../assets/' +
-            this.props.roomFolder +
-            '/' +
-            this.props.images[0].name
-          }
-        />
+        {this.props.images &&
+          <img
+            src={
+              '../assets/' +
+              this.props.roomFolder +
+              '/' +
+              this.props.images[0].name
+            }
+          />
+        }
       </div>
     );
   }

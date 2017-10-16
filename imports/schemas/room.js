@@ -15,7 +15,8 @@ const RoomSchema = new SimpleSchema(
 
     subsections: {
       type: [Object],
-      minCount: 1
+      minCount: 1,
+      defaultValue: [{ text: { de: "Beispiel", en: "Example" } }]
     },
 
     images: {
