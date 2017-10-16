@@ -37,7 +37,7 @@ const App = appProps => (
         <Route
           exact
           name="admin-overview-index"
-          path="/admin/overview"
+          path="/admin/"
           component={AdminOverview}
         />
         <Route
