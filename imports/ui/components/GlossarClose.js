@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { localeStr } from '../../helper/global';
-import { getFragment } from '../../helper/fragments';
+import { getFragment } from '../../helper/fragment';
 
 class GlossarClose extends React.Component {
   constructor(props) {

@@ -9,9 +9,13 @@ class AdminOverview extends React.Component {
         <h1>Admin Pages</h1>
         <NavLink to={'/admin/rooms/'}>Rooms</NavLink>
         <br />
+        <NavLink to={'/admin/questions/'}>Questions</NavLink>
+        <br />
         <NavLink to={'/admin/glossar/'}>Glossar</NavLink>
         <br />
         <NavLink to={'/admin/fragments/'}>Text Fragments</NavLink>
+        <br />
+        <NavLink to={'/admin/graph/'}>Graph</NavLink>
       </div>
     );
   }

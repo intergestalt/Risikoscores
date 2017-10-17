@@ -7,7 +7,7 @@ import TextFragments from '../../../collections/textFragments';
 import { MainColumn, TabColumn, RightColumn } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
-import { storeFragments } from '../../../helper/fragments';
+import { storeFragments } from '../../../helper/fragment';
 import { exists } from '../../../helper/global';
 
 class Room extends React.Component {
