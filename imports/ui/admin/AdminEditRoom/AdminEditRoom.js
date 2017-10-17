@@ -12,8 +12,12 @@ class AdminEditRoom extends React.Component {
   save(doc) {
     let room = cleanForSave(doc);
     if (!room._id) {
+      console.log('INSERT:');
+      console.log(room);
       Rooms.insert(room, this.saveCallback);
-    } else
+    } else {
+      console.log('UPDATE ID:' + room._id);
+      console.log(room);
       Rooms.update(
         room._id,
         {
@@ -21,6 +25,7 @@ class AdminEditRoom extends React.Component {
         },
         this.saveCallback
       );
+    }
   }
 
   saveCallback(error, data) {

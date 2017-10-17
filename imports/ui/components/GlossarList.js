@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { GlossarLink } from './content';
 import { localeStr } from '../../helper/global';
 import { sortGlossar, getRoomGlossar } from '../../helper/glossar';
-import { getFragment } from '../../helper/fragments';
+import { getFragment } from '../../helper/fragment';
 
 class GlossarList extends React.Component {
   constructor(props) {

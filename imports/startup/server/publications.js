@@ -3,6 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import Rooms from '../../collections/rooms';
 import Glossar from '../../collections/glossar';
 import TextFragments from '../../collections/textFragments';
+import Graph from '../../collections/graph';
+import Questions from '../../collections/questions';
 
 Meteor.publish('rooms.list', function() {
   return Rooms.find({}, { fields: { name: 1, _id: 1 } });
@@ -26,4 +28,20 @@ Meteor.publish('fragments.list', function() {
 
 Meteor.publish('fragments', function(id) {
   return TextFragments.find(id);
+});
+
+Meteor.publish('questions.list', function() {
+  return Questions.find({});
+});
+
+Meteor.publish('questions', function(id) {
+  return Questions.find(id);
+});
+
+Meteor.publish('graph.list', function() {
+  return Graph.find({});
+});
+
+Meteor.publish('graph', function(id) {
+  return Graph.find(id);
 });

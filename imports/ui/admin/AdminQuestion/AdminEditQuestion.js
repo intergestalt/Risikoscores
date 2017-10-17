@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import TextFragments from '../../../collections/textFragments';
-import TextFragmentSchema from '../../../schemas/textFragment';
+import Questions from '../../../collections/questions';
+import QuestionSchema from '../../../schemas/question';
 import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'antd/dist/antd.css';
 
-import { cleanForSave } from '../../../helper/fragment';
+import { cleanForSave } from '../../../helper/question';
 
-class AdminEditFragment extends React.Component {
+class AdminEditQuestion extends React.Component {
   save(doc) {
-    let fragment = cleanForSave(doc);
-    if (!fragment._id) {
-      TextFragments.insert(fragment, this.saveCallback);
+    let question = cleanForSave(doc);
+    if (!question._id) {
+      Questions.insert(question, this.saveCallback);
     } else
-      TextFragments.update(
-        fragment._id,
+      Questions.update(
+        question._id,
         {
-          $set: fragment
+          $set: question
         },
         this.saveCallback
       );
@@ -34,9 +34,9 @@ class AdminEditFragment extends React.Component {
   renderForm() {
     return (
       <AutoForm
-        schema={TextFragmentSchema}
+        schema={QuestionSchema}
         onSubmit={doc => this.save(doc)}
-        model={this.props.fragment}
+        model={this.props.question}
       />
     );
   }
@@ -47,8 +47,8 @@ class AdminEditFragment extends React.Component {
 
   render() {
     return (
-      <div className="AdminEditFragment">
-        <h2>Edit Text Fragment</h2>
+      <div className="AdminEditQuestion">
+        <h2>Edit Question</h2>
         {this.props.ready ? this.renderForm() : this.renderLoading()}
       </div>
     );
@@ -56,11 +56,11 @@ class AdminEditFragment extends React.Component {
 }
 
 export default withTracker(props => {
-  const fragment_id = props.match.params._id;
-  const sub = Meteor.subscribe('fragments', fragment_id);
+  const question_id = props.match.params._id;
+  const sub = Meteor.subscribe('questions', question_id);
 
   return {
-    fragment: TextFragments.findOne(fragment_id),
+    question: Questions.findOne(question_id),
     ready: sub.ready()
   };
-})(AdminEditFragment);
+})(AdminEditQuestion);
