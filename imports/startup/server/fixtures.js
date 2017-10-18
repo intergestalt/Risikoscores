@@ -35,7 +35,13 @@ const rooms = [
   'arztpraxis'
 ];
 
-const textFragments = ['glossar', 'closeGlossar'];
+const textFragments = [
+  'glossar',
+  'closeGlossar',
+  'graphTitle',
+  'roomQuestionsTitle'
+];
+
 const glossar = [
   'Kohortenstudie',
   'Quantitativ',
@@ -116,7 +122,7 @@ Meteor.startup(() => {
       originRoomId: question.originRoomId
     });
   });*/
-  Graph.remove({});
+  // Graph.remove({});
   graphNodes.forEach(graphNode => {
     if (!Graph.findOne(graphNode._id)) {
       console.log('inserting graphNode ' + graphNode._id);

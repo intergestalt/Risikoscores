@@ -13,7 +13,7 @@ class Timeline extends React.Component {
     for (var i = 0; i < rows.length; i++) {
       const row = rows[i];
       var text = row.text;
-      const textBlocks = diyMarkdown(text, true, this.props.callbackGlossar);
+      const textBlocks = diyMarkdown(text, true);
       var imageRow = null;
       if (existsString(row.image)) {
         const imgSrc =
@@ -55,8 +55,7 @@ class Timeline extends React.Component {
   }
 }
 Timeline.propTypes = {
-  data: PropTypes.object,
-  callbackGlossar: PropTypes.func
+  data: PropTypes.object
 };
 
 export default Timeline;

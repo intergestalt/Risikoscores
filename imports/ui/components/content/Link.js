@@ -18,8 +18,7 @@ class Link extends React.Component {
 Link.propTypes = {
   text: PropTypes.string,
   room: PropTypes.string,
-  tab: PropTypes.string,
-  callback: PropTypes.func
+  tab: PropTypes.string
 };
 
 export default Link;
