@@ -6,7 +6,11 @@ import { GlossarDetail, GlossarList, GlossarExpander } from './';
 import { existsString, exists } from '../../helper/global';
 import Glossar from '../../collections/glossar';
 import { getGlossarEntry } from '../../helper/glossar';
-import { isGlossarExpanded, getGlossarDetailId } from '../../helper/actions';
+import {
+  isQuestionsExpanded,
+  isGraphExpanded,
+  getGlossarDetailId
+} from '../../helper/actions';
 
 class GlossarArea extends React.Component {
   constructor(props) {
@@ -39,18 +43,29 @@ class GlossarArea extends React.Component {
       );
     }
 
-    var expander = null;
-    if (!this.props.glossarExpanded) {
-      expander = (
-        <div className="GLossarExpand">
-          <GlossarExpander glossarExpanded={this.props.glossarExpanded} />
-        </div>
-      );
+    //graphExpanded == true && questionsExpanded == true => height:7%
+    //graphExpanded == true && questionsExpanded == false => height:34%
+    //graphExpanded == false && questionsExpanded == true => height:33%
+    //graphExpanded == false && questionsExpanded == false => height:60%
+    var height = null;
+    if (this.props.graphExpanded) {
+      if (this.props.questionsExpanded) {
+        height = 7;
+      } else {
+        height = 34;
+      }
+    } else {
+      if (this.props.questionsExpanded) {
+        height = 33;
+      } else {
+        height = 60;
+      }
     }
+
     return (
       <div className="GlossarArea">
+        <h1>Glossar: {height}%</h1>
         {content}
-        {expander}
       </div>
     );
   }
@@ -73,7 +88,8 @@ export default withTracker(props => {
 
   return {
     glossar: Glossar.find().fetch(),
-    glossarExpanded: isGlossarExpanded(),
+    questionsExpanded: isQuestionsExpanded(),
+    graphExpanded: isGraphExpanded(),
     glossarDetailId: getGlossarDetailId(),
     ready: sub.ready()
   };

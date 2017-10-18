@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navigation, GlossarArea } from './';
+import { QuestionsArea, GlossarArea, GraphArea } from './';
 import PropTypes from 'prop-types';
 
 class RightColumn extends React.Component {
@@ -14,7 +14,8 @@ class RightColumn extends React.Component {
           room={this.props.room}
           roomGlossar={this.props.roomGlossar}
         />
-        <Navigation room={this.props.room} />
+        <GraphArea room={this.props.room} />
+        <QuestionsArea room={this.props.room} />
       </div>
     );
   }

@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { TabBar, TabContent } from './';
 import { existsString, exists } from '../../helper/global';
 import { getSelectedTab } from '../../helper/tab';
-import { getPreselectedTabId } from '../../helper/actions';
+import { getPreSelectedTabId } from '../../helper/actions';
 
 class TabColumn extends React.Component {
   constructor(props) {
@@ -43,6 +43,6 @@ TabColumn.propTypes = {
 
 export default withTracker(props => {
   return {
-    preSelectedTabId: getPreselectedTabId()
+    preSelectedTabId: getPreSelectedTabId()
   };
 })(TabColumn);

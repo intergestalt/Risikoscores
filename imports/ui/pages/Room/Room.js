@@ -8,6 +8,7 @@ import { MainColumn, TabColumn, RightColumn } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
+import { setSelectedTabId, setSelectedRoomId } from '../../../helper/actions';
 import { exists } from '../../../helper/global';
 
 class Room extends React.Component {
@@ -49,15 +50,17 @@ class Room extends React.Component {
 }
 
 export default withTracker(props => {
-  const room_id = props.match.params._id;
-  const sub = Meteor.subscribe('room', room_id);
+  const roomId = props.match.params._id;
+  const sub = Meteor.subscribe('room', roomId);
   const sub2 = Meteor.subscribe('fragments.list');
 
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
+  setSelectedTabId(null, tabId);
+  setSelectedRoomId(null, roomId);
   return {
-    room: Rooms.findOne(room_id),
+    room: Rooms.findOne(roomId),
     selectedTabId: tabId,
     fragments: TextFragments.find().fetch(),
     ready: sub.ready() && sub2.ready
