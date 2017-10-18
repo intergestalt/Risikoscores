@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 
 import { toggleGlossar } from '../../helper/actions';
 
-class GlossarExpander extends React.Component {
+class Expander extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    var text = 'arrow down';
-    if (this.props.glossarExpanded) {
-      text = 'arrow up';
+    var text = 'arrow up';
+    if (this.props.expanded) {
+      text = 'arrow down';
     }
     return (
-      <div className="GlossarExpander">
+      <div className="Expander">
         <a
           href="#"
           onClick={e => {
-            toggleGlossar(e);
+            this.props.callback(e);
           }}
         >
           {text}
@@ -28,8 +28,9 @@ class GlossarExpander extends React.Component {
   }
 }
 
-GlossarExpander.propTypes = {
-  glossarExpanded: PropTypes.bool
+Expander.propTypes = {
+  expanded: PropTypes.bool,
+  callback: PropTypes.func
 };
 
-export default GlossarExpander;
+export default Expander;

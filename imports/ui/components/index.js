@@ -11,8 +11,8 @@ import GlossarArea from './GlossarArea';
 import GlossarList from './GlossarList';
 import GlossarDetail from './GlossarDetail';
 import GlossarClose from './GlossarClose';
-import GlossarExpander from './GlossarExpander';
-import Navigation from './Navigation';
+import Expander from './Expander';
+import QuestionsArea from './QuestionsArea';
 import GraphArea from './GraphArea';
 import GraphHeader from './GraphHeader';
 import Graph from './Graph';
@@ -31,8 +31,8 @@ export {
   GlossarList,
   GlossarDetail,
   GlossarClose,
-  GlossarExpander,
-  Navigation,
+  Expander,
+  QuestionsArea,
   GraphArea,
   GraphHeader,
   Graph,

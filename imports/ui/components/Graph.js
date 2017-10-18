@@ -12,7 +12,7 @@ class Graph extends React.Component {
 }
 
 Graph.propTypes = {
-  graph: PropTypes.object
+  graph: PropTypes.array
 };
 
 export default Graph;
