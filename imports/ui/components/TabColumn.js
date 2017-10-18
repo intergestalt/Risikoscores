@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import { TabBar, TabContent } from './';
 import { existsString, exists } from '../../helper/global';
 import { getSelectedTab } from '../../helper/tab';
+import { getPreselectedTabId } from '../../helper/actions';
 
 class TabColumn extends React.Component {
   constructor(props) {
@@ -11,6 +13,10 @@ class TabColumn extends React.Component {
   }
 
   render() {
+    var selectedTabId = this.props.selectedTabId;
+    if (!exists(selectedTabId)) {
+      selectedTabId = getDefaultTabId(this.props.room.subsections);
+    }
     return (
       <div className="TabColumn">
         <TabBar
@@ -22,7 +28,6 @@ class TabColumn extends React.Component {
         <TabContent
           tab={getSelectedTab(this.props.selectedTabId, this.props.tabs)}
           roomFolder={this.props.roomFolder}
-          glossarCallback={this.props.glossarCallback}
         />
       </div>
     );
@@ -32,10 +37,12 @@ class TabColumn extends React.Component {
 TabColumn.propTypes = {
   roomFolder: PropTypes.string,
   roomId: PropTypes.string,
-  selectedTabId: PropTypes.string,
-  preSelectedTabId: PropTypes.string,
   tabs: PropTypes.array,
-  glossarCallback: PropTypes.func
+  selectedTabId: PropTypes.string
 };
 
-export default TabColumn;
+export default withTracker(props => {
+  return {
+    preSelectedTabId: getPreselectedTabId()
+  };
+})(TabColumn);

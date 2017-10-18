@@ -6,6 +6,7 @@ import { GlossarDetail, GlossarList, GlossarExpander } from './';
 import { existsString, exists } from '../../helper/global';
 import Glossar from '../../collections/glossar';
 import { getGlossarEntry } from '../../helper/glossar';
+import { isGlossarExpanded, getGlossarDetailId } from '../../helper/actions';
 
 class GlossarArea extends React.Component {
   constructor(props) {
@@ -25,13 +26,7 @@ class GlossarArea extends React.Component {
         this.props.glossarDetailId
       );
       if (exists(glossarEntry)) {
-        content = (
-          <GlossarDetail
-            entry={glossarEntry}
-            glossarCallback={this.props.glossarCallback}
-            closeGlossarDetail={this.props.closeGlossarDetail}
-          />
-        );
+        content = <GlossarDetail entry={glossarEntry} />;
         done = true;
       }
     }
@@ -40,22 +35,22 @@ class GlossarArea extends React.Component {
         <GlossarList
           glossar={this.props.glossar}
           roomGlossar={this.props.roomGlossar}
-          glossarCallback={this.props.glossarCallback}
         />
       );
     }
-    var expanded = null;
-    if (this.props.glossarExpanded) {
-      expanded = <div>GLOSSAR EXPANDED</div>;
+
+    var expander = null;
+    if (!this.props.glossarExpanded) {
+      expander = (
+        <div className="GLossarExpand">
+          <GlossarExpander glossarExpanded={this.props.glossarExpanded} />
+        </div>
+      );
     }
     return (
       <div className="GlossarArea">
-        {expanded}
         {content}
-        <div className="GLossarExpand">
-          <br />
-          <GlossarExpander callBack={this.props.toggleExpandGlossar} />
-        </div>
+        {expander}
       </div>
     );
   }
@@ -70,20 +65,16 @@ class GlossarArea extends React.Component {
 
 GlossarArea.propTypes = {
   room: PropTypes.object,
-  roomGlossar: PropTypes.object,
-  glossarDetailId: PropTypes.string,
-  glossarExpanded: PropTypes.bool,
-  toggleExpandGlossar: PropTypes.func,
-  glossarCallback: PropTypes.func,
-  closeGlossarDetail: PropTypes.func
+  roomGlossar: PropTypes.object
 };
 
 export default withTracker(props => {
   const sub = Meteor.subscribe('glossar.list');
-  Meteor.subscribe('glossar.list');
 
   return {
     glossar: Glossar.find().fetch(),
+    glossarExpanded: isGlossarExpanded(),
+    glossarDetailId: getGlossarDetailId(),
     ready: sub.ready()
   };
 })(GlossarArea);

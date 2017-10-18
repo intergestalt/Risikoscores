@@ -13,6 +13,11 @@ import GlossarDetail from './GlossarDetail';
 import GlossarClose from './GlossarClose';
 import GlossarExpander from './GlossarExpander';
 import Navigation from './Navigation';
+import GraphArea from './GraphArea';
+import GraphHeader from './GraphHeader';
+import Graph from './Graph';
+import RoomQuestions from './RoomQuestions';
+import RoomQuestionsHeader from './RoomQuestionsHeader';
 
 export {
   MainColumn,
@@ -27,5 +32,10 @@ export {
   GlossarDetail,
   GlossarClose,
   GlossarExpander,
-  Navigation
+  Navigation,
+  GraphArea,
+  GraphHeader,
+  Graph,
+  RoomQuestionsHeader,
+  RoomQuestions
 };

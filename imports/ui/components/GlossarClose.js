@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { localeStr } from '../../helper/global';
 import { getFragment } from '../../helper/fragment';
+import { closeGlossarDetail } from '../../helper/actions';
 
 class GlossarClose extends React.Component {
   constructor(props) {
@@ -14,16 +15,17 @@ class GlossarClose extends React.Component {
 
     return (
       <div className="GlossarClose">
-        <a href="#" onClick={this.props.closeGlossarDetail}>
+        <a
+          href="#"
+          onClick={e => {
+            closeGlossarDetail(e);
+          }}
+        >
           {glossarCloseText}
         </a>
       </div>
     );
   }
 }
-
-GlossarClose.propTypes = {
-  closeGlossarDetail: PropTypes.func
-};
 
 export default GlossarClose;

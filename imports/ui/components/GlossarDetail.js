@@ -13,11 +13,11 @@ class GlossarDetail extends React.Component {
   render() {
     var text = localeStr(this.props.entry.text);
     var title = localeStr(this.props.entry.name);
-    const textBlocks = diyMarkdown(text, false, this.props.glossarCallback);
+    const textBlocks = diyMarkdown(text, false);
     return (
       <div className="GlossarContent">
         <h1>{title}</h1>
-        <GlossarClose closeGlossarDetail={this.props.closeGlossarDetail} />
+        <GlossarClose />
         {textBlocks}
       </div>
     );
@@ -25,9 +25,7 @@ class GlossarDetail extends React.Component {
 }
 
 GlossarDetail.propTypes = {
-  entry: PropTypes.object,
-  glossarCallback: PropTypes.func,
-  closeGlossarDetail: PropTypes.func
+  entry: PropTypes.object
 };
 
 export default GlossarDetail;

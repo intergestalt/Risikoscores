@@ -1,4 +1,5 @@
 import { localeStr } from './global';
+import { Session } from 'meteor/session';
 
 export function cleanForSave(entry) {
   const result = entry;

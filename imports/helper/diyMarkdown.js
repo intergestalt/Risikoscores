@@ -82,7 +82,7 @@ export function findGlossarComponents(text, nested = false) {
   return result;
 }
 
-function renderSpecialComponent(specialComponent, id, glossarCallback) {
+function renderSpecialComponent(specialComponent, id) {
   const operation = getSpecialComponent(specialComponent);
   const name = operation.name;
   const options = operation.options;
@@ -106,17 +106,10 @@ function renderSpecialComponent(specialComponent, id, glossarCallback) {
         text={options.text}
         entry={options.entry}
         highlighted={false}
-        callback={glossarCallback}
       />
     );
   } else if (name === 'Timeline') {
-    return (
-      <Timeline
-        key={'_' + id}
-        data={options}
-        callbackGlossar={glossarCallback}
-      />
-    );
+    return <Timeline key={'_' + id} data={options} />;
   }
 }
 
@@ -150,7 +143,7 @@ function stripOuterP(block) {
   return block;
 }
 
-function diyMarkdownBlock(text, blockId, nested, glossarCallback) {
+function diyMarkdownBlock(text, blockId, nested) {
   var md = new Remarkable({ html: true, xhtmlOut: true, breaks: true });
   var SEP_END = SPECIAL_END;
   var SEP_BEGIN = SPECIAL_BEGIN;
@@ -176,7 +169,7 @@ function diyMarkdownBlock(text, blockId, nested, glossarCallback) {
       }
 
       var special = text.substring(index + 2, index2);
-      specialComponent = renderSpecialComponent(special, id, glossarCallback);
+      specialComponent = renderSpecialComponent(special, id);
       compontensForBlock.push(specialComponent);
       id++;
 
@@ -198,11 +191,11 @@ function diyMarkdownBlock(text, blockId, nested, glossarCallback) {
   return <p key={'_' + blockId}>{compontensForBlock}</p>;
 }
 
-export function diyMarkdown(text, nested, glossarCallback) {
+export function diyMarkdown(text, nested) {
   const blocks = text.split('\n\n');
   const components = [];
   for (var i = 0; i < blocks.length; i++) {
-    compontenForBlock = diyMarkdownBlock(blocks[i], i, nested, glossarCallback);
+    compontenForBlock = diyMarkdownBlock(blocks[i], i, nested);
     components.push(compontenForBlock);
   }
   return components;
