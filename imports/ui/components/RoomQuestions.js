@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { localeStr } from '../../helper/global';
+import { getRoomQuestions } from '../../helper/question';
 import { diyMarkdown } from '../../helper/diyMarkdown';
 
 class RoomQuestions extends React.Component {
@@ -11,7 +12,7 @@ class RoomQuestions extends React.Component {
 
   render() {
     var questions = [];
-    myQuestions = this.props.questions;
+    myQuestions = getRoomQuestions(this.props.questions);
     for (var i = 0; i < myQuestions.length; i++) {
       const question = myQuestions[i];
       var text = localeStr(question.text);

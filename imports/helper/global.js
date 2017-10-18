@@ -37,3 +37,10 @@ export function localeStr(obj) {
   }
   return '';
 }
+
+export function zuffi(max) {
+  var zuffi = Math.round(Math.random() * max);
+  if (zuffi < 0) zuffi = 0;
+  if (zuffi > max) index = max;
+  return zuffi;
+}

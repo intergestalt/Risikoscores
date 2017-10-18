@@ -39,21 +39,14 @@ export function setSelectedTabId(e, id) {
 }
 export function setSelectedRoomId(e, id) {
   prevent(e);
-  const oldRoomId = getSelectedRoomId();
-  if (!exists(oldRoomId)) {
-    setSelectedRoomIdChanged(null, true);
-  } else if (oldRoomId !== id) {
-    setSelectedRoomIdChanged(null, true);
-  } else {
-    setSelectedRoomIdChanged(null, false);
-  }
   Session.set('selectedRoomId', id);
 }
 
-export function setSelectedRoomIdChanged(e, yes) {
+export function cacheRoomQuestions(e, questions, roomId) {
   prevent(e);
-  Session.set('selectedRoomIdChanged', yes);
+  Session.set('cachedRoomQuestions', { questions: questions, roomId: roomId });
 }
+
 // get
 
 export function getGlossarDetailId(e) {
@@ -75,16 +68,17 @@ export function getPreSelectedTabId() {
   const value = Session.get('preSelectedTabId');
 }
 
-export function getSelectedRoomId(e) {
+export function getSelectedRoomId() {
   const value = Session.get('selectedRoomId');
   return value;
 }
-export function isSelectedRoomIdChanged(e) {
-  const value = Session.get('selectedRoomIdChanged');
+
+export function getSelectedTabId() {
+  const value = Session.get('selectedTabId');
   return value;
 }
 
-export function getSelectedTabId(e) {
-  const value = Session.get('selectedTabId');
-  return value;
+export function getCachedRoomQuestions(e) {
+  const questions = Session.get('cachedRoomQuestions');
+  return questions;
 }
