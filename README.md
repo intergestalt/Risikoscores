@@ -94,7 +94,7 @@ Die Framingham Heart Studie ist die weltweit erste groß angelegte [[Glossar: Ko
 Sau interessant: [[Glossar: Krankheit,  biobank]].
 
 
-Subsection  und 3
+Subsection 2 und 3
 
 identifier tab2,tab3
 
