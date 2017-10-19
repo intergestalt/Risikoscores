@@ -10,8 +10,14 @@ class Expander extends React.Component {
 
   render() {
     var text = 'arrow up';
-    if (this.props.expanded) {
-      text = 'arrow down';
+    if (this.props.directionDown) {
+      if (!this.props.expanded) {
+        text = 'arrow down';
+      }
+    } else {
+      if (this.props.expanded) {
+        text = 'arrow down';
+      }
     }
     return (
       <div className="Expander">
@@ -30,6 +36,7 @@ class Expander extends React.Component {
 
 Expander.propTypes = {
   expanded: PropTypes.bool,
+  directionDown: PropTypes.bool,
   callback: PropTypes.func
 };
 

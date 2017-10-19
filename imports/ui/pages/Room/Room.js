@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
 
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
-import { MainColumn, TabColumn, RightColumn } from '../../components';
+import { MainColumn, TabColumn, RightColumn, MenuIcon } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
@@ -36,6 +35,7 @@ class Room extends React.Component {
           roomId={this.props.room._id}
         />
         <RightColumn room={this.props.room} roomGlossar={roomGlossar} />
+        <MenuIcon />
       </div>
     );
   }

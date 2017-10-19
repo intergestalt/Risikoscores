@@ -82,7 +82,7 @@ export function findGlossarComponents(text, nested = false) {
   return result;
 }
 
-function renderSpecialComponent(specialComponent, id) {
+function renderSpecialComponent(specialComponent, id, glossar) {
   const operation = getSpecialComponent(specialComponent);
   const name = operation.name;
   const options = operation.options;
@@ -100,14 +100,18 @@ function renderSpecialComponent(specialComponent, id) {
       />
     );
   } else if (name === 'Glossar') {
-    return (
-      <GlossarLink
-        key={'_' + id}
-        text={options.text}
-        entry={options.entry}
-        highlighted={false}
-      />
-    );
+    if (glossar) {
+      return (
+        <GlossarLink
+          key={'_' + id}
+          text={options.text}
+          entry={options.entry}
+          highlighted={false}
+        />
+      );
+    } else {
+      return <span key={'_' + id}>{options.text}</span>;
+    }
   } else if (name === 'Timeline') {
     return <Timeline key={'_' + id} data={options} />;
   }
@@ -143,7 +147,7 @@ function stripOuterP(block) {
   return block;
 }
 
-function diyMarkdownBlock(text, blockId, nested) {
+function diyMarkdownBlock(text, blockId, nested, glossar = true) {
   var md = new Remarkable({ html: true, xhtmlOut: true, breaks: true });
   var SEP_END = SPECIAL_END;
   var SEP_BEGIN = SPECIAL_BEGIN;
@@ -169,7 +173,7 @@ function diyMarkdownBlock(text, blockId, nested) {
       }
 
       var special = text.substring(index + 2, index2);
-      specialComponent = renderSpecialComponent(special, id);
+      specialComponent = renderSpecialComponent(special, id, glossar);
       compontensForBlock.push(specialComponent);
       id++;
 
@@ -191,11 +195,11 @@ function diyMarkdownBlock(text, blockId, nested) {
   return <p key={'_' + blockId}>{compontensForBlock}</p>;
 }
 
-export function diyMarkdown(text, nested) {
+export function diyMarkdown(text, nested, glossar = true) {
   const blocks = text.split('\n\n');
   const components = [];
   for (var i = 0; i < blocks.length; i++) {
-    compontenForBlock = diyMarkdownBlock(blocks[i], i, nested);
+    compontenForBlock = diyMarkdownBlock(blocks[i], i, nested, glossar);
     components.push(compontenForBlock);
   }
   return components;

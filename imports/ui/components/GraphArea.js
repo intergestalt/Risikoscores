@@ -31,7 +31,11 @@ class GraphArea extends React.Component {
     return (
       <div className="GraphArea">
         <h1>Graph: {height}%</h1>
-        <Expander callback={this.callback} expanded={isGraphExpanded()} />
+        <Expander
+          callback={this.callback}
+          expanded={isGraphExpanded()}
+          directionDown={false}
+        />
         <GraphHeader />
         <Graph graph={this.props.graph} />
       </div>
