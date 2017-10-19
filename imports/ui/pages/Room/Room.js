@@ -73,7 +73,11 @@ export default withTracker(props => {
 const RoomElem = styled.div`
   display: flex;
   flex-direction: row;
-  & > * {
+  & > *:not(nav) {
     flex: 1;
+    overflow: auto;
+    height:100%;
   }
+  height: 100%;
+  overflow: hidden;
 `;

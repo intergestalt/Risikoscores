@@ -28,4 +28,8 @@ injectGlobal`
     ${snippets.bodyText};
     background-color:${colors.darkgrey};
   }
+
+  html, body, #render-target, .App {
+    height: 100%;
+  }
 `;
