@@ -41,7 +41,7 @@ class AdminWrapper extends React.Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: "#fdfdfd" }}>
+      <div class="AdminWrapper" style={{ backgroundColor: "#fdfdfd" }}>
         <link href='/vendor/antd/antd.css' type="text/css" rel="stylesheet" />
         <nav><Link to="/admin">Home</Link></nav>
         {this.props.children}

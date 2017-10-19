@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import { localeStr } from '../../helper/global';
 import { diyMarkdown } from '../../helper/diyMarkdown';
+import { snippets, dist } from '../../config/styles';
 
 class TabContent extends React.Component {
   constructor(props) {
@@ -12,10 +15,10 @@ class TabContent extends React.Component {
     var text = localeStr(this.props.tab.text);
     const textBlocks = diyMarkdown(text, false);
     return (
-      <div className="TabContent">
-        <h1>{localeStr(this.props.tab.title)}</h1>
+      <Content className="TabContent">
+        <Headline>{localeStr(this.props.tab.title)}</Headline>
         {textBlocks}
-      </div>
+      </Content>
     );
   }
 }
@@ -26,3 +29,11 @@ TabContent.propTypes = {
 };
 
 export default TabContent;
+
+const Content = styled.div`
+padding: ${dist.named.columnPadding};
+`;
+
+const Headline = styled.h1`
+  ${snippets.headlineText};
+`;

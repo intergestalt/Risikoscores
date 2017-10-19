@@ -1,8 +1,13 @@
-/* CSS declarations go here */
+
+/***************************************************************
+ * Obsolete. Style definitions should be inside of components  *
+ * using styled-components.                                    *
+ * global styles are in imports/startup/client/globalStyles    *
+ * *************************************************************/
 
 /*** ADMIN ***/
 
-.AdminEditRoom {
+.AdminWrapper {
   padding: 1rem;
 }
 
@@ -32,7 +37,6 @@
 }
 
 .SelectedTab {
-  border: 5px solid grey;
 }
 
 .TabContent {

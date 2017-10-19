@@ -1,5 +1,6 @@
 import React, { Component, Image } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 class MainImages extends React.Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class MainImages extends React.Component {
 
   render() {
     return (
-      <div className="MainImages">
+      <ImageContainer className="MainImages">
         {this.props.images &&
           <img
             src={
@@ -19,7 +20,7 @@ class MainImages extends React.Component {
             }
           />
         }
-      </div>
+      </ImageContainer>
     );
   }
 }
@@ -30,3 +31,11 @@ MainImages.propTypes = {
 };
 
 export default MainImages;
+
+const ImageContainer = styled.div`
+  img {
+    width:100%;
+    height:33.33vh;
+    object-fit: cover;
+  }
+`;
