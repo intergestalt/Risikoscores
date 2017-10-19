@@ -32,7 +32,11 @@ class QuestionsArea extends React.Component {
     return (
       <div className="QuestionsArea">
         <h1>Questions: {height}%</h1>
-        <Expander callback={this.callback} expanded={isQuestionsExpanded()} />
+        <Expander
+          callback={this.callback}
+          expanded={isQuestionsExpanded()}
+          directionDown={false}
+        />
         <RoomQuestionsHeader />
         <RoomQuestions questions={this.props.questions} />
       </div>

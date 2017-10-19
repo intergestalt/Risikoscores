@@ -18,6 +18,12 @@ export function toggleQuestions(e) {
   Session.set('questionsExpanded', !questionsExpanded);
 }
 
+export function toggleStartWelcome(e) {
+  prevent(e);
+  var expanded = isStartWelcomeExpanded();
+  Session.set('startWelcomeExpanded', !expanded);
+}
+
 export function closeGlossarDetail(e) {
   prevent(e);
   Session.set('glossarDetailId', null);
@@ -46,10 +52,19 @@ export function cacheRoomQuestions(e, questions, roomId) {
   prevent(e);
   Session.set('cachedRoomQuestions', { questions: questions, roomId: roomId });
 }
+export function cacheStreamQuestions(e, questions) {
+  prevent(e);
+  Session.set('cachedStreamQuestions', questions);
+}
+
+export function setStreamIndex(e, index) {
+  prevent(e);
+  Session.set('streamIndex', index);
+}
 
 // get
 
-export function getGlossarDetailId(e) {
+export function getGlossarDetailId() {
   const value = Session.get('glossarDetailId');
   return value;
 }
@@ -58,7 +73,10 @@ export function isQuestionsExpanded() {
   const value = Session.get('questionsExpanded');
   return value;
 }
-
+export function isStartWelcomeExpanded() {
+  const value = Session.get('startWelcomeExpanded');
+  return value;
+}
 export function isGraphExpanded() {
   const value = Session.get('graphExpanded');
   return value;
@@ -78,7 +96,15 @@ export function getSelectedTabId() {
   return value;
 }
 
-export function getCachedRoomQuestions(e) {
+export function getCachedRoomQuestions() {
   const questions = Session.get('cachedRoomQuestions');
+  return questions;
+}
+export function getStreamIndex() {
+  const value = Session.get('streamIndex');
+  return value;
+}
+export function getCachedStreamQuestions() {
+  const questions = Session.get('cachedStreamQuestions');
   return questions;
 }

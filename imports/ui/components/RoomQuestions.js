@@ -12,7 +12,7 @@ class RoomQuestions extends React.Component {
 
   render() {
     var questions = [];
-    myQuestions = getRoomQuestions(this.props.questions);
+    const myQuestions = getRoomQuestions(this.props.questions);
     for (var i = 0; i < myQuestions.length; i++) {
       const question = myQuestions[i];
       var text = localeStr(question.text);

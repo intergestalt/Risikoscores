@@ -39,7 +39,10 @@ const textFragments = [
   'glossar',
   'closeGlossar',
   'graphTitle',
-  'roomQuestionsTitle'
+  'roomQuestionsTitle',
+  'startTitle',
+  'startInfo',
+  'menuIcon'
 ];
 
 const glossar = [

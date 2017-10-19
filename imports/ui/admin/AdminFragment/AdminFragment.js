@@ -3,7 +3,6 @@ import { withTracker } from 'meteor/react-meteor-data';
 import TextFragments from '../../../collections/textFragments';
 
 import ListItem from './ListItem';
-import { NavLink } from 'react-router-dom';
 
 class AdminFragment extends React.Component {
   renderFragments(fragments) {
