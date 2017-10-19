@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import TextFragments from '../../../collections/textFragments';
+import Graph from '../../../collections/graph';
 
 import ListItem from './ListItem';
+import { NavLink } from 'react-router-dom';
 
-class AdminFragment extends React.Component {
-  renderFragments(fragments) {
+class AdminGraph extends React.Component {
+  renderGraph(graph) {
     return (
       <div>
         <ul>
-          {fragments.map(entry => {
+          {graph.map(entry => {
             return (
               <li key={entry._id}>
                 <ListItem entry={entry} />
@@ -23,18 +24,18 @@ class AdminFragment extends React.Component {
 
   render() {
     return (
-      <div className="AdminFragments">
-        <h2>Text Fragments</h2>
-        {this.renderFragments(this.props.fragments)}
+      <div className="AdminGraph">
+        <h2>Graph</h2>
+        {this.renderGraph(this.props.graph)}
       </div>
     );
   }
 }
 
 export default withTracker(props => {
-  Meteor.subscribe('fragments.list');
+  Meteor.subscribe('graph.list');
 
   return {
-    fragments: TextFragments.find().fetch()
+    graph: Graph.find().fetch()
   };
-})(AdminFragment);
+})(AdminGraph);

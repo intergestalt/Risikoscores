@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 class ListItem extends React.Component {
   render() {
     return (
-      <NavLink to={'/admin/rooms/' + this.props.room._id}>
-        {this.props.room.name.de}
+      <NavLink to={'/admin/questions/' + this.props.entry._id}>
+        {this.props.entry.roomId} {this.props.entry.text.de}
       </NavLink>
     );
   }

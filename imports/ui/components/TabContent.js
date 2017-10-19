@@ -10,7 +10,7 @@ class TabContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.tab.text);
-    const textBlocks = diyMarkdown(text, false, this.props.glossarCallback);
+    const textBlocks = diyMarkdown(text, false);
     return (
       <div className="TabContent">
         <h1>{localeStr(this.props.tab.title)}</h1>
@@ -22,8 +22,7 @@ class TabContent extends React.Component {
 
 TabContent.propTypes = {
   roomFolder: PropTypes.string,
-  tab: PropTypes.object,
-  glossarCallback: PropTypes.func
+  tab: PropTypes.object
 };
 
 export default TabContent;

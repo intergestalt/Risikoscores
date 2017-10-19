@@ -6,6 +6,11 @@ import { GlossarDetail, GlossarList, GlossarExpander } from './';
 import { existsString, exists } from '../../helper/global';
 import Glossar from '../../collections/glossar';
 import { getGlossarEntry } from '../../helper/glossar';
+import {
+  isQuestionsExpanded,
+  isGraphExpanded,
+  getGlossarDetailId
+} from '../../helper/actions';
 
 class GlossarArea extends React.Component {
   constructor(props) {
@@ -25,13 +30,7 @@ class GlossarArea extends React.Component {
         this.props.glossarDetailId
       );
       if (exists(glossarEntry)) {
-        content = (
-          <GlossarDetail
-            entry={glossarEntry}
-            glossarCallback={this.props.glossarCallback}
-            closeGlossarDetail={this.props.closeGlossarDetail}
-          />
-        );
+        content = <GlossarDetail entry={glossarEntry} />;
         done = true;
       }
     }
@@ -40,22 +39,33 @@ class GlossarArea extends React.Component {
         <GlossarList
           glossar={this.props.glossar}
           roomGlossar={this.props.roomGlossar}
-          glossarCallback={this.props.glossarCallback}
         />
       );
     }
-    var expanded = null;
-    if (this.props.glossarExpanded) {
-      expanded = <div>GLOSSAR EXPANDED</div>;
+
+    //graphExpanded == true && questionsExpanded == true => height:7%
+    //graphExpanded == true && questionsExpanded == false => height:34%
+    //graphExpanded == false && questionsExpanded == true => height:33%
+    //graphExpanded == false && questionsExpanded == false => height:60%
+    var height = null;
+    if (this.props.graphExpanded) {
+      if (this.props.questionsExpanded) {
+        height = 7;
+      } else {
+        height = 34;
+      }
+    } else {
+      if (this.props.questionsExpanded) {
+        height = 33;
+      } else {
+        height = 60;
+      }
     }
+
     return (
       <div className="GlossarArea">
-        {expanded}
+        <h1>Glossar: {height}%</h1>
         {content}
-        <div className="GLossarExpand">
-          <br />
-          <GlossarExpander callBack={this.props.toggleExpandGlossar} />
-        </div>
       </div>
     );
   }
@@ -70,20 +80,17 @@ class GlossarArea extends React.Component {
 
 GlossarArea.propTypes = {
   room: PropTypes.object,
-  roomGlossar: PropTypes.object,
-  glossarDetailId: PropTypes.string,
-  glossarExpanded: PropTypes.bool,
-  toggleExpandGlossar: PropTypes.func,
-  glossarCallback: PropTypes.func,
-  closeGlossarDetail: PropTypes.func
+  roomGlossar: PropTypes.object
 };
 
 export default withTracker(props => {
   const sub = Meteor.subscribe('glossar.list');
-  Meteor.subscribe('glossar.list');
 
   return {
     glossar: Glossar.find().fetch(),
+    questionsExpanded: isQuestionsExpanded(),
+    graphExpanded: isGraphExpanded(),
+    glossarDetailId: getGlossarDetailId(),
     ready: sub.ready()
   };
 })(GlossarArea);

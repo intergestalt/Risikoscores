@@ -1,5 +1,5 @@
 import { Session } from 'meteor/session';
-import { localeStr } from './global';
+import { localeStr, exists } from './global';
 
 export function cleanForSave(entry) {
   const result = entry;
@@ -19,5 +19,8 @@ export function storeFragments(fragments) {
 
 export function getFragment(key) {
   const fragments = Session.get('fragments');
-  return localeStr(fragments[key].text);
+  if (!exists(fragments)) return '';
+  const fragment = fragments[key];
+  if (!exists(fragment)) return '';
+  return localeStr(fragment.text);
 }
