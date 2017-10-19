@@ -18,7 +18,8 @@ class GlossarLink extends React.Component {
         className="SCGlossarLink"
         href="#"
         onClick={e => {
-          showGlossarDetail(e, this.props.entry);
+          e.preventDefault();
+          showGlossarDetail(this.props.entry);
         }}
       >
         {this.props.text} : {this.props.entry} {dummy}

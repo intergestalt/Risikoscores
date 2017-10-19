@@ -28,6 +28,11 @@ import StreamWelcome from './StreamWelcome';
 import StreamWelcomeHeader from './StreamWelcomeHeader';
 import StreamWelcomeContent from './StreamWelcomeContent';
 import StreamPost from './StreamPost';
+import StartRoomMenuArea from './StartRoomMenuArea';
+import StartGeneralMenuArea from './StartGeneralMenuArea';
+import StartGraphArea from './StartGraphArea';
+import StartGeneralMenu from './StartGeneralMenu';
+import StartRoomMenu from './StartRoomMenu';
 
 export {
   MenuIcon,
@@ -55,5 +60,10 @@ export {
   StreamWelcome,
   StreamWelcomeHeader,
   StreamWelcomeContent,
-  StreamPost
+  StreamPost,
+  StartRoomMenuArea,
+  StartGeneralMenuArea,
+  StartGraphArea,
+  StartGeneralMenu,
+  StartRoomMenu
 };

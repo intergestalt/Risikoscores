@@ -50,7 +50,7 @@ export function getRoomQuestions(all) {
     index = zuffi(foreign.length - 1);
     result.push(foreign[index]);
   }
-  cacheRoomQuestions(null, result, roomId);
+  cacheRoomQuestions(result, roomId);
   return result;
 }
 
@@ -77,7 +77,7 @@ export function getStreamQuestions(all, rooms, index) {
     result.push(q);
   }
 
-  cacheStreamQuestions(null, result);
+  cacheStreamQuestions(result);
   if (index > result.length) {
     index = result.length;
   }
@@ -88,6 +88,6 @@ export function setLoading(index, yes) {
   var last = getCachedStreamQuestions();
   if (exists(last)) {
     last[index].loading = yes;
-    cacheStreamQuestions(null, last);
+    cacheStreamQuestions(last);
   }
 }
