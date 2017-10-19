@@ -13,6 +13,7 @@ class GraphArea extends React.Component {
   }
 
   callback(e) {
+    e.preventDefault();
     toggleGraph(e);
   }
   renderLoading() {

@@ -36,38 +36,32 @@ export function getRoomQuestions(all) {
   for (var i = 0; i < all.length; i++) {
     const q = all[i];
     if (q.roomId === roomId) {
-      console.log('PUSH 1');
-      console.log(q);
       own.push(q);
     }
     if (q.originRoomId === roomId) {
-      console.log('PUSH 2');
-      console.log(q);
       foreign.push(q);
     }
   }
   if (own.length > 0) {
     index = zuffi(own.length - 1);
-    console.log('index 1 ' + index);
     result.push(own[index]);
   }
   if (foreign.length > 0) {
     index = zuffi(foreign.length - 1);
-    console.log('index 2 ' + index);
     result.push(foreign[index]);
   }
-  cacheRoomQuestions(null, result, roomId);
+  cacheRoomQuestions(result, roomId);
   return result;
 }
 
-export function getStreamQuestions(all, rooms) {
-  const index = getStreamIndex();
+export function getStreamQuestions(all, rooms, index) {
   var last = getCachedStreamQuestions();
   if (exists(last)) {
-    console.log('LAST');
+    if (index > last.length) {
+      index = last.length;
+    }
     return last.slice(0, index);
   }
-  console.log('FRESH');
   var roomObj = {};
   for (var i = 0; i < rooms.length; i++) {
     const room = rooms[i];
@@ -83,7 +77,10 @@ export function getStreamQuestions(all, rooms) {
     result.push(q);
   }
 
-  cacheStreamQuestions(null, result);
+  cacheStreamQuestions(result);
+  if (index > result.length) {
+    index = result.length;
+  }
   return result.slice(0, index);
 }
 
@@ -91,6 +88,6 @@ export function setLoading(index, yes) {
   var last = getCachedStreamQuestions();
   if (exists(last)) {
     last[index].loading = yes;
-    cacheStreamQuestions(null, last);
+    cacheStreamQuestions(last);
   }
 }

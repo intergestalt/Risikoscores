@@ -1,65 +1,79 @@
 import { Session } from 'meteor/session';
-import { exists } from './global';
+import { exists, zuffi } from './global';
 
-function prevent(e) {
-  if (exists(e)) {
-    e.preventDefault();
+export function toggleLanguage() {
+  var language = Session.get('language');
+  if (language === 'en') {
+    Session.set('language', 'de');
+  } else {
+    Session.set('language', 'en');
   }
 }
-export function toggleGraph(e) {
-  prevent(e);
+
+export function toggleGraph() {
   var graphExpanded = isGraphExpanded();
   Session.set('graphExpanded', !graphExpanded);
 }
 
-export function toggleQuestions(e) {
-  prevent(e);
+export function toggleQuestions() {
   var questionsExpanded = isQuestionsExpanded();
   Session.set('questionsExpanded', !questionsExpanded);
 }
 
-export function toggleStartWelcome(e) {
-  prevent(e);
+export function toggleStartWelcome() {
   var expanded = isStartWelcomeExpanded();
   Session.set('startWelcomeExpanded', !expanded);
 }
 
-export function closeGlossarDetail(e) {
-  prevent(e);
+export function closeGlossarDetail() {
   Session.set('glossarDetailId', null);
 }
 
-export function showGlossarDetail(e, id) {
-  prevent(e);
+export function showGlossarDetail(id) {
   Session.set('glossarDetailId', id);
 }
 
-export function setPreSelectedTabId(e, id) {
-  prevent(e);
+export function setPreSelectedTabId(id) {
   Session.set('preSelectedTabId', id);
 }
 
-export function setSelectedTabId(e, id) {
-  prevent(e);
+export function setSelectedTabId(id) {
   Session.set('selectedTabId', id);
 }
-export function setSelectedRoomId(e, id) {
-  prevent(e);
+export function setSelectedRoomId(id) {
   Session.set('selectedRoomId', id);
 }
 
-export function cacheRoomQuestions(e, questions, roomId) {
-  prevent(e);
+export function cacheRoomQuestions(questions, roomId) {
   Session.set('cachedRoomQuestions', { questions: questions, roomId: roomId });
 }
-export function cacheStreamQuestions(e, questions) {
-  prevent(e);
+export function cacheStreamQuestions(questions) {
   Session.set('cachedStreamQuestions', questions);
 }
 
-export function setStreamIndex(e, index) {
-  prevent(e);
+export function setStreamIndex(index) {
   Session.set('streamIndex', index);
+}
+
+export function incStreamIndex() {
+  var index = Session.get('streamIndex');
+  index++;
+  var questions = getCachedStreamQuestions();
+  if (exists(questions)) {
+    if (index > questions.length) {
+      index = questions.length;
+      setStreamFinished();
+    }
+  }
+  Session.set('streamIndex', index);
+}
+
+export function setStreamStarted() {
+  const value = Session.set('streamStarted', true);
+}
+
+export function setStreamFinished() {
+  const value = Session.set('streamFinished', true);
 }
 
 // get
@@ -107,4 +121,14 @@ export function getStreamIndex() {
 export function getCachedStreamQuestions() {
   const questions = Session.get('cachedStreamQuestions');
   return questions;
+}
+
+export function isStreamStarted() {
+  const value = Session.get('streamStarted');
+  return value;
+}
+
+export function isStreamFinished() {
+  const value = Session.get('streamFinished');
+  return value;
 }

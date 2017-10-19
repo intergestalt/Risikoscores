@@ -14,7 +14,8 @@ class StreamWelcome extends React.Component {
   }
 
   callback(e) {
-    toggleStartWelcome(e);
+    e.preventDefault();
+    toggleStartWelcome();
   }
   render() {
     var content = null;

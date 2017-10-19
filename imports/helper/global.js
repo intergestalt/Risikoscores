@@ -1,4 +1,10 @@
 import { Session } from 'meteor/session';
+import {
+  incStreamIndex,
+  setStreamStarted,
+  isStreamStarted,
+  isStreamFinished
+} from './actions';
 
 export function exists(v) {
   if (v === null) return false;
@@ -68,4 +74,36 @@ export function zuffi(max) {
   if (zuffi < 0) zuffi = 0;
   if (zuffi > max) index = max;
   return zuffi;
+}
+
+const streamZuffiDelay = [1, 8, 8, 16, 32, 64, 128];
+
+export function getStartStreamDelay() {
+  var index = Session.get('streamIndex');
+
+  if (index >= streamZuffiDelay.length) {
+    index = streamZuffiDelay.length - 1;
+  }
+  const zuffiDelay = streamZuffiDelay[index] * 1000;
+  const zuffiOffset = Math.trunc(zuffiDelay / 2);
+  const delay = zuffi(zuffiDelay) + zuffiOffset;
+  return delay;
+}
+
+function streamTimeout() {
+  if (isStreamFinished()) {
+    return;
+  }
+  const delay = getStartStreamDelay();
+  setTimeout(() => {
+    incStreamIndex();
+    streamTimeout();
+  }, delay);
+}
+
+export function startStreamTimeout() {
+  if (!isStreamStarted()) {
+    streamTimeout();
+    setStreamStarted();
+  }
 }

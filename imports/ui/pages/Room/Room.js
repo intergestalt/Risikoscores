@@ -9,13 +9,15 @@ import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
 import { setSelectedTabId, setSelectedRoomId } from '../../../helper/actions';
-import { exists } from '../../../helper/global';
+import { exists, startStreamTimeout } from '../../../helper/global';
 
 class Room extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    startStreamTimeout();
+  }
   renderLoading() {
     return <div className="Room">Loading...</div>;
   }
@@ -58,8 +60,8 @@ export default withTracker(props => {
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
-  setSelectedTabId(null, tabId);
-  setSelectedRoomId(null, roomId);
+  setSelectedTabId(tabId);
+  setSelectedRoomId(roomId);
   return {
     room: Rooms.findOne(roomId),
     selectedTabId: tabId,
@@ -74,4 +76,4 @@ const RoomElem = styled.div`
   & > * {
     flex: 1;
   }
-`
+`;
