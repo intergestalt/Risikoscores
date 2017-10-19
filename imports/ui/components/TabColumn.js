@@ -14,9 +14,6 @@ class TabColumn extends React.Component {
 
   render() {
     var selectedTabId = this.props.selectedTabId;
-    if (!exists(selectedTabId)) {
-      selectedTabId = getDefaultTabId(this.props.room.subsections);
-    }
     return (
       <div className="TabColumn">
         <TabBar
