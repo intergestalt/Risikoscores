@@ -18,7 +18,8 @@ class GlossarClose extends React.Component {
         <a
           href="#"
           onClick={e => {
-            closeGlossarDetail(e);
+            e.preventDefault();
+            closeGlossarDetail();
           }}
         >
           {glossarCloseText}

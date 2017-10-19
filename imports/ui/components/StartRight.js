@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { StartRoomMenuArea, StartGeneralMenuArea, StartGraphArea } from './';
 
 class StartRight extends React.Component {
   constructor(props) {
@@ -7,7 +8,13 @@ class StartRight extends React.Component {
   }
 
   render() {
-    return <div className="StartRight" />;
+    return (
+      <div className="StartRight">
+        <StartRoomMenuArea rooms={this.props.rooms} />
+        <StartGeneralMenuArea />
+        <StartGraphArea />
+      </div>
+    );
   }
 }
 

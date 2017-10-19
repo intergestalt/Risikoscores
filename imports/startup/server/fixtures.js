@@ -42,7 +42,9 @@ const textFragments = [
   'roomQuestionsTitle',
   'startTitle',
   'startInfo',
-  'menuIcon'
+  'menuIcon',
+  'aboutLink',
+  'languageLink'
 ];
 
 const glossar = [

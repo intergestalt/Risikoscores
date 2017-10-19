@@ -76,7 +76,7 @@ export function zuffi(max) {
   return zuffi;
 }
 
-const streamZuffiDelay = [1, 4, 4, 4, 10, 20, 30, 40, 50, 60];
+const streamZuffiDelay = [1, 8, 8, 16, 32, 64, 128];
 
 export function getStartStreamDelay() {
   var index = Session.get('streamIndex');
@@ -96,7 +96,7 @@ function streamTimeout() {
   }
   const delay = getStartStreamDelay();
   setTimeout(() => {
-    incStreamIndex(null);
+    incStreamIndex();
     streamTimeout();
   }, delay);
 }
@@ -104,6 +104,6 @@ function streamTimeout() {
 export function startStreamTimeout() {
   if (!isStreamStarted()) {
     streamTimeout();
-    setStreamStarted(null);
+    setStreamStarted();
   }
 }

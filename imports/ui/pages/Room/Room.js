@@ -60,8 +60,8 @@ export default withTracker(props => {
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
-  setSelectedTabId(null, tabId);
-  setSelectedRoomId(null, roomId);
+  setSelectedTabId(tabId);
+  setSelectedRoomId(roomId);
   return {
     room: Rooms.findOne(roomId),
     selectedTabId: tabId,
@@ -76,4 +76,4 @@ const RoomElem = styled.div`
   & > * {
     flex: 1;
   }
-`
+`;

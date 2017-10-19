@@ -13,7 +13,8 @@ class QuestionsArea extends React.Component {
   }
 
   callback(e) {
-    toggleQuestions(e);
+    e.preventDefault();
+    toggleQuestions();
   }
 
   renderLoading() {
