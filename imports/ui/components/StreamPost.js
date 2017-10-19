@@ -8,12 +8,17 @@ class StreamPost extends React.Component {
   constructor(props) {
     super(props);
     this.state = { stillLoading: props.loading };
+    this.timer = null;
   }
   componentDidMount() {
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.setState({ stillLoading: false });
     }, zuffi(2000) + 500);
   }
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
   renderLoading() {
     return <li className="StreamPost">loading...</li>;
   }
