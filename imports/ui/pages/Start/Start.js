@@ -6,8 +6,13 @@ import { StartLeft, StartRight } from '../../components';
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
+import { startStreamTimeout } from '../../../helper/global';
 
 class Start extends React.Component {
+  componentDidMount() {
+    startStreamTimeout();
+  }
+
   renderRooms(rooms) {
     return (
       <ul>

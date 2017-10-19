@@ -8,13 +8,15 @@ import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
 import { setSelectedTabId, setSelectedRoomId } from '../../../helper/actions';
-import { exists } from '../../../helper/global';
+import { exists, startStreamTimeout } from '../../../helper/global';
 
 class Room extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    startStreamTimeout();
+  }
   renderLoading() {
     return <div className="Room">Loading...</div>;
   }
