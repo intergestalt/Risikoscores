@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
-import 'antd/dist/antd.css';
 
 import Glossar from '../../../collections/glossar';
 import GlossarSchema from '../../../schemas/glossar';

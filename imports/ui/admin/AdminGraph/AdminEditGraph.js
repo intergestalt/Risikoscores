@@ -4,7 +4,6 @@ import Graph from '../../../collections/graph';
 import GraphNodeSchema from '../../../schemas/graph';
 import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
-import 'antd/dist/antd.css';
 
 import { cleanForSave } from '../../../helper/graph';
 

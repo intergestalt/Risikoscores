@@ -39,79 +39,79 @@ const App = appProps => (
           path="/rooms/:_id"
           render={props => <Room {...props} {...appProps} />}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-overview-index"
           path="/admin/"
           component={AdminOverview}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-rooms-index"
           path="/admin/rooms"
           component={AdminRooms}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-room-edit"
           path="/admin/rooms/:_id"
           component={AdminEditRoom}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-glossar-index"
           path="/admin/glossar"
           component={AdminGlossar}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-glossar-edit"
           path="/admin/glossar/:_id"
           component={AdminEditGlossar}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-glossar-add"
           path="/admin/glossar-add"
           component={AdminAddGlossar}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-fragment-index"
           path="/admin/fragments"
           component={AdminFragment}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-fragment-edit"
           path="/admin/fragment/:_id"
           component={AdminEditFragment}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-graph-index"
           path="/admin/graph"
           component={AdminGraph}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-grpah-edit"
           path="/admin/graph/:_id"
           component={AdminEditGraph}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-questions-index"
           path="/admin/questions"
           component={AdminQuestions}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-question-edit"
           path="/admin/questions/:_id"
           component={AdminEditQuestion}
         />
-        <Route
+        <AdminRoute
           exact
           name="admin-question-add"
           path="/admin/questions-add"

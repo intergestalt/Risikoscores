@@ -64,7 +64,6 @@ class AdminEditRoom extends React.Component {
   render() {
     return (
       <div className="AdminEditRoom">
-        <link href='/vendor/antd/antd.css' type="text/css" rel="stylesheet" />
         <h2>Edit Room</h2>
         {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
       </div>

@@ -4,7 +4,6 @@ import Questions from '../../../collections/questions';
 import QuestionSchema from '../../../schemas/question';
 import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
-import 'antd/dist/antd.css';
 
 import { cleanForSave } from '../../../helper/question';
 
