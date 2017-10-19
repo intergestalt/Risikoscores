@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
@@ -28,7 +29,7 @@ class Room extends React.Component {
     }
     const roomGlossar = findGlossar(this.props.room);
     return (
-      <div className="Room">
+      <RoomElem className="Room">
         <MainColumn room={this.props.room} />
         <TabColumn
           selectedTabId={selectedTabId}
@@ -38,7 +39,7 @@ class Room extends React.Component {
         />
         <RightColumn room={this.props.room} roomGlossar={roomGlossar} />
         <MenuIcon />
-      </div>
+      </RoomElem>
     );
   }
 
@@ -68,3 +69,11 @@ export default withTracker(props => {
     ready: sub.ready() && sub2.ready
   };
 })(Room);
+
+const RoomElem = styled.div`
+  display: flex;
+  flex-direction: row;
+  & > * {
+    flex: 1;
+  }
+`
