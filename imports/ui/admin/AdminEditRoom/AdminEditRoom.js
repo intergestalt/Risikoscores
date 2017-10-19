@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import Rooms from '../../../collections/rooms';
 import RoomSchema from '../../../schemas/room';
-import AutoForm from 'uniforms-antd/AutoForm';
-import enUS from 'antd/lib/locale-provider/en_US';
-import 'antd/dist/antd.css';
+
+const lazy_imports = async () => {
+  AutoForm = (await import('uniforms-antd/AutoForm')).default
+};
 
 import { cleanForSave } from '../../../helper/room';
 
 class AdminEditRoom extends React.Component {
+  constructor() {
+    super()
+    this.state = { importsReady: false }
+    lazy_imports().then((err, data) => {
+      if (err) console.log(err);
+      this.setState({ importsReady: true });
+      this.forceUpdate();
+    })
+  }
+
   save(doc) {
     let room = cleanForSave(doc);
     if (!room._id) {
@@ -42,14 +53,15 @@ class AdminEditRoom extends React.Component {
   }
 
   renderLoading() {
-    return <div>Loading...</div>;
+    return <div>{this.state.importsReady ? 'Loading data...' : 'Loading code...'}</div>;
   }
 
   render() {
     return (
       <div className="AdminEditRoom">
+        <link href='/vendor/antd/antd.css' type="text/css" rel="stylesheet" />
         <h2>Edit Room</h2>
-        {this.props.ready ? this.renderForm() : this.renderLoading()}
+        {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
       </div>
     );
   }

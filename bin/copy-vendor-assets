@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ ! -d "public" ]; then
+  echo "Need to run from base directory"
+  exit
+fi
+
+mkdir public/vendor
+mkdir public/vendor/antd
+cp -Rf node_modules/antd/dist/ public/vendor/antd/
