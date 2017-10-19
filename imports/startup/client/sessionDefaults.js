@@ -8,5 +8,7 @@ Session.setDefault('selectedRoomId', null);
 Session.setDefault('selectedTabId', null);
 Session.setDefault('cachedRoomQuestions', null);
 Session.setDefault('cachedStreamQuestions', null);
-Session.setDefault('streamIndex', 4);
+Session.setDefault('streamIndex', 0);
 Session.setDefault('startWelcomeExpanded', true);
+Session.setDefault('streamStarted', false);
+Session.setDefault('streamFinished', false);

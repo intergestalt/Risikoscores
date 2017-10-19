@@ -1,5 +1,5 @@
 import { Session } from 'meteor/session';
-import { exists } from './global';
+import { exists, zuffi } from './global';
 
 function prevent(e) {
   if (exists(e)) {
@@ -62,6 +62,30 @@ export function setStreamIndex(e, index) {
   Session.set('streamIndex', index);
 }
 
+export function incStreamIndex(e) {
+  prevent(e);
+  var index = Session.get('streamIndex');
+  index++;
+  var questions = getCachedStreamQuestions();
+  if (exists(questions)) {
+    if (index > questions.length) {
+      index = questions.length;
+      setStreamFinished(null);
+    }
+  }
+  Session.set('streamIndex', index);
+}
+
+export function setStreamStarted(e) {
+  prevent(e);
+  const value = Session.set('streamStarted', true);
+}
+
+export function setStreamFinished(e) {
+  prevent(e);
+  const value = Session.set('streamFinished', true);
+}
+
 // get
 
 export function getGlossarDetailId() {
@@ -107,4 +131,14 @@ export function getStreamIndex() {
 export function getCachedStreamQuestions() {
   const questions = Session.get('cachedStreamQuestions');
   return questions;
+}
+
+export function isStreamStarted() {
+  const value = Session.get('streamStarted');
+  return value;
+}
+
+export function isStreamFinished() {
+  const value = Session.get('streamFinished');
+  return value;
 }
