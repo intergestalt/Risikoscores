@@ -6,7 +6,7 @@ import AutoForm from 'uniforms-antd/AutoForm';
 import enUS from 'antd/lib/locale-provider/en_US';
 import 'antd/dist/antd.css';
 
-import { cleanForSave } from '../../../helper/fragments';
+import { cleanForSave } from '../../../helper/fragment';
 
 class AdminEditFragment extends React.Component {
   save(doc) {

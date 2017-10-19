@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { showGlossarDetail } from '../../../helper/actions';
+
 class GlossarLink extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,7 @@ class GlossarLink extends React.Component {
         className="SCGlossarLink"
         href="#"
         onClick={e => {
-          this.props.callback(e, this.props.entry);
+          showGlossarDetail(e, this.props.entry);
         }}
       >
         {this.props.text} : {this.props.entry} {dummy}
@@ -27,8 +29,7 @@ class GlossarLink extends React.Component {
 GlossarLink.propTypes = {
   text: PropTypes.string,
   entry: PropTypes.string,
-  highlighted: PropTypes.bool,
-  callback: PropTypes.func
+  highlighted: PropTypes.bool
 };
 
 export default GlossarLink;

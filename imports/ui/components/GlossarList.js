@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { GlossarLink } from './content';
 import { localeStr } from '../../helper/global';
 import { sortGlossar, getRoomGlossar } from '../../helper/glossar';
-import { getFragment } from '../../helper/fragments';
+import { getFragment } from '../../helper/fragment';
 
 class GlossarList extends React.Component {
   constructor(props) {
@@ -20,7 +20,6 @@ class GlossarList extends React.Component {
             text={localeStr(e.name)}
             entry={e._id}
             highlighted={highlight && this.props.roomGlossar[e._id]}
-            callback={this.props.glossarCallback}
           />
         </li>
       );
@@ -49,8 +48,7 @@ class GlossarList extends React.Component {
 
 GlossarList.propTypes = {
   glossar: PropTypes.array,
-  roomGlossar: PropTypes.object,
-  glossarCallback: PropTypes.func
+  roomGlossar: PropTypes.object
 };
 
 export default GlossarList;

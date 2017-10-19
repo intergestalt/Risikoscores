@@ -11,7 +11,7 @@ class MainContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.room.mainText);
-    const textBlocks = diyMarkdown(text, false, this.props.glossarCallback);
+    const textBlocks = diyMarkdown(text, false);
     const title = localeStr(this.props.room.name);
     return (
       <div className="MainContent">
@@ -23,8 +23,7 @@ class MainContent extends React.Component {
 }
 
 MainContent.propTypes = {
-  room: PropTypes.object,
-  glossarCallback: PropTypes.func
+  room: PropTypes.object
 };
 
 export default MainContent;

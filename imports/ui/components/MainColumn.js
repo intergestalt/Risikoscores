@@ -14,17 +14,13 @@ class MainColumn extends React.Component {
           roomFolder={this.props.room._id}
           images={this.props.room.images}
         />
-        <MainContent
-          room={this.props.room}
-          glossarCallback={this.props.glossarCallback}
-        />
+        <MainContent room={this.props.room} />
       </div>
     );
   }
 }
 MainColumn.propTypes = {
-  room: PropTypes.object,
-  glossarCallback: PropTypes.func
+  room: PropTypes.object
 };
 
 export default MainColumn;

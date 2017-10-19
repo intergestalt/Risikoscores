@@ -16,7 +16,12 @@ import {
   AdminEditGlossar,
   AdminAddGlossar
 } from '../../admin/AdminGlossar';
-
+import {
+  AdminQuestions,
+  AdminEditQuestion,
+  AdminAddQuestion
+} from '../../admin/AdminQuestion';
+import { AdminGraph, AdminEditGraph } from '../../admin/AdminGraph';
 import AdminRoute from '../../containers/AdminRoute';
 
 const App = appProps => (
@@ -81,6 +86,36 @@ const App = appProps => (
           name="admin-fragment-edit"
           path="/admin/fragment/:_id"
           component={AdminEditFragment}
+        />
+        <Route
+          exact
+          name="admin-graph-index"
+          path="/admin/graph"
+          component={AdminGraph}
+        />
+        <Route
+          exact
+          name="admin-grpah-edit"
+          path="/admin/graph/:_id"
+          component={AdminEditGraph}
+        />
+        <Route
+          exact
+          name="admin-questions-index"
+          path="/admin/questions"
+          component={AdminQuestions}
+        />
+        <Route
+          exact
+          name="admin-question-edit"
+          path="/admin/questions/:_id"
+          component={AdminEditQuestion}
+        />
+        <Route
+          exact
+          name="admin-question-add"
+          path="/admin/questions-add"
+          component={AdminAddQuestion}
         />
       </Switch>
     </div>

@@ -10,10 +10,41 @@ import Glossar from '../../collections/glossar';
 import GlossarSchema from '../../schemas/glossar';
 import TextFragments from '../../collections/textFragments';
 import TextFragmentSchema from '../../schemas/textFragment';
+import Questions from '../../collections/questions';
+import QuestionSchema from '../../schemas/question';
+import Graph from '../../collections/graph';
+import GraphNodeSchema from '../../schemas/graph';
 import { getId } from '../../helper/admin';
+import { getInitialQuestions } from './initialQuestions';
+import { getGraph } from './graph';
 
-const rooms = ['framingham', 'einwohnermeldeamt'];
-const textFragments = ['glossar', 'closeGlossar'];
+const questions = getInitialQuestions();
+const graphNodes = getGraph();
+
+const rooms = [
+  'arriba',
+  'framingham',
+  'einwohnermeldeamt',
+  'population',
+  'bioprobenlager',
+  'programmierbüro',
+  'www',
+  'teilnehmermanagement',
+  'untersuchungszentrum',
+  'serverraum',
+  'arztpraxis'
+];
+
+const textFragments = [
+  'glossar',
+  'closeGlossar',
+  'graphTitle',
+  'roomQuestionsTitle',
+  'startTitle',
+  'startInfo',
+  'menuIcon'
+];
+
 const glossar = [
   'Kohortenstudie',
   'Quantitativ',
@@ -79,6 +110,32 @@ Meteor.startup(() => {
         ...GlossarSchema.clean({}),
         _id: id,
         name: { de: name }
+      });
+    }
+  });
+
+  /*Questions.remove({});
+  questions.forEach(question => {
+    console.log('inserting question ' + question.text);
+    Questions.insert({
+      ...QuestionSchema.clean({}),
+      text: { de: question.text },
+      image: question.image,
+      roomId: question.roomId,
+      originRoomId: question.originRoomId
+    });
+  });*/
+  // Graph.remove({});
+  graphNodes.forEach(graphNode => {
+    if (!Graph.findOne(graphNode._id)) {
+      console.log('inserting graphNode ' + graphNode._id);
+      Graph.insert({
+        ...GraphNodeSchema.clean({}),
+        _id: graphNode._id,
+        pseudo: graphNode.pseudo,
+        x: graphNode.x,
+        y: graphNode.y,
+        neighbours: graphNode.neighbours
       });
     }
   });
