@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { diyMarkdown } from '../../helper/diyMarkdown';
+import { snippets, dist } from '../../config/styles';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -14,10 +16,10 @@ class MainContent extends React.Component {
     const textBlocks = diyMarkdown(text, false);
     const title = localeStr(this.props.room.name);
     return (
-      <div className="MainContent">
-        <h1>{title}</h1>
+      <Content className="MainContent">
+        <Headline>{title}</Headline>
         {textBlocks}
-      </div>
+      </Content>
     );
   }
 }
@@ -27,3 +29,11 @@ MainContent.propTypes = {
 };
 
 export default MainContent;
+
+const Content = styled.div`
+padding: ${dist.named.columnPadding};
+`;
+
+const Headline = styled.h1`
+  ${snippets.headlineText};
+`;

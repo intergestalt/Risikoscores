@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { localeStr, existsString } from '../../helper/global';
+import { snippets, dist } from '../../config/styles';
 
 class TabBar extends React.Component {
   constructor(props) {
@@ -19,30 +21,24 @@ class TabBar extends React.Component {
       const tab = this.props.tabs[i];
       var className = 'Tab';
 
-      var content = (
-        <NavLink
-          to={'/rooms/' + this.props.roomId + '?tabId=' + tab.identifier}
-        >
-          {localeStr(tab.title)}
-        </NavLink>
-      );
       if (selectedTabId === tab.identifier) {
         className = 'SelectedTab';
         content = localeStr(tab.title);
       }
       const entry = (
-        <div
+        <Tab
           key={'_tab' + i}
+          to={'/rooms/' + this.props.roomId + '?tabId=' + tab.identifier}
           className={className}
           style={{ backgroundColor: tab.color }}
         >
-          {content}
-        </div>
+          {localeStr(tab.title)}
+        </Tab>
       );
       myTabs.push(entry);
     }
 
-    return <div className="TabBar">{myTabs}</div>;
+    return <Bar className="TabBar">{myTabs}</Bar>;
   }
 }
 
@@ -54,3 +50,19 @@ TabBar.propTypes = {
 };
 
 export default TabBar;
+
+const Bar = styled.nav`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+const Tab = styled(NavLink) `
+  ${snippets.tabText}
+  display:block;
+  min-width: calc( 100% / 3 );
+  box-sizing: border-box;
+  flex: 1;
+  line-height: ${dist.medium};
+  padding: 0 ${dist.small};
+`;

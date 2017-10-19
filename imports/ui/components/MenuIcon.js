@@ -37,7 +37,7 @@ const FloatMenu = styled.nav`
     text-shadow: 1rem 1rem 1rem rgba(0,0,0,0.66);    
   }
   a {
-    top: 0.75rem;
+    top: 0.75rem; // this depends on the relative height of the hexagon character to the line-height
     pointer-events: all;
     color:white;
     position: relative;

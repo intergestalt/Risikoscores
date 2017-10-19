@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { MainImages, MainContent } from './';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { colors } from '../../config/styles';
 
 class MainColumn extends React.Component {
   constructor(props) {
@@ -9,13 +11,13 @@ class MainColumn extends React.Component {
 
   render() {
     return (
-      <div className="MainColumn">
+      <Column className="MainColumn">
         <MainImages
           roomFolder={this.props.room._id}
           images={this.props.room.images}
         />
         <MainContent room={this.props.room} />
-      </div>
+      </Column>
     );
   }
 }
@@ -24,3 +26,7 @@ MainColumn.propTypes = {
 };
 
 export default MainColumn;
+
+const Column = styled.section`
+  background-color: ${colors.lightgrey};
+`;

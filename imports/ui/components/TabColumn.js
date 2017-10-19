@@ -14,8 +14,11 @@ class TabColumn extends React.Component {
 
   render() {
     var selectedTabId = this.props.selectedTabId;
+
+    const color = this.props.tabs ? this.props.tabs.find(tab => tab.identifier == this.props.selectedTabId).color : "transparent"
+
     return (
-      <div className="TabColumn">
+      <div className="TabColumn" style={{ backgroundColor: color }}>
         <TabBar
           roomId={this.props.roomId}
           selectedTabId={this.props.selectedTabId}
