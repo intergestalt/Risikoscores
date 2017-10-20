@@ -3,6 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
+import color from 'color';
 
 import { GlossarDetail, GlossarList, GlossarExpander } from './';
 import { existsString, exists } from '../../helper/global';
@@ -13,7 +14,7 @@ import {
   isGraphExpanded,
   getGlossarDetailId
 } from '../../helper/actions';
-import { colors, snippets } from '../../config/styles';
+import { colors, snippets, dist } from '../../config/styles';
 
 class GlossarArea extends React.Component {
   constructor(props) {
@@ -68,8 +69,10 @@ class GlossarArea extends React.Component {
     return (
       <Area relativeHeight={height} className="GlossarArea">
         <Scrollbars>
-          <Title>Glossar: {height}%</Title>
-          {content}
+          <InnerContainer>
+            <Title>Glossar: {height}%</Title>
+            {content}
+          </InnerContainer>
         </Scrollbars>
       </Area>
     );
@@ -100,16 +103,31 @@ export default withTracker(props => {
   };
 })(GlossarArea);
 
-const Area = styled.div.attrs({
-  relativeHeight: props => props.relativeHeight || '33.33'
-}) `
+const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.darkgrey};
   overflow-y: auto;
+  position: relative;
+  &:after {
+    position: absolute;
+    bottom: 0;  
+    height: 3em;
+    width: 100%;
+    content: "";
+    background: linear-gradient(to top,
+       ${color(colors.darkgrey).darken(0.2).opaquer(0.8).string()} 0%, 
+       ${color(colors.darkgrey).darken(0.05).fade(1).string()} 80%
+    );
+    pointer-events: none;
+  }  
 `;
 
 const Title = styled.h3`
   ${snippets.headlineText};
   color: ${colors.named.glossar};
+`;
+
+const InnerContainer = styled.div`
+  padding: ${ dist.named.columnPadding}
 `;

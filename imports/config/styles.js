@@ -41,7 +41,12 @@ const snippets = {
   tabText: `
     font-family: 'Roboto Light';
     font-size: 13px;
-  `
+  `,
+  glossarText: `
+  font-family: 'Roboto Regular';
+  line-height: 21px;
+  font-size: 18px;
+`,
 }
 
 const dist = {

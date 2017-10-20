@@ -61,9 +61,7 @@ export default withTracker(props => {
   };
 })(QuestionsArea);
 
-const Area = styled.div.attrs({
-  relativeHeight: props => props.relativeHeight || '33.33'
-}) `
+const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.lightgrey};
