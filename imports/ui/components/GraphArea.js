@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import GraphDB from '../../collections/graph';
 import { GraphHeader, Graph, Expander } from './';
 import { toggleGraph, isGraphExpanded } from '../../helper/actions';
+import { colors } from '../../config/styles';
 
 class GraphArea extends React.Component {
   constructor(props) {
@@ -30,7 +32,7 @@ class GraphArea extends React.Component {
       height = 33;
     }
     return (
-      <div className="GraphArea">
+      <Area className="GraphArea" relativeHeight={height}>
         <h1>Graph: {height}%</h1>
         <Expander
           callback={this.callback}
@@ -39,7 +41,7 @@ class GraphArea extends React.Component {
         />
         <GraphHeader />
         <Graph graph={this.props.graph} />
-      </div>
+      </Area>
     );
   }
 }
@@ -57,3 +59,11 @@ export default withTracker(props => {
     graphExpanded: isGraphExpanded()
   };
 })(GraphArea);
+
+const Area = styled.div.attrs({
+  relativeHeight: props => props.relativeHeight || '33.33'
+}) `
+  height: ${props => props.relativeHeight}%;
+  //flex:  ${props => props.relativeHeight};
+  background-color: ${colors.mediumgrey};
+`;

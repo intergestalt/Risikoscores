@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { MainImages, MainContent } from './';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
+
 import { colors } from '../../config/styles';
 
 class MainColumn extends React.Component {
@@ -12,11 +14,13 @@ class MainColumn extends React.Component {
   render() {
     return (
       <Column className="MainColumn">
-        <MainImages
-          roomFolder={this.props.room._id}
-          images={this.props.room.images}
-        />
-        <MainContent room={this.props.room} />
+        <Scrollbars>
+          <MainImages
+            roomFolder={this.props.room._id}
+            images={this.props.room.images}
+          />
+          <MainContent style={{ overflow: "auto" }} room={this.props.room} />
+        </Scrollbars>
       </Column>
     );
   }
@@ -29,4 +33,6 @@ export default MainColumn;
 
 const Column = styled.section`
   background-color: ${colors.lightgrey};
+  height:100%;
+  overflow: auto;
 `;

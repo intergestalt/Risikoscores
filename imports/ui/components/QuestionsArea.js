@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import Questions from '../../collections/questions';
 import { RoomQuestions, Expander, RoomQuestionsHeader } from './';
 import { toggleQuestions, isQuestionsExpanded } from '../../helper/actions';
+import { colors } from '../../config/styles';
 
 class QuestionsArea extends React.Component {
   constructor(props) {
@@ -31,7 +33,7 @@ class QuestionsArea extends React.Component {
       height = 60;
     }
     return (
-      <div className="QuestionsArea">
+      <Area className="QuestionsArea" relativeHeight={height}>
         <h1>Questions: {height}%</h1>
         <Expander
           callback={this.callback}
@@ -40,7 +42,7 @@ class QuestionsArea extends React.Component {
         />
         <RoomQuestionsHeader />
         <RoomQuestions questions={this.props.questions} />
-      </div>
+      </Area>
     );
   }
 }
@@ -58,3 +60,12 @@ export default withTracker(props => {
     questionsExpanded: isQuestionsExpanded()
   };
 })(QuestionsArea);
+
+const Area = styled.div.attrs({
+  relativeHeight: props => props.relativeHeight || '33.33'
+}) `
+  height: ${props => props.relativeHeight}%;
+  //flex:  ${props => props.relativeHeight};
+  background-color: ${colors.lightgrey};
+  overflow-y: auto;
+`;

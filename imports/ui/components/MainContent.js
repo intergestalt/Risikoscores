@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { diyMarkdown } from '../../helper/diyMarkdown';
-import { snippets, dist } from '../../config/styles';
+import { snippets, dist, colors } from '../../config/styles';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -36,4 +36,5 @@ padding: ${dist.named.columnPadding};
 
 const Headline = styled.h1`
   ${snippets.headlineText};
+  color: ${colors.named.room};
 `;

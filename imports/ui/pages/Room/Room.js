@@ -75,8 +75,9 @@ const RoomElem = styled.div`
   flex-direction: row;
   & > *:not(nav) {
     flex: 1;
-    overflow: auto;
     height:100%;
+    width: calc( 100% / 3 );
+    overflow: hidden;
   }
   height: 100%;
   overflow: hidden;

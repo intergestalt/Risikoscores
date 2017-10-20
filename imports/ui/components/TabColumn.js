@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import { TabBar, TabContent } from './';
 import { existsString, exists } from '../../helper/global';
@@ -18,7 +19,7 @@ class TabColumn extends React.Component {
     const color = this.props.tabs ? this.props.tabs.find(tab => tab.identifier == this.props.selectedTabId).color : "transparent"
 
     return (
-      <div className="TabColumn" style={{ backgroundColor: color }}>
+      <Column className="TabColumn" style={{ backgroundColor: color }}>
         <TabBar
           roomId={this.props.roomId}
           selectedTabId={this.props.selectedTabId}
@@ -29,7 +30,7 @@ class TabColumn extends React.Component {
           tab={getSelectedTab(this.props.selectedTabId, this.props.tabs)}
           roomFolder={this.props.roomFolder}
         />
-      </div>
+      </Column>
     );
   }
 }
@@ -46,3 +47,8 @@ export default withTracker(props => {
     preSelectedTabId: getPreSelectedTabId()
   };
 })(TabColumn);
+
+const Column = styled.section`
+  display: flex;
+  flex-direction: column;
+`;

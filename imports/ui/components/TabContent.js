@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { localeStr } from '../../helper/global';
 import { diyMarkdown } from '../../helper/diyMarkdown';
@@ -15,10 +16,16 @@ class TabContent extends React.Component {
     var text = localeStr(this.props.tab.text);
     const textBlocks = diyMarkdown(text, false);
     return (
+
       <Content className="TabContent">
-        <Headline>{localeStr(this.props.tab.title)}</Headline>
-        {textBlocks}
+        <Scrollbars>
+          <ScrollContainer>
+            <Headline>{localeStr(this.props.tab.title)}</Headline>
+            {textBlocks}
+          </ScrollContainer>
+        </Scrollbars>
       </Content>
+
     );
   }
 }
@@ -31,7 +38,13 @@ TabContent.propTypes = {
 export default TabContent;
 
 const Content = styled.div`
-padding: ${dist.named.columnPadding};
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+`;
+
+const ScrollContainer = styled.div`
+  padding: ${dist.named.columnPadding};
 `;
 
 const Headline = styled.h1`
