@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { GlossarDetail, GlossarList, GlossarExpander } from './';
 import { existsString, exists } from '../../helper/global';
@@ -11,6 +13,7 @@ import {
   isGraphExpanded,
   getGlossarDetailId
 } from '../../helper/actions';
+import { colors, snippets } from '../../config/styles';
 
 class GlossarArea extends React.Component {
   constructor(props) {
@@ -63,10 +66,12 @@ class GlossarArea extends React.Component {
     }
 
     return (
-      <div className="GlossarArea">
-        <h1>Glossar: {height}%</h1>
-        {content}
-      </div>
+      <Area relativeHeight={height} className="GlossarArea">
+        <Scrollbars>
+          <Title>Glossar: {height}%</Title>
+          {content}
+        </Scrollbars>
+      </Area>
     );
   }
 
@@ -94,3 +99,17 @@ export default withTracker(props => {
     ready: sub.ready()
   };
 })(GlossarArea);
+
+const Area = styled.div.attrs({
+  relativeHeight: props => props.relativeHeight || '33.33'
+}) `
+  height: ${props => props.relativeHeight}%;
+  //flex:  ${props => props.relativeHeight};
+  background-color: ${colors.darkgrey};
+  overflow-y: auto;
+`;
+
+const Title = styled.h3`
+  ${snippets.headlineText};
+  color: ${colors.named.glossar};
+`;

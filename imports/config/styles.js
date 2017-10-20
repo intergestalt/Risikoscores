@@ -40,7 +40,7 @@ const snippets = {
   `,
   tabText: `
     font-family: 'Roboto Light';
-    font-size: 12px;
+    font-size: 13px;
   `
 }
 

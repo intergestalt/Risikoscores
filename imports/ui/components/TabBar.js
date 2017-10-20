@@ -32,7 +32,7 @@ class TabBar extends React.Component {
           className={className}
           style={{ backgroundColor: tab.color }}
         >
-          {localeStr(tab.title)}
+          <TabText>{localeStr(tab.title)}</TabText>
         </Tab>
       );
       myTabs.push(entry);
@@ -65,4 +65,17 @@ const Tab = styled(NavLink) `
   flex: 1;
   line-height: ${dist.medium};
   padding: 0 ${dist.small};
+  text-decoration: none;
+  color: black;
+  white-space: no-wrap;
+`;
+
+const TabText = styled.span`
+${snippets.tabText}
+.SelectedTab & {
+    background-image: linear-gradient(to bottom, black 33%, transparent 33%);
+    background-position: 0 1.03em;
+    background-repeat: repeat-x;
+    background-size: 2px 6px;
+}
 `;

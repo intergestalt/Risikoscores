@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { QuestionsArea, GlossarArea, GraphArea } from './';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 class RightColumn extends React.Component {
   constructor(props) {
@@ -9,14 +10,14 @@ class RightColumn extends React.Component {
 
   render() {
     return (
-      <div className="RightColumn">
+      <Column className="RightColumn">
         <GlossarArea
           room={this.props.room}
           roomGlossar={this.props.roomGlossar}
         />
         <GraphArea room={this.props.room} />
         <QuestionsArea room={this.props.room} />
-      </div>
+      </Column>
     );
   }
 }
@@ -27,3 +28,11 @@ RightColumn.propTypes = {
 };
 
 export default RightColumn;
+
+const Column = styled.section`
+  display: flex;
+  flex-direction: column;
+  > * {
+    overflow: hidden;
+  }
+`;
