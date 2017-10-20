@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { GlossarLink } from './content';
 import { localeStr } from '../../helper/global';
 import { sortGlossar, getRoomGlossar } from '../../helper/glossar';
 import { getFragment } from '../../helper/fragment';
+import { snippets } from '../../config/styles';
 
 class GlossarList extends React.Component {
   constructor(props) {
@@ -35,13 +37,13 @@ class GlossarList extends React.Component {
     var title = getFragment('glossar');
 
     return (
-      <div className="GlossarContent">
+      <Content className="GlossarContent">
         <h1>{title}</h1>
         <h2>Raum Einträge</h2>
         <ul>{roomEntryList}</ul>
         <h2>Alle Einträge</h2>
         <ul>{entryList}</ul>
-      </div>
+      </Content>
     );
   }
 }
@@ -52,3 +54,10 @@ GlossarList.propTypes = {
 };
 
 export default GlossarList;
+
+const Content = styled.div`
+  ${ snippets.glossarText};
+  &, & a {
+    color: white;
+  }
+`;
