@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import Questions from '../../collections/questions';
 import { Stream } from './';
+import { colors } from '../../config/styles';
 
 class StartLeft extends React.Component {
   constructor(props) {
     super(props);
   }
   renderLoading() {
-    return <div className="StartLeft">Loading...</div>;
+    return <Container className="StartLeft">Loading...</Container>;
   }
   render() {
     if (!this.props.ready) {
       return this.renderLoading();
     }
     return (
-      <div className="StartLeft">
+      <Container className="StartLeft">
         <Stream rooms={this.props.rooms} questions={this.props.questions} />
-      </div>
+      </Container>
     );
   }
 }
@@ -36,3 +38,7 @@ export default withTracker(props => {
     ready: sub.ready()
   };
 })(StartLeft);
+
+const Container = styled.div`
+  background-color: ${colors.lightgrey}
+`;
