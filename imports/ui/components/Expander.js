@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { toggleGlossar } from '../../helper/actions';
 
@@ -9,27 +10,25 @@ class Expander extends React.Component {
   }
 
   render() {
-    var text = 'arrow up';
+    var text = '▲';
     if (this.props.directionDown) {
       if (!this.props.expanded) {
-        text = 'arrow down';
+        text = '▼';
       }
     } else {
       if (this.props.expanded) {
-        text = 'arrow down';
+        text = '▼';
       }
     }
     return (
-      <div className="Expander">
-        <a
-          href="#"
-          onClick={e => {
-            this.props.callback(e);
-          }}
-        >
-          {text}
-        </a>
-      </div>
+      <Indicator className="Expander"
+        href="#"
+        onClick={e => {
+          this.props.callback(e);
+        }}
+      >
+        {text}
+      </Indicator>
     );
   }
 }
@@ -41,3 +40,10 @@ Expander.propTypes = {
 };
 
 export default Expander;
+
+const Indicator = styled.div`
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+`;

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 import { getFragment } from '../../helper/fragment';
 import { toggleLanguage } from '../../helper/actions';
+import { dist } from '../../config/styles';
 
 class StartGeneralMenu extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class StartGeneralMenu extends React.Component {
     var about = getFragment('aboutLink');
 
     return (
-      <div className="StartRoomMenuArea">
+      <Container className="StartRoomMenuArea">
         <a
           href="#"
           onClick={e => {
@@ -31,7 +33,6 @@ class StartGeneralMenu extends React.Component {
         >
           {language}
         </a>
-        <br />
         <a
           href="#"
           onClick={e => {
@@ -40,9 +41,15 @@ class StartGeneralMenu extends React.Component {
         >
           {about}
         </a>
-      </div>
+      </Container>
     );
   }
 }
 
 export default StartGeneralMenu;
+
+const Container = styled.nav`
+  & > *:not(:first-child) {
+    margin-left: 1em;
+  }
+`;

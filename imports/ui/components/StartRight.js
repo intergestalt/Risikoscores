@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import { StartRoomMenuArea, StartGeneralMenuArea, StartGraphArea } from './';
+import { colors } from '../../config/styles';
 
 class StartRight extends React.Component {
   constructor(props) {
@@ -9,11 +12,11 @@ class StartRight extends React.Component {
 
   render() {
     return (
-      <div className="StartRight">
+      <Container className="StartRight">
         <StartRoomMenuArea rooms={this.props.rooms} />
         <StartGeneralMenuArea />
         <StartGraphArea />
-      </div>
+      </Container>
     );
   }
 }
@@ -23,3 +26,7 @@ StartRight.propTypes = {
 };
 
 export default StartRight;
+
+const Container = styled.div`
+  background-color: ${colors.darkgrey}
+`;

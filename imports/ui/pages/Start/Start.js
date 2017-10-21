@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import { StartLeft, StartRight } from '../../components';
 import Rooms from '../../../collections/rooms';
@@ -37,10 +38,10 @@ class Start extends React.Component {
     }
     storeFragments(this.props.fragments);
     return (
-      <div className="Start">
+      <Container className="Start">
         <StartLeft rooms={this.props.rooms} />
         <StartRight rooms={this.props.rooms} />
-      </div>
+      </Container>
     );
   }
 }
@@ -55,3 +56,13 @@ export default withTracker(props => {
     ready: sub.ready() && sub2.ready
   };
 })(Start);
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  & > * {
+    flex:1;
+    height: 100%;
+  }
+`;
