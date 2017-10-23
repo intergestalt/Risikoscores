@@ -32,4 +32,9 @@ injectGlobal`
   html, body, #render-target, .App {
     height: 100%;
   }
+
+  html.noscroll {
+    overflow: hidden;
+  }
+
 `;

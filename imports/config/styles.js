@@ -55,6 +55,8 @@ const dist = {
   medium: '30px', // #0f0
   large: '40px', // #00f
   homescreen: '12px', // #ff0
+  lineTopDiff: '3px',
+  lineBottomDiff: '3px',
 }
 
 dist.named = {

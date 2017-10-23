@@ -34,5 +34,6 @@ const Column = styled.section`
   flex-direction: column;
   > * {
     overflow: hidden;
+    transition: all 0.3s;
   }
 `;

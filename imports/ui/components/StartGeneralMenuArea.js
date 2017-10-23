@@ -22,6 +22,6 @@ export default StartGeneralMenuArea;
 
 const Container = styled.div`
   position: fixed;
-  right: 0;/*${ dist.small}*/
-  top: 0;/*${ dist.small}*/
+  right: ${ dist.small};
+  top: calc( ${ dist.small} - ${dist.lineTopDiff} );
 `;

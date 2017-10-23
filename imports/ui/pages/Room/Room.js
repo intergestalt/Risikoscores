@@ -15,9 +15,16 @@ class Room extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
+    document.documentElement.classList.toggle('noscroll', true)
     startStreamTimeout();
   }
+
+  componentWillUnmount() {
+    document.documentElement.classList.toggle('noscroll', false)
+  }
+
   renderLoading() {
     return <div className="Room">Loading...</div>;
   }
