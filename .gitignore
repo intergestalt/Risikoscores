@@ -1,6 +1,2 @@
-node_modules/
-.meteor/local
-.vscode/settings.json
-yarn.lock
-.gitignore
-public/vendor/
+build/
+mongodb-backups-uberspace/
