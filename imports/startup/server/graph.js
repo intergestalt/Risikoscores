@@ -5,15 +5,15 @@ export function getGraph() {
       pseudo: false,
       x: 90,
       y: 60,
-      neighbours: 'programmierbüro,teilnehmermanagement,arztpraxis,framingham'
+      neighbours: 'programmierbüro,teilnehmermanagement,arztpraxis,framingham'
     },
     {
       _id: 'framingham',
       pseudo: false,
-      x: 55,
+      x: 60,
       y: 10,
       neighbours:
-        'arriba,untersuchungszentrum,bioprobenlager,arztpraxis,programmierbüro'
+        'arriba,untersuchungszentrum,bioprobenlager,arztpraxis,programmierbüro'
     },
     {
       _id: 'einwohnermeldeamt',
@@ -25,9 +25,9 @@ export function getGraph() {
     {
       _id: 'population',
       pseudo: false,
-      x: 27,
+      x: 33,
       y: 27,
-      neighbours: 'einwohnermeldeamt,www,teilnehmermanagement,arztpraxis'
+      neighbours: 'einwohnermeldeamt,pseudo1,teilnehmermanagement,arztpraxis'
     },
     {
       _id: 'bioprobenlager',
@@ -38,7 +38,7 @@ export function getGraph() {
         'framingham,untersuchungszentrum,serverraum,teilnehmermanagement'
     },
     {
-      _id: 'programmierbüro',
+      _id: 'programmierbüro',
       pseudo: false,
       x: 10,
       y: 60,
@@ -47,15 +47,15 @@ export function getGraph() {
     {
       _id: 'www',
       pseudo: false,
-      x: 15,
+      x: 12,
       y: 45,
-      neighbours: 'population,arztpraxis'
+      neighbours: 'pseudo2,arztpraxis'
     },
     {
       _id: 'teilnehmermanagement',
       pseudo: false,
       x: 90,
-      y: 40,
+      y: 35,
       neighbours:
         'einwohnermeldeamt,arriba,population,serverraum,bioprobenlager'
     },
@@ -76,30 +76,23 @@ export function getGraph() {
     {
       _id: 'arztpraxis',
       pseudo: false,
-      x: 20,
+      x: 25,
       y: 77,
       neighbours: 'arriba,framingham,population,www'
     },
     {
       _id: 'pseudo1',
       pseudo: true,
-      x: 10,
-      y: 10,
-      neighbours: ''
+      x: 20,
+      y: 20,
+      neighbours: 'population,pseudo2'
     },
     {
       _id: 'pseudo2',
       pseudo: true,
-      x: 10,
-      y: 20,
-      neighbours: ''
-    },
-    {
-      _id: 'pseudo3',
-      pseudo: true,
-      x: 20,
-      y: 10,
-      neighbours: ''
+      x: 15,
+      y: 25,
+      neighbours: 'pseudo1,www'
     }
   ];
   return graph;
