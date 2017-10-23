@@ -16,7 +16,6 @@ class RightColumn extends React.Component {
           roomGlossar={this.props.roomGlossar}
         />
         <GraphArea
-          graphCallback={this.props.graphCallback}
           room={this.props.room}
           graphNodeId={this.props.graphNodeId}
         />
@@ -29,7 +28,6 @@ class RightColumn extends React.Component {
 RightColumn.propTypes = {
   room: PropTypes.object,
   roomGlossar: PropTypes.object,
-  graphCallback: PropTypes.func,
   graphNodeId: PropTypes.string
 };
 

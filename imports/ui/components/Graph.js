@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import { GraphEdge, GraphNode } from './';
 import {
@@ -9,6 +10,7 @@ import {
   getOutgoingEdges
 } from '../../helper/graph';
 import { exists } from '../../helper/global';
+import { getSelectGraphNode } from '../../helper/actions';
 
 class Graph extends React.Component {
   constructor(props) {
@@ -84,6 +86,7 @@ class Graph extends React.Component {
   render() {
     const realGraph = getTheRealGraph(this.props.graph);
     var modeMap = { nodeModes: {}, edgeModes: {} };
+
     if (exists(this.props.selectedId)) {
       modeMap = this.selectNode(this.props.selectedId);
     }
@@ -109,4 +112,8 @@ Graph.propTypes = {
   height: PropTypes.string
 };
 
-export default Graph;
+export default withTracker(props => {
+  return {
+    selectedId: getSelectGraphNode()
+  };
+})(Graph);

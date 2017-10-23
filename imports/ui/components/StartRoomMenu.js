@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import { localeStr } from '../../helper/global';
+import { setSelectGraphNode, getSelectGraphNode } from '../../helper/actions';
 import {
   getGraphColors,
   getTheRealGraph,
@@ -23,14 +25,10 @@ class StartRoomMenu extends React.Component {
   }
 
   enterCallback(e, roomId) {
-    if (this.props.graphCallback) {
-      this.props.graphCallback(roomId);
-    }
+    setSelectGraphNode(roomId);
   }
   leaveCallback(e) {
-    if (this.props.graphCallback) {
-      this.props.graphCallback();
-    }
+    setSelectGraphNode(null);
   }
 
   getRooms() {
@@ -94,9 +92,11 @@ class StartRoomMenu extends React.Component {
 
 StartRoomMenu.propTypes = {
   rooms: PropTypes.array,
-  graph: PropTypes.array,
-  graphCallback: PropTypes.func,
-  selectedId: PropTypes.string
+  graph: PropTypes.array
 };
 
-export default StartRoomMenu;
+export default withTracker(props => {
+  return {
+    selectedId: getSelectGraphNode()
+  };
+})(StartRoomMenu);
