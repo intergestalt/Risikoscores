@@ -40,14 +40,22 @@ class GraphArea extends React.Component {
           directionDown={false}
         />
         <GraphHeader />
-        <Graph width={'60%'} height={'90%'} graph={this.props.graph} />
+        <Graph
+          width={'60%'}
+          height={'90%'}
+          graphCallback={this.props.graphCallback}
+          selectedId={this.props.graphNodeId}
+          graph={this.props.graph}
+        />
       </Area>
     );
   }
 }
 
 GraphArea.propTypes = {
-  graph: PropTypes.array
+  graph: PropTypes.array,
+  graphCallback: PropTypes.func,
+  graphNodeId: PropTypes.string
 };
 
 export default withTracker(props => {

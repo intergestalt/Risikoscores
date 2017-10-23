@@ -12,11 +12,11 @@ class StartRight extends React.Component {
     super(props);
 
     this.graphCallback = this.graphCallback.bind(this);
-    this.state = { selectedId: null, neighbourIds: [] };
+    this.state = { selectedId: null };
   }
 
-  graphCallback(selectedId = null, neighbourIds = []) {
-    this.setState({ selectedId: selectedId, neighbourIds: neighbourIds });
+  graphCallback(selectedId = null) {
+    this.setState({ selectedId: selectedId });
   }
 
   render() {
@@ -24,11 +24,13 @@ class StartRight extends React.Component {
       <Container className="StartRight">
         <StartRoomMenuArea
           selectedId={this.state.selectedId}
-          neighbourIds={this.state.neighbourIds}
           rooms={this.props.rooms}
+          graph={this.props.graph}
+          graphCallback={this.graphCallback}
         />
         <StartGeneralMenuArea />
         <StartGraphArea
+          selectedId={this.state.selectedId}
           ready={this.props.ready}
           graph={this.props.graph}
           graphCallback={this.graphCallback}

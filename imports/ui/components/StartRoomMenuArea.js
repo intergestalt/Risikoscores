@@ -12,8 +12,9 @@ class StartRoomMenuArea extends React.Component {
       <div className="StartRoomMenuArea">
         <StartRoomMenu
           selectedId={this.props.selectedId}
-          neighbourIds={this.props.neighbourIds}
           rooms={this.props.rooms}
+          graphCallback={this.props.graphCallback}
+          graph={this.props.graph}
         />
       </div>
     );
@@ -22,8 +23,9 @@ class StartRoomMenuArea extends React.Component {
 
 StartRoomMenuArea.propTypes = {
   rooms: PropTypes.array,
-  selectedId: PropTypes.string,
-  neighbourIds: PropTypes.array
+  graph: PropTypes.array,
+  graphCallback: PropTypes.func,
+  selectedId: PropTypes.string
 };
 
 export default StartRoomMenuArea;

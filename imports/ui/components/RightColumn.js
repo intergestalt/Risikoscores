@@ -15,7 +15,11 @@ class RightColumn extends React.Component {
           room={this.props.room}
           roomGlossar={this.props.roomGlossar}
         />
-        <GraphArea room={this.props.room} />
+        <GraphArea
+          graphCallback={this.props.graphCallback}
+          room={this.props.room}
+          graphNodeId={this.props.graphNodeId}
+        />
         <QuestionsArea room={this.props.room} />
       </Column>
     );
@@ -24,7 +28,9 @@ class RightColumn extends React.Component {
 
 RightColumn.propTypes = {
   room: PropTypes.object,
-  roomGlossar: PropTypes.object
+  roomGlossar: PropTypes.object,
+  graphCallback: PropTypes.func,
+  graphNodeId: PropTypes.string
 };
 
 export default RightColumn;

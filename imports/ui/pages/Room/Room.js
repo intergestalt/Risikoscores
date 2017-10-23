@@ -14,15 +14,24 @@ import { exists, startStreamTimeout } from '../../../helper/global';
 class Room extends React.Component {
   constructor(props) {
     super(props);
+    this.graphCallback = this.graphCallback.bind(this);
+    this.state = { selectedGraphNodeId: null };
+  }
+  graphCallback(roomId) {
+    var value = this.props.room._id;
+    if (exists(roomId)) {
+      value = roomId;
+    }
+    this.setState({ selectedGraphNodeId: value });
   }
 
   componentDidMount() {
-    document.documentElement.classList.toggle('noscroll', true)
+    document.documentElement.classList.toggle('noscroll', true);
     startStreamTimeout();
   }
 
   componentWillUnmount() {
-    document.documentElement.classList.toggle('noscroll', false)
+    document.documentElement.classList.toggle('noscroll', false);
   }
 
   renderLoading() {
@@ -35,6 +44,10 @@ class Room extends React.Component {
       selectedTabId = getDefaultTabId(this.props.room.subsections);
     }
     const roomGlossar = findGlossar(this.props.room);
+    var selectedGraphNodeId = this.state.selectedGraphNodeId;
+    if (!exists(selectedGraphNodeId)) {
+      selectedGraphNodeId = this.props.room._id;
+    }
     return (
       <RoomElem className="Room">
         <MainColumn room={this.props.room} />
@@ -44,7 +57,12 @@ class Room extends React.Component {
           roomFolder={this.props.room._id}
           roomId={this.props.room._id}
         />
-        <RightColumn room={this.props.room} roomGlossar={roomGlossar} />
+        <RightColumn
+          graphCallback={this.graphCallback}
+          graphNodeId={selectedGraphNodeId}
+          room={this.props.room}
+          roomGlossar={roomGlossar}
+        />
         <MenuIcon />
       </RoomElem>
     );
@@ -82,8 +100,8 @@ const RoomElem = styled.div`
   flex-direction: row;
   & > *:not(nav) {
     flex: 1;
-    height:100%;
-    width: calc( 100% / 3 );
+    height: 100%;
+    width: calc(100% / 3);
     overflow: hidden;
   }
   height: 100%;

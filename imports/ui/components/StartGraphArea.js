@@ -17,6 +17,7 @@ class StartGraphArea extends React.Component {
     return (
       <div className="StartGraphArea">
         <Graph
+          selectedId={this.props.selectedId}
           width={'300'}
           height={'400'}
           graphCallback={this.props.graphCallback}
@@ -28,6 +29,7 @@ class StartGraphArea extends React.Component {
 }
 
 StartGraphArea.propTypes = {
+  selectedId: PropTypes.string,
   graph: PropTypes.array,
   ready: PropTypes.bool,
   graphCallback: PropTypes.func

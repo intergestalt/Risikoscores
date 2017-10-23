@@ -5,7 +5,8 @@ const defaultColor = '#ee0000';
 const selectedColor = '#00ee00';
 const neighbourColor = '#eeee00';
 const defaultEdgeColor = '#eeeeee';
-const neighbourEdgeColor = '#ee00ee';
+const selectedEdgeColor = '#ee00ee';
+const defaultLinkColor = '#0000ff';
 
 export function cleanForSave(entry) {
   const result = entry;
@@ -21,8 +22,10 @@ export function getColor(id) {
     return neighbourColor;
   } else if (id === 'defaultEdgeColor') {
     return defaultEdgeColor;
-  } else if (id === 'neighbourEdgeColor') {
-    return neighbourEdgeColor;
+  } else if (id === 'selectedEdgeColor') {
+    return selectedEdgeColor;
+  } else if (id === 'defaultLinkColor') {
+    return defaultLinkColor;
   }
 }
 
@@ -207,48 +210,48 @@ export function getTheRealGraph(graph) {
   return realGraph;
 }
 
-function getDefaultNodeColors(realGraph) {
-  nodeColors = {};
+function getDefaultNodeModes(realGraph) {
+  nodeModes = {};
   for (var i = 0; i < realGraph.nodes.length; i++) {
     const node = realGraph.nodes[i];
     const nodeId = node.id;
-    nodeColors[nodeId] = getColor('defaultColor');
+    nodeModes[nodeId] = { selected: false, neighbour: false };
   }
-  return nodeColors;
+  return nodeModes;
 }
-function getDefaultEdgeColors(nodeId, realGraph) {
-  edgeColors = {};
+function getDefaultEdgeModes(nodeId, realGraph) {
+  edgeModes = {};
   for (var i = 0; i < realGraph.edges.length; i++) {
     const edge = realGraph.edges[i];
     const edgesId = edge.id;
-    edgeColors[edgesId] = getColor('defaultEdgeColor');
+    edgeModes[edgesId] = { selected: false };
   }
-  return edgeColors;
+  return edgeModes;
 }
 
-export function getGraphColors(
+export function getGraphModes(
   realGraph,
   nodeId = null,
   neighbours = null,
   outgoingEdges = null
 ) {
-  nodeColors = getDefaultNodeColors(realGraph);
+  nodeModes = getDefaultNodeModes(realGraph);
   if (nodeId !== null) {
-    nodeColors[nodeId] = getColor('selectedColor');
+    nodeModes[nodeId].selected = true;
     for (var i = 0; i < neighbours.length; i++) {
       const nodeId = neighbours[i];
-      nodeColors[nodeId] = getColor('neighbourColor');
+      nodeModes[nodeId].neighbour = true;
     }
   }
 
-  edgeColors = getDefaultEdgeColors(nodeId, realGraph);
+  edgeModes = getDefaultEdgeModes(nodeId, realGraph);
 
   if (nodeId !== null) {
     for (var i = 0; i < outgoingEdges.length; i++) {
       const edgeId = outgoingEdges[i];
-      edgeColors[edgeId] = getColor('neighbourEdgeColor');
+      edgeModes[edgeId].selected = true;
     }
   }
 
-  return { nodeColors: nodeColors, edgeColors: edgeColors };
+  return { nodeModes: nodeModes, edgeModes: edgeModes };
 }
