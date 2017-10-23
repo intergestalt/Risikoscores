@@ -13,7 +13,6 @@ class StartRoomMenuArea extends React.Component {
         <StartRoomMenu
           selectedId={this.props.selectedId}
           rooms={this.props.rooms}
-          graphCallback={this.props.graphCallback}
           graph={this.props.graph}
         />
       </div>
@@ -24,7 +23,6 @@ class StartRoomMenuArea extends React.Component {
 StartRoomMenuArea.propTypes = {
   rooms: PropTypes.array,
   graph: PropTypes.array,
-  graphCallback: PropTypes.func,
   selectedId: PropTypes.string
 };
 

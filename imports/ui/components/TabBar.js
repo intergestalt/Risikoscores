@@ -57,10 +57,9 @@ const Bar = styled.nav`
   flex-wrap: wrap;
 `;
 
-const Tab = styled(NavLink) `
-  ${snippets.tabText}
-  display:block;
-  min-width: calc( 100% / 3 );
+const Tab = styled(NavLink)`
+  ${snippets.tabText} display:block;
+  min-width: calc(100% / 3);
   box-sizing: border-box;
   flex: 1;
   line-height: ${dist.medium};
@@ -71,11 +70,10 @@ const Tab = styled(NavLink) `
 `;
 
 const TabText = styled.span`
-${snippets.tabText}
-.SelectedTab & {
+  ${snippets.tabText} .SelectedTab & {
     background-image: linear-gradient(to bottom, black 33%, transparent 33%);
     background-position: 0 1.03em;
     background-repeat: repeat-x;
     background-size: 2px 6px;
-}
+  }
 `;

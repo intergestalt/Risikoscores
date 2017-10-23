@@ -8,9 +8,12 @@ import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
 import { startStreamTimeout } from '../../../helper/global';
+import { setSelectedRoomId, setSelectGraphNode } from '../../../helper/actions';
 
 class Start extends React.Component {
   componentDidMount() {
+    setSelectedRoomId(null);
+    setSelectGraphNode(null);
     document.documentElement.classList.toggle('noscroll', true);
     startStreamTimeout();
   }

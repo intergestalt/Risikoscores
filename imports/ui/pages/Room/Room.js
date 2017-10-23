@@ -10,23 +10,17 @@ import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
 import { setSelectedTabId, setSelectedRoomId } from '../../../helper/actions';
 import { exists, startStreamTimeout } from '../../../helper/global';
+import { setSelectGraphNode, getSelectedRoomId } from '../../../helper/actions';
 
 class Room extends React.Component {
   constructor(props) {
     super(props);
-    this.graphCallback = this.graphCallback.bind(this);
     this.state = { selectedGraphNodeId: null };
-  }
-  graphCallback(roomId) {
-    var value = this.props.room._id;
-    if (exists(roomId)) {
-      value = roomId;
-    }
-    this.setState({ selectedGraphNodeId: value });
   }
 
   componentDidMount() {
     document.documentElement.classList.toggle('noscroll', true);
+    setSelectGraphNode(getSelectedRoomId());
     startStreamTimeout();
   }
 
@@ -58,7 +52,6 @@ class Room extends React.Component {
           roomId={this.props.room._id}
         />
         <RightColumn
-          graphCallback={this.graphCallback}
           graphNodeId={selectedGraphNodeId}
           room={this.props.room}
           roomGlossar={roomGlossar}
