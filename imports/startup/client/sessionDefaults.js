@@ -12,3 +12,4 @@ Session.setDefault('streamIndex', 0);
 Session.setDefault('startWelcomeExpanded', true);
 Session.setDefault('streamStarted', false);
 Session.setDefault('streamFinished', false);
+Session.setDefault('realGraph', null);

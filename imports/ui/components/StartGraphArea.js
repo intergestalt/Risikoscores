@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
 
-import GraphDB from '../../collections/graph';
 import { Graph } from './';
 
 class StartGraphArea extends React.Component {
@@ -18,21 +16,21 @@ class StartGraphArea extends React.Component {
     }
     return (
       <div className="StartGraphArea">
-        <Graph graph={this.props.graph} />
+        <Graph
+          width={'300'}
+          height={'400'}
+          graphCallback={this.props.graphCallback}
+          graph={this.props.graph}
+        />
       </div>
     );
   }
 }
 
 StartGraphArea.propTypes = {
-  graph: PropTypes.array
+  graph: PropTypes.array,
+  ready: PropTypes.bool,
+  graphCallback: PropTypes.func
 };
 
-export default withTracker(props => {
-  const sub = Meteor.subscribe('graph.list');
-
-  return {
-    graph: GraphDB.find().fetch(),
-    ready: sub.ready()
-  };
-})(StartGraphArea);
+export default StartGraphArea;

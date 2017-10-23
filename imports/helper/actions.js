@@ -72,8 +72,10 @@ export function setStreamStarted() {
   const value = Session.set('streamStarted', true);
 }
 
-export function setStreamFinished() {
-  const value = Session.set('streamFinished', true);
+export function setStreamFinished() {}
+
+export function setRealGraph(realGraph) {
+  const value = Session.set('realGraph', realGraph);
 }
 
 // get
@@ -130,5 +132,10 @@ export function isStreamStarted() {
 
 export function isStreamFinished() {
   const value = Session.get('streamFinished');
+  return value;
+}
+
+export function getRealGraph() {
+  const value = Session.get('realGraph');
   return value;
 }

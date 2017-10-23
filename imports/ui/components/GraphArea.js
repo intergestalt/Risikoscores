@@ -40,7 +40,7 @@ class GraphArea extends React.Component {
           directionDown={false}
         />
         <GraphHeader />
-        <Graph graph={this.props.graph} />
+        <Graph width={'60%'} height={'90%'} graph={this.props.graph} />
       </Area>
     );
   }

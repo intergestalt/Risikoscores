@@ -155,7 +155,7 @@ function diyMarkdownBlock(text, blockId, nested, glossar = true) {
     var SEP_END = NESTED_SPECIAL_END;
     var SEP_BEGIN = NESTED_SPECIAL_BEGIN;
   }
-  const compontensForBlock = [];
+  const compontentsForBlock = [];
   text = text.trim();
   var index = text.indexOf(SEP_BEGIN);
   var result = '';
@@ -169,12 +169,12 @@ function diyMarkdownBlock(text, blockId, nested, glossar = true) {
         var componentBefore = getSpanComponent(md, before, id);
         id++;
         onlySpecial = false;
-        compontensForBlock.push(componentBefore);
+        compontentsForBlock.push(componentBefore);
       }
 
       var special = text.substring(index + 2, index2);
       specialComponent = renderSpecialComponent(special, id, glossar);
-      compontensForBlock.push(specialComponent);
+      compontentsForBlock.push(specialComponent);
       id++;
 
       text = text.substring(index2 + 2);
@@ -187,20 +187,20 @@ function diyMarkdownBlock(text, blockId, nested, glossar = true) {
     var lastComponent = getSpanComponent(md, text, id);
     id++;
     onlySpecial = false;
-    compontensForBlock.push(lastComponent);
+    compontentsForBlock.push(lastComponent);
   }
   if (onlySpecial) {
-    return compontensForBlock;
+    return compontentsForBlock;
   }
-  return <p key={'_' + blockId}>{compontensForBlock}</p>;
+  return <p key={'_' + blockId}>{compontentsForBlock}</p>;
 }
 
 export function diyMarkdown(text, nested, glossar = true) {
   const blocks = text.split('\n\n');
   const components = [];
   for (var i = 0; i < blocks.length; i++) {
-    compontenForBlock = diyMarkdownBlock(blocks[i], i, nested, glossar);
-    components.push(compontenForBlock);
+    const compontentsForBlock = diyMarkdownBlock(blocks[i], i, nested, glossar);
+    components.push(compontentsForBlock);
   }
   return components;
 }

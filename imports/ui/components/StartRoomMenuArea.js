@@ -10,14 +10,20 @@ class StartRoomMenuArea extends React.Component {
   render() {
     return (
       <div className="StartRoomMenuArea">
-        <StartRoomMenu rooms={this.props.rooms} />
+        <StartRoomMenu
+          selectedId={this.props.selectedId}
+          neighbourIds={this.props.neighbourIds}
+          rooms={this.props.rooms}
+        />
       </div>
     );
   }
 }
 
 StartRoomMenuArea.propTypes = {
-  rooms: PropTypes.array
+  rooms: PropTypes.array,
+  selectedId: PropTypes.string,
+  neighbourIds: PropTypes.array
 };
 
 export default StartRoomMenuArea;
