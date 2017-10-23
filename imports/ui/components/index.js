@@ -18,6 +18,8 @@ import QuestionsArea from './QuestionsArea';
 import GraphArea from './GraphArea';
 import GraphHeader from './GraphHeader';
 import Graph from './Graph';
+import GraphNode from './GraphNode';
+import GraphEdge from './GraphEdge';
 import RoomQuestions from './RoomQuestions';
 import RoomQuestionsHeader from './RoomQuestionsHeader';
 
@@ -52,6 +54,8 @@ export {
   GraphArea,
   GraphHeader,
   Graph,
+  GraphNode,
+  GraphEdge,
   RoomQuestionsHeader,
   RoomQuestions,
   StartLeft,

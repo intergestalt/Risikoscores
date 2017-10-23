@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
+import { GraphEdge, GraphNode } from './';
 import {
-  getGraphColors,
+  getGraphModes,
   getTheRealGraph,
   getNeighbours,
-  getColor,
   getOutgoingEdges
 } from '../../helper/graph';
 import { exists } from '../../helper/global';
@@ -14,42 +13,17 @@ import { exists } from '../../helper/global';
 class Graph extends React.Component {
   constructor(props) {
     super(props);
-    this.clickCallback = this.clickCallback.bind(this);
-    this.enterCallback = this.enterCallback.bind(this);
-    this.leaveCallback = this.leaveCallback.bind(this);
-    this.state = { nodeColors: {}, edgeColors: {} };
   }
 
-  clickCallback(e, nodeId) {
-    const path = '/rooms/' + nodeId;
-    this.props.history.push(path);
-  }
-
-  enterCallback(e, nodeId) {
+  selectNode(nodeId) {
     const realGraph = getTheRealGraph(this.props.graph);
     const neighbours = getNeighbours(nodeId, realGraph);
     const outgoingEdges = getOutgoingEdges(nodeId, realGraph);
-    colorMap = getGraphColors(realGraph, nodeId, neighbours, outgoingEdges);
-    this.setState({
-      nodeColors: colorMap.nodeColors,
-      edgeColors: colorMap.edgeColors
-    });
-    if (this.props.graphCallback) {
-      this.props.graphCallback(nodeId, neighbours);
-    }
+    const modeMap = getGraphModes(realGraph, nodeId, neighbours, outgoingEdges);
+    return modeMap;
   }
-  leaveCallback(e) {
-    const realGraph = getTheRealGraph(this.props.graph);
-    colorMap = getGraphColors(realGraph);
-    this.setState({
-      nodeColors: colorMap.nodeColors,
-      edgeColors: colorMap.edgeColors
-    });
-    if (this.props.graphCallback) {
-      this.props.graphCallback();
-    }
-  }
-  getEdges(realGraph) {
+
+  getEdges(realGraph, modeMap) {
     edges = [];
 
     for (var i = 0; i < realGraph.edges.length; i++) {
@@ -59,58 +33,49 @@ class Graph extends React.Component {
       const n2 = edge.node2;
       const node1 = realGraph.nodesHash[n1];
       const node2 = realGraph.nodesHash[n2];
-      const edgeColors = this.state['edgeColors'];
-      var edgeColor = edgeColors[edgeId];
-      if (!exists(edgeColor)) {
-        edgeColor = getColor('defaultEdgeColor');
+      const edgeModes = modeMap['edgeModes'];
+      var edgeMode = edgeModes[edgeId];
+      var selected = false;
+      if (exists(edgeMode)) {
+        selected = edgeMode.selected;
       }
-      const l = (
-        <line
+      edges.push(
+        <GraphEdge
           key={edgeId}
-          x1={node1.x + '%'}
-          y1={node1.y + '%'}
-          x2={node2.x + '%'}
-          y2={node2.y + '%'}
-          stroke={edgeColor}
-          strokeWidth={1}
+          node1={node1}
+          node2={node2}
+          edgeId={edgeId}
+          selected={selected}
         />
       );
-      edges.push(l);
     }
     return edges;
   }
 
-  getNodes(realGraph) {
+  getNodes(realGraph, modeMap) {
     nodes = [];
 
     for (var i = 0; i < realGraph.nodes.length; i++) {
       const node = realGraph.nodes[i];
       const nodeId = node.id;
-      const nodeColors = this.state['nodeColors'];
-      var nodeColor = nodeColors[nodeId];
-      if (!exists(nodeColor)) {
-        nodeColor = getColor('defaultColor');
+      const nodeModes = modeMap['nodeModes'];
+      var nodeMode = nodeModes[nodeId];
+      var selected = false;
+      var neighbour = false;
+      if (exists(nodeMode)) {
+        var selected = nodeMode.selected;
+        var neighbour = nodeMode.neighbour;
       }
       if (!node.pseudo) {
-        const c = (
-          <circle
-            key={nodeId}
-            onClick={e => {
-              this.clickCallback(e, node.id);
-            }}
-            onMouseEnter={e => {
-              this.enterCallback(e, node.id);
-            }}
-            onMouseLeave={e => {
-              this.leaveCallback(e, node.id);
-            }}
-            cx={node.x + '%'}
-            cy={node.y + '%'}
-            r={'3%'}
-            fill={nodeColor}
+        nodes.push(
+          <GraphNode
+            key={node.id}
+            selected={selected}
+            neighbour={neighbour}
+            node={node}
+            graphCallback={this.props.graphCallback}
           />
         );
-        nodes.push(c);
       }
     }
     return nodes;
@@ -118,8 +83,12 @@ class Graph extends React.Component {
 
   render() {
     const realGraph = getTheRealGraph(this.props.graph);
-    const lines = this.getEdges(realGraph);
-    const circles = this.getNodes(realGraph);
+    var modeMap = { nodeModes: {}, edgeModes: {} };
+    if (exists(this.props.selectedId)) {
+      modeMap = this.selectNode(this.props.selectedId);
+    }
+    const lines = this.getEdges(realGraph, modeMap);
+    const circles = this.getNodes(realGraph, modeMap);
 
     return (
       <div className="Graph">
@@ -133,10 +102,11 @@ class Graph extends React.Component {
 }
 
 Graph.propTypes = {
+  selectedId: PropTypes.string,
   graph: PropTypes.array,
   graphCallback: PropTypes.func,
   width: PropTypes.string,
   height: PropTypes.string
 };
 
-export default withRouter(Graph);
+export default Graph;
