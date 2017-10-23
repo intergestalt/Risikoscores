@@ -14,6 +14,14 @@ class Start extends React.Component {
     startStreamTimeout();
   }
 
+  componentDidMount() {
+    document.documentElement.classList.toggle('noscroll', true)
+  }
+
+  componentWillUnmount() {
+    document.documentElement.classList.toggle('noscroll', false)
+  }
+
   renderRooms(rooms) {
     return (
       <ul>
