@@ -23,13 +23,11 @@ class StartRoomMenu extends React.Component {
   }
 
   enterCallback(e, roomId) {
-    console.log('ENTER ' + roomId);
     if (this.props.graphCallback) {
       this.props.graphCallback(roomId);
     }
   }
   leaveCallback(e) {
-    console.log('LEAVE');
     if (this.props.graphCallback) {
       this.props.graphCallback();
     }

@@ -11,15 +11,12 @@ import { startStreamTimeout } from '../../../helper/global';
 
 class Start extends React.Component {
   componentDidMount() {
+    document.documentElement.classList.toggle('noscroll', true);
     startStreamTimeout();
   }
 
-  componentDidMount() {
-    document.documentElement.classList.toggle('noscroll', true)
-  }
-
   componentWillUnmount() {
-    document.documentElement.classList.toggle('noscroll', false)
+    document.documentElement.classList.toggle('noscroll', false);
   }
 
   renderRooms(rooms) {
@@ -70,7 +67,7 @@ const Container = styled.div`
   flex-direction: row;
   height: 100%;
   & > * {
-    flex:1;
+    flex: 1;
     height: 100%;
   }
 `;

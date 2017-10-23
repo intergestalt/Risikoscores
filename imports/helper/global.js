@@ -76,7 +76,7 @@ export function zuffi(max) {
   return zuffi;
 }
 
-const streamZuffiDelay = [1, 8, 8, 16, 32, 64, 128];
+const streamZuffiDelay = [1, 4, 4, 4, 4, 8, 8, 8, 8, 16, 32, 64, 128];
 
 export function getStartStreamDelay() {
   var index = Session.get('streamIndex');
