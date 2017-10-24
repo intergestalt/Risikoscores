@@ -5,19 +5,34 @@ import styled from 'styled-components';
 
 import GraphDB from '../../collections/graph';
 import { GraphHeader, Graph, Expander } from './';
-import { toggleGraph, isGraphExpanded } from '../../helper/actions';
+import {
+  toggleGraph,
+  isGraphExpanded,
+  setSelectGraphNode,
+  getSelectedRoomId
+} from '../../helper/actions';
 import { colors } from '../../config/styles';
+import { exists } from '../../helper/global';
 
 class GraphArea extends React.Component {
   constructor(props) {
     super(props);
     this.callback = this.callback.bind(this);
+    this.graphCallback = this.graphCallback.bind(this);
   }
 
   callback(e) {
     e.preventDefault();
     toggleGraph(e);
   }
+  graphCallback(roomId) {
+    if (exists(roomId)) {
+      setSelectGraphNode(roomId);
+    } else {
+      setSelectGraphNode(getSelectedRoomId());
+    }
+  }
+
   renderLoading() {
     return <div className="GraphArea">Loading...</div>;
   }
@@ -40,14 +55,21 @@ class GraphArea extends React.Component {
           directionDown={false}
         />
         <GraphHeader />
-        <Graph graph={this.props.graph} />
+        <Graph
+          width={'60%'}
+          height={'90%'}
+          graphCallback={this.graphCallback}
+          selectedId={this.props.graphNodeId}
+          graph={this.props.graph}
+        />
       </Area>
     );
   }
 }
 
 GraphArea.propTypes = {
-  graph: PropTypes.array
+  graph: PropTypes.array,
+  graphNodeId: PropTypes.string
 };
 
 export default withTracker(props => {

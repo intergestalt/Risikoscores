@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withTracker } from 'meteor/react-meteor-data';
 
-import GraphDB from '../../collections/graph';
 import { Graph } from './';
+import { setSelectGraphNode } from '../../helper/actions';
+import { exists } from '../../helper/global';
 
 class StartGraphArea extends React.Component {
   constructor(props) {
     super(props);
+    this.graphCallback = this.graphCallback.bind(this);
   }
+  graphCallback(roomId) {
+    if (exists(roomId)) {
+      setSelectGraphNode(roomId);
+    } else {
+      setSelectGraphNode(null);
+    }
+  }
+
   renderLoading() {
     return <div className="StartGraphArea">Loading...</div>;
   }
@@ -18,21 +27,22 @@ class StartGraphArea extends React.Component {
     }
     return (
       <div className="StartGraphArea">
-        <Graph graph={this.props.graph} />
+        <Graph
+          selectedId={this.props.selectedId}
+          width={'300'}
+          height={'400'}
+          graphCallback={this.graphCallback}
+          graph={this.props.graph}
+        />
       </div>
     );
   }
 }
 
 StartGraphArea.propTypes = {
-  graph: PropTypes.array
+  selectedId: PropTypes.string,
+  graph: PropTypes.array,
+  ready: PropTypes.bool
 };
 
-export default withTracker(props => {
-  const sub = Meteor.subscribe('graph.list');
-
-  return {
-    graph: GraphDB.find().fetch(),
-    ready: sub.ready()
-  };
-})(StartGraphArea);
+export default StartGraphArea;

@@ -69,11 +69,17 @@ export function incStreamIndex() {
 }
 
 export function setStreamStarted() {
-  const value = Session.set('streamStarted', true);
+  Session.set('streamStarted', true);
 }
 
-export function setStreamFinished() {
-  const value = Session.set('streamFinished', true);
+export function setStreamFinished() {}
+
+export function setRealGraph(realGraph) {
+  Session.set('realGraph', realGraph);
+}
+
+export function setSelectGraphNode(roomId) {
+  Session.set('graphNodeId', roomId);
 }
 
 // get
@@ -98,6 +104,7 @@ export function isGraphExpanded() {
 
 export function getPreSelectedTabId() {
   const value = Session.get('preSelectedTabId');
+  return value;
 }
 
 export function getSelectedRoomId() {
@@ -130,5 +137,15 @@ export function isStreamStarted() {
 
 export function isStreamFinished() {
   const value = Session.get('streamFinished');
+  return value;
+}
+
+export function getRealGraph() {
+  const value = Session.get('realGraph');
+  return value;
+}
+
+export function getSelectGraphNode() {
+  const value = Session.get('graphNodeId');
   return value;
 }

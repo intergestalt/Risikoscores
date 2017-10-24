@@ -1,22 +1,82 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import { localeStr } from '../../helper/global';
+import { setSelectGraphNode, getSelectGraphNode } from '../../helper/actions';
+import {
+  getGraphColors,
+  getTheRealGraph,
+  getNeighbours,
+  getColor
+} from '../../helper/graph';
 
 class StartRoomMenu extends React.Component {
   constructor(props) {
     super(props);
+    this.enterCallback = this.enterCallback.bind(this);
+    this.leaveCallback = this.leaveCallback.bind(this);
+  }
+  selectRoom(roomId) {
+    const realGraph = getTheRealGraph(this.props.graph);
+    const neighbours = getNeighbours(roomId, realGraph);
+    return neighbours;
+  }
+
+  enterCallback(e, roomId) {
+    setSelectGraphNode(roomId);
+  }
+  leaveCallback(e) {
+    setSelectGraphNode(null);
   }
 
   getRooms() {
     var result = [];
+    const neighbourHash = {};
+
+    if (this.props.selectedId) {
+      const neighbourIds = this.selectRoom(this.props.selectedId);
+      for (var i = 0; i < neighbourIds.length; i++) {
+        neighbourHash[neighbourIds[i]] = true;
+      }
+    }
+
     for (var i = 0; i < this.props.rooms.length; i++) {
       const room = this.props.rooms[i];
+      const roomId = room._id;
       var text = localeStr(room.name);
+      var selected = false;
+      var neighbour = false;
+      if (neighbourHash[roomId]) {
+        neighbour = true;
+      }
+      if (roomId === this.props.selectedId) {
+        selected = true;
+      }
+
+      var color = getColor('defaultLinkColor');
+      if (selected) {
+        color = getColor('selectedColor');
+      }
+      if (neighbour) {
+        color = getColor('neighbourColor');
+      }
+
       const neu = (
         <li key={'_' + i}>
-          <NavLink to={'/rooms/' + room._id}>{text}</NavLink>
+          <NavLink
+            style={{ color: color }}
+            onMouseEnter={e => {
+              this.enterCallback(e, roomId);
+            }}
+            onMouseLeave={e => {
+              this.leaveCallback(e);
+            }}
+            to={'/rooms/' + roomId}
+          >
+            {text}
+          </NavLink>
         </li>
       );
       result.push(neu);
@@ -31,7 +91,12 @@ class StartRoomMenu extends React.Component {
 }
 
 StartRoomMenu.propTypes = {
-  rooms: PropTypes.array
+  rooms: PropTypes.array,
+  graph: PropTypes.array
 };
 
-export default StartRoomMenu;
+export default withTracker(props => {
+  return {
+    selectedId: getSelectGraphNode()
+  };
+})(StartRoomMenu);
