@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { diyMarkdown } from '../../helper/diyMarkdown';
 import { localeStr, existsString, zuffi } from '../../helper/global';
+import { dist, snippets } from '../../config/styles';
 
 class StreamPost extends React.Component {
   constructor(props) {
@@ -34,20 +36,20 @@ class StreamPost extends React.Component {
     var image = null;
     if (existsString(question.image)) {
       const imgSrc =
-        '../../assets/' + question.roomId + '/questions/' + question.image;
+        '/assets/' + question.roomId + '/questions/' + question.image;
       image = (
         <div className="StreamPostImage">
-          <img src={imgSrc} width="300" />
+          <Img src={imgSrc} />
         </div>
       );
     }
 
     return (
-      <li className="StreamPost">
-        <div className="StreamPostHeader">@{question.title}</div>
+      <Li className="StreamPost">
+        <Header className="StreamPostHeader">@{question.title}</Header>
         {image}
-        <div className="StreamPostContent">{textBlocks}</div>
-      </li>
+        <Content className="StreamPostContent">{textBlocks}</Content>
+      </Li>
     );
   }
 }
@@ -57,3 +59,24 @@ StreamPost.propTypes = {
 };
 
 export default StreamPost;
+
+const Li = styled.li`
+  padding: ${dist.medium} 0;
+  padding-top: calc( ${dist.medium} - ${dist.lineTopDiff});
+  padding-bottom: calc( ${dist.medium} - ${dist.lineBottomDiff});  
+`;
+
+const Header = styled.div`
+  ${snippets.smallText};
+  margin: 0 ${dist.small};
+`;
+
+const Content = styled.div`
+  margin: 0 ${dist.small};
+`;
+
+
+const Img = styled.img`
+  width: 100%;
+  height: auto;
+`;

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import { StreamWelcomeHeader, StreamWelcomeContent, Expander } from './';
 import {
   toggleStartWelcome,
   isStartWelcomeExpanded
 } from '../../helper/actions';
+import { colors, dist } from '../../config/styles';
 
 class StreamWelcome extends React.Component {
   constructor(props) {
@@ -23,7 +25,7 @@ class StreamWelcome extends React.Component {
       content = <StreamWelcomeContent />;
     }
     return (
-      <li key="_welcome" className="StreamWelcome">
+      <LiWelcome key="_welcome" className="StreamWelcome">
         <StreamWelcomeHeader />
         {content}
         <Expander
@@ -31,7 +33,7 @@ class StreamWelcome extends React.Component {
           expanded={this.props.welcomeExpanded}
           directionDown={true}
         />
-      </li>
+      </LiWelcome>
     );
   }
 }
@@ -41,3 +43,10 @@ export default withTracker(props => {
     welcomeExpanded: isStartWelcomeExpanded()
   };
 })(StreamWelcome);
+
+const LiWelcome = styled.li`
+  background: linear-gradient(to bottom, ${colors.lightgrey} 0%, ${colors.mediumgrey} 100%);
+  padding: ${dist.small};
+  padding-top: calc( ${dist.small} - ${dist.lineTopDiff});
+  padding-bottom: calc( ${dist.small} - ${dist.lineBottomDiff});
+`;
