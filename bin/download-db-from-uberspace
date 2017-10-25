@@ -19,7 +19,7 @@ backup_path_abs="/home/$uberspace_username/mongodb-backups/$backup_name"
 echo "Dumping db to $backup_path_abs"
 echo "... enter database user password:"
 
-ssh $uberspace_username@$uberspace_host "mongodump -u $mongo_user -h localhost -p $mongo_password --port $mongo_port -d $mongo_db -o $backup_path_abs"
+ssh $uberspace_username@$uberspace_host "mongodump -u $uberspace_mongo_user -h localhost -p $uberspace_mongo_password --port $uberspace_mongo_port -d $uberspace_mongo_db -o $backup_path_abs"
 
 echo "Downloading..."
 mkdir -p "mongodb-backups-uberspace"
@@ -27,4 +27,4 @@ scp -r $uberspace_username@$uberspace_host:$backup_path_abs mongodb-backups-uber
 
 echo
 echo "Import to local meteor db with following command (meteor with current project must be running):"
-echo "mongorestore --drop -h 127.0.0.1 --port 3001 -d meteor mongodb-backups-uberspace/$backup_name/$mongo_db"
+echo "mongorestore --drop -h 127.0.0.1 --port 3001 -d meteor mongodb-backups-uberspace/$backup_name/$uberspace_mongo_db"
