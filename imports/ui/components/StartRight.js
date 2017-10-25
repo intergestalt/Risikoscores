@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import GraphDB from '../../collections/graph';
 
 import { StartRoomMenuArea, StartGeneralMenuArea, StartGraphArea } from './';
-import { colors } from '../../config/styles';
+import { colors, dist } from '../../config/styles';
 
 class StartRight extends React.Component {
   constructor(props) {
@@ -17,17 +17,17 @@ class StartRight extends React.Component {
   render() {
     return (
       <Container className="StartRight">
+        <StartGraphArea
+          selectedId={this.state.selectedId}
+          ready={this.props.ready}
+          graph={this.props.graph}
+        />
         <StartRoomMenuArea
           selectedId={this.state.selectedId}
           rooms={this.props.rooms}
           graph={this.props.graph}
         />
         <StartGeneralMenuArea />
-        <StartGraphArea
-          selectedId={this.state.selectedId}
-          ready={this.props.ready}
-          graph={this.props.graph}
-        />
       </Container>
     );
   }
@@ -46,4 +46,7 @@ export default withTracker(props => {
   };
 })(StartRight);
 
-const Container = styled.div`background-color: ${colors.darkgrey};`;
+const Container = styled.div`
+  background-color: ${colors.darkgrey};
+  padding: ${dist.named.columnPadding};
+`;
