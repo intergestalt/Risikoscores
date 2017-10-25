@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { Graph } from './';
 import { setSelectGraphNode } from '../../helper/actions';
 import { exists } from '../../helper/global';
+import { dist } from '../../config/styles';
 
 class StartGraphArea extends React.Component {
   constructor(props) {
@@ -26,15 +28,15 @@ class StartGraphArea extends React.Component {
       return this.renderLoading();
     }
     return (
-      <div className="StartGraphArea">
+      <Container className="StartGraphArea">
         <Graph
           selectedId={this.props.selectedId}
-          width={'300'}
-          height={'400'}
+          width={'100%'}
+          height={'100%'}
           graphCallback={this.graphCallback}
           graph={this.props.graph}
         />
-      </div>
+      </Container>
     );
   }
 }
@@ -46,3 +48,14 @@ StartGraphArea.propTypes = {
 };
 
 export default StartGraphArea;
+
+const Container = styled.div`
+  position: absolute;
+  padding: ${dist.named.columnPadding} 0;
+  box-sizing: border-box;
+  bottom: 0;
+  width:50%;
+  width:calc( 50% - ${dist.named.columnPadding} );
+  height:100vh;
+  max-height: 75vw;
+`;

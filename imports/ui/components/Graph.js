@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import { GraphEdge, GraphNode } from './';
 import {
@@ -94,12 +95,10 @@ class Graph extends React.Component {
     const circles = this.getNodes(realGraph, modeMap);
 
     return (
-      <div className="Graph">
-        <svg style={{ width: this.props.width, height: this.props.height }}>
-          {lines}
-          {circles}
-        </svg>
-      </div>
+      <SvgContainer className="Graph" style={{ width: this.props.width, height: this.props.height }}>
+        {lines}
+        {circles}
+      </SvgContainer>
     );
   }
 }
@@ -109,7 +108,7 @@ Graph.propTypes = {
   graph: PropTypes.array,
   graphCallback: PropTypes.func,
   width: PropTypes.string,
-  height: PropTypes.string
+  height: PropTypes.string,
 };
 
 export default withTracker(props => {
@@ -117,3 +116,9 @@ export default withTracker(props => {
     selectedId: getSelectGraphNode()
   };
 })(Graph);
+
+const SvgContainer = styled.svg`
+  circle {
+    cursor: pointer;
+  }
+`;

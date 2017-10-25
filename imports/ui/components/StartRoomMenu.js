@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { setSelectGraphNode, getSelectGraphNode } from '../../helper/actions';
@@ -11,6 +12,7 @@ import {
   getNeighbours,
   getColor
 } from '../../helper/graph';
+import { dist } from '../../config/styles';
 
 class StartRoomMenu extends React.Component {
   constructor(props) {
@@ -64,7 +66,7 @@ class StartRoomMenu extends React.Component {
       }
 
       const neu = (
-        <li key={'_' + i}>
+        <Li key={'_' + i}>
           <NavLink
             style={{ color: color }}
             onMouseEnter={e => {
@@ -77,16 +79,16 @@ class StartRoomMenu extends React.Component {
           >
             {text}
           </NavLink>
-        </li>
+        </Li>
       );
       result.push(neu);
     }
-    return <ul>{result}</ul>;
+    return <Ul>{result}</Ul>;
   }
 
   render() {
     const rooms = this.getRooms();
-    return <div className="StartRoomMenu">{rooms}</div>;
+    return <Container className="StartRoomMenu">{rooms}</Container>;
   }
 }
 
@@ -100,3 +102,21 @@ export default withTracker(props => {
     selectedId: getSelectGraphNode()
   };
 })(StartRoomMenu);
+
+const Container = styled.nav`
+  position: relative;
+  top: -${dist.lineTopDiff};
+`;
+
+const Li = styled.li`
+  display: inline;
+  &:after {
+    content: "\\A";
+  }
+  white-space: pre;
+`;
+
+const Ul = styled.ul`
+  position: absolute;
+`;
+

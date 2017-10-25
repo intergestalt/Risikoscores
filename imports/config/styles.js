@@ -55,8 +55,8 @@ const dist = {
   medium: '30px', // #0f0
   large: '40px', // #00f
   homescreen: '12px', // #ff0
-  lineTopDiff: '3px',
-  lineBottomDiff: '3px',
+  lineTopDiff: '0.3em', // distance between upper border of line and capital letter
+  lineBottomDiff: '0.3em',  // distance between lower border of line and capital letter
 }
 
 dist.named = {
@@ -64,3 +64,17 @@ dist.named = {
 }
 
 export { colors, snippets, dist }
+
+
+/**************************************************************
+  
+  Sketch to illustrate lineTopDiff and lineBottomDiff
+  all according to standard line height and the custom font
+  
+  | upper border of line -------------------------------------
+  |   lineTopDiff -> 
+  | character            ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  |   lineBottomDiff ->
+  | lower border of line -------------------------------------
+  
+***************************************************************/
