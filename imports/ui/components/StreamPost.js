@@ -61,9 +61,12 @@ StreamPost.propTypes = {
 export default StreamPost;
 
 const Li = styled.li`
-  padding: ${dist.medium} 0;
-  padding-top: calc( ${dist.medium} - ${dist.lineTopDiff});
-  padding-bottom: calc( ${dist.medium} - ${dist.lineBottomDiff});  
+  padding: ${dist.medium} 0 0 0;
+  padding-top: calc( ${dist.medium} - ${dist.lineTopDiff} - ${dist.lineBottomDiff} );
+  &:last-child {
+    padding-bottom: ${dist.medium};
+    padding-bottom: calc( ${dist.medium} - ${dist.lineBottomDiff} );
+  }
 `;
 
 const Header = styled.div`
