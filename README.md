@@ -4,6 +4,7 @@ git clone https://github.com/intergestalt/Risikoscores
 cd Risikoscores
 meteor npm install -g yarn
 meteor yarn install
+meteor yarn run install:public
 ```
 ## Run
 ```
@@ -16,6 +17,14 @@ Edit array in `meteor/imports/startup/server/fixtures`
 
 ## Reset database (loose all data)
 `meteor reset`
+
+## get live database
+
+`bin/download-db-from-uberspace`
+
+## deploy to production
+
+`bin/deploy-to-uberspace`
 
 ## Routes
 ```
