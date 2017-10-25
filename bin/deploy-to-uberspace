@@ -18,47 +18,58 @@ then
     exit 1
 fi
 
-cd app
+node_path=/package/host/localhost/nodejs-$uberspace_node_version/bin
+buildname=$uberspace_servicename-build
 
 echo "Building..."
-meteor build --architecture os.linux.x86_64 ../build
-
-cd ../
+meteor build --architecture os.linux.x86_64 $TMPDIR/$buildname
 
 echo "Uploading..."
-scp -rCp build $uberspace_username@$uberspace_host:~/tmp/
+scp -rCp $TMPDIR$buildname $uberspace_username@$uberspace_host:~/tmp/build
+
+echo "Cleaning up..."
+rm -rf $TMPDIR$buildname
 
 # continuing remotely:
 echo "Continuing remotely:"
 
 ssh $uberspace_username@$uberspace_host /bin/bash << EOF
-echo nodejs version `node --version`
-node --version
-echo npm version `npm --version`
-npm --version
+
+echo -n nodejs version...
+$node_path/node --version
+echo -n npm version...
+$node_path/npm --version
 
 cd ~/tmp/build
 echo "Unpacking..."
-tar -xzf app.tar.gz
+tar -xzf *.tar.gz
 
 echo "Installing node modules..."
 cd ~/tmp/build/bundle/programs/server/
-npm install
+$node_path/npm install
+$node_path/npm install lodash.keys
 
 echo "Stopping server..."
 svc -d ~/service/$uberspace_servicename
 sleep 1
 
 echo "Replacing live files..."
-rm -r ~/$uberspace_server_dir/*
+rm -rf ~/$uberspace_server_dir/bundle-previous
+if [ -d ~/$uberspace_server_dir/bundle ]; then
+   mv ~/$uberspace_server_dir/bundle ~/$uberspace_server_dir/bundle-previous
+fi
 cd ~/tmp
 mv build/bundle ~/$uberspace_server_dir/
-
-echo "Starting server..."
-svc -u ~/service/$uberspace_servicename
 
 echo "Cleaning up..."
 cd ~/tmp
 rm -r build
+
+echo "Listening to log... CTRL-C to exit"
+tail -f -n 0 ~/service/$uberspace_servicename/log/main/current &
+
+echo "Starting server..."
+svc -u ~/service/$uberspace_servicename
+echo "Done."
 
 EOF

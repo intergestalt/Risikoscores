@@ -1,2 +1,6 @@
-build/
+node_modules/
+.meteor/local
+.vscode/settings.json
+.gitignore
+public/vendor/
 mongodb-backups-uberspace/
