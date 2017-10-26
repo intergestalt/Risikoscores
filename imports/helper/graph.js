@@ -109,6 +109,9 @@ export function getNeighbours(nodeId, realGraph) {
   const nodesHash = realGraph.nodesHash;
   const node = nodesHash[nodeId];
   const result = [];
+  if (!exists(node)) {
+    return result;
+  }
   for (var i = 0; i < node.neighbours.length; i++) {
     const neighbourId = node.neighbours[i];
     const neighbour = nodesHash[neighbourId];
@@ -159,7 +162,7 @@ export function getTheRealGraph(graph) {
   for (var i = 0; i < graph.length; i++) {
     const oldNode = graph[i];
     const neighbours = oldNode.neighbours;
-    const neighbourArray = neighbours.split(',');
+    const neighbourArray = neighbours.split(';');
     const newNeighbours = [];
     for (var j = 0; j < neighbourArray.length; j++) {
       const neighbourId = neighbourArray[j];
@@ -187,7 +190,7 @@ export function getTheRealGraph(graph) {
     const oldNode = graph[i];
     const nodeId1 = oldNode._id;
     const neighbours = oldNode.neighbours;
-    const neighbourArray = neighbours.split(',');
+    const neighbourArray = neighbours.split(';');
     for (var j = 0; j < neighbourArray.length; j++) {
       const nodeId2 = neighbourArray[j];
       if (existsString(nodeId2)) {

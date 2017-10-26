@@ -126,11 +126,7 @@ App.propTypes = {
   // anything?
 };
 
-export default withTracker(appProps => {
-  return {
-    language: Session.get('language')
-  };
-})(App);
+export default App;
 
 /*
 

@@ -83,33 +83,25 @@ Einige Bilder liegen da schon und man kann sie für die Timeline und die Slidesh
 
 1. Framingham
 
-Die Framingham Heart Studie ist die weltweit  [[Link: Tab2, framingham,tab2]] erste groß angelegte Kohortenstudie [[Link: Tab3, framingham,tab3]]  von Herz-Kreislauferkrankungen. Ihr Name geht auf ihren Entstehungsort Framingham zurück – eine Kleinstadt im US-Bundesstaat Massachussetts. 1948 dort 2/3 aller X [[Link: Einwohnermeldeamt, einwohnermeldeamt,reiter1]] X **Gesundheitszustand** und ihrer Lebensweisen untersucht und befragt. Diese Gruppe, ihre Nachkommen sowie ein später erweiterter Kreis an Teilnehmenden (Framingham Omni-Cohort; Link Flyer) *werden* bis heute weiter untersucht. Ziel der Initiatoren war es herauszufinden, welche Faktoren die Entstehung von Krankheiten begünstigen. In einer Publikation aus [[ExternalLink: {"text":"der Framingham-Studie", "url":"www.studie.de"}]] wurde um ca. [[Glossar: 1970,quantitativ]] der Begriff des Risikofaktors zum ersten Mal genutzt. Die Forscher betrachteten das Auftreten von Herz-Kreislauferkrankungen als Ereignisse, die durch präventive Maßnahmen von Einzelnen vermieden werden können. Bis heute beeinflusst die Studie weit über Framingham hinaus unser tägliches Leben. Allgemein bekannte Ernährungsempfehlungen „Viel Obst und Gemüse!“ aber auch ärztliche Berechnungen unseres Herz-Kreislauferkrankungs-Risikos sind auch auf die Studie zurückzuführen.
+Die Framingham Heart Studie ist die weltweit erste groß angelegte <<<Glossar:Kohortenstudie;Kohortenstudie>>> von Herz-Kreislauferkrankungen. Ihr Name geht auf ihren Entstehungsort Framingham zurück – eine Kleinstadt im US-Bundesstaat Massachussetts. 1948 wurden dort 2/3 aller Erwachsenen auf ihren Gesundheitszustand und ihrer Lebensweisen untersucht und befragt. Diese Gruppe, ihre Nachkommen sowie ein später erweiterter Kreis an Teilnehmenden (Framingham Omni-Cohort; Link Flyer) werden bis heute weiter untersucht. Ziel der Initiatoren war es herauszufinden, welche Faktoren die Entstehung von Krankheiten begünstigen. In einer Publikation aus Daten der Framingham-Studie wurde um ca. 1970 der Begriff des <<<Glossar:Risikofaktors;Risikofaktor>>> zum ersten Mal genutzt. Die Forscher betrachteten das Auftreten von Herz-Kreislauferkrankungen als Ereignisse, die durch präventive Maßnahmen von Einzelnen vermieden werden können. Bis heute beeinflusst die Studie weit über Framingham hinaus unser tägliches Leben. Allgemein bekannte Ernährungsempfehlungen „Viel Obst und Gemüse!“ aber auch ärztliche Berechnungen unseres Herz-Kreislauferkrankungs-Risikos sind auch auf die Studie zurückzuführen.
 
 
 Subsection1
 
 identifier timeline
 
-Die Framingham Heart Studie ist die weltweit erste groß angelegte [[Glossar: Kohortenstudie, kohortenstudie]] von Herz-Kreislauferkrankungen.
+Die Framingham Heart Studie ist die weltweit erste groß angelegte <<<Glossar: Kohortenstudie; kohortenstudie>>> von Herz-Kreislauferkrankungen.
 
-[[Timeline: {"title":"This is the Timeline","rows":[
-{"year": "2002", "text": "Das was so im Jahr <<Glossar: 2002,quantitativ>>!", "image":"03_timeline_2002.jpg"},
+<<<Timeline: {"title":"This is the Timeline","rows":[
+{"year": "2002", "text": "Das was so im Jahr <<<Glossar: 2002;quantitativ>>>!", "image":"03_timeline_2002.jpg"},
 {"year": "2001", "text": "Das was so im Jahr 2001", "image":"04_timeline_2001.jpg"},
-{"year": "2000", "text": "<<ExternalLink:der Framingham-Studie,www.studie.de>> ", "image":"05_timeline_2000.jpg"},
+{"year": "2000", "text": "<<<ExternalLink:der Framingham-Studie;www.studie.de>>> ", "image":"05_timeline_2000.jpg"},
 {"year": "1900", "text": "Das was so im Jahr 1900"}],
 "context":{"room":"framingham", "tab":"timeline"}}
-]]
+>>>
 
-Sau interessant: [[Glossar: Krankheit,  biobank]].
+Sau interessant: <<<Glossar: Krankheit;  biobank>>>.
 
+2. Bioprobenlager 
 
-Subsection 2 und 3
-
-identifier tab2,tab3
-
-
-2. Einwohnermeldeamt
-
-Haupttext [[Link: Framingham Tab2, framingham,tab2]]
-
-Tabs mit identifier: reiter1, reiter2, reiter3
+ Die Untersuchung biologischer Proben hat eine lange Geschichte in der Medizin. Blut, Speichel oder Urin lagerten früher dezentral und in haushaltsüblichen Kühlschränken. Es geht darum, körperliche Substanzen haltbar zu  machen, weil sich manchmal erst später Forschungsfragen ergeben, die zum Zeitpunkt der Studie noch nicht gedacht wurde. Manchmal gibt es auch erst später die Technologien, um bestimmte Fragen zu untersuchen. Im Zuge der Genomforschung entstanden dann große Biobanken (Link: UK Biobank, National Biobanks). Seit den 1990er Jahren unterhält nahezu jede größere epidemiologische Studie ein eigenes Lager für biologische Proben. Diese sollen zunächst für die Krankheitsursachenforschung und für Diagnostik und Therapie neue Wege eröffnen. Als Forschungsinfrastrukturen verkörpern die Bioproben immense gesellschaftliche Erwartungen und – derzeit – ein großes Forschungskapital. 

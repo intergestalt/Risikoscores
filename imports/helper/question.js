@@ -8,7 +8,7 @@ import {
   getStreamIndex
 } from './actions';
 
-import { exists, zuffi, shuffleArray, localeStr } from './global';
+import { exists, zuffi, shuffleArray } from './global';
 
 export function cleanForSave(entry) {
   const result = entry;
@@ -65,7 +65,7 @@ export function getStreamQuestions(all, rooms, index) {
   var roomObj = {};
   for (var i = 0; i < rooms.length; i++) {
     const room = rooms[i];
-    const title = localeStr(room.name);
+    const title = room.name;
     roomObj[room._id] = title;
   }
   var result = [];

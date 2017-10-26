@@ -3,38 +3,41 @@ export function getInitialQuestions() {
     {
       roomId: 'framingham',
       text:
-        'Wie wurden die Datenerhebungen aus einer Kleinstadt in Massachusetts zu Wissen mit transnationaler Wirksamkeit?'
+        'Wie wurden die Datenerhebungen aus einer Kleinstadt in Massachusetts zu <<<Link:Wissen;framingham;timeline>>> mit transnationaler Wirksamkeit?'
     },
     {
       roomId: 'framingham',
       originRoomId: 'bioprobenlager',
-      image: '01_question.jpg',
+      image: '01_question.png',
       text:
-        'Woher stammt das Konzept des Risikofaktors und wie konnte es so einflussreich werden?'
+        'Woher stammt das Konzept des <<<Link:Risikofaktors;framingham;timeline>>> und wie konnte es so einflussreich werden?'
     },
     {
       roomId: 'framingham',
       originRoomId: 'bioprobenlager',
       text:
-        'Wie haben sich die Ergebnisse der Framingham Heart Studie verbreitet?'
+        'Wie haben sich die Ergebnisse der <<<Link:Framingham Heart Studie;framingham;timeline>>> verbreitet?'
     },
     {
       roomId: 'framingham',
       text:
-        'Wofür werden die Daten der Framingham Heart Studie genutzt und wohin wandern sie? '
+        'Wofür werden die Daten der <<<Link:Framingham Heart Studie;framingham;timeline>>> genutzt und wohin wandern sie? '
     },
     {
       roomId: 'bioprobenlager',
-      text: 'Warum friert man Blut, Urin und Speichel ein?'
+      text:
+        'Warum friert man <<<Link:Blut, Urin und Speichel;bioprobenlager;tab1>>> ein?'
     },
     {
       roomId: 'bioprobenlager',
       originRoomId: 'framingham',
-      text: 'Veralten Biobanken? '
+      text: 'Veralten <<<Link:Biobanken;bioprobenlager;tab1>>>? '
     },
     {
       roomId: 'bioprobenlager',
-      text: 'Welches Verfallsdatum haben biologische Proben?'
+      image: 'example.png',
+      text:
+        'Welches <<<Link:Verfallsdatum;bioprobenlager;tab1>>> haben biologische Proben?'
     }
   ];
   return questions;

@@ -1,22 +1,39 @@
 import React, { Component, Image } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
+
+import { getLanguage } from '../../helper/actions';
 
 class MenuIcon extends React.Component {
   constructor(props) {
     super(props);
+    this.clickCallback = this.clickCallback.bind(this);
   }
-
+  clickCallback(e) {
+    e.preventDefault();
+    const lang = getLanguage();
+    var path = '/?language=' + lang;
+    this.props.history.push(path);
+  }
   render() {
+    var lang = getLanguage();
     return (
       <FloatMenu>
-        <NavLink to={'/'}>Menu</NavLink>
+        <a
+          href="#"
+          onClick={e => {
+            this.clickCallback(e);
+          }}
+        >
+          Menu
+        </a>
       </FloatMenu>
     );
   }
 }
 
-export default MenuIcon;
+export default withRouter(MenuIcon);
 
 const FloatMenu = styled.nav`
   position: fixed;
@@ -29,22 +46,21 @@ const FloatMenu = styled.nav`
   pointer-events: none;
   text-align: center;
   &:after {
-    content:"⬢";
+    content: '⬢';
     font-size: 10rem;
     position: absolute;
-    left:0;
-    right:0;
-    text-shadow: 1rem 1rem 1rem rgba(0,0,0,0.66);    
+    left: 0;
+    right: 0;
+    text-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.66);
   }
   a {
     top: 0.75rem; // this depends on the relative height of the hexagon character to the line-height
     pointer-events: all;
-    color:white;
+    color: white;
     position: relative;
     z-index: 10;
   }
-`
-
+`;
 
 // Alternative with SVG:
 /*

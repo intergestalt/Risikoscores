@@ -7,6 +7,7 @@ import { localeStr } from '../../helper/global';
 import { sortGlossar, getRoomGlossar } from '../../helper/glossar';
 import { getFragment } from '../../helper/fragment';
 import { snippets } from '../../config/styles';
+import { getId } from '../../helper/admin';
 
 class GlossarList extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class GlossarList extends React.Component {
         <li key={'_' + i}>
           <GlossarLink
             text={localeStr(e.name)}
-            entry={e._id}
+            entry={getId(e._id)}
             highlighted={highlight && this.props.roomGlossar[e._id]}
           />
         </li>
@@ -56,8 +57,9 @@ GlossarList.propTypes = {
 export default GlossarList;
 
 const Content = styled.div`
-  ${ snippets.glossarText};
-  &, & a {
+  ${snippets.glossarText};
+  &,
+  & a {
     color: white;
   }
 `;
