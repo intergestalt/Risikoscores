@@ -32,7 +32,6 @@ export function closeGlossarDetail() {
 }
 
 export function showGlossarDetail(id) {
-  console.log('SET GLOSSAR TO ' + id);
   Session.set('glossarDetailId', id);
 }
 
