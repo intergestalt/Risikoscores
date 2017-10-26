@@ -38,7 +38,6 @@ class Timeline extends React.Component {
     return result;
   }
   render() {
-    console.log('RENDER TIMELINE');
     const rows = this.renderRows(this.props.data.rows, this.props.data.context);
     const title = this.props.data.title;
     return (
