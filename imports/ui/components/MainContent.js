@@ -13,7 +13,7 @@ class MainContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.room.mainText);
-    const textBlocks = diyMarkdown(text, false);
+    const textBlocks = diyMarkdown(text);
     const title = localeStr(this.props.room.name);
     return (
       <Content className="MainContent">
@@ -30,9 +30,7 @@ MainContent.propTypes = {
 
 export default MainContent;
 
-const Content = styled.div`
-padding: ${dist.named.columnPadding};
-`;
+const Content = styled.div`padding: ${dist.named.columnPadding};`;
 
 const Headline = styled.h1`
   ${snippets.headlineText};

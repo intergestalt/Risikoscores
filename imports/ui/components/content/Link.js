@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import {
   setSelectGraphNode,
   getSelectedRoomId,
-  setPreSelectedTabId
+  setPreSelectedTabId,
+  getLanguage
 } from '../../../helper/actions';
 import { exists } from '../../../helper/global';
 
@@ -14,6 +16,17 @@ class Link extends React.Component {
     super(props);
     this.enterCallback = this.enterCallback.bind(this);
     this.leaveCallback = this.leaveCallback.bind(this);
+    this.clickCallback = this.clickCallback.bind(this);
+  }
+
+  clickCallback(e, roomId, tabId) {
+    e.preventDefault();
+    const lang = getLanguage();
+    var path = '/rooms/' + this.props.room + '?language=' + lang;
+    if (exists(this.props.tab)) {
+      path = path + '&tabId=' + this.props.tab;
+    }
+    this.props.history.push(path);
   }
 
   enterCallback(e, roomId, tabId) {
@@ -32,8 +45,11 @@ class Link extends React.Component {
 
   render() {
     return (
-      <NavLink
-        to={'/rooms/' + this.props.room + '?tabId=' + this.props.tab}
+      <a
+        href="#"
+        onClick={e => {
+          this.clickCallback(e, this.props.room, this.props.tab);
+        }}
         onMouseEnter={e => {
           this.enterCallback(e, this.props.room, this.props.tab);
         }}
@@ -42,7 +58,7 @@ class Link extends React.Component {
         }}
       >
         {this.props.text}
-      </NavLink>
+      </a>
     );
   }
 }
@@ -52,4 +68,4 @@ Link.propTypes = {
   tab: PropTypes.string
 };
 
-export default Link;
+export default withRouter(Link);

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Session } from 'meteor/session';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import { diyMarkdown } from '../../helper/diyMarkdown';
 import { localeStr, existsString, zuffi } from '../../helper/global';
+import { getLanguage } from '../../helper/actions';
 import { dist, snippets } from '../../config/styles';
 
 class StreamPost extends React.Component {
@@ -31,8 +34,9 @@ class StreamPost extends React.Component {
     }
 
     const question = this.props.question;
-    var text = localeStr(question.text);
-    const textBlocks = diyMarkdown(text, false, false);
+    var text = localeStr(question.text, this.props.lang);
+    var title = localeStr(question.title, this.props.lang);
+    const textBlocks = diyMarkdown(text, false);
     var image = null;
     if (existsString(question.image)) {
       const imgSrc =
@@ -46,7 +50,7 @@ class StreamPost extends React.Component {
 
     return (
       <Li className="StreamPost">
-        <Header className="StreamPostHeader">@{question.title}</Header>
+        <Header className="StreamPostHeader">@{title}</Header>
         {image}
         <Content className="StreamPostContent">{textBlocks}</Content>
       </Li>
@@ -57,15 +61,20 @@ StreamPost.propTypes = {
   question: PropTypes.object,
   loading: PropTypes.bool
 };
-
-export default StreamPost;
+export default withTracker(props => {
+  return {
+    lang: getLanguage()
+  };
+})(StreamPost);
 
 const Li = styled.li`
   padding: ${dist.medium} 0 0 0;
-  padding-top: calc( ${dist.medium} - ${dist.lineTopDiff} - ${dist.lineBottomDiff} );
+  padding-top: calc(
+    ${dist.medium} - ${dist.lineTopDiff} - ${dist.lineBottomDiff}
+  );
   &:last-child {
     padding-bottom: ${dist.medium};
-    padding-bottom: calc( ${dist.medium} - ${dist.lineBottomDiff} );
+    padding-bottom: calc(${dist.medium} - ${dist.lineBottomDiff});
   }
 `;
 
@@ -74,10 +83,7 @@ const Header = styled.div`
   margin: 0 ${dist.small};
 `;
 
-const Content = styled.div`
-  margin: 0 ${dist.small};
-`;
-
+const Content = styled.div`margin: 0 ${dist.small};`;
 
 const Img = styled.img`
   width: 100%;

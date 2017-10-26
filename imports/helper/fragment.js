@@ -17,10 +17,10 @@ export function storeFragments(fragments) {
   }
 }
 
-export function getFragment(key) {
+export function getFragment(key, lang = null) {
   const fragments = Session.get('fragments');
   if (!exists(fragments)) return '';
   const fragment = fragments[key];
   if (!exists(fragment)) return '';
-  return localeStr(fragment.text);
+  return localeStr(fragment.text, lang);
 }

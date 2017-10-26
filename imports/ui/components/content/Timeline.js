@@ -13,7 +13,7 @@ class Timeline extends React.Component {
     for (var i = 0; i < rows.length; i++) {
       const row = rows[i];
       var text = row.text;
-      const textBlocks = diyMarkdown(text, true);
+      const textBlocks = diyMarkdown(text);
       var imageRow = null;
       if (existsString(row.image)) {
         const imgSrc =
@@ -38,6 +38,7 @@ class Timeline extends React.Component {
     return result;
   }
   render() {
+    console.log('RENDER TIMELINE');
     const rows = this.renderRows(this.props.data.rows, this.props.data.context);
     const title = this.props.data.title;
     return (

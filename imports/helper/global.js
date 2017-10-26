@@ -3,7 +3,8 @@ import {
   incStreamIndex,
   setStreamStarted,
   isStreamStarted,
-  isStreamFinished
+  isStreamFinished,
+  getLanguage
 } from './actions';
 
 export function exists(v) {
@@ -49,13 +50,15 @@ export function shuffleArray(arr) {
   return result;
 }
 
-export function localeStr(obj) {
+export function localeStr(obj, lang = null) {
   if (!exists(obj)) return '';
   const fallBack = true;
   const defaultLanguage = 'de';
-
-  var lang = Session.get('language');
-  var result = obj[lang];
+  var usedLang = getLanguage();
+  if (exists(lang)) {
+    usedLang = lang;
+  }
+  var result = obj[usedLang];
   if (existsString(result)) {
     return result.trim();
   } else {

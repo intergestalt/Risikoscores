@@ -16,7 +16,7 @@ class RoomQuestions extends React.Component {
     for (var i = 0; i < myQuestions.length; i++) {
       const question = myQuestions[i];
       var text = localeStr(question.text);
-      const textBlocks = diyMarkdown(text, false);
+      const textBlocks = diyMarkdown(text);
 
       const item = <li key={'_' + i}>{textBlocks}</li>;
       questions.push(item);

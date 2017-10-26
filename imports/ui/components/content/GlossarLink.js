@@ -22,7 +22,7 @@ class GlossarLink extends React.Component {
           showGlossarDetail(this.props.entry);
         }}
       >
-        {this.props.text} : {this.props.entry} {dummy}
+        {this.props.text}{dummy}
       </a>
     );
   }

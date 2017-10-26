@@ -9,7 +9,9 @@ export function toggleLanguage() {
     Session.set('language', 'en');
   }
 }
-
+export function setLanguage(lang) {
+  Session.set('language', lang);
+}
 export function toggleGraph() {
   var graphExpanded = isGraphExpanded();
   Session.set('graphExpanded', !graphExpanded);
@@ -30,6 +32,7 @@ export function closeGlossarDetail() {
 }
 
 export function showGlossarDetail(id) {
+  console.log('SET GLOSSAR TO ' + id);
   Session.set('glossarDetailId', id);
 }
 
@@ -148,4 +151,7 @@ export function getRealGraph() {
 export function getSelectGraphNode() {
   const value = Session.get('graphNodeId');
   return value;
+}
+export function getLanguage() {
+  return Session.get('language');
 }

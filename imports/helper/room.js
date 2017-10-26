@@ -13,15 +13,15 @@ export function findGlossar(room) {
   var result = {};
 
   var mainText = localeStr(room.mainText);
-  const g = findGlossarComponents(mainText, false);
+  const g = findGlossarComponents(mainText);
   result = { ...result, ...g };
 
   if (room.subsections) {
     for (var i = 0; i < room.subsections.length; i++) {
       const tab = room.subsections[i];
       const tabText = localeStr(tab.text);
-      const g = findGlossarComponents(tabText, false);
-      const g2 = findGlossarComponents(tabText, true);
+      const g = findGlossarComponents(tabText);
+      const g2 = findGlossarComponents(tabText);
       result = { ...result, ...g, ...g2 };
     }
   }

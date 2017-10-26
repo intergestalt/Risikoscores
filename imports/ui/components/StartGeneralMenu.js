@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Session } from 'meteor/session';
+import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter } from 'react-router-dom';
 
 import { getFragment } from '../../helper/fragment';
-import { toggleLanguage } from '../../helper/actions';
+import { toggleLanguage, getLanguage } from '../../helper/actions';
 import { dist } from '../../config/styles';
 
 class StartGeneralMenu extends React.Component {
@@ -13,6 +16,9 @@ class StartGeneralMenu extends React.Component {
   callbackLanguage(e) {
     e.preventDefault();
     toggleLanguage();
+    const lang = getLanguage();
+    const path = '/?language=' + lang;
+    this.props.history.push(path);
   }
   callbackAbout(e) {
     e.preventDefault();
@@ -20,9 +26,8 @@ class StartGeneralMenu extends React.Component {
   }
 
   render() {
-    var language = getFragment('languageLink');
-    var about = getFragment('aboutLink');
-
+    var language = getFragment('languageLink', this.props.lang);
+    var about = getFragment('aboutLink', this.props.lang);
     return (
       <Container className="StartRoomMenuArea">
         <a
@@ -46,7 +51,11 @@ class StartGeneralMenu extends React.Component {
   }
 }
 
-export default StartGeneralMenu;
+export default withTracker(props => {
+  return {
+    lang: getLanguage()
+  };
+})(withRouter(StartGeneralMenu));
 
 const Container = styled.nav`
   & > *:not(:first-child) {
