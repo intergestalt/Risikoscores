@@ -133,5 +133,5 @@ identifier timeline
 {"text": "Text 5", "source":"Source 5","image":"05_tab2.jpg"},
 {"text": "Text 6", "source":"Source 6","image":"06_tab2.jpg"}
 ],
-"context":{"room":"bioprobenlager", "tab":"tab1"}}
+"context":{"room":"bioprobenlager", "tab":"tab2"}}
 >>>
