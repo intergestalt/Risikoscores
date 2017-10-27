@@ -3,25 +3,25 @@ export function getInitialQuestions() {
     {
       roomId: 'framingham',
       text:
-        'Wie wurden die Datenerhebungen aus einer Kleinstadt in Massachusetts zu <<<Link:Wissen;framingham;timeline>>> mit transnationaler Wirksamkeit?'
+        'Wie wurden die Datenerhebungen aus einer Kleinstadt in Massachusetts zu <<<Link:Wissen;framingham;tab1>>> mit transnationaler Wirksamkeit?'
     },
     {
       roomId: 'framingham',
       originRoomId: 'bioprobenlager',
       image: '01_question.png',
       text:
-        'Woher stammt das Konzept des <<<Link:Risikofaktors;framingham;timeline>>> und wie konnte es so einflussreich werden?'
+        'Woher stammt das Konzept des <<<Link:Risikofaktors;framingham;tab1>>> und wie konnte es so einflussreich werden?'
     },
     {
       roomId: 'framingham',
       originRoomId: 'bioprobenlager',
       text:
-        'Wie haben sich die Ergebnisse der <<<Link:Framingham Heart Studie;framingham;timeline>>> verbreitet?'
+        'Wie haben sich die Ergebnisse der <<<Link:Framingham Heart Studie;framingham;tab1>>> verbreitet?'
     },
     {
       roomId: 'framingham',
       text:
-        'Wofür werden die Daten der <<<Link:Framingham Heart Studie;framingham;timeline>>> genutzt und wohin wandern sie? '
+        'Wofür werden die Daten der <<<Link:Framingham Heart Studie;framingham;tab1>>> genutzt und wohin wandern sie? '
     },
     {
       roomId: 'bioprobenlager',
