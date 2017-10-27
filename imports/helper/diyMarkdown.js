@@ -38,6 +38,7 @@ function getSpecialComponent(specialComponent) {
 
   var options = null;
   if (optionsStr.startsWith('{')) {
+    console.log(optionsStr);
     options = JSON.parse(optionsStr);
     var test = JSON.stringify(options);
   } else {
@@ -172,46 +173,56 @@ function getSpecialEnd(text) {
   return indexEnd;
 }
 function diyMarkdownBlock(text, blockId, glossar = true) {
-  var md = new Remarkable({ html: true, xhtmlOut: true, breaks: true });
+  try {
+    var md = new Remarkable({ html: true, xhtmlOut: true, breaks: true });
 
-  const compontentsForBlock = [];
-  text = text.trim();
-  var index = text.indexOf(SPECIAL_BEGIN);
-  var result = '';
-  var id = 0;
-  var onlySpecial = true;
-  while (index !== -1) {
-    var index2 = getSpecialEnd(text);
-    if (index2 !== -1) {
-      var before = text.substring(0, index);
-      if (existsString(before)) {
-        var componentBefore = getSpanComponent(md, before, id);
+    const compontentsForBlock = [];
+    text = text.trim();
+    var index = text.indexOf(SPECIAL_BEGIN);
+    var result = '';
+    var id = 0;
+    var onlySpecial = true;
+    while (index !== -1) {
+      var index2 = getSpecialEnd(text);
+      if (index2 !== -1) {
+        var before = text.substring(0, index);
+        if (existsString(before)) {
+          var componentBefore = getSpanComponent(md, before, id);
+          id++;
+          onlySpecial = false;
+          compontentsForBlock.push(componentBefore);
+        }
+
+        var special = text.substring(index + 3, index2);
+        try {
+          specialComponent = renderSpecialComponent(special, id, glossar);
+          compontentsForBlock.push(specialComponent);
+        } catch (e) {
+          console.log(e);
+          compontentsForBlock.push(<span>[[CHECK MARKDOWN]]</span>);
+        }
         id++;
-        onlySpecial = false;
-        compontentsForBlock.push(componentBefore);
+
+        text = text.substring(index2 + 3);
+        index = text.indexOf(SPECIAL_BEGIN);
+      } else {
+        index = -1;
       }
-
-      var special = text.substring(index + 3, index2);
-      specialComponent = renderSpecialComponent(special, id, glossar);
-      compontentsForBlock.push(specialComponent);
-      id++;
-
-      text = text.substring(index2 + 3);
-      index = text.indexOf(SPECIAL_BEGIN);
-    } else {
-      index = -1;
     }
+    if (existsString(text)) {
+      var lastComponent = getSpanComponent(md, text, id);
+      id++;
+      onlySpecial = false;
+      compontentsForBlock.push(lastComponent);
+    }
+    if (onlySpecial) {
+      return compontentsForBlock;
+    }
+    return <p key={'_' + blockId}>{compontentsForBlock}</p>;
+  } catch (e) {
+    console.log(e);
+    return <p key={'_' + blockId}>[[Check Markdown for this Block]]</p>;
   }
-  if (existsString(text)) {
-    var lastComponent = getSpanComponent(md, text, id);
-    id++;
-    onlySpecial = false;
-    compontentsForBlock.push(lastComponent);
-  }
-  if (onlySpecial) {
-    return compontentsForBlock;
-  }
-  return <p key={'_' + blockId}>{compontentsForBlock}</p>;
 }
 
 export function diyMarkdown(text, glossar = true) {
