@@ -69,7 +69,7 @@ Meteor.startup(() => {
     });
   }
 
-  Rooms.remove({});
+  //Rooms.remove({});
   rooms.forEach(room => {
     if (!Rooms.findOne(room)) {
       console.log('inserting room ' + room);
@@ -91,7 +91,7 @@ Meteor.startup(() => {
       });
     }
   });
-  Glossar.remove({});
+  //Glossar.remove({});
   glossar.forEach(entry => {
     const name = entry.name;
     const id = entry.id;
@@ -107,7 +107,7 @@ Meteor.startup(() => {
     }
   });
 
-  Questions.remove({});
+  /*Questions.remove({});
   questions.forEach(question => {
     console.log('inserting question ' + question.text);
     Questions.insert({
@@ -117,9 +117,9 @@ Meteor.startup(() => {
       roomId: question.roomId,
       originRoomId: question.originRoomId
     });
-  });
+  });*/
 
-  Graph.remove({});
+  //Graph.remove({});
   graphNodes.forEach(graphNode => {
     if (!Graph.findOne(graphNode._id)) {
       console.log('inserting graphNode ' + graphNode._id);
