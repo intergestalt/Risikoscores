@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
 import { diyMarkdown } from '../../../helper/diyMarkdown';
 
-class Timeline extends React.Component {
+class ImageList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,15 +12,6 @@ class Timeline extends React.Component {
     var result = [];
     for (var i = 0; i < rows.length; i++) {
       const row = rows[i];
-
-      const newRow1 = (
-        <tr key={'_1_' + i}>
-          <td>
-            <h1>{row.year}</h1>
-          </td>
-        </tr>
-      );
-      result.push(newRow1);
       var imageRow = null;
       if (existsString(row.image)) {
         const imgSrc =
@@ -66,8 +57,8 @@ class Timeline extends React.Component {
     );
   }
 }
-Timeline.propTypes = {
+ImageList.propTypes = {
   data: PropTypes.object
 };
 
-export default Timeline;
+export default ImageList;
