@@ -13,7 +13,7 @@ class MainImages extends React.Component {
         {this.props.images &&
           <img
             src={
-              '../assets/' +
+              '/uploads/' +
               this.props.roomFolder +
               '/' +
               this.props.images[0].name
