@@ -5,8 +5,9 @@ import { Meteor } from 'meteor/meteor';
 import { convertImages } from '../../helper/uploads';
 
 // configure uploads directory using environment variable
-uploads_dir = process.env.RISIKOSCORES_VAR_DIR || process.env.PWD + "/var/uploads";
-cache_dir = process.env.RISIKOSCORES_VAR_DIR || process.env.PWD + "/var/cache";
+var_dir = process.env.RISIKOSCORES_VAR_DIR || process.env.PWD;
+uploads_dir = var_dir + "/uploads";
+cache_dir = var_dir + "/cache";
 console.log("uploads directory: " + uploads_dir)
 console.log("cache directory: " + cache_dir)
 
