@@ -87,33 +87,55 @@ Einige Bilder liegen da schon und man kann sie für die Timeline und die Slidesh
 
 1. Framingham
 
-Die Framingham Heart Studie ist die weltweit  [[Link: Tab2, framingham,tab2]] erste groß angelegte Kohortenstudie [[Link: Tab3, framingham,tab3]]  von Herz-Kreislauferkrankungen. Ihr Name geht auf ihren Entstehungsort Framingham zurück – eine Kleinstadt im US-Bundesstaat Massachussetts. 1948 dort 2/3 aller X [[Link: Einwohnermeldeamt, einwohnermeldeamt,reiter1]] X **Gesundheitszustand** und ihrer Lebensweisen untersucht und befragt. Diese Gruppe, ihre Nachkommen sowie ein später erweiterter Kreis an Teilnehmenden (Framingham Omni-Cohort; Link Flyer) *werden* bis heute weiter untersucht. Ziel der Initiatoren war es herauszufinden, welche Faktoren die Entstehung von Krankheiten begünstigen. In einer Publikation aus [[ExternalLink: {"text":"der Framingham-Studie", "url":"www.studie.de"}]] wurde um ca. [[Glossar: 1970,quantitativ]] der Begriff des Risikofaktors zum ersten Mal genutzt. Die Forscher betrachteten das Auftreten von Herz-Kreislauferkrankungen als Ereignisse, die durch präventive Maßnahmen von Einzelnen vermieden werden können. Bis heute beeinflusst die Studie weit über Framingham hinaus unser tägliches Leben. Allgemein bekannte Ernährungsempfehlungen „Viel Obst und Gemüse!“ aber auch ärztliche Berechnungen unseres Herz-Kreislauferkrankungs-Risikos sind auch auf die Studie zurückzuführen.
+Die Framingham Heart Studie ist die weltweit erste groß angelegte <<<Glossar:Kohortenstudie;Kohortenstudie>>> von Herz-Kreislauferkrankungen. Ihr Name geht auf ihren Entstehungsort Framingham zurück – eine Kleinstadt im US-Bundesstaat Massachussetts. 1948 wurden dort 2/3 aller Erwachsenen auf ihren Gesundheitszustand und ihrer Lebensweisen untersucht und befragt. Diese Gruppe, ihre Nachkommen sowie ein später erweiterter Kreis an Teilnehmenden (Framingham Omni-Cohort; Link Flyer) werden bis heute weiter untersucht. Ziel der Initiatoren war es herauszufinden, welche Faktoren die Entstehung von Krankheiten begünstigen. In einer Publikation aus Daten der Framingham-Studie wurde um ca. 1970 der Begriff des <<<Glossar:Risikofaktors;Risikofaktor>>> zum ersten Mal genutzt. Die Forscher betrachteten das Auftreten von Herz-Kreislauferkrankungen als Ereignisse, die durch präventive Maßnahmen von Einzelnen vermieden werden können. Bis heute beeinflusst die Studie weit über Framingham hinaus unser tägliches Leben. Allgemein bekannte Ernährungsempfehlungen „Viel Obst und Gemüse!“ aber auch ärztliche Berechnungen unseres Herz-Kreislauferkrankungs-Risikos sind auch auf die Studie zurückzuführen.
 
 
 Subsection1
 
 identifier timeline
 
-Die Framingham Heart Studie ist die weltweit erste groß angelegte [[Glossar: Kohortenstudie, kohortenstudie]] von Herz-Kreislauferkrankungen.
+<<<Timeline: {"rows":[
+{"year": "2017", "text": "Text 1", "source":"Source 1","image":"01_timeline_2017_b.jpg"},
+{"year": "2016", "text": "Text 2", "source":"Source 2","image":"02_timeline_2016_a.jpg"},
+{"year": "2002", "text": "Text 3", "source":"Source 3","image":"03_timeline_2002.jpg"},
+{"year": "2001", "text": "Text 4", "source":"Source 4","image":"04_timeline_2001.jpg"},
+{"year": "2000", "text": "Text 5", "source":"Source 5","image":"05_timeline_2000.jpg"},
+{"year": "1998", "text": "Text 6", "source":"Source 6","image":"06_timeline_1998_g.jpg"},
+{"year": "1998", "text": "Text 7", "source":"Source 7","image":"07_timeline_1998_f.jpg"},
+{"year": "1998", "text": "Text 8", "source":"Source 8","image":"08_timeline_1998_e.jpg"},
+{"year": "1998", "text": "Text 9", "source":"Source 9","image":"09_timeline_1998_b.jpg"},
+{"year": "1997", "text": "Text 10", "source":"Source 10","image":"10_timeline_1997.jpg"},
+{"year": "1995", "text": "Text 11", "source":"Source 11","image":"11_timeline_1995.jpg"},
+{"year": "1988", "text": "Text 12", "source":"Source 12","image":"12_timeline_1988.jpg"},
+{"year": "1987", "text": "Text 13", "source":"Source 13","image":"13_timeline_1987.jpg"},
+{"year": "1982", "text": "Text 14", "source":"Source 14","image":"14_timeline_1982_a.jpg"},
+{"year": "1956", "text": "Text 15", "source":"Source 15","image":"15_timeline_1956.jpg"},
+],
+"context":{"room":"framingham", "tab":"tab1"}}
+>>>
 
-[[Timeline: {"title":"This is the Timeline","rows":[
-{"year": "2002", "text": "Das was so im Jahr <<Glossar: 2002,quantitativ>>!", "image":"03_timeline_2002.jpg"},
-{"year": "2001", "text": "Das was so im Jahr 2001", "image":"04_timeline_2001.jpg"},
-{"year": "2000", "text": "<<ExternalLink:der Framingham-Studie,www.studie.de>> ", "image":"05_timeline_2000.jpg"},
-{"year": "1900", "text": "Das was so im Jahr 1900"}],
-"context":{"room":"framingham", "tab":"timeline"}}
-]]
 
-Sau interessant: [[Glossar: Krankheit,  biobank]].
+2. Bioprobenlager 
 
+ Die Untersuchung biologischer Proben hat eine lange Geschichte in der Medizin. Blut, Speichel oder Urin lagerten früher dezentral und in haushaltsüblichen Kühlschränken. Es geht darum, körperliche Substanzen haltbar zu  machen, weil sich manchmal erst später Forschungsfragen ergeben, die zum Zeitpunkt der Studie noch nicht gedacht wurde. Manchmal gibt es auch erst später die Technologien, um bestimmte Fragen zu untersuchen. Im Zuge der Genomforschung entstanden dann große Biobanken (Link: UK Biobank, National Biobanks). Seit den 1990er Jahren unterhält nahezu jede größere epidemiologische Studie ein eigenes Lager für biologische Proben. Diese sollen zunächst für die Krankheitsursachenforschung und für Diagnostik und Therapie neue Wege eröffnen. Als Forschungsinfrastrukturen verkörpern die Bioproben immense gesellschaftliche Erwartungen und – derzeit – ein großes Forschungskapital. 
 
-Subsection 2 und 3
+ <<<ImageList: {"rows":[
+{"text": "Text 1", "source":"Source 1","image":"01_tab1.jpg"},
+{"text": "Text 2", "source":"Source 2","image":"02_tab1.jpg"},
+{"text": "Text 3", "source":"Source 3","image":"03_tab1.jpg"},
+{"text": "Text 4", "source":"Source 4","image":"04_tab1.jpg"},
+{"text": "Text 5", "source":"Source 5","image":"05_tab1.jpg"}
+],
+"context":{"room":"bioprobenlager", "tab":"tab1"}}
+>>>
 
-identifier tab2,tab3
-
-
-2. Einwohnermeldeamt
-
-Haupttext [[Link: Framingham Tab2, framingham,tab2]]
-
-Tabs mit identifier: reiter1, reiter2, reiter3
+ <<<ImageList: {"rows":[
+{"text": "Text 1", "source":"Source 1","image":"01_tab2.jpg"},
+{"text": "Text 2", "source":"Source 2","image":"02_tab2.jpg"},
+{"text": "Text 3", "source":"Source 3","image":"03_tab2.jpg"},
+{"text": "Text 4", "source":"Source 4","image":"04_tab2.jpg"},
+{"text": "Text 5", "source":"Source 5","image":"05_tab2.jpg"},
+{"text": "Text 6", "source":"Source 6","image":"06_tab2.jpg"}
+],
+"context":{"room":"bioprobenlager", "tab":"tab2"}}
+>>>

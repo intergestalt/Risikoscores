@@ -22,21 +22,6 @@ class Start extends React.Component {
     document.documentElement.classList.toggle('noscroll', false);
   }
 
-  renderRooms(rooms) {
-    return (
-      <ul>
-        {rooms.map(room => {
-          return (
-            <li>
-              <NavLink to={'rooms/' + room._id}>
-                {room.name[this.props.language]}
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
   renderLoading() {
     return <div className="Start">Loading...</div>;
   }
@@ -61,7 +46,7 @@ export default withTracker(props => {
   return {
     rooms: Rooms.find().fetch(),
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready
+    ready: sub.ready() && sub2.ready()
   };
 })(Start);
 

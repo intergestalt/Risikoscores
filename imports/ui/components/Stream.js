@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import { getStreamQuestions, setLoading } from '../../helper/question';
 import { StreamWelcome, StreamPost } from './';
-import { getStreamIndex } from '../../helper/actions';
+import { getStreamIndex, getLanguage } from '../../helper/actions';
 
 class Stream extends React.Component {
   constructor(props) {
@@ -48,6 +49,7 @@ Stream.propTypes = {
 
 export default withTracker(props => {
   return {
-    streamIndex: getStreamIndex()
+    streamIndex: getStreamIndex(),
+    lang: getLanguage()
   };
 })(Stream);

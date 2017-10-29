@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 import { getColor } from '../../helper/graph';
+import { getLanguage } from '../../helper/actions';
 
 class GraphNode extends React.Component {
   constructor(props) {
@@ -22,7 +23,8 @@ class GraphNode extends React.Component {
     }
   }
   clickCallback(e, nodeId) {
-    const path = '/rooms/' + nodeId;
+    const lang = getLanguage();
+    const path = '/rooms/' + nodeId + '?language=' + lang;
     this.props.history.push(path);
   }
 

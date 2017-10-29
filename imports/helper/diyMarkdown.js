@@ -5,16 +5,16 @@ import {
   ExternalLink,
   Link,
   GlossarLink,
-  Timeline
+  Timeline,
+  ImageList
 } from '../ui/components/content';
 import { exists, existsString } from '../helper/global';
+import { getId } from '../helper/admin';
 
-const SPECIAL_BEGIN = '[[';
-const SPECIAL_END = ']]';
+const SPECIAL_BEGIN = '<<<';
+const SPECIAL_END = '>>>';
 const SPECIAL_SEPARATOR = ':';
-const SPECIAL_OPTIONS_SPLIT = ',';
-const NESTED_SPECIAL_BEGIN = '<<';
-const NESTED_SPECIAL_END = '>>';
+const SPECIAL_OPTIONS_SPLIT = ';';
 
 //Params for some special components with a simple syntax
 var simpleParams = {
@@ -39,6 +39,7 @@ function getSpecialComponent(specialComponent) {
 
   var options = null;
   if (optionsStr.startsWith('{')) {
+    console.log(optionsStr);
     options = JSON.parse(optionsStr);
     var test = JSON.stringify(options);
   } else {
@@ -59,22 +60,22 @@ function getSpecialComponent(specialComponent) {
 
 export function findGlossarComponents(text, nested = false) {
   var result = {};
-  var SEP_END = SPECIAL_END;
+  /*var SEP_END = SPECIAL_END;
   var SEP_BEGIN = SPECIAL_BEGIN;
   if (nested) {
     var SEP_END = NESTED_SPECIAL_END;
     var SEP_BEGIN = NESTED_SPECIAL_BEGIN;
-  }
-  var index = text.indexOf(SEP_BEGIN + 'Glossar:');
+  }*/
+  var index = text.indexOf(SPECIAL_BEGIN + 'Glossar:');
   while (index !== -1) {
-    var index2 = text.indexOf(SEP_END, index);
+    var index2 = text.indexOf(SPECIAL_END, index);
     if (index2 !== -1) {
-      var special = text.substring(index + 2, index2);
+      var special = text.substring(index + 3, index2);
       const operation = getSpecialComponent(special);
       result[operation.options.entry.toLowerCase()] = true;
 
-      text = text.substring(index2 + 2);
-      index = text.indexOf(SEP_BEGIN + 'Glossar:');
+      text = text.substring(index2 + 3);
+      index = text.indexOf(SPECIAL_BEGIN + 'Glossar:');
     } else {
       index = -1;
     }
@@ -84,13 +85,13 @@ export function findGlossarComponents(text, nested = false) {
 
 function renderSpecialComponent(specialComponent, id, glossar) {
   const operation = getSpecialComponent(specialComponent);
-  const name = operation.name;
+  const name = operation.name.toLocaleLowerCase();
   const options = operation.options;
-  if (name === 'ExternalLink') {
+  if (name === 'externallink') {
     return (
       <ExternalLink key={'_' + id} text={options.text} url={options.url} />
     );
-  } else if (name === 'Link') {
+  } else if (name === 'link') {
     return (
       <Link
         key={'_' + id}
@@ -99,21 +100,23 @@ function renderSpecialComponent(specialComponent, id, glossar) {
         tab={options.tab}
       />
     );
-  } else if (name === 'Glossar') {
+  } else if (name === 'glossar') {
     if (glossar) {
       return (
         <GlossarLink
           key={'_' + id}
           text={options.text}
-          entry={options.entry}
+          entry={getId(options.entry)}
           highlighted={false}
         />
       );
     } else {
       return <span key={'_' + id}>{options.text}</span>;
     }
-  } else if (name === 'Timeline') {
+  } else if (name === 'timeline') {
     return <Timeline key={'_' + id} data={options} />;
+  } else if (name === 'imagelist') {
+    return <ImageList key={'_' + id} data={options} />;
   }
 }
 
@@ -146,60 +149,90 @@ function stripOuterP(block) {
   }
   return block;
 }
-
-function diyMarkdownBlock(text, blockId, nested, glossar = true) {
-  var md = new Remarkable({ html: true, xhtmlOut: true, breaks: true });
-  var SEP_END = SPECIAL_END;
-  var SEP_BEGIN = SPECIAL_BEGIN;
-  if (nested) {
-    var SEP_END = NESTED_SPECIAL_END;
-    var SEP_BEGIN = NESTED_SPECIAL_BEGIN;
-  }
-  const compontentsForBlock = [];
-  text = text.trim();
-  var index = text.indexOf(SEP_BEGIN);
-  var result = '';
-  var id = 0;
-  var onlySpecial = true;
-  while (index !== -1) {
-    var index2 = text.indexOf(SEP_END, index);
-    if (index2 !== -1) {
-      var before = text.substring(0, index);
-      if (existsString(before)) {
-        var componentBefore = getSpanComponent(md, before, id);
-        id++;
-        onlySpecial = false;
-        compontentsForBlock.push(componentBefore);
+function getSpecialEnd(text) {
+  var open = 0;
+  index = 0;
+  var indexEnd = -1;
+  var indexBegin = -1;
+  var start = true;
+  while (start || open > 0) {
+    start = false;
+    indexBegin = text.indexOf(SPECIAL_BEGIN, index);
+    indexEnd = text.indexOf(SPECIAL_END, index);
+    if (indexBegin != -1) {
+      if (indexBegin <= indexEnd) {
+        open++;
+        index = indexBegin + 1;
+      } else {
+        open--;
+        index = indexEnd + 1;
       }
-
-      var special = text.substring(index + 2, index2);
-      specialComponent = renderSpecialComponent(special, id, glossar);
-      compontentsForBlock.push(specialComponent);
-      id++;
-
-      text = text.substring(index2 + 2);
-      index = text.indexOf(SEP_BEGIN);
     } else {
-      index = -1;
+      open--;
+      index = indexEnd + 1;
     }
   }
-  if (existsString(text)) {
-    var lastComponent = getSpanComponent(md, text, id);
-    id++;
-    onlySpecial = false;
-    compontentsForBlock.push(lastComponent);
+
+  return indexEnd;
+}
+function diyMarkdownBlock(text, blockId, glossar = true) {
+  try {
+    var md = new Remarkable({ html: true, xhtmlOut: true, breaks: true });
+
+    const compontentsForBlock = [];
+    text = text.trim();
+    var index = text.indexOf(SPECIAL_BEGIN);
+    var result = '';
+    var id = 0;
+    var onlySpecial = true;
+    while (index !== -1) {
+      var index2 = getSpecialEnd(text);
+      if (index2 !== -1) {
+        var before = text.substring(0, index);
+        if (existsString(before)) {
+          var componentBefore = getSpanComponent(md, before, id);
+          id++;
+          onlySpecial = false;
+          compontentsForBlock.push(componentBefore);
+        }
+
+        var special = text.substring(index + 3, index2);
+        try {
+          specialComponent = renderSpecialComponent(special, id, glossar);
+          compontentsForBlock.push(specialComponent);
+        } catch (e) {
+          console.log(e);
+          compontentsForBlock.push(<span>[[CHECK MARKDOWN]]</span>);
+        }
+        id++;
+
+        text = text.substring(index2 + 3);
+        index = text.indexOf(SPECIAL_BEGIN);
+      } else {
+        index = -1;
+      }
+    }
+    if (existsString(text)) {
+      var lastComponent = getSpanComponent(md, text, id);
+      id++;
+      onlySpecial = false;
+      compontentsForBlock.push(lastComponent);
+    }
+    if (onlySpecial) {
+      return compontentsForBlock;
+    }
+    return <p key={'_' + blockId}>{compontentsForBlock}</p>;
+  } catch (e) {
+    console.log(e);
+    return <p key={'_' + blockId}>[[Check Markdown for this Block]]</p>;
   }
-  if (onlySpecial) {
-    return compontentsForBlock;
-  }
-  return <p key={'_' + blockId}>{compontentsForBlock}</p>;
 }
 
-export function diyMarkdown(text, nested, glossar = true) {
+export function diyMarkdown(text, glossar = true) {
   const blocks = text.split('\n\n');
   const components = [];
   for (var i = 0; i < blocks.length; i++) {
-    const compontentsForBlock = diyMarkdownBlock(blocks[i], i, nested, glossar);
+    const compontentsForBlock = diyMarkdownBlock(blocks[i], i, glossar);
     components.push(compontentsForBlock);
   }
   return components;
