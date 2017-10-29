@@ -5,3 +5,6 @@ build/
 .gitignore
 public/vendor/
 mongodb-backups-uberspace/
+var/*
+!var/.gitkeep
+yarn-error.log

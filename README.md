@@ -26,6 +26,10 @@ Edit array in `meteor/imports/startup/server/fixtures`
 
 `bin/deploy-to-uberspace`
 
+## environment variables
+
+RISIKOSCORES_VAR_DIR sets the path to the var directory which contains uploads. it is not required on a dev system, only when running a bundled version. should point to a directory outside of the bundle, writable by node.
+
 ## Routes
 ```
 /

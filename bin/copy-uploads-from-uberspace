@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+if [ ! -f uberspace.config ]; then
+  echo "Please go to the root directory of the meteor app first, and set up uberspace.config"
+  exit
+fi
+
+source uberspace.config
+
+echo "using following uberspace.config:"
+echo "----------------------"
+cat uberspace.config
+echo "----------------------"
+
+scp -r $uberspace_username@$uberspace_host:~/var/uploads ./var

@@ -36,7 +36,7 @@ class StreamPost extends React.Component {
     var image = null;
     if (existsString(question.image)) {
       const imgSrc =
-        '/assets/' + question.roomId + '/questions/' + question.image;
+        '/uploads/' + question.roomId + '/questions/' + question.image;
       image = (
         <div className="StreamPostImage">
           <Img src={imgSrc} />

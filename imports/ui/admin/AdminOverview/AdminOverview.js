@@ -16,6 +16,8 @@ class AdminOverview extends React.Component {
         <NavLink to={'/admin/fragments/'}>Text Fragments</NavLink>
         <br />
         <NavLink to={'/admin/graph/'}>Graph</NavLink>
+        <br />
+        <NavLink to={'/admin/uploads/'}>Uploads</NavLink>
       </div>
     );
   }

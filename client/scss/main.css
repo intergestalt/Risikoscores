@@ -11,6 +11,18 @@
   padding: 1rem;
 }
 
+.AdminWrapper h1,
+.AdminWrapper h2,
+.AdminWrapper h3,
+.AdminWrapper h4,
+.AdminWrapper p {
+  margin-bottom: 1rem;
+}
+
+.AdminWrapper br {
+  line-height: 1.25rem;
+}
+
 /*** CLIENT ***/
 
 /*** Room ***/

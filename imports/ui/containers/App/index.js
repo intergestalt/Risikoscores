@@ -22,6 +22,7 @@ import {
   AdminAddQuestion
 } from '../../admin/AdminQuestion';
 import { AdminGraph, AdminEditGraph } from '../../admin/AdminGraph';
+import { AdminUploads } from '../../admin/AdminUploads';
 import AdminRoute from '../../containers/AdminRoute';
 
 const App = appProps => (
@@ -95,7 +96,7 @@ const App = appProps => (
         />
         <AdminRoute
           exact
-          name="admin-grpah-edit"
+          name="admin-graph-edit"
           path="/admin/graph/:_id"
           component={AdminEditGraph}
         />
@@ -116,6 +117,12 @@ const App = appProps => (
           name="admin-question-add"
           path="/admin/questions-add"
           component={AdminAddQuestion}
+        />
+        <AdminRoute
+          exact
+          name="admin-uploads-index"
+          path="/admin/uploads"
+          component={AdminUploads}
         />
       </Switch>
     </div>

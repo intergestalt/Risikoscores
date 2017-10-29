@@ -8,3 +8,4 @@ import './methods';
 
 // startup
 import './fixtures';
+import './uploads';
