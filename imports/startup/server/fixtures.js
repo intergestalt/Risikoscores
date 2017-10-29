@@ -16,6 +16,7 @@ import Graph from '../../collections/graph';
 import GraphNodeSchema from '../../schemas/graph';
 import { getId } from '../../helper/admin';
 import { getInitialQuestions } from './initialQuestions';
+import { getInitialGlossar } from './initialGlossar';
 import { getGraph } from './graph';
 
 const questions = getInitialQuestions();
@@ -47,19 +48,7 @@ const textFragments = [
   'languageLink'
 ];
 
-const glossar = [
-  'Kohortenstudie',
-  'Quantitativ',
-  'Risikofaktoren-Epidemiologie',
-  'Mediterrane Diät',
-  'Risikofaktor',
-  'Molekularbiologie',
-  'Genomforschung',
-  'Biobank',
-  'Informierte Zustimmung (informed consent)',
-  'Assoziationsstudien',
-  'Biomarker'
-];
+const glossar = getInitialGlossar();
 
 Meteor.startup(() => {
   console.log('running fixures');
@@ -80,6 +69,7 @@ Meteor.startup(() => {
     });
   }
 
+  //Rooms.remove({});
   rooms.forEach(room => {
     if (!Rooms.findOne(room)) {
       console.log('inserting room ' + room);
@@ -101,17 +91,18 @@ Meteor.startup(() => {
       });
     }
   });
-  //  Glossar.remove({});
+  //Glossar.remove({});
   glossar.forEach(entry => {
-    const name = entry;
-    const id = getId(name);
+    const name = entry.name;
+    const id = entry.id;
     if (!Glossar.findOne(id)) {
       console.log('inserting glossar entry ' + id);
       console.log(name + ' -> ' + id);
       Glossar.insert({
         ...GlossarSchema.clean({}),
         _id: id,
-        name: { de: name }
+        name: { de: name },
+        text: { de: entry.text }
       });
     }
   });

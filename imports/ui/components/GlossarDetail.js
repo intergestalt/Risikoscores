@@ -13,7 +13,7 @@ class GlossarDetail extends React.Component {
   render() {
     var text = localeStr(this.props.entry.text);
     var title = localeStr(this.props.entry.name);
-    const textBlocks = diyMarkdown(text, false);
+    const textBlocks = diyMarkdown(text);
     return (
       <div className="GlossarContent">
         <h1>{title}</h1>

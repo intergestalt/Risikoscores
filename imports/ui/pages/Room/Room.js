@@ -10,7 +10,11 @@ import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
 import { setSelectedTabId, setSelectedRoomId } from '../../../helper/actions';
 import { exists, startStreamTimeout } from '../../../helper/global';
-import { setSelectGraphNode, getSelectedRoomId } from '../../../helper/actions';
+import {
+  setSelectGraphNode,
+  getSelectedRoomId,
+  setLanguage
+} from '../../../helper/actions';
 
 class Room extends React.Component {
   constructor(props) {
@@ -78,8 +82,15 @@ export default withTracker(props => {
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
-  setSelectedTabId(tabId);
+  if (exists(tabId)) {
+    setSelectedTabId(tabId);
+  }
   setSelectedRoomId(roomId);
+  var lang = parsed.language;
+  if (exists(lang)) {
+    setLanguage(lang);
+  }
+
   return {
     room: Rooms.findOne(roomId),
     selectedTabId: tabId,

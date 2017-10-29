@@ -14,9 +14,8 @@ class TabContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.tab.text);
-    const textBlocks = diyMarkdown(text, false);
+    const textBlocks = diyMarkdown(text);
     return (
-
       <Content className="TabContent">
         <Scrollbars>
           <ScrollContainer>
@@ -25,7 +24,6 @@ class TabContent extends React.Component {
           </ScrollContainer>
         </Scrollbars>
       </Content>
-
     );
   }
 }
@@ -43,10 +41,6 @@ const Content = styled.div`
   flex: 1;
 `;
 
-const ScrollContainer = styled.div`
-  padding: ${dist.named.columnPadding};
-`;
+const ScrollContainer = styled.div`padding: ${dist.named.columnPadding};`;
 
-const Headline = styled.h1`
-  ${snippets.headlineText};
-`;
+const Headline = styled.h1`${snippets.headlineText};`;
