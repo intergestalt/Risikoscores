@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import { localeStr } from '../../helper/global';
 import {
@@ -24,7 +24,6 @@ class StartRoomMenu extends React.Component {
     super(props);
     this.enterCallback = this.enterCallback.bind(this);
     this.leaveCallback = this.leaveCallback.bind(this);
-    this.clickCallback = this.clickCallback.bind(this);
   }
   selectRoom(roomId) {
     const realGraph = getTheRealGraph(this.props.graph);
@@ -40,12 +39,10 @@ class StartRoomMenu extends React.Component {
     setSelectGraphNode(null);
   }
 
-  clickCallback(e, roomId) {
-    e.preventDefault();
+  roomPath(roomId) {
     const lang = getLanguage();
     var path = '/rooms/' + roomId + '?language=' + lang;
-
-    this.props.history.push(path);
+    return path;
   }
 
   getRooms() {
@@ -82,11 +79,8 @@ class StartRoomMenu extends React.Component {
 
       const neu = (
         <Li key={'_' + i}>
-          <a
-            href="#"
-            onClick={e => {
-              this.clickCallback(e, roomId);
-            }}
+          <LinkStyled
+            to={this.roomPath(roomId)}
             style={{ color: color }}
             onMouseEnter={e => {
               this.enterCallback(e, roomId);
@@ -96,7 +90,7 @@ class StartRoomMenu extends React.Component {
             }}
           >
             {text}
-          </a>
+          </LinkStyled>
         </Li>
       );
       result.push(neu);
@@ -135,4 +129,16 @@ const Li = styled.li`
   white-space: pre;
 `;
 
-const Ul = styled.ul`position: absolute;`;
+const Ul = styled.ul`
+  position: absolute;
+  pointer-events: none;
+  & li {
+    pointer-events:all;
+  }
+`;
+
+const LinkStyled = styled(Link) `
+  &:hover {
+    text-decoration: none;
+  }
+`;
