@@ -119,7 +119,7 @@ const Area = styled.div`
        ${color(colors.darkgrey).darken(0.05).fade(1).string()} 80%
     );
     pointer-events: none;
-  }  
+  }
 `;
 
 const InnerContainer = styled.div`

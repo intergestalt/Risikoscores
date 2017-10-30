@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MainImages, MainContent } from './';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import color from 'color';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import { colors } from '../../config/styles';
@@ -35,4 +36,17 @@ const Column = styled.section`
   background-color: ${colors.lightgrey};
   height:100%;
   overflow: auto;
+  position:relative;
+  &:after {
+    position: absolute;
+    bottom: 0;  
+    height: 3em;
+    width: 100%;
+    content: "";
+    background: linear-gradient(to top,
+       ${color(colors.lightgrey).opaquer(0.8).string()} 0%, 
+       ${color(colors.lightgrey).fade(1).string()} 80%
+    );
+    pointer-events: none;
+  }
 `;
