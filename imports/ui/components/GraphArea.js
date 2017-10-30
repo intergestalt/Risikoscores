@@ -11,7 +11,7 @@ import {
   setSelectGraphNode,
   getSelectedRoomId
 } from '../../helper/actions';
-import { colors } from '../../config/styles';
+import { colors, dist } from '../../config/styles';
 import { exists } from '../../helper/global';
 
 class GraphArea extends React.Component {
@@ -48,7 +48,6 @@ class GraphArea extends React.Component {
     }
     return (
       <Area className="GraphArea" relativeHeight={height}>
-        <h1>Graph: {height}%.</h1>
         <Expander
           callback={this.callback}
           expanded={isGraphExpanded()}
@@ -56,8 +55,8 @@ class GraphArea extends React.Component {
         />
         <GraphHeader />
         <Graph
-          width={'60%'}
-          height={'90%'}
+          width={`calc( ( 100vw / 3 ) - ( 2 * ${dist.named.columnPadding} ) )`}
+          height={`calc( ( 100vh / 3 ) - ${dist.named.columnPadding} )`}
           graphCallback={this.graphCallback}
           selectedId={this.props.graphNodeId}
           graph={this.props.graph}
@@ -86,4 +85,12 @@ const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.mediumgrey};
+  padding: ${ dist.named.columnPadding};
+  padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});  
+  position: relative;
+  & .Expander {
+    position: absolute;
+    right:0.5em;
+    top:0.5em;
+  }  
 `;

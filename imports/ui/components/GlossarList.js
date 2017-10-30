@@ -6,7 +6,7 @@ import { GlossarLink } from './content';
 import { localeStr } from '../../helper/global';
 import { sortGlossar, getRoomGlossar } from '../../helper/glossar';
 import { getFragment } from '../../helper/fragment';
-import { snippets } from '../../config/styles';
+import { snippets, colors } from '../../config/styles';
 import { getId } from '../../helper/admin';
 
 class GlossarList extends React.Component {
@@ -39,7 +39,7 @@ class GlossarList extends React.Component {
 
     return (
       <Content className="GlossarContent">
-        <h1>{title}</h1>
+        <Title>{title}</Title>
         <h2>Raum Einträge</h2>
         <ul>{roomEntryList}</ul>
         <h2>Alle Einträge</h2>
@@ -62,4 +62,13 @@ const Content = styled.div`
   & a {
     color: white;
   }
+  h2 {
+    margin: 1em 0;
+    ${snippets.headlineText};
+  }
+`;
+
+const Title = styled.h3`
+  ${snippets.headlineText};
+  color: ${colors.named.glossar};
 `;

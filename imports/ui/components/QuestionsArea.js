@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Questions from '../../collections/questions';
 import { RoomQuestions, Expander, RoomQuestionsHeader } from './';
 import { toggleQuestions, isQuestionsExpanded } from '../../helper/actions';
-import { colors } from '../../config/styles';
+import { colors, dist } from '../../config/styles';
 
 class QuestionsArea extends React.Component {
   constructor(props) {
@@ -34,7 +34,6 @@ class QuestionsArea extends React.Component {
     }
     return (
       <Area className="QuestionsArea" relativeHeight={height}>
-        <h1>Questions: {height}%</h1>
         <Expander
           callback={this.callback}
           expanded={isQuestionsExpanded()}
@@ -66,4 +65,12 @@ const Area = styled.div`
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.lightgrey};
   overflow-y: auto;
+  padding: ${ dist.named.columnPadding};
+  padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
+  position: relative;
+  & .Expander {
+    position: absolute;
+    right:0.5em;
+    top:0.5em;
+  }
 `;

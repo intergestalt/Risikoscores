@@ -70,7 +70,6 @@ class GlossarArea extends React.Component {
       <Area relativeHeight={height} className="GlossarArea">
         <Scrollbars>
           <InnerContainer>
-            <Title>Glossar: {height}%</Title>
             {content}
           </InnerContainer>
         </Scrollbars>
@@ -121,11 +120,6 @@ const Area = styled.div`
     );
     pointer-events: none;
   }  
-`;
-
-const Title = styled.h3`
-  ${snippets.headlineText};
-  color: ${colors.named.glossar};
 `;
 
 const InnerContainer = styled.div`
