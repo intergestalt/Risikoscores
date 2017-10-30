@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
-import { diyMarkdown } from '../../helper/diyMarkdown';
 import { snippets, dist, colors } from '../../config/styles';
+import DiyMarkdown from './DiyMarkdown';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -13,12 +13,11 @@ class MainContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.room.mainText);
-    const textBlocks = diyMarkdown(text);
     const title = localeStr(this.props.room.name);
     return (
       <Content className="MainContent">
         <Headline>{title}</Headline>
-        {textBlocks}
+        <DiyMarkdown>{text}</DiyMarkdown>
       </Content>
     );
   }
@@ -35,4 +34,5 @@ const Content = styled.div`padding: ${dist.named.columnPadding};`;
 const Headline = styled.h1`
   ${snippets.headlineText};
   color: ${colors.named.room};
+  margin-bottom: 1em;
 `;

@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import { diyMarkdown } from '../../helper/diyMarkdown';
 import { localeStr, existsString, zuffi } from '../../helper/global';
 import { getLanguage } from '../../helper/actions';
 import { dist, snippets } from '../../config/styles';
+import DiyMarkdown from './DiyMarkdown';
 
 class StreamPost extends React.Component {
   constructor(props) {
@@ -36,7 +36,6 @@ class StreamPost extends React.Component {
     const question = this.props.question;
     var text = localeStr(question.text, this.props.lang);
     var title = localeStr(question.title, this.props.lang);
-    const textBlocks = diyMarkdown(text, false);
     var image = null;
     if (existsString(question.image)) {
       const imgSrc =
@@ -52,7 +51,9 @@ class StreamPost extends React.Component {
       <Li className="StreamPost">
         <Header className="StreamPostHeader">@{title}</Header>
         {image}
-        <Content className="StreamPostContent">{textBlocks}</Content>
+        <Content className="StreamPostContent">
+          <DiyMarkdown>{text}</DiyMarkdown>
+        </Content>
       </Li>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
-import { diyMarkdown } from '../../../helper/diyMarkdown';
+import DiyMarkdown from '../DiyMarkdown';
 
 class ImageList extends React.Component {
   constructor(props) {
@@ -27,19 +27,21 @@ class ImageList extends React.Component {
       }
 
       var text = row.text;
-      const textBlocks1 = diyMarkdown(text);
       const newRow3 = (
         <tr key={'_3_' + i}>
-          <td>{textBlocks1}</td>
+          <td>
+            <DiyMarkdown>{text}</DiyMarkdown>
+          </td>
         </tr>
       );
       result.push(newRow3);
 
       var source = row.source;
-      const textBlocks2 = diyMarkdown(source);
       const newRow4 = (
         <tr key={'_4_' + i}>
-          <td>{textBlocks2}</td>
+          <td>
+            <DiyMarkdown>{source}</DiyMarkdown>
+          </td>
         </tr>
       );
       result.push(newRow4);

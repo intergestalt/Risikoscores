@@ -22,6 +22,7 @@ import GraphNode from './GraphNode';
 import GraphEdge from './GraphEdge';
 import RoomQuestions from './RoomQuestions';
 import RoomQuestionsHeader from './RoomQuestionsHeader';
+import DiyMarkdown from './DiyMarkdown';
 
 import StartLeft from './StartLeft';
 import StartRight from './StartRight';
@@ -58,6 +59,7 @@ export {
   GraphEdge,
   RoomQuestionsHeader,
   RoomQuestions,
+  DiyMarkdown,
   StartLeft,
   StartRight,
   Stream,
