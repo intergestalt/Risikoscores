@@ -42,6 +42,7 @@ Expander.propTypes = {
 export default Expander;
 
 const Indicator = styled.div`
+  display: inline-block;
   cursor: pointer;
   &:hover {
     opacity: 0.7;
