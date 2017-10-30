@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import { localeStr } from '../../helper/global';
-import { diyMarkdown } from '../../helper/diyMarkdown';
+import DiyMarkdown from './DiyMarkdown';
 import { snippets, dist } from '../../config/styles';
 
 class TabContent extends React.Component {
@@ -14,13 +14,12 @@ class TabContent extends React.Component {
 
   render() {
     var text = localeStr(this.props.tab.text);
-    const textBlocks = diyMarkdown(text);
     return (
       <Content className="TabContent">
         <Scrollbars>
           <ScrollContainer>
             <Headline>{localeStr(this.props.tab.title)}</Headline>
-            {textBlocks}
+            <DiyMarkdown>{text}</DiyMarkdown>
           </ScrollContainer>
         </Scrollbars>
       </Content>

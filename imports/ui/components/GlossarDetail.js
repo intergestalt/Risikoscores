@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { localeStr } from '../../helper/global';
-import { diyMarkdown } from '../../helper/diyMarkdown';
+import DiyMarkdown from './DiyMarkdown';
 import { GlossarClose } from './';
 
 class GlossarDetail extends React.Component {
@@ -13,12 +13,11 @@ class GlossarDetail extends React.Component {
   render() {
     var text = localeStr(this.props.entry.text);
     var title = localeStr(this.props.entry.name);
-    const textBlocks = diyMarkdown(text);
     return (
       <div className="GlossarContent">
         <h1>{title}</h1>
         <GlossarClose />
-        {textBlocks}
+        <DiyMarkdown>{text}</DiyMarkdown>
       </div>
     );
   }
