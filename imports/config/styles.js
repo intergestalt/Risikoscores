@@ -43,7 +43,7 @@ const snippets = {
     font-size: 13px;
   `,
   glossarText: `
-  font-family: 'Roboto Regular';
+  font-family: 'Roboto Light';
   line-height: 21px;
   font-size: 18px;
 `,
