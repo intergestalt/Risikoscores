@@ -21,7 +21,7 @@ class GraphEdge extends React.Component {
         x2={this.props.node2.x + '%'}
         y2={this.props.node2.y + '%'}
         stroke={color}
-        strokeWidth={1}
+        strokeWidth={2}
       />
     );
   }

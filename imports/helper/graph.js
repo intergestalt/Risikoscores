@@ -1,12 +1,13 @@
 import { setRealGraph, getRealGraph } from './actions';
 import { exists, existsString } from './global';
+import { colors } from '../config/styles';
 
-const defaultColor = '#ee0000';
-const selectedColor = '#00ee00';
-const neighbourColor = '#eeee00';
+const defaultColor = 'url(#grad1)';//colors.darkgrey; // 'transparent';
+const selectedColor = colors.blue;
+const neighbourColor = colors.yellow;
 const defaultEdgeColor = '#eeeeee';
-const selectedEdgeColor = '#ee00ee';
-const defaultLinkColor = '#0000ff';
+const selectedEdgeColor = '#eeeeee';
+const defaultLinkColor = 'white';
 
 export function cleanForSave(entry) {
   const result = entry;

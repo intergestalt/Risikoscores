@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Graph } from './';
 import { setSelectGraphNode } from '../../helper/actions';
 import { exists } from '../../helper/global';
-import { dist } from '../../config/styles';
+import { dist, colors } from '../../config/styles';
 
 class StartGraphArea extends React.Component {
   constructor(props) {
@@ -33,6 +33,7 @@ class StartGraphArea extends React.Component {
           selectedId={this.props.selectedId}
           width={'100%'}
           height={'100%'}
+          backgroundColor={colors.darkgrey}
           graphCallback={this.graphCallback}
           graph={this.props.graph}
         />

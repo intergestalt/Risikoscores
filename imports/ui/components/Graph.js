@@ -12,6 +12,7 @@ import {
 } from '../../helper/graph';
 import { exists } from '../../helper/global';
 import { getSelectGraphNode } from '../../helper/actions';
+import { colors } from '../../config/styles';
 
 class Graph extends React.Component {
   constructor(props) {
@@ -96,6 +97,15 @@ class Graph extends React.Component {
 
     return (
       <SvgContainer className="Graph" style={{ width: this.props.width, height: this.props.height }}>
+        <defs>
+          <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="70%" style={{
+              stopColor: this.props.backgroundColor,
+              stopOpacity: 1
+            }} />
+            <stop offset="80%" style={{ stopColor: this.props.backgroundColor, stopOpacity: 0 }} />
+          </radialGradient>
+        </defs>
         {lines}
         {circles}
       </SvgContainer>
@@ -109,6 +119,7 @@ Graph.propTypes = {
   graphCallback: PropTypes.func,
   width: PropTypes.string,
   height: PropTypes.string,
+  backgroundColor: PropTypes.string,
 };
 
 export default withTracker(props => {

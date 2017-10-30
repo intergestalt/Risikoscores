@@ -50,7 +50,7 @@ class GraphNode extends React.Component {
         }}
         cx={this.props.node.x + '%'}
         cy={this.props.node.y + '%'}
-        r={'3%'}
+        r={'1ex'}
         fill={color}
       />
     );
