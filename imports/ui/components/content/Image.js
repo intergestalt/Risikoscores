@@ -17,7 +17,6 @@ class Image extends React.Component {
 
   render() {
     var imageEntitiy = null;
-    console.log(this.props.asset);
     if (exists(this.props.asset)) {
       const imgSrc = getImageSrc(this.props.asset);
       imageEntitiy = <img src={imgSrc} width="300" />;

@@ -17,7 +17,7 @@ class Asset extends React.Component {
     }
     if (isImage(this.props.asset)) {
       return (
-        <Image detaiView={this.props.detailView} asset={this.props.asset} />
+        <Image detailView={this.props.detailView} asset={this.props.asset} />
       );
     }
     return null;
