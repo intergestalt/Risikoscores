@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 import { localeStr, exists } from '../../helper/global';
 import { splitOptions, getOptionFlag } from '../../helper/diyMarkdown';
-import { DiyMarkdown } from './';
+import { DiyMarkdown, CustomScrollbars } from './';
 import { snippets, dist } from '../../config/styles';
 
 class TabContent extends React.Component {
@@ -23,12 +22,12 @@ class TabContent extends React.Component {
     if (scroll) {
       return (
         <Content className="TabContent">
-          <Scrollbars autoHide>
+          <CustomScrollbars>
             <ScrollContainer>
               {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
               <DiyMarkdown>{splitted.text}</DiyMarkdown>
             </ScrollContainer>
-          </Scrollbars>
+          </CustomScrollbars>
         </Content>
       );
     } else {
@@ -59,6 +58,6 @@ const Content = styled.div`
   }
 `;
 
-const ScrollContainer = styled.div`padding: ${dist.named.columnPadding};`;
+const ScrollContainer = styled.div``;
 
 const Headline = styled.h1`${snippets.headlineText};`;

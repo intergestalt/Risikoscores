@@ -36,9 +36,10 @@ MainImages.propTypes = {
 export default MainImages;
 
 const ImageContainer = styled.div`
+  height: 33.33%;
   img {
     width: 100%;
-    height: 33.33%;
+    height: 100%;
     object-fit: cover;
   }
 `;

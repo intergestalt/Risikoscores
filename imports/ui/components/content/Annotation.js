@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { DetailButton } from './';
 import { DiyMarkdown } from '../';
+import { dist, snippets, colors } from '../../../config/styles';
 
 class Annotation extends React.Component {
   constructor(props) {
@@ -18,11 +20,11 @@ class Annotation extends React.Component {
     }
 
     return (
-      <div>
+      <Container>
         <DiyMarkdown>{text}</DiyMarkdown>
-        <DiyMarkdown>{source}</DiyMarkdown>
+        <DiyMarkdown style={{ color: colors.darkgrey }}>{source}</DiyMarkdown>
         {detailButton}
-      </div>
+      </Container>
     );
   }
 }
@@ -34,3 +36,11 @@ Annotation.propTypes = {
 };
 
 export default Annotation;
+
+const Container = styled.div`
+  ${snippets.annotationText};
+  padding: ${ dist.named.columnPadding};
+  padding-top: calc( ${ dist.tiny} - ${dist.lineTopDiff});
+  padding-bottom: calc( ${ dist.smll} - ${dist.lineBottomDiff});
+  position: relative;
+`;

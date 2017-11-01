@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
-import { Scrollbars } from 'react-custom-scrollbars';
 
 import Questions from '../../collections/questions';
-import { RoomQuestions, Expander, RoomQuestionsHeader } from './';
+import { RoomQuestions, Expander, RoomQuestionsHeader, CustomScrollbars } from './';
 import { toggleQuestions, isQuestionsExpanded } from '../../helper/actions';
 import { colors, dist } from '../../config/styles';
 
@@ -40,12 +39,12 @@ class QuestionsArea extends React.Component {
           expanded={isQuestionsExpanded()}
           directionDown={false}
         />
-        <Scrollbars autoHide>
+        <CustomScrollbars autoHide>
           <InnerContainer>
             <RoomQuestionsHeader />
             <RoomQuestions questions={this.props.questions} />
           </InnerContainer>
-        </Scrollbars>
+        </CustomScrollbars>
       </Area>
     );
   }

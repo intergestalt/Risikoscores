@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+import { dist, colors } from '../../../config/styles';
 
 class DetailButton extends React.Component {
   constructor(props) {
@@ -15,16 +18,14 @@ class DetailButton extends React.Component {
 
   render() {
     return (
-      <div>
-        <a
-          href="#"
-          onClick={e => {
-            this.props.clickCallback(e, this.props.asset);
-          }}
-        >
-          Detail
-        </a>
-      </div>
+      <A
+        href="#"
+        onClick={e => {
+          this.props.clickCallback(e, this.props.asset);
+        }}
+      >
+        +
+        </A>
     );
   }
 }
@@ -34,3 +35,18 @@ DetailButton.propTypes = {
 };
 
 export default DetailButton;
+
+const A = styled.a`
+  border: solid 1px black;
+  position: absolute;
+  right: ${dist.tiny};
+  top:${dist.tiny};
+  width: 1em;
+  height: calc( ${dist.lineTopDiff} + 1em);
+  width: calc( ${dist.lineTopDiff} + 1em);
+  line-height: calc( ${dist.lineTopDiff} + 1em);
+  text-align: center;
+  &:hover {
+    text-decoration: none;
+  }
+`;

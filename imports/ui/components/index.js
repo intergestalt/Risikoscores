@@ -24,8 +24,10 @@ import GraphNode from './GraphNode';
 import GraphEdge from './GraphEdge';
 import RoomQuestions from './RoomQuestions';
 import RoomQuestionsHeader from './RoomQuestionsHeader';
+
 import DiyMarkdown from './DiyMarkdown';
 import Image from './Image';
+import CustomScrollbars from './CustomScrollbars';
 
 import StartLeft from './StartLeft';
 import StartRight from './StartRight';
@@ -65,6 +67,7 @@ export {
   RoomQuestionsHeader,
   RoomQuestions,
   DiyMarkdown,
+  CustomScrollbars,
   StartLeft,
   StartRight,
   Stream,

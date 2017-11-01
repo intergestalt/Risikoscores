@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Scrollbars } from 'react-custom-scrollbars';
 import color from 'color';
 
-import { GlossarDetail, GlossarList, GlossarExpander } from './';
+import { GlossarDetail, GlossarList, GlossarExpander, CustomScrollbars } from './';
 import { existsString, exists } from '../../helper/global';
 import Glossar from '../../collections/glossar';
 import { getGlossarEntry } from '../../helper/glossar';
@@ -68,11 +67,11 @@ class GlossarArea extends React.Component {
 
     return (
       <Area relativeHeight={height} className="GlossarArea">
-        <Scrollbars autoHide>
+        <CustomScrollbars autoHide>
           <InnerContainer>
             {content}
           </InnerContainer>
-        </Scrollbars>
+        </CustomScrollbars>
       </Area>
     );
   }

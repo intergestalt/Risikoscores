@@ -26,7 +26,7 @@ injectGlobal`
   body {
     margin: 0;
     ${snippets.bodyText};
-    background-color:${colors.darkgrey};
+    background-color:${colors.mediumgrey};
   }
 
   html, body, #render-target, .App {

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Scrollbars } from 'react-custom-scrollbars';
+import color from 'color';
 
 import { localeStr } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
 import { getImageAsset } from '../../helper/asset';
 import { snippets, dist, colors } from '../../config/styles';
-import { DiyMarkdown } from './';
+import { DiyMarkdown, CustomScrollbars } from './';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -29,12 +29,12 @@ class MainContent extends React.Component {
     const title = localeStr(this.props.room.name);
     return (
       <Container>
-        <Scrollbars autoHide>
+        <CustomScrollbars autoHide shadeColor={colors.lightgrey}>
           <Content className="MainContent">
             <Headline>{title}</Headline>
             <DiyMarkdown>{text}</DiyMarkdown>
           </Content>
-        </Scrollbars>
+        </CustomScrollbars>
       </Container>
     );
   }
@@ -47,7 +47,8 @@ MainContent.propTypes = {
 export default MainContent;
 
 const Container = styled.div`
-height: 66.66%;
+  height: 66.66%;
+  position: relative;
 `;
 
 const Content = styled.div`

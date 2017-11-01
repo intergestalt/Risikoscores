@@ -15,7 +15,7 @@ class DiyMarkdown extends React.Component {
     const glossar = !this.props.noGlossar
     const textBlocks = diyMarkdown(this.props.children, blockId, glossar);
     return (
-      <Styled className="DiyMarkdown">
+      <Styled className="DiyMarkdown" {...this.props}>
         {textBlocks}
       </Styled>)
   }
