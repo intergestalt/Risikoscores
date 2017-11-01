@@ -10,9 +10,9 @@ const colors = {
   magenta: "rgb(255,0,255)",
   orange: "rgb(255,115,0)",
   cyan: "rgb(0,255,255)",
-  lightgrey: "#eee",
-  mediumgrey: "#ccc",
-  darkgrey: "#999",
+  lightgrey: "rgb(204,204,204)",
+  mediumgrey: "rgb(128,128,128)",
+  darkgrey: "rgb(89,89,89)",
 }
 
 colors.named = {

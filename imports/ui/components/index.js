@@ -34,6 +34,7 @@ import StreamWelcome from './StreamWelcome';
 import StreamWelcomeHeader from './StreamWelcomeHeader';
 import StreamWelcomeContent from './StreamWelcomeContent';
 import StreamPost from './StreamPost';
+import StreamLoading from './StreamLoading';
 import StartRoomMenuArea from './StartRoomMenuArea';
 import StartGeneralMenuArea from './StartGeneralMenuArea';
 import StartGraphArea from './StartGraphArea';
@@ -71,6 +72,7 @@ export {
   StreamWelcomeHeader,
   StreamWelcomeContent,
   StreamPost,
+  StreamLoading,
   StartRoomMenuArea,
   StartGeneralMenuArea,
   StartGraphArea,

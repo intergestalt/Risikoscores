@@ -7,7 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { localeStr, existsString, zuffi } from '../../helper/global';
 import { getLanguage } from '../../helper/actions';
 import { dist, snippets } from '../../config/styles';
-import { DiyMarkdown, Image } from './';
+import { DiyMarkdown, Image, StreamLoading } from './';
 
 class StreamPost extends React.Component {
   constructor(props) {
@@ -25,7 +25,9 @@ class StreamPost extends React.Component {
   }
 
   renderLoading() {
-    return <li className="StreamPost">loading...</li>;
+    return <LiLoading className="StreamPost">
+      <StreamLoading />
+    </LiLoading>;
   }
 
   render() {
@@ -80,6 +82,10 @@ const Li = styled.li`
     padding-bottom: ${dist.medium};
     padding-bottom: calc(${dist.medium} - ${dist.lineBottomDiff});
   }
+`;
+
+const LiLoading = Li.extend`
+  padding: ${dist.medium};
 `;
 
 const Header = styled.div`
