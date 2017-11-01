@@ -16,12 +16,7 @@ class DetailButton extends React.Component {
   render() {
     return (
       <div>
-        <a
-          href="#"
-          onClick={e => {
-            this.clickCallback(e);
-          }}
-        >
+        <a href="#" onClick={this.props.clickCallback}>
           Detail
         </a>
       </div>
@@ -29,6 +24,7 @@ class DetailButton extends React.Component {
   }
 }
 DetailButton.propTypes = {
+  clickCallback: PropTypes.func,
   asset: PropTypes.object
 };
 

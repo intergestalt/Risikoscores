@@ -12,11 +12,14 @@ class AnnotatedAsset extends React.Component {
     var asset = null;
     var annotation = null;
     asset = (
-      <Asset detailView={this.props.detailView} asset={this.props.asset} />
+      <Asset
+        clickCallback={this.props.clickCallback}
+        asset={this.props.asset}
+      />
     );
     annotation = (
       <Annotation
-        detailView={this.props.detailView}
+        clickCallback={this.props.clickCallback}
         text={this.props.text}
         source={this.props.source}
       />
@@ -35,7 +38,7 @@ AnnotatedAsset.propTypes = {
   room: PropTypes.string,
   text: PropTypes.string,
   source: PropTypes.string,
-  detailView: PropTypes.bool
+  clickCallback: PropTypes.func
 };
 
 export default AnnotatedAsset;

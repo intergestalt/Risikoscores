@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { getImageSrc } from '../../../helper/asset.js';
-import { exists } from '../../../helper/global';
+import { getImageSrc } from '../../helper/asset.js';
+import { exists } from '../../helper/global';
 
 class Image extends React.Component {
   constructor(props) {
     super(props);
-    this.clickCallback = this.clickCallback.bind(this);
-  }
-  clickCallback(e) {
-    e.preventDefault();
-    console.log('Detail Click Image');
-    console.log(this.props.asset);
   }
 
   render() {
@@ -21,14 +15,9 @@ class Image extends React.Component {
       const imgSrc = getImageSrc(this.props.asset);
       imageEntitiy = <img src={imgSrc} width="300" />;
     }
-    if (this.props.detailView) {
+    if (this.props.clickCallback) {
       return (
-        <a
-          href="#"
-          onClick={e => {
-            this.clickCallback(e);
-          }}
-        >
+        <a href="#" onClick={this.props.clickCallback}>
           {imageEntitiy}
         </a>
       );
@@ -38,7 +27,7 @@ class Image extends React.Component {
 }
 Image.propTypes = {
   asset: PropTypes.object,
-  detailView: PropTypes.bool
+  clickCallback: PropTypes.func
 };
 
 export default Image;

@@ -13,7 +13,7 @@ class Annotation extends React.Component {
     var text = this.props.text;
     var source = this.props.source;
     var detailButton = null;
-    if (this.props.detailView) {
+    if (this.props.clickCallback) {
       detailButton = <DetailButton asset={this.props.asset} />;
     }
 
@@ -27,7 +27,7 @@ class Annotation extends React.Component {
   }
 }
 Annotation.propTypes = {
-  detailView: PropTypes.bool,
+  clickCallback: PropTypes.func,
   asset: PropTypes.object,
   text: PropTypes.string,
   source: PropTypes.string
