@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { exists } from '../../../helper/global';
 import { isImage } from '../../../helper/asset.js';
 
-import { Image } from './';
+import { Image } from '../';
 
 class Asset extends React.Component {
   constructor(props) {
@@ -17,7 +17,10 @@ class Asset extends React.Component {
     }
     if (isImage(this.props.asset)) {
       return (
-        <Image detailView={this.props.detailView} asset={this.props.asset} />
+        <Image
+          clickCallback={this.props.clickCallback}
+          asset={this.props.asset}
+        />
       );
     }
     return null;
@@ -27,7 +30,7 @@ Asset.propTypes = {
   asset: PropTypes.object,
   tab: PropTypes.string,
   room: PropTypes.string,
-  detailView: PropTypes.bool
+  clickCallback: PropTypes.func
 };
 
 export default Asset;

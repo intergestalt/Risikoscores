@@ -1,8 +1,8 @@
-import React, { Component, Image } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { getImageSrc } from '../../helper/asset.js';
+import { Image } from './';
 
 class Slideshow extends React.Component {
   constructor(props) {
@@ -10,8 +10,7 @@ class Slideshow extends React.Component {
   }
 
   render() {
-    const imgSrc = getImageSrc(this.props.assets[0]);
-    return <img src={imgSrc} />;
+    return <Image asset={this.props.assets[0]} />;
   }
 }
 

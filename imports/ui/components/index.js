@@ -25,6 +25,7 @@ import GraphEdge from './GraphEdge';
 import RoomQuestions from './RoomQuestions';
 import RoomQuestionsHeader from './RoomQuestionsHeader';
 import DiyMarkdown from './DiyMarkdown';
+import Image from './Image';
 
 import StartLeft from './StartLeft';
 import StartRight from './StartRight';
@@ -74,5 +75,6 @@ export {
   StartGeneralMenuArea,
   StartGraphArea,
   StartGeneralMenu,
-  StartRoomMenu
+  StartRoomMenu,
+  Image
 };

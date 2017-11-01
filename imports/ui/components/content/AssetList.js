@@ -6,8 +6,13 @@ import { AnnotatedAsset } from './';
 class AssetList extends React.Component {
   constructor(props) {
     super(props);
+    this.detailClick = this.detailClick.bind(this);
   }
-
+  detailClick(e) {
+    e.preventDefault();
+    console.log('Detail Click Image');
+    console.log(this.props.asset);
+  }
   renderRows(rows, context) {
     var result = [];
     for (var i = 0; i < rows.length; i++) {
@@ -20,7 +25,7 @@ class AssetList extends React.Component {
               asset={myAsset}
               text={row.text}
               source={row.source}
-              detailView={true}
+              clickCallback={this.detailClick}
             />
           </td>
         </tr>

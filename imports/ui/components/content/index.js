@@ -5,7 +5,6 @@ import Timeline from './Timeline';
 import AssetList from './AssetList';
 import AnnotatedAsset from './AnnotatedAsset';
 import Asset from './Asset';
-import Image from './Image';
 import Annotation from './Annotation';
 import DetailButton from './DetailButton';
 
@@ -17,7 +16,6 @@ export {
   AssetList,
   Asset,
   AnnotatedAsset,
-  Image,
   Annotation,
   DetailButton
 };
