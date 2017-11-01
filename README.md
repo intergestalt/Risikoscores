@@ -119,23 +119,23 @@ identifier timeline
 
  Die Untersuchung biologischer Proben hat eine lange Geschichte in der Medizin. Blut, Speichel oder Urin lagerten früher dezentral und in haushaltsüblichen Kühlschränken. Es geht darum, körperliche Substanzen haltbar zu  machen, weil sich manchmal erst später Forschungsfragen ergeben, die zum Zeitpunkt der Studie noch nicht gedacht wurde. Manchmal gibt es auch erst später die Technologien, um bestimmte Fragen zu untersuchen. Im Zuge der Genomforschung entstanden dann große Biobanken (Link: UK Biobank, National Biobanks). Seit den 1990er Jahren unterhält nahezu jede größere epidemiologische Studie ein eigenes Lager für biologische Proben. Diese sollen zunächst für die Krankheitsursachenforschung und für Diagnostik und Therapie neue Wege eröffnen. Als Forschungsinfrastrukturen verkörpern die Bioproben immense gesellschaftliche Erwartungen und – derzeit – ein großes Forschungskapital. 
 
- <<<ImageList: {"rows":[
-{"text": "Text 1", "source":"Source 1","image":"01_tab1.jpg"},
-{"text": "Text 2", "source":"Source 2","image":"02_tab1.jpg"},
-{"text": "Text 3", "source":"Source 3","image":"03_tab1.jpg"},
-{"text": "Text 4", "source":"Source 4","image":"04_tab1.jpg"},
-{"text": "Text 5", "source":"Source 5","image":"05_tab1.jpg"}
+ <<<AssetList: {"rows":[
+{"text": "Text 1", "source":"Source 1","asset":{"type":"image","name":"01_tab1.jpg"}},
+{"text": "Text 2", "source":"Source 2","asset":{"type":"image","name":"02_tab1.jpg"}},
+{"text": "Text 3", "source":"Source 3","asset":{"type":"image","name":"03_tab1.jpg"}},
+{"text": "Text 4", "source":"Source 4","asset":{"type":"image","name":"04_tab1.jpg"}},
+{"text": "Text 5", "source":"Source 5","asset":{"type":"image","name":"05_tab1.jpg"}},
 ],
 "context":{"room":"bioprobenlager", "tab":"tab1"}}
 >>>
 
- <<<ImageList: {"rows":[
-{"text": "Text 1", "source":"Source 1","image":"01_tab2.jpg"},
-{"text": "Text 2", "source":"Source 2","image":"02_tab2.jpg"},
-{"text": "Text 3", "source":"Source 3","image":"03_tab2.jpg"},
-{"text": "Text 4", "source":"Source 4","image":"04_tab2.jpg"},
-{"text": "Text 5", "source":"Source 5","image":"05_tab2.jpg"},
-{"text": "Text 6", "source":"Source 6","image":"06_tab2.jpg"}
+ <<<AssetList: {"rows":[
+{"text": "Text 1", "source":"Source 1","asset":{"type":"image","name":"01_tab2.jpg"}},
+{"text": "Text 2", "source":"Source 2","asset":{"type":"image","name":"02_tab2.jpg"}},
+{"text": "Text 3", "source":"Source 3","asset":{"type":"image","name":"03_tab2.jpg"}},
+{"text": "Text 4", "source":"Source 4","asset":{"type":"image","name":"04_tab2.jpg"}},
+{"text": "Text 5", "source":"Source 5","asset":{"type":"image","name":"05_tab2.jpg"}},
+{"text": "Text 6", "source":"Source 6","asset":{"type":"image","name":"06_tab2.jpg"}}
 ],
 "context":{"room":"bioprobenlager", "tab":"tab2"}}
 >>>
