@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { Slideshow } from './';
 import { exists } from '../../helper/global';
+import { getImageAsset } from '../../helper/asset';
 
 class MainImages extends React.Component {
   constructor(props) {
@@ -15,11 +16,10 @@ class MainImages extends React.Component {
     if (exists(this.props.images)) {
       var assets = [];
       for (var i = 0; i < this.props.images.length; i++) {
-        const a = {
-          type: 'image',
-          room: this.props.roomFolder,
-          name: this.props.images[i].name
-        };
+        const a = getImageAsset(
+          this.props.images[i].name,
+          this.props.roomFolder
+        );
         assets.push(a);
       }
       slideShow = <Slideshow assets={assets} />;

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
+import { getImageAsset } from '../../helper/asset';
 import { snippets, dist, colors } from '../../config/styles';
 import DiyMarkdown from './DiyMarkdown';
 
@@ -18,8 +19,11 @@ class MainContent extends React.Component {
     const text = splitted.text;
     const options = splitted.options;
     const backgroundImage = getOption(options, 'backgroundImage');
+    var imageAsset = null;
     if (backgroundImage) {
       console.log('Backgroundimage ' + backgroundImage);
+      imageAsset = getImageAsset(backgroundImage, this.props.room._id);
+      console.log(imageAsset);
     }
     const title = localeStr(this.props.room.name);
     return (
