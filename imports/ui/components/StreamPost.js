@@ -25,7 +25,11 @@ class StreamPost extends React.Component {
   }
 
   renderLoading() {
-    return <li className="StreamPost">loading...</li>;
+    return (
+      <LiLoading className="StreamPost">
+        <StreamLoading />
+      </LiLoading>
+    );
   }
 
   render() {
@@ -81,6 +85,8 @@ const Li = styled.li`
     padding-bottom: calc(${dist.medium} - ${dist.lineBottomDiff});
   }
 `;
+
+const LiLoading = Li.extend`padding: ${dist.medium};`;
 
 const Header = styled.div`
   ${snippets.smallText};

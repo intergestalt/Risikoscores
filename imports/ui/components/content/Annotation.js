@@ -14,12 +14,7 @@ class Annotation extends React.Component {
     var source = this.props.source;
     var detailButton = null;
     if (this.props.clickCallback) {
-      detailButton = (
-        <DetailButton
-          clickCallback={this.props.clickCallback}
-          asset={this.props.asset}
-        />
-      );
+      detailButton = <DetailButton asset={this.props.asset} />;
     }
 
     return (

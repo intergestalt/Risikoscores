@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { getImageSrc } from '../../helper/asset.js';
 import { exists } from '../../helper/global';
@@ -10,19 +11,19 @@ class Image extends React.Component {
   }
 
   render() {
-    var imageEntitiy = null;
+    var imageEntity = null;
     if (exists(this.props.asset)) {
       const imgSrc = getImageSrc(this.props.asset);
-      imageEntitiy = <img src={imgSrc} width="300" />;
+      imageEntity = <Img src={imgSrc} />;
     }
     if (this.props.clickCallback) {
       return (
-        <a href="#" onClick={this.props.clickCallback}>
-          {imageEntitiy}
-        </a>
+        <A href="#" onClick={this.props.clickCallback}>
+          {imageEntity}
+        </A>
       );
     }
-    return imageEntitiy;
+    return imageEntity;
   }
 }
 Image.propTypes = {
@@ -31,3 +32,7 @@ Image.propTypes = {
 };
 
 export default Image;
+
+const Img = styled.img`width: 100%;`;
+
+const A = styled.a`width: 100%;`;

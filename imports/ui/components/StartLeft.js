@@ -40,6 +40,6 @@ export default withTracker(props => {
 })(StartLeft);
 
 const Container = styled.div`
-  background-color: ${colors.lightgrey};
+  background-color: white;
   overflow-y: auto;
 `;

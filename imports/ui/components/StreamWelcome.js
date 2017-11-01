@@ -45,8 +45,8 @@ export default withTracker(props => {
 })(StreamWelcome);
 
 const LiWelcome = styled.li`
-  background: linear-gradient(to bottom, ${colors.lightgrey} 0%, ${colors.mediumgrey} 100%);
+  background: linear-gradient(to bottom, white 0%, ${colors.lightgrey} 100%);
   padding: ${dist.small};
-  padding-top: calc( ${dist.small} - ${dist.lineTopDiff});
-  padding-bottom: calc( ${dist.small} - ${dist.lineBottomDiff});
+  padding-top: calc(${dist.small} - ${dist.lineTopDiff});
+  padding-bottom: calc(${dist.small} - ${dist.lineBottomDiff});
 `;

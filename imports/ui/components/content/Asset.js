@@ -18,9 +18,7 @@ class Asset extends React.Component {
     if (isImage(this.props.asset)) {
       return (
         <Image
-          clickCallback={e => {
-            this.props.clickCallback(e, this.props.asset);
-          }}
+          clickCallback={this.props.clickCallback}
           asset={this.props.asset}
         />
       );

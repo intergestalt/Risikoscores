@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 class DetailButton extends React.Component {
   constructor(props) {
     super(props);
+    this.clickCallback = this.clickCallback.bind(this);
+  }
+
+  clickCallback(e) {
+    e.preventDefault();
+    console.log('Detail Click Button');
+    console.log(this.props.asset);
   }
 
   render() {
