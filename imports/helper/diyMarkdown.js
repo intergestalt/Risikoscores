@@ -15,6 +15,8 @@ const SPECIAL_BEGIN = '<<<';
 const SPECIAL_END = '>>>';
 const SPECIAL_SEPARATOR = ':';
 const SPECIAL_OPTIONS_SPLIT = ';';
+const META_BEGIN = '[[[';
+const META_END = ']]]';
 
 //Params for some special components with a simple syntax
 var simpleParams = {
@@ -39,7 +41,6 @@ function getSpecialComponent(specialComponent) {
 
   var options = null;
   if (optionsStr.startsWith('{')) {
-    console.log(optionsStr);
     options = JSON.parse(optionsStr);
     var test = JSON.stringify(options);
   } else {
@@ -87,7 +88,6 @@ function renderSpecialComponent(specialComponent, id, glossar) {
   const operation = getSpecialComponent(specialComponent);
   const name = operation.name.toLocaleLowerCase();
   const options = operation.options;
-  console.log(options);
   if (name === 'externallink') {
     return (
       <ExternalLink key={'_' + id} text={options.text} url={options.url} />
@@ -237,4 +237,36 @@ export function diyMarkdown(text, glossar = true) {
     components.push(compontentsForBlock);
   }
   return components;
+}
+
+export function splitOptions(text) {
+  var options = {};
+  var stripedText = text;
+  if (text.startsWith(META_BEGIN)) {
+    var index = text.indexOf(META_END);
+    if (index >= 0) {
+      try {
+        options = JSON.parse(text.substring(3, index));
+        stripedText = text.substring(index + 3);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }
+  return { options: options, text: stripedText };
+}
+
+export function getOption(options, name) {
+  if (exists(options[name])) {
+    return options[name];
+  }
+  return null;
+}
+export function getOptionFlag(options, name) {
+  if (exists(options)) {
+    if (exists(options[name])) {
+      return options[name];
+    }
+  }
+  return false;
 }
