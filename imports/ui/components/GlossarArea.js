@@ -123,5 +123,6 @@ const Area = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  padding: ${ dist.named.columnPadding}
+  padding: ${ dist.named.columnPadding};
+  padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
 `;

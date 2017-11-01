@@ -29,7 +29,10 @@ MainContent.propTypes = {
 
 export default MainContent;
 
-const Content = styled.div`padding: ${dist.named.columnPadding};`;
+const Content = styled.div`
+  padding: ${dist.named.columnPadding};
+  padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
+`;
 
 const Headline = styled.h1`
   ${snippets.headlineText};

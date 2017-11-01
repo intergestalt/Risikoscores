@@ -29,5 +29,7 @@ DiyMarkdown.propTypes = {
 export default DiyMarkdown;
 
 const Styled = styled.div`
-
+  & p {
+    margin-bottom: 1em;
+  }
 `;
