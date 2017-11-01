@@ -20,7 +20,7 @@ const SPECIAL_OPTIONS_SPLIT = ';';
 var simpleParams = {
   ExternalLink: ['text', 'url'],
   Link: ['text', 'room', 'tab'],
-  Glossar: ['text', 'entry'],
+  Glossar: ['entry', 'text'],
   Timeline: ['data']
 };
 
@@ -87,6 +87,7 @@ function renderSpecialComponent(specialComponent, id, glossar) {
   const operation = getSpecialComponent(specialComponent);
   const name = operation.name.toLocaleLowerCase();
   const options = operation.options;
+  console.log(options);
   if (name === 'externallink') {
     return (
       <ExternalLink key={'_' + id} text={options.text} url={options.url} />

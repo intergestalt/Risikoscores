@@ -12,11 +12,11 @@ class AnnotatedAsset extends React.Component {
     var asset = null;
     var annotation = null;
     asset = (
-      <Asset detaiView={this.props.detailView} asset={this.props.asset} />
+      <Asset detailView={this.props.detailView} asset={this.props.asset} />
     );
     annotation = (
       <Annotation
-        detaiView={this.props.detailView}
+        detailView={this.props.detailView}
         text={this.props.text}
         source={this.props.source}
       />
