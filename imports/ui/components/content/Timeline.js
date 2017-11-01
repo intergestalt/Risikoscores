@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
 import DiyMarkdown from '../DiyMarkdown';
+import { getImageSrc } from '../../../helper/asset.js';
 
 class Timeline extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Timeline extends React.Component {
       result.push(newRow1);
       var imageRow = null;
       if (existsString(row.image)) {
+        //        const imgSrc = getImageSrc(this.props.asset);
         const imgSrc =
           '/uploads/' + context.room + '/' + context.tab + '/' + row.image;
         imageRow = (

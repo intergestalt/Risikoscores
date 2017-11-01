@@ -6,6 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import { localeStr, existsString, zuffi } from '../../helper/global';
 import { getLanguage } from '../../helper/actions';
+import { getImageSrc } from '../../helper/asset.js';
 import { dist, snippets } from '../../config/styles';
 import DiyMarkdown from './DiyMarkdown';
 
@@ -38,8 +39,12 @@ class StreamPost extends React.Component {
     var title = localeStr(question.title, this.props.lang);
     var image = null;
     if (existsString(question.image)) {
-      const imgSrc =
-        '/uploads/' + question.roomId + '/questions/' + question.image;
+      const asset = {
+        name: question.image,
+        tab: 'questions',
+        room: question.roomId
+      };
+      const imgSrc = getImageSrc(asset);
       image = (
         <div className="StreamPostImage">
           <Img src={imgSrc} />
