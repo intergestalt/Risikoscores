@@ -56,11 +56,11 @@ class GlossarArea extends React.Component {
       if (this.props.questionsExpanded) {
         height = 7;
       } else {
-        height = 34;
+        height = 33.3333;
       }
     } else {
       if (this.props.questionsExpanded) {
-        height = 33;
+        height = 33.3333;
       } else {
         height = 60;
       }

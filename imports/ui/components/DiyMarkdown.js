@@ -29,7 +29,7 @@ DiyMarkdown.propTypes = {
 export default DiyMarkdown;
 
 const Styled = styled.div`
-  & p {
+  & p:not(:last-child) {
     margin-bottom: 1em;
   }
 `;

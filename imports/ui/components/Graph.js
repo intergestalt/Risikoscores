@@ -100,7 +100,7 @@ class Graph extends React.Component {
         <defs>
           <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
             <stop offset="70%" style={{
-              stopColor: this.props.backgroundColor,
+              stopColor: 'white',
               stopOpacity: 1
             }} />
             <stop offset="80%" style={{ stopColor: this.props.backgroundColor, stopOpacity: 0 }} />

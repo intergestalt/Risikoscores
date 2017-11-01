@@ -44,7 +44,7 @@ class GraphArea extends React.Component {
     //graphExpanded == false => height:7%
     var height = 7;
     if (this.props.graphExpanded) {
-      height = 33;
+      height = 33.3333;
     }
     return (
       <Area className="GraphArea" relativeHeight={height}>
@@ -86,6 +86,7 @@ const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.mediumgrey};
+  box-sizing:border-box;
   padding: ${ dist.named.columnPadding};
   padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});  
   position: relative;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import Questions from '../../collections/questions';
 import { RoomQuestions, Expander, RoomQuestionsHeader } from './';
@@ -28,7 +29,7 @@ class QuestionsArea extends React.Component {
     }
     //questionsExpanded == true => height:60%
     //questionsExpanded == false => height:33%
-    var height = 33;
+    var height = 33.3333;
     if (this.props.questionsExpanded) {
       height = 60;
     }
@@ -39,8 +40,10 @@ class QuestionsArea extends React.Component {
           expanded={isQuestionsExpanded()}
           directionDown={false}
         />
+        <Scrollbars><InnerContainer>
         <RoomQuestionsHeader />
         <RoomQuestions questions={this.props.questions} />
+        </InnerContainer></Scrollbars>
       </Area>
     );
   }
@@ -65,12 +68,18 @@ const Area = styled.div`
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.lightgrey};
   overflow-y: auto;
-  padding: ${ dist.named.columnPadding};
-  padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
+  //padding: ${ dist.named.columnPadding};
+  //padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
   position: relative;
   & .Expander {
     position: absolute;
     right:0.5em;
     top:0.5em;
+    z-index:1; // because of the scrollbars
   }
+`;
+
+const InnerContainer = styled.div`
+padding: ${ dist.named.columnPadding};
+padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
 `;

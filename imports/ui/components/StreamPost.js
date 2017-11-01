@@ -7,7 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { localeStr, existsString, zuffi } from '../../helper/global';
 import { getLanguage } from '../../helper/actions';
 import { dist, snippets } from '../../config/styles';
-import { DiyMarkdown, Image } from './';
+import { DiyMarkdown, Image, StreamLoading } from './';
 
 class StreamPost extends React.Component {
   constructor(props) {
@@ -78,7 +78,7 @@ export default withTracker(props => {
 const Li = styled.li`
   padding: ${dist.medium} 0 0 0;
   padding-top: calc(
-    ${dist.medium} - ${dist.lineTopDiff} - ${dist.lineBottomDiff}
+    ${dist.medium} - ( ${dist.lineTopDiff} + ${dist.lineBottomDiff} )
   );
   &:last-child {
     padding-bottom: ${dist.medium};
