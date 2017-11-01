@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
+import { getImageAsset } from '../../../helper/asset';
 import { AnnotatedAsset } from './';
 
 class AssetList extends React.Component {
@@ -17,7 +18,7 @@ class AssetList extends React.Component {
     var result = [];
     for (var i = 0; i < rows.length; i++) {
       const row = rows[i];
-      const myAsset = { ...row.asset, tab: context.tab, room: context.room };
+      const myAsset = getImageAsset(row.asset.name, context.room, context.tab);
       const newRow = (
         <tr key={'_' + i}>
           <td>
