@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-import { localeStr } from '../../helper/global';
+import { localeStr, exists } from '../../helper/global';
+import { splitOptions, getOptionFlag } from '../../helper/diyMarkdown';
 import DiyMarkdown from './DiyMarkdown';
 import { snippets, dist } from '../../config/styles';
 
@@ -13,17 +14,31 @@ class TabContent extends React.Component {
   }
 
   render() {
-    var text = localeStr(this.props.tab.text);
-    return (
-      <Content className="TabContent">
-        <Scrollbars>
-          <ScrollContainer>
-            <Headline>{localeStr(this.props.tab.title)}</Headline>
-            <DiyMarkdown>{text}</DiyMarkdown>
-          </ScrollContainer>
-        </Scrollbars>
-      </Content>
-    );
+    var textBoth = localeStr(this.props.tab.text);
+    const splitted = splitOptions(textBoth);
+    const text = splitted.text;
+    const options = splitted.options;
+    var scroll = !getOptionFlag(options, 'disableScrolling');
+
+    if (scroll) {
+      return (
+        <Content className="TabContent">
+          <Scrollbars>
+            <ScrollContainer>
+              {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
+              <DiyMarkdown>{splitted.text}</DiyMarkdown>
+            </ScrollContainer>
+          </Scrollbars>
+        </Content>
+      );
+    } else {
+      return (
+        <Content className="TabContent">
+          {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
+          <DiyMarkdown>{splitted.text}</DiyMarkdown>
+        </Content>
+      );
+    }
   }
 }
 

@@ -20,7 +20,7 @@ class MainColumn extends React.Component {
             roomFolder={this.props.room._id}
             images={this.props.room.images}
           />
-          <MainContent style={{ overflow: "auto" }} room={this.props.room} />
+          <MainContent style={{ overflow: 'auto' }} room={this.props.room} />
         </Scrollbars>
       </Column>
     );
@@ -34,18 +34,25 @@ export default MainColumn;
 
 const Column = styled.section`
   background-color: ${colors.lightgrey};
-  height:100%;
+  height: 100%;
   overflow: auto;
-  position:relative;
+  position: relative;
   &:after {
     position: absolute;
-    bottom: 0;  
+    bottom: 0;
     height: 3em;
     width: 100%;
-    content: "";
-    background: linear-gradient(to top,
-       ${color(colors.lightgrey).opaquer(0.8).string()} 0%, 
-       ${color(colors.lightgrey).fade(1).string()} 80%
+    content: '';
+    background: linear-gradient(
+      to top,
+      ${color(colors.lightgrey)
+          .opaquer(0.8)
+          .string()}
+        0%,
+      ${color(colors.lightgrey)
+          .fade(1)
+          .string()}
+        80%
     );
     pointer-events: none;
   }
