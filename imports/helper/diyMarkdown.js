@@ -6,7 +6,7 @@ import {
   Link,
   GlossarLink,
   Timeline,
-  ImageList
+  AssetList
 } from '../ui/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
@@ -115,8 +115,8 @@ function renderSpecialComponent(specialComponent, id, glossar) {
     }
   } else if (name === 'timeline') {
     return <Timeline key={'_' + id} data={options} />;
-  } else if (name === 'imagelist') {
-    return <ImageList key={'_' + id} data={options} />;
+  } else if (name === 'assetlist') {
+    return <AssetList key={'_' + id} data={options} />;
   }
 }
 
