@@ -2,6 +2,8 @@ import MenuIcon from './MenuIcon';
 
 import MainColumn from './MainColumn';
 import MainImages from './MainImages';
+import Slideshow from './Slideshow';
+
 import MainContent from './MainContent';
 
 import TabColumn from './TabColumn';
@@ -41,6 +43,7 @@ export {
   MenuIcon,
   MainColumn,
   MainImages,
+  Slideshow,
   MainContent,
   TabColumn,
   TabBar,
