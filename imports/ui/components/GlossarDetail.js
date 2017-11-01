@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { localeStr } from '../../helper/global';
-import DiyMarkdown from './DiyMarkdown';
-import { GlossarClose } from './';
+import { GlossarClose, DiyMarkdown } from './';
 
 class GlossarDetail extends React.Component {
   constructor(props) {

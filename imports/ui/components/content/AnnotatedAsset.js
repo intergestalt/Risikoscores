@@ -20,6 +20,7 @@ class AnnotatedAsset extends React.Component {
     annotation = (
       <Annotation
         clickCallback={this.props.clickCallback}
+        asset={this.props.asset}
         text={this.props.text}
         source={this.props.source}
       />

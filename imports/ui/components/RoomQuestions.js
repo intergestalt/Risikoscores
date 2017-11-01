@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { getRoomQuestions } from '../../helper/question';
-import DiyMarkdown from './DiyMarkdown';
+import { DiyMarkdown } from './';
 import { dist } from '../../config/styles';
 
 class RoomQuestions extends React.Component {
@@ -19,7 +19,11 @@ class RoomQuestions extends React.Component {
       const question = myQuestions[i];
       var text = localeStr(question.text);
 
-      const item = <Li key={'_' + i}><DiyMarkdown>{text}</DiyMarkdown></Li>;
+      const item = (
+        <Li key={'_' + i}>
+          <DiyMarkdown>{text}</DiyMarkdown>
+        </Li>
+      );
       questions.push(item);
     }
     return <ul className="RoomQuestions">{questions}</ul>;
@@ -32,6 +36,4 @@ RoomQuestions.propTypes = {
 
 export default RoomQuestions;
 
-const Li = styled.li`
-  margin-top: 1em;
-`;
+const Li = styled.li`margin-top: 1em;`;

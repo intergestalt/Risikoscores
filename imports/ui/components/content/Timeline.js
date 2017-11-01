@@ -1,71 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
-import DiyMarkdown from '../DiyMarkdown';
-import { getImageSrc } from '../../../helper/asset.js';
+import { TimelineHeader, TimelineBody } from './';
+import { getImageAsset } from '../../../helper/asset';
 
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
   }
+  reorganiseData(data) {
+    var newData = {};
+    newData.context = { ...data.context };
+    const rows = data.rows;
+    var yearArr = [];
+    var yearRows = [];
+    var lastYear = '';
 
-  renderRows(rows, context) {
-    var result = [];
     for (var i = 0; i < rows.length; i++) {
       const row = rows[i];
-
-      const newRow1 = (
-        <tr key={'_1_' + i}>
-          <td>
-            <h1>{row.year}</h1>
-          </td>
-        </tr>
-      );
-      result.push(newRow1);
-      var imageRow = null;
-      if (existsString(row.image)) {
-        //        const imgSrc = getImageSrc(this.props.asset);
-        const imgSrc =
-          '/uploads/' + context.room + '/' + context.tab + '/' + row.image;
-        imageRow = (
-          <tr key={'_2_' + i}>
-            <td>
-              <img src={imgSrc} width="300" />
-            </td>
-          </tr>
-        );
-        result.push(imageRow);
+      const year = row.year;
+      if (year !== lastYear) {
+        if (lastYear !== '') {
+          yearArr.push({ year: lastYear, rows: yearRows });
+          yearRows = [];
+        }
+        lastYear = year;
       }
-
-      var text = row.text;
-      const newRow3 = (
-        <tr key={'_3_' + i}>
-          <td>
-            <DiyMarkdown>{text}</DiyMarkdown>
-          </td>
-        </tr>
-      );
-      result.push(newRow3);
-
-      var source = row.source;
-      const newRow4 = (
-        <tr key={'_4_' + i}>
-          <td>
-            <DiyMarkdown>{source}</DiyMarkdown>
-          </td>
-        </tr>
-      );
-      result.push(newRow4);
+      yearRows.push({ text: row.text, source: row.source, asset: row.asset });
     }
-    return result;
+    yearArr.push({ year: lastYear, rows: yearRows });
+
+    newData.rows = yearArr;
+    return newData;
   }
+
   render() {
-    const rows = this.renderRows(this.props.data.rows, this.props.data.context);
+    const data = this.reorganiseData(this.props.data);
+    console.log(data);
     return (
       <div className="SCTimeline">
-        <table>
-          <tbody>{rows}</tbody>
-        </table>
+        <TimelineHeader data={data} />
+        <TimelineBody data={data} />
       </div>
     );
   }

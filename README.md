@@ -94,22 +94,23 @@ Subsection1
 
 identifier timeline
 
+[[[{"disableScrolling":"true"}]]]
 <<<Timeline: {"rows":[
-{"year": "2017", "text": "Text 1", "source":"Source 1","image":"01_timeline_2017_b.jpg"},
-{"year": "2016", "text": "Text 2", "source":"Source 2","image":"02_timeline_2016_a.jpg"},
-{"year": "2002", "text": "Text 3", "source":"Source 3","image":"03_timeline_2002.jpg"},
-{"year": "2001", "text": "Text 4", "source":"Source 4","image":"04_timeline_2001.jpg"},
-{"year": "2000", "text": "Text 5", "source":"Source 5","image":"05_timeline_2000.jpg"},
-{"year": "1998", "text": "Text 6", "source":"Source 6","image":"06_timeline_1998_g.jpg"},
-{"year": "1998", "text": "Text 7", "source":"Source 7","image":"07_timeline_1998_f.jpg"},
-{"year": "1998", "text": "Text 8", "source":"Source 8","image":"08_timeline_1998_e.jpg"},
-{"year": "1998", "text": "Text 9", "source":"Source 9","image":"09_timeline_1998_b.jpg"},
-{"year": "1997", "text": "Text 10", "source":"Source 10","image":"10_timeline_1997.jpg"},
-{"year": "1995", "text": "Text 11", "source":"Source 11","image":"11_timeline_1995.jpg"},
-{"year": "1988", "text": "Text 12", "source":"Source 12","image":"12_timeline_1988.jpg"},
-{"year": "1987", "text": "Text 13", "source":"Source 13","image":"13_timeline_1987.jpg"},
-{"year": "1982", "text": "Text 14", "source":"Source 14","image":"14_timeline_1982_a.jpg"},
-{"year": "1956", "text": "Text 15", "source":"Source 15","image":"15_timeline_1956.jpg"},
+{"year": "2017", "text": "Text 1", "source":"Source 1","asset":{"type":"image","name":"01_timeline_2017_b.jpg"}},
+{"year": "2016", "text": "Text 2", "source":"Source 2","asset":{"type":"image","name":"02_timeline_2016_a.jpg"}},
+{"year": "2002", "text": "Text 3", "source":"Source 3","asset":{"type":"image","name":"03_timeline_2002.jpg"}},
+{"year": "2001", "text": "Text 4", "source":"Source 4","asset":{"type":"image","name":"04_timeline_2001.jpg"}},
+{"year": "2000", "text": "Text 5", "source":"Source 5","asset":{"type":"image","name":"05_timeline_2000.jpg"}},
+{"year": "1998", "text": "Text 6", "source":"Source 6","asset":{"type":"image","name":"06_timeline_1998_g.jpg"}},
+{"year": "1998", "text": "Text 7", "source":"Source 7","asset":{"type":"image","name":"07_timeline_1998_f.jpg"}},
+{"year": "1998", "text": "Text 8", "source":"Source 8","asset":{"type":"image","name":"08_timeline_1998_e.jpg"}},
+{"year": "1998", "text": "Text 9", "source":"Source 9","asset":{"type":"image","name":"09_timeline_1998_b.jpg"}},
+{"year": "1997", "text": "Text 10", "source":"Source 10","asset":{"type":"image","name":"10_timeline_1997.jpg"}},
+{"year": "1995", "text": "Text 11", "source":"Source 11","asset":{"type":"image","name":"11_timeline_1995.jpg"}},
+{"year": "1988", "text": "Text 12", "source":"Source 12","asset":{"type":"image","name":"12_timeline_1988.jpg"}},
+{"year": "1987", "text": "Text 13", "source":"Source 13","asset":{"type":"image","name":"13_timeline_1987.jpg"}},
+{"year": "1982", "text": "Text 14", "source":"Source 14","asset":{"type":"image","name":"14_timeline_1982_a.jpg"}},
+{"year": "1956", "text": "Text 15", "source":"Source 15","asset":{"type":"image","name":"15_timeline_1956.jpg"}}
 ],
 "context":{"room":"framingham", "tab":"tab1"}}
 >>>

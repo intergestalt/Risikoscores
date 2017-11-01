@@ -5,7 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import { localeStr, exists } from '../../helper/global';
 import { splitOptions, getOptionFlag } from '../../helper/diyMarkdown';
-import DiyMarkdown from './DiyMarkdown';
+import { DiyMarkdown } from './';
 import { snippets, dist } from '../../config/styles';
 
 class TabContent extends React.Component {

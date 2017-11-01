@@ -6,7 +6,7 @@ import { localeStr } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
 import { getImageAsset } from '../../helper/asset';
 import { snippets, dist, colors } from '../../config/styles';
-import DiyMarkdown from './DiyMarkdown';
+import { DiyMarkdown } from './';
 
 class MainContent extends React.Component {
   constructor(props) {
