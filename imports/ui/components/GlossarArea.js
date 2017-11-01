@@ -68,7 +68,7 @@ class GlossarArea extends React.Component {
 
     return (
       <Area relativeHeight={height} className="GlossarArea">
-        <Scrollbars>
+        <Scrollbars autoHide>
           <InnerContainer>
             {content}
           </InnerContainer>
@@ -106,7 +106,7 @@ const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.darkgrey};
-  overflow-y: auto;
+  //overflow-y: auto;
   position: relative;
   &:after {
     position: absolute;

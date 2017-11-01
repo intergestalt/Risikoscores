@@ -38,7 +38,7 @@ export default MainImages;
 const ImageContainer = styled.div`
   img {
     width: 100%;
-    height: 33.33vh;
+    height: 33.33%;
     object-fit: cover;
   }
 `;

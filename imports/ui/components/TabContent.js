@@ -23,7 +23,7 @@ class TabContent extends React.Component {
     if (scroll) {
       return (
         <Content className="TabContent">
-          <Scrollbars>
+          <Scrollbars autoHide>
             <ScrollContainer>
               {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
               <DiyMarkdown>{splitted.text}</DiyMarkdown>
@@ -50,9 +50,13 @@ TabContent.propTypes = {
 export default TabContent;
 
 const Content = styled.div`
-  overflow-y: auto;
+  //overflow-y: auto;
   overflow-x: hidden;
   flex: 1;
+  position:relative; // see https://stackoverflow.com/questions/15381172/how-to-make-flexbox-children-100-height-of-their-parent
+  & > * {
+    position: absolute !important; // see above
+  }
 `;
 
 const ScrollContainer = styled.div`padding: ${dist.named.columnPadding};`;

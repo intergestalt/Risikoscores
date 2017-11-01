@@ -40,10 +40,12 @@ class QuestionsArea extends React.Component {
           expanded={isQuestionsExpanded()}
           directionDown={false}
         />
-        <Scrollbars><InnerContainer>
-        <RoomQuestionsHeader />
-        <RoomQuestions questions={this.props.questions} />
-        </InnerContainer></Scrollbars>
+        <Scrollbars autoHide>
+          <InnerContainer>
+            <RoomQuestionsHeader />
+            <RoomQuestions questions={this.props.questions} />
+          </InnerContainer>
+        </Scrollbars>
       </Area>
     );
   }
@@ -67,7 +69,7 @@ const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.lightgrey};
-  overflow-y: auto;
+  //overflow-y: auto;
   //padding: ${ dist.named.columnPadding};
   //padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
   position: relative;

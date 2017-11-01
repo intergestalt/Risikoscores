@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { localeStr } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
@@ -27,10 +28,14 @@ class MainContent extends React.Component {
     }
     const title = localeStr(this.props.room.name);
     return (
-      <Content className="MainContent">
-        <Headline>{title}</Headline>
-        <DiyMarkdown>{text}</DiyMarkdown>
-      </Content>
+      <Container>
+        <Scrollbars autoHide>
+          <Content className="MainContent">
+            <Headline>{title}</Headline>
+            <DiyMarkdown>{text}</DiyMarkdown>
+          </Content>
+        </Scrollbars>
+      </Container>
     );
   }
 }
@@ -40,6 +45,10 @@ MainContent.propTypes = {
 };
 
 export default MainContent;
+
+const Container = styled.div`
+height: 66.66%;
+`;
 
 const Content = styled.div`
   padding: ${dist.named.columnPadding};
