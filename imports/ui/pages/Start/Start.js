@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
 import { StartLeft, StartRight } from '../../components';
@@ -42,9 +43,11 @@ class Start extends React.Component {
 export default withTracker(props => {
   const sub = Meteor.subscribe('rooms.list');
   const sub2 = Meteor.subscribe('fragments.list');
+  const language = Session.get('language');
+  const sort = {}; sort['name.' + language] = 1;
 
   return {
-    rooms: Rooms.find().fetch(),
+    rooms: Rooms.find({}, { sort }).fetch(),
     fragments: TextFragments.find().fetch(),
     ready: sub.ready() && sub2.ready()
   };
