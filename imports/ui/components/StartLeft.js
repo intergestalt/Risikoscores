@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Questions from '../../collections/questions';
-import { Stream } from './';
+import { Stream, CustomScrollbars } from './';
 import { colors } from '../../config/styles';
 
 class StartLeft extends React.Component {
@@ -20,7 +20,9 @@ class StartLeft extends React.Component {
     }
     return (
       <Container className="StartLeft">
-        <Stream rooms={this.props.rooms} questions={this.props.questions} />
+        <CustomScrollbars>
+          <Stream rooms={this.props.rooms} questions={this.props.questions} />
+        </CustomScrollbars>
       </Container>
     );
   }
