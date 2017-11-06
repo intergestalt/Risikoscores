@@ -35,6 +35,7 @@ echo "Continuing remotely:"
 
 ssh $uberspace_username@$uberspace_host /bin/bash << EOF
 
+echo node_path: $node_path
 echo -n nodejs version...
 $node_path/node --version
 echo -n npm version...
@@ -45,9 +46,11 @@ echo "Unpacking..."
 tar -xzf *.tar.gz
 
 echo "Installing node modules..."
+source ~/.bash_profile
 cd ~/tmp/build/bundle/programs/server/
 $node_path/npm install
 $node_path/npm install lodash.keys
+$node_path/npm install fibers
 
 echo "Stopping server..."
 svc -d ~/service/$uberspace_servicename
