@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
+import UploadsStatus from '../../../collections/uploadsStatus';
 
 class AdminUploads extends React.Component {
 
@@ -20,6 +21,8 @@ class AdminUploads extends React.Component {
   }
 
   render() {
+    const status = this.props.status;
+    console.log(status)
     return (
       <div className="AdminUploads">
         <h2>Manage Cache</h2>
@@ -35,15 +38,28 @@ class AdminUploads extends React.Component {
           Clear cache. Use when images where deleted or renamed on large scale. Takes longest.<br />
           <Button onClick={this.clearCacheAndRegenerate}>Clear Cache & Regenerate</Button>
         </p>
+        <h2>Status</h2>
+        <div>
+          {this.props.ready && status.processing ? <span><Spin /> </span> : ''}
+          {this.props.ready ?
+            `Processed ${status.totalConvertedImageFiles} of ${status.totalConvertibleImageFiles}.`
+            :
+            '...'
+          }
+          <small className="small">
+            <span> </span>{this.props.ready ? status.processingFile : ''}
+          </small>
+        </div>
       </div>
     );
   }
 }
 
 export default withTracker(props => {
-  //Meteor.subscribe('rooms.list');
-
+  const sub = Meteor.subscribe('uploadStatus.list');
+  console.log(UploadsStatus.find().fetch())
   return {
-    //rooms: Rooms.find().fetch()
+    status: UploadsStatus.find().fetch()[0],
+    ready: sub.ready()
   };
 })(AdminUploads);

@@ -44,8 +44,8 @@ class StreamPost extends React.Component {
     if (existsString(question.image)) {
       const asset = {
         name: question.image,
-        tab: 'questions',
-        room: question.roomId
+        subfolder: 'questions',
+        folder: question.roomId
       };
       image = (
         <div className="StreamPostImage">

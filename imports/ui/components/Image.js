@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { getImageSrc } from '../../helper/asset.js';
 import { exists } from '../../helper/global';
+import { getSrcsetString } from '../../helper/uploads';
 
 class Image extends React.Component {
   constructor(props) {
@@ -11,10 +12,12 @@ class Image extends React.Component {
   }
 
   render() {
+    const sizeName = this.props.size || false;
     var imageEntity = null;
     if (exists(this.props.asset)) {
       const imgSrc = getImageSrc(this.props.asset);
-      imageEntity = <Img src={imgSrc} />;
+      const title = this.props.asset.title;
+      imageEntity = <Img src={imgSrc} srcSet={getSrcsetString(imgSrc, sizeName)} title={title} />;
     }
     if (this.props.clickCallback) {
       return (

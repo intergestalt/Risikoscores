@@ -41,6 +41,6 @@ WebApp.connectHandlers.use(app);
 
 // do initial conversions
 Meteor.setTimeout(() => {
-  //console.log("Initially regenerating images");
-  //convertImages();
+  console.log("Initially regenerating images");
+  convertImages();
 }, 5000);

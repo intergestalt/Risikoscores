@@ -1,8 +1,10 @@
 import recursive from "recursive-readdir";
 import mkdir from 'mkdir-recursive';
 import path from 'path';
+import parsePath from 'parse-filepath'; // for client-side
 import fs from 'fs';
 import im from 'imagemagick';
+import UploadsStatus from '../collections/uploadsStatus';
 import { imageSizes } from '../config/imagesSizes';
 
 const wrapWithPromise = wrappedFunction => (...args) => (
@@ -34,15 +36,24 @@ function convertImages(force = false) {
     // filter images
     const validFiles = files.filter((file) => (['.jpg', '.png', '.jpeg'].indexOf(path.extname(file)) > -1))
 
+    // update status
+    updateStatus({ processing: true })
+    updateStatus({ totalConvertibleImageFiles: validFiles.length })
+
     // loop images
+    let index = 0;
     for (let file of validFiles) {
+
+      index++;
+      updateStatus({ totalConvertedImageFiles: index })
+
       const p = path.parse(file);
       const dirRelativeToUploads = p.dir.substr(global.uploads_dir.length);
 
       // loop image sizes
-      for (let [size, settings] of Object.entries(imageSizes)) {
+      for (let sizeObj of imageSizes) {
 
-        const destFile = global.cache_dir + dirRelativeToUploads + '/' + p.name + '_' + size + p.ext;
+        const destFile = global.cache_dir + generateFilepath(dirRelativeToUploads + '/' + p.base, sizeObj);
         mkdir.mkdirSync(path.dirname(destFile));
 
         process.stdout.write(`processing ${dirRelativeToUploads}/${p.base} -> ${path.basename(destFile)} ...`);
@@ -52,12 +63,14 @@ function convertImages(force = false) {
           continue;
         }
 
+        updateStatus({ processingFile: `${dirRelativeToUploads}/${path.basename(destFile)}` })
+
         const dimensions = await getImageDimensions(file);
 
-        if (settings.width > dimensions.width) {
+        if (sizeObj.width > dimensions.width) {
           process.stdout.write("too small, using original dimensions ...");
           //continue;
-          settings.width = dimensions.width;
+          sizeObj.width = dimensions.width;
         }
 
         const result = await resizePromise({
@@ -65,13 +78,25 @@ function convertImages(force = false) {
           dstPath: destFile,
           strip: true,
           customArgs: ['-auto-orient'],
-          ...settings
+          width: sizeObj.width,
+          quality: sizeObj.quality,
         });
+
         console.log("done");
       }
 
     }
+
+    updateStatus({ processing: false, processingFile: null })
+    console.log("done processing images")
   });
+}
+
+function updateStatus(state) {
+  // update status
+  UploadsStatus.upsert({ _id: 1 }, {
+    $set: state
+  })
 }
 
 function clearCache() {
@@ -85,4 +110,34 @@ function clearCache() {
   })
 }
 
-export { convertImages, clearCache }
+function generateFilepath(orig_path, sizeObj) {
+  const p = parsePath(orig_path);
+  return p.dir + '/' + p.name + '_' + sizeObj.name + p.ext;
+}
+
+function getSrcsetString(orig_path, sizeName = false) {
+  // choose sizes
+  let selectedSizes = [];
+  if (sizeName === false) {
+    selectedSizes = imageSizes;
+  } else {
+    for (sizeObj of imageSizes) {
+      if (sizeObj.name.indexOf(sizeName) > -1) {
+        selectedSizes.push(sizeObj)
+      }
+    }
+  }
+
+  // generate string
+  if (selectedSizes.length > 0) {
+    const out = [];
+    for (let sizeObj of selectedSizes) {
+      out.push(`${generateFilepath(orig_path, sizeObj)} ${sizeObj.width}w`);
+    }
+    return out.join(', ')
+  } else {
+    return false;
+  }
+}
+
+export { convertImages, clearCache, getSrcsetString }

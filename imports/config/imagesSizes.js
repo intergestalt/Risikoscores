@@ -1,59 +1,71 @@
 // image settings
 
-const imageSizes = {
+const imageSizes = [
 
-  'thumb@1x': {
+  {
+    name: 'thumb@1x',
     width: 50,
     quality: 0.7
   },
-  'thumb@2x': {
+  {
+    name: 'thumb@2x',
     width: 100,
     quality: 0.7
   },
-  'thumb@3x': {
+  {
+    name: 'thumb@3x',
     width: 150,
     quality: 0.7
   },
 
-  '33@1x': {
+  {
+    name: 'third@1x',
     width: 333,
     quality: 0.9
   },
-  '33@2x': {
+  {
+    name: 'third@2x',
     width: 666,
     quality: 0.9
   },
-  '33@3x': {
+  {
+    name: 'third@3x',
     width: 999,
     quality: 0.9
   },
 
-  '50@1x': {
+  {
+    name: 'half@1x',
     width: 500,
     quality: 0.9
   },
-  '50@2x': {
+  {
+    name: 'half@2x',
     width: 1000,
     quality: 0.9
   },
-  '50@3x': {
+  {
+    name: 'half@3x',
     width: 1500,
     quality: 0.9
   },
 
-  'fullscreen@1x': {
+  {
+    name: 'fullscreen@1x',
     width: 1000,
     quality: 0.9
   },
-  'fullscreen@2x': {
+  {
+    name: 'fullscreen@2x',
     width: 2000,
     quality: 0.9
   },
-  'fullscreen@3x': {
+  {
+    name: 'fullscreen@3x',
     width: 3000,
     quality: 0.8
-  },
+  }
 
-}
+]
 
 export { imageSizes }

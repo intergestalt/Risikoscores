@@ -13,4 +13,4 @@ echo "----------------------"
 cat uberspace.config
 echo "----------------------"
 
-scp -r $uberspace_username@$uberspace_host:~/var/uploads ./var
+scp -r $uberspace_username@$uberspace_host:~/var/uploads var
