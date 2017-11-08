@@ -45,6 +45,7 @@ class CustomScrollbars extends React.Component {
       left: 1,
       borderRadius: 0,
       zIndex: 2,
+      backgroundColor: "transparent",
     };
     return <div style={finalStyle} {...props} />;
   }
@@ -58,6 +59,7 @@ class CustomScrollbars extends React.Component {
       borderRadius: 0,
       width: dist.tiny,
       zIndex: 2,
+      backgroundColor: "transparent",
     };
     return <div style={finalStyle} {...props} />;
   }

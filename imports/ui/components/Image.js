@@ -36,6 +36,9 @@ Image.propTypes = {
 
 export default Image;
 
-const Img = styled.img`width: 100%;`;
+const Img = styled.img`
+  width: 100%;
+  display: block;
+`;
 
 const A = styled.a`width: 100%;`;

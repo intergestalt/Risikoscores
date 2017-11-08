@@ -60,6 +60,17 @@ const Content = styled.div`
 
 const ContentNoScroll = Content.extend`
   overflow-y:hidden;
+  & > * {
+    position: initial !important;
+    //position: absolute !important; // see above
+  }  
+  & > *,
+  & > * > * {
+    height: 100%;
+  }
+  &, & * {
+    background-color: inherit; // helps hiding the horizontal scrollbar in Timeline
+  }
 `;
 
 const ScrollContainer = styled.div``;

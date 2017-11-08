@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { existsString } from '../../../helper/global';
 import { TimelineHeader, TimelineBody } from './';
 import { getImageAsset } from '../../../helper/asset';
@@ -38,10 +39,10 @@ class Timeline extends React.Component {
     const data = this.reorganiseData(this.props.data);
     console.log(data);
     return (
-      <div className="SCTimeline">
+      <Container className="SCTimeline">
         <TimelineHeader data={data} />
         <TimelineBody data={data} />
-      </div>
+      </Container>
     );
   }
 }
@@ -50,3 +51,10 @@ Timeline.propTypes = {
 };
 
 export default Timeline;
+
+const Container = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+`;

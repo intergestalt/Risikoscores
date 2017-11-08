@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+import { CustomScrollbars } from '../';
 import { AnnotatedAsset } from './';
 import { getImageAsset } from '../../../helper/asset';
+import { dist } from '../../../config/styles';
 
 class TimelineBody extends React.Component {
   constructor(props) {
@@ -51,7 +54,13 @@ class TimelineBody extends React.Component {
       const newYear = this.renderYear(row);
       years.push(newYear);
     }
-    return <div className="SCTimelineBody">{years}</div>;
+    return (
+      <Container className="SCTimelineBody">
+        <CustomScrollbars>
+          {years}
+        </CustomScrollbars>
+      </Container>
+    );
   }
 }
 TimelineBody.propTypes = {
@@ -59,3 +68,10 @@ TimelineBody.propTypes = {
 };
 
 export default TimelineBody;
+
+const Container = styled.div`
+  position: relative;
+  top: ${dist.medium};
+  z-index: 1;
+  flex: 1;
+`;
