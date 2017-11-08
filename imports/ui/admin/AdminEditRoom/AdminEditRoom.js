@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import Rooms from '../../../collections/rooms';
 import RoomSchema from '../../../schemas/room';
+import AdminDiyHelpContainer from '../AdminDiyHelpContainer';
 
 const lazy_imports = async () => {
   AutoForm = (await import('uniforms-antd/AutoForm')).default
@@ -65,7 +66,9 @@ class AdminEditRoom extends React.Component {
     return (
       <div className="AdminEditRoom">
         <h2>Edit Room</h2>
-        {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
+        <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownRoom']}>
+          {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
+        </AdminDiyHelpContainer>
       </div>
     );
   }
