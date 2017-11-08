@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
 import { TimelineHeader, TimelineBody } from './';
-import { getImageAsset } from '../../../helper/asset';
 
 class Timeline extends React.Component {
   constructor(props) {
@@ -36,7 +35,6 @@ class Timeline extends React.Component {
 
   render() {
     const data = this.reorganiseData(this.props.data);
-    console.log(data);
     return (
       <div className="SCTimeline">
         <TimelineHeader data={data} />

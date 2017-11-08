@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { existsString } from '../../../helper/global';
-import { getImageAsset } from '../../../helper/asset';
+import {
+  getImageAsset,
+  getSliderAssetIndex,
+  annotateAsset
+} from '../../../helper/asset';
 import { AnnotatedAsset } from './';
+import { setTabDetail } from '../../../helper/actions';
 
 class AssetList extends React.Component {
   constructor(props) {
     super(props);
     this.detailClick = this.detailClick.bind(this);
   }
-  detailClick(e) {
+  detailClick(e, asset) {
     e.preventDefault();
-    console.log('Detail Click Image');
-    console.log(this.props.asset);
+    var index = getSliderAssetIndex(asset);
+    setTabDetail(true, index);
   }
   renderRows(rows, context) {
     var result = [];
     for (var i = 0; i < rows.length; i++) {
       const row = rows[i];
-      const myAsset = getImageAsset(row.asset.name, context.room, context.tab);
+      var myAsset = getImageAsset(row.asset, context.room, context.tab);
       const newRow = (
         <tr key={'_' + i}>
           <td>
-            <AnnotatedAsset
-              asset={myAsset}
-              text={row.text}
-              source={row.source}
-              clickCallback={this.detailClick}
-            />
+            <AnnotatedAsset asset={myAsset} clickCallback={this.detailClick} />
           </td>
         </tr>
       );

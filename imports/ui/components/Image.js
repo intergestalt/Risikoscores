@@ -17,11 +17,22 @@ class Image extends React.Component {
     if (exists(this.props.asset)) {
       const imgSrc = getImageSrc(this.props.asset);
       const title = this.props.asset.title;
-      imageEntity = <Img src={imgSrc} srcSet={getSrcsetString(imgSrc, sizeName)} title={title} />;
+      imageEntity = (
+        <Img
+          src={imgSrc}
+          srcSet={getSrcsetString(imgSrc, sizeName)}
+          title={title}
+        />
+      );
     }
     if (this.props.clickCallback) {
       return (
-        <A href="#" onClick={this.props.clickCallback}>
+        <A
+          href="#"
+          onClick={e => {
+            this.props.clickCallback(e, this.props.asset);
+          }}
+        >
           {imageEntity}
         </A>
       );

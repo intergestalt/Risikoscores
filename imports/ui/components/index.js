@@ -1,4 +1,5 @@
 import MenuIcon from './MenuIcon';
+import ImageDetailView from './ImageDetailView';
 
 import MainColumn from './MainColumn';
 import MainImages from './MainImages';
@@ -45,6 +46,7 @@ import StartRoomMenu from './StartRoomMenu';
 
 export {
   MenuIcon,
+  ImageDetailView,
   MainColumn,
   MainImages,
   Slideshow,

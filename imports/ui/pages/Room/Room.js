@@ -4,7 +4,13 @@ import styled from 'styled-components';
 
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
-import { MainColumn, TabColumn, RightColumn, MenuIcon } from '../../components';
+import {
+  MainColumn,
+  TabColumn,
+  RightColumn,
+  MenuIcon,
+  ImageDetailView
+} from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
@@ -52,7 +58,6 @@ class Room extends React.Component {
         <TabColumn
           selectedTabId={selectedTabId}
           tabs={this.props.room.subsections}
-          roomFolder={this.props.room._id}
           roomId={this.props.room._id}
         />
         <RightColumn
@@ -61,6 +66,7 @@ class Room extends React.Component {
           roomGlossar={roomGlossar}
         />
         <MenuIcon />
+        <ImageDetailView />
       </RoomElem>
     );
   }

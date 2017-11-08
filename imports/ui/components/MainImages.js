@@ -17,7 +17,7 @@ class MainImages extends React.Component {
       var assets = [];
       for (var i = 0; i < this.props.images.length; i++) {
         const a = getImageAsset(
-          this.props.images[i].name,
+          { name: this.props.images[i].name },
           this.props.roomFolder
         );
         assets.push(a);

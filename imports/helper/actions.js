@@ -84,6 +84,13 @@ export function setSelectGraphNode(roomId) {
   Session.set('graphNodeId', roomId);
 }
 
+export function setTabSlider(tabSlider) {
+  Session.set('tabSlider', tabSlider);
+}
+export function setTabDetail(yes, index) {
+  Session.set('tabDetail', { show: yes, index: index });
+}
+
 // get
 
 export function getGlossarDetailId() {
@@ -153,4 +160,44 @@ export function getSelectGraphNode() {
 }
 export function getLanguage() {
   return Session.get('language');
+}
+
+export function isTabDetail() {
+  var detail = Session.get('tabDetail');
+  if (exists(detail)) {
+    if (exists(detail.index)) {
+      if (detail.index !== -1) {
+        if (exists(detail.show)) {
+          return detail.show;
+        }
+      }
+    }
+  }
+  setTabDetail(false, null);
+  return false;
+}
+
+export function getTabDetailIndex() {
+  var detail = Session.get('tabDetail');
+  if (exists(detail)) {
+    if (exists(detail.index)) {
+      return detail.index;
+    }
+  }
+  return -1;
+}
+
+export function getTabSlider(room, tab) {
+  var slider = Session.get('tabSlider');
+  if (!exists(room) && !exists(tab)) {
+    return slider;
+  }
+  if (exists(slider)) {
+    if (slider.room === room && slider.tab === tab) {
+      if (exists(slider.list)) {
+        return slider;
+      }
+    }
+  }
+  return null;
 }

@@ -7,13 +7,6 @@ import { dist, colors } from '../../../config/styles';
 class DetailButton extends React.Component {
   constructor(props) {
     super(props);
-    this.clickCallback = this.clickCallback.bind(this);
-  }
-
-  clickCallback(e) {
-    e.preventDefault();
-    console.log('Detail Click Button');
-    console.log(this.props.asset);
   }
 
   render() {
@@ -25,7 +18,7 @@ class DetailButton extends React.Component {
         }}
       >
         +
-        </A>
+      </A>
     );
   }
 }
@@ -40,11 +33,11 @@ const A = styled.a`
   border: solid 1px black;
   position: absolute;
   right: ${dist.tiny};
-  top:${dist.tiny};
+  top: ${dist.tiny};
   width: 1em;
-  height: calc( ${dist.lineTopDiff} + 1em);
-  width: calc( ${dist.lineTopDiff} + 1em);
-  line-height: calc( ${dist.lineTopDiff} + 1em);
+  height: calc(${dist.lineTopDiff} + 1em);
+  width: calc(${dist.lineTopDiff} + 1em);
+  line-height: calc(${dist.lineTopDiff} + 1em);
   text-align: center;
   &:hover {
     text-decoration: none;

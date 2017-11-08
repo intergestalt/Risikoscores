@@ -12,11 +12,16 @@ class Annotation extends React.Component {
   }
 
   render() {
-    var text = this.props.text;
-    var source = this.props.source;
+    var text = this.props.asset.text;
+    var source = this.props.asset.source;
     var detailButton = null;
     if (this.props.clickCallback) {
-      detailButton = <DetailButton asset={this.props.asset} />;
+      detailButton = (
+        <DetailButton
+          clickCallback={this.props.clickCallback}
+          asset={this.props.asset}
+        />
+      );
     }
 
     return (
@@ -39,8 +44,8 @@ export default Annotation;
 
 const Container = styled.div`
   ${snippets.annotationText};
-  padding: ${ dist.named.columnPadding};
-  padding-top: calc( ${ dist.tiny} - ${dist.lineTopDiff});
-  padding-bottom: calc( ${ dist.smll} - ${dist.lineBottomDiff});
+  padding: ${dist.named.columnPadding};
+  padding-top: calc(${dist.tiny} - ${dist.lineTopDiff});
+  padding-bottom: calc(${dist.smll} - ${dist.lineBottomDiff});
   position: relative;
 `;

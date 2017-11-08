@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { AnnotatedAsset } from './';
-import { getImageAsset } from '../../../helper/asset';
+import {
+  getImageAsset,
+  getSliderAssetIndex,
+  annotateAsset
+} from '../../../helper/asset';
+import { setTabDetail } from '../../../helper/actions';
 
 class TimelineBody extends React.Component {
   constructor(props) {
@@ -12,16 +17,16 @@ class TimelineBody extends React.Component {
 
   detailClick(e, asset) {
     e.preventDefault();
-    console.log('Detail Click Timeline');
-    console.log(asset);
+    var index = getSliderAssetIndex(asset);
+    setTabDetail(true, index);
   }
 
   renderYear(yearRow) {
     var all = [];
     for (var i = 0; i < yearRow.rows.length; i++) {
       const row = yearRow.rows[i];
-      const myAsset = getImageAsset(
-        row.asset.name,
+      var myAsset = getImageAsset(
+        row.asset,
         this.props.data.context.room,
         this.props.data.context.tab
       );
@@ -29,8 +34,6 @@ class TimelineBody extends React.Component {
         <AnnotatedAsset
           key={'_' + i}
           asset={myAsset}
-          text={row.text}
-          source={row.source}
           clickCallback={this.detailClick}
         />
       );

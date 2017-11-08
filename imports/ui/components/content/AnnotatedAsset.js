@@ -21,8 +21,6 @@ class AnnotatedAsset extends React.Component {
       <Annotation
         clickCallback={this.props.clickCallback}
         asset={this.props.asset}
-        text={this.props.text}
-        source={this.props.source}
       />
     );
     return (
@@ -37,8 +35,6 @@ AnnotatedAsset.propTypes = {
   asset: PropTypes.object,
   tab: PropTypes.string,
   room: PropTypes.string,
-  text: PropTypes.string,
-  source: PropTypes.string,
   clickCallback: PropTypes.func
 };
 

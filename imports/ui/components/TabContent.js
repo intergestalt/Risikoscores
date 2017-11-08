@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { updateTabSliderAssets } from '../../helper/asset';
 import { localeStr, exists } from '../../helper/global';
 import { splitOptions, getOptionFlag } from '../../helper/diyMarkdown';
 import { DiyMarkdown, CustomScrollbars } from './';
@@ -16,6 +17,8 @@ class TabContent extends React.Component {
     var textBoth = localeStr(this.props.tab.text);
     const splitted = splitOptions(textBoth);
     const text = splitted.text;
+    updateTabSliderAssets(text, this.props.roomId, this.props.tab.identifier);
+
     const options = splitted.options;
     var scroll = !getOptionFlag(options, 'disableScrolling');
 
@@ -42,7 +45,7 @@ class TabContent extends React.Component {
 }
 
 TabContent.propTypes = {
-  roomFolder: PropTypes.string,
+  roomId: PropTypes.string,
   tab: PropTypes.object
 };
 
@@ -52,7 +55,7 @@ const Content = styled.div`
   //overflow-y: auto;
   overflow-x: hidden;
   flex: 1;
-  position:relative; // see https://stackoverflow.com/questions/15381172/how-to-make-flexbox-children-100-height-of-their-parent
+  position: relative; // see https://stackoverflow.com/questions/15381172/how-to-make-flexbox-children-100-height-of-their-parent
   & > * {
     position: absolute !important; // see above
   }

@@ -96,21 +96,21 @@ identifier timeline
 
 [[[{"disableScrolling":"true"}]]]
 <<<Timeline: {"rows":[
-{"year": "2017", "text": "Text 1", "source":"Source 1","asset":{"type":"image","name":"01_timeline_2017_b.jpg"}},
-{"year": "2016", "text": "Text 2", "source":"Source 2","asset":{"type":"image","name":"02_timeline_2016_a.jpg"}},
-{"year": "2002", "text": "Text 3", "source":"Source 3","asset":{"type":"image","name":"03_timeline_2002.jpg"}},
-{"year": "2001", "text": "Text 4", "source":"Source 4","asset":{"type":"image","name":"04_timeline_2001.jpg"}},
-{"year": "2000", "text": "Text 5", "source":"Source 5","asset":{"type":"image","name":"05_timeline_2000.jpg"}},
-{"year": "1998", "text": "Text 6", "source":"Source 6","asset":{"type":"image","name":"06_timeline_1998_g.jpg"}},
-{"year": "1998", "text": "Text 7", "source":"Source 7","asset":{"type":"image","name":"07_timeline_1998_f.jpg"}},
-{"year": "1998", "text": "Text 8", "source":"Source 8","asset":{"type":"image","name":"08_timeline_1998_e.jpg"}},
-{"year": "1998", "text": "Text 9", "source":"Source 9","asset":{"type":"image","name":"09_timeline_1998_b.jpg"}},
-{"year": "1997", "text": "Text 10", "source":"Source 10","asset":{"type":"image","name":"10_timeline_1997.jpg"}},
-{"year": "1995", "text": "Text 11", "source":"Source 11","asset":{"type":"image","name":"11_timeline_1995.jpg"}},
-{"year": "1988", "text": "Text 12", "source":"Source 12","asset":{"type":"image","name":"12_timeline_1988.jpg"}},
-{"year": "1987", "text": "Text 13", "source":"Source 13","asset":{"type":"image","name":"13_timeline_1987.jpg"}},
-{"year": "1982", "text": "Text 14", "source":"Source 14","asset":{"type":"image","name":"14_timeline_1982_a.jpg"}},
-{"year": "1956", "text": "Text 15", "source":"Source 15","asset":{"type":"image","name":"15_timeline_1956.jpg"}}
+{"year": "2017", "asset":{"type":"image","name":"01_timeline_2017_b.jpg", "text": "Text 1", "source":"Source 1"}},
+{"year": "2016", "asset":{"type":"image","name":"02_timeline_2016_a.jpg", "text": "Text 2", "source":"Source 2"}},
+{"year": "2002", "asset":{"type":"image","name":"03_timeline_2002.jpg", "text": "Text 3", "source":"Source 3"}},
+{"year": "2001", "asset":{"type":"image","name":"04_timeline_2001.jpg", "text": "Text 4", "source":"Source 4"}},
+{"year": "2000", "asset":{"type":"image","name":"05_timeline_2000.jpg", "text": "Text 5", "source":"Source 5"}},
+{"year": "1998", "asset":{"type":"image","name":"06_timeline_1998_g.jpg", "text": "Text 6", "source":"Source 6"}},
+{"year": "1998", "asset":{"type":"image","name":"07_timeline_1998_f.jpg", "text": "Text 7", "source":"Source 7"}},
+{"year": "1998", "asset":{"type":"image","name":"08_timeline_1998_e.jpg", "text": "Text 8", "source":"Source 8"}},
+{"year": "1998", "asset":{"type":"image","name":"09_timeline_1998_b.jpg", "text": "Text 9", "source":"Source 9"}},
+{"year": "1997", "asset":{"type":"image","name":"10_timeline_1997.jpg", "text": "Text 10", "source":"Source 10"}},
+{"year": "1995", "asset":{"type":"image","name":"11_timeline_1995.jpg", "text": "Text 11", "source":"Source 11"}},
+{"year": "1988", "asset":{"type":"image","name":"12_timeline_1988.jpg", "text": "Text 12", "source":"Source 12"}},
+{"year": "1987", "asset":{"type":"image","name":"13_timeline_1987.jpg", "text": "Text 13", "source":"Source 13"}},
+{"year": "1982", "asset":{"type":"image","name":"14_timeline_1982_a.jpg", "text": "Text 14", "source":"Source 14"}},
+{"year": "1956", "asset":{"type":"image","name":"15_timeline_1956.jpg", "text": "Text 15", "source":"Source 15"}}
 ],
 "context":{"room":"framingham", "tab":"tab1"}}
 >>>
@@ -121,22 +121,22 @@ identifier timeline
  Die Untersuchung biologischer Proben hat eine lange Geschichte in der Medizin. Blut, Speichel oder Urin lagerten früher dezentral und in haushaltsüblichen Kühlschränken. Es geht darum, körperliche Substanzen haltbar zu  machen, weil sich manchmal erst später Forschungsfragen ergeben, die zum Zeitpunkt der Studie noch nicht gedacht wurde. Manchmal gibt es auch erst später die Technologien, um bestimmte Fragen zu untersuchen. Im Zuge der Genomforschung entstanden dann große Biobanken (Link: UK Biobank, National Biobanks). Seit den 1990er Jahren unterhält nahezu jede größere epidemiologische Studie ein eigenes Lager für biologische Proben. Diese sollen zunächst für die Krankheitsursachenforschung und für Diagnostik und Therapie neue Wege eröffnen. Als Forschungsinfrastrukturen verkörpern die Bioproben immense gesellschaftliche Erwartungen und – derzeit – ein großes Forschungskapital. 
 
  <<<AssetList: {"rows":[
-{"text": "Text 1", "source":"Source 1","asset":{"type":"image","name":"01_tab1.jpg"}},
-{"text": "Text 2", "source":"Source 2","asset":{"type":"image","name":"02_tab1.jpg"}},
-{"text": "Text 3", "source":"Source 3","asset":{"type":"image","name":"03_tab1.jpg"}},
-{"text": "Text 4", "source":"Source 4","asset":{"type":"image","name":"04_tab1.jpg"}},
-{"text": "Text 5", "source":"Source 5","asset":{"type":"image","name":"05_tab1.jpg"}},
+{"asset":{"type":"image","name":"01_tab1.jpg","text": "Text 1", "source":"Source 1"}},
+{"asset":{"type":"image","name":"02_tab1.jpg","text": "Text 2", "source":"Source 2"}},
+{"asset":{"type":"image","name":"03_tab1.jpg","text": "Text 3", "source":"Source 3"}},
+{"asset":{"type":"image","name":"04_tab1.jpg","text": "Text 4", "source":"Source 4"}},
+{"asset":{"type":"image","name":"05_tab1.jpg","text": "Text 5", "source":"Source 5"}}
 ],
 "context":{"room":"bioprobenlager", "tab":"tab1"}}
 >>>
 
- <<<AssetList: {"rows":[
-{"text": "Text 1", "source":"Source 1","asset":{"type":"image","name":"01_tab2.jpg"}},
-{"text": "Text 2", "source":"Source 2","asset":{"type":"image","name":"02_tab2.jpg"}},
-{"text": "Text 3", "source":"Source 3","asset":{"type":"image","name":"03_tab2.jpg"}},
-{"text": "Text 4", "source":"Source 4","asset":{"type":"image","name":"04_tab2.jpg"}},
-{"text": "Text 5", "source":"Source 5","asset":{"type":"image","name":"05_tab2.jpg"}},
-{"text": "Text 6", "source":"Source 6","asset":{"type":"image","name":"06_tab2.jpg"}}
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_tab2.jpg","text": "Text 1", "source":"Source 1"}},
+{"asset":{"type":"image","name":"02_tab2.jpg","text": "Text 2", "source":"Source 2"}},
+{"asset":{"type":"image","name":"03_tab2.jpg","text": "Text 3", "source":"Source 3"}},
+{"asset":{"type":"image","name":"04_tab2.jpg","text": "Text 4", "source":"Source 4"}},
+{"asset":{"type":"image","name":"05_tab2.jpg","text": "Text 5", "source":"Source 5"}},
+{"asset":{"type":"image","name":"06_tab2.jpg","text": "Text 6", "source":"Source 6"}}
 ],
 "context":{"room":"bioprobenlager", "tab":"tab2"}}
 >>>
