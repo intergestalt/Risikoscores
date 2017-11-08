@@ -32,10 +32,10 @@ class TabContent extends React.Component {
       );
     } else {
       return (
-        <Content className="TabContent">
+        <ContentNoScroll className="TabContent">
           {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
           <DiyMarkdown>{splitted.text}</DiyMarkdown>
-        </Content>
+        </ContentNoScroll>
       );
     }
   }
@@ -56,6 +56,10 @@ const Content = styled.div`
   & > * {
     position: absolute !important; // see above
   }
+`;
+
+const ContentNoScroll = Content.extend`
+  overflow-y:hidden;
 `;
 
 const ScrollContainer = styled.div``;
