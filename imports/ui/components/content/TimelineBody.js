@@ -55,7 +55,7 @@ class TimelineBody extends React.Component {
       years.push(newYear);
     }
     return (
-      <Container className="SCTimelineBody">
+      <Container onScroll={this.props.onscroll} className="SCTimelineBody">
         <CustomScrollbars>
           {years}
         </CustomScrollbars>
@@ -64,7 +64,8 @@ class TimelineBody extends React.Component {
   }
 }
 TimelineBody.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  onscroll: PropTypes.func
 };
 
 export default TimelineBody;

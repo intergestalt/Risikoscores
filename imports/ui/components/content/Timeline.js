@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { existsString } from '../../../helper/global';
@@ -8,7 +9,10 @@ import { getImageAsset } from '../../../helper/asset';
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
+    this.handleHeaderScroll = this.handleHeaderScroll.bind(this)
+    this.handleBodyScroll = this.handleBodyScroll.bind(this)
   }
+
   reorganiseData(data) {
     var newData = {};
     newData.context = { ...data.context };
@@ -35,13 +39,23 @@ class Timeline extends React.Component {
     return newData;
   }
 
+  handleHeaderScroll(e) {
+    const headerNode = ReactDOM.findDOMNode(this.refs.TimelineHeader)
+    console.log(e, headerNode)
+  }
+
+  handleBodyScroll(e) {
+    const bodyNode = ReactDOM.findDOMNode(this.refs.TimelineBody)
+    console.log(e, bodyNode)
+  }
+
   render() {
     const data = this.reorganiseData(this.props.data);
     console.log(data);
     return (
       <Container className="SCTimeline">
-        <TimelineHeader data={data} />
-        <TimelineBody data={data} />
+        <TimelineHeader data={data} ref="TimelineHeader" onscroll={this.handleHeaderScroll} />
+        <TimelineBody data={data} ref="TimelineBody" onscroll={this.handleBodyScroll} />
       </Container>
     );
   }

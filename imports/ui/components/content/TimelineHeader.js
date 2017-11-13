@@ -18,7 +18,7 @@ class TimelineHeader extends React.Component {
       years.push(newYear);
     }
     return (
-      <Header className="SCTimelineHeader">
+      <Header onScroll={this.props.onscroll} className="SCTimelineHeader">
         <Scrollbars>
           {years}
         </Scrollbars>
@@ -27,7 +27,8 @@ class TimelineHeader extends React.Component {
   }
 }
 TimelineHeader.propTypes = {
-  data: PropTypes.object
+  data: PropTypes.object,
+  onscroll: PropTypes.func
 };
 
 export default TimelineHeader;
