@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { GlossarClose, DiyMarkdown } from './';
+import { dist } from '../../config/styles';
 
 class GlossarDetail extends React.Component {
   constructor(props) {
@@ -13,11 +15,11 @@ class GlossarDetail extends React.Component {
     var text = localeStr(this.props.entry.text);
     var title = localeStr(this.props.entry.name);
     return (
-      <div className="GlossarContent">
+      <Container className="GlossarContent">
         <h1>{title}</h1>
         <GlossarClose />
         <DiyMarkdown>{text}</DiyMarkdown>
-      </div>
+      </Container>
     );
   }
 }
@@ -27,3 +29,11 @@ GlossarDetail.propTypes = {
 };
 
 export default GlossarDetail;
+
+const Container = styled.div`
+  color: white;
+  .DiyMarkdown p {
+    padding-left: 0;
+    padding-right:0;
+  }
+`;

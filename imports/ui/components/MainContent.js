@@ -52,12 +52,11 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  padding: ${dist.named.columnPadding};
   padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
 `;
 
 const Headline = styled.h1`
   ${snippets.headlineText};
   color: ${colors.named.room};
-  margin-bottom: 1em;
+  padding: 0 ${dist.named.columnPadding} 1em;
 `;

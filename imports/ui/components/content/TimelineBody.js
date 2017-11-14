@@ -75,4 +75,6 @@ const Container = styled.div`
   top: ${dist.medium};
   z-index: 1;
   flex: 1;
+  height: 100%;
+  height: calc( 100% - ${dist.medium} );
 `;

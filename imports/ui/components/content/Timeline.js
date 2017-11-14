@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import { existsString } from '../../../helper/global';
 import { TimelineHeader, TimelineBody } from './';
 import { getImageAsset } from '../../../helper/asset';
+import { dist } from '../../../config/styles';
 
 class Timeline extends React.Component {
   constructor(props) {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import { existsString } from '../../../helper/global';
 import { getImageAsset } from '../../../helper/asset';
 import { AnnotatedAsset } from './';
@@ -39,9 +41,9 @@ class AssetList extends React.Component {
     const rows = this.renderRows(this.props.data.rows, this.props.data.context);
     return (
       <div className="SCTimeline">
-        <table>
+        <Table>
           <tbody>{rows}</tbody>
-        </table>
+        </Table>
       </div>
     );
   }
@@ -51,3 +53,7 @@ AssetList.propTypes = {
 };
 
 export default AssetList;
+
+const Table = styled.table`
+  width: 100%;
+`;

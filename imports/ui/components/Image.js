@@ -41,4 +41,7 @@ const Img = styled.img`
   display: block;
 `;
 
-const A = styled.a`width: 100%;`;
+const A = styled.a`
+  width: 100%;
+  display: block;
+`;

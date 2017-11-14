@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { getFragment } from '../../helper/fragment';
+import { dist } from '../../config/styles';
 
 class RoomQuestionsHeader extends React.Component {
   constructor(props) {
@@ -12,11 +14,15 @@ class RoomQuestionsHeader extends React.Component {
     var title = getFragment('roomQuestionsTitle');
 
     return (
-      <div className="RoomQuestionsHeader">
-        <h3>{title}</h3>
-      </div>
+      <Header className="RoomQuestionsHeader">
+        {title}
+      </Header>
     );
   }
 }
 
 export default RoomQuestionsHeader;
+
+const Header = styled.h3`
+  padding: 0 ${dist.named.columnPadding};
+`;

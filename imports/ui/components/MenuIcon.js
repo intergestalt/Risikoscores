@@ -45,6 +45,7 @@ const FloatMenu = styled.nav`
   transform: translateX(-50%);
   pointer-events: none;
   text-align: center;
+  z-index:1;
   &:after {
     content: '⬢';
     font-size: 10rem;

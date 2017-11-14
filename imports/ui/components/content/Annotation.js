@@ -41,6 +41,7 @@ const Container = styled.div`
   ${snippets.annotationText};
   padding: ${ dist.named.columnPadding};
   padding-top: calc( ${ dist.tiny} - ${dist.lineTopDiff});
-  padding-bottom: calc( ${ dist.smll} - ${dist.lineBottomDiff});
+  padding-bottom: calc( ${dist.small} - ${dist.lineBottomDiff});
   position: relative;
+  min-height: 1em;
 `;
