@@ -66,7 +66,7 @@ class CustomScrollbars extends React.Component {
 
 
   render() {
-    const { shadeColor, ...rest } = this.props;
+    const { shadeColor, scrollbarsRef, ...rest } = this.props;
     const scrollbars = <Scrollbars
       autoHide
       renderThumbHorizontal={this.renderThumb}
@@ -74,7 +74,7 @@ class CustomScrollbars extends React.Component {
       renderTrackHorizontal={this.renderTrackHorizontal}
       renderTrackVertical={this.renderTrackVertical}
       onUpdate={this.handleUpdate}
-      ref="scrollbars"
+      ref={this.props.scrollbarsRef}
       {...rest}
     >
       {this.props.children}

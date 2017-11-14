@@ -10,6 +10,25 @@ class TimelineHeader extends React.Component {
     super(props);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log(this.props, nextProps)
+    //const s = nextProps.scrollState
+    if (nextProps.scrollPos) {
+      //console.log(nextProps, this.props)
+      if (!this.props.isScrollLeader && nextProps.scrollPos) {
+        this.scrollTo(nextProps.scrollPos)
+      }
+      return false
+    }
+    return true;
+  }
+
+  scrollTo(x = 0) {
+    const scrollbars = this.scrollbars;
+    //console.log(x, scrollbars.getScrollWidth(), scrollbars.getClientWidth()); //return;
+    scrollbars.scrollLeft(x * (scrollbars.getScrollWidth() - scrollbars.getClientWidth()));
+  }
+
   render() {
     var years = [];
     for (var i = 0; i < this.props.data.rows.length; i++) {
@@ -18,8 +37,8 @@ class TimelineHeader extends React.Component {
       years.push(newYear);
     }
     return (
-      <Header onScroll={this.props.onscroll} className="SCTimelineHeader">
-        <Scrollbars>
+      <Header className="SCTimelineHeader" onMouseEnter={this.props.onMouseEnter}>
+        <Scrollbars ref={el => this.scrollbars = el} onScrollFrame={this.props.onScrollFrame}>
           {years}
         </Scrollbars>
       </Header>

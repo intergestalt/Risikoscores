@@ -11,8 +11,15 @@ import { dist } from '../../../config/styles';
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
-    this.handleHeaderScroll = this.handleHeaderScroll.bind(this)
-    this.handleBodyScroll = this.handleBodyScroll.bind(this)
+    this.state = {
+      HeaderScrollPos: 0,
+      BodyScrollPos: 0,
+      scrollLeader: null
+    }
+    this.headerTakeLead = this.headerTakeLead.bind(this)
+    this.bodyTakeLead = this.bodyTakeLead.bind(this)
+    this.handleHeaderScrollFrame = this.handleHeaderScrollFrame.bind(this)
+    this.handleBodyScrollFrame = this.handleBodyScrollFrame.bind(this)
   }
 
   reorganiseData(data) {
@@ -41,23 +48,40 @@ class Timeline extends React.Component {
     return newData;
   }
 
-  handleHeaderScroll(e) {
-    const headerNode = ReactDOM.findDOMNode(this.refs.TimelineHeader)
-    console.log(e, headerNode)
+  handleHeaderScrollFrame(e) {
+    //const headerNode = ReactDOM.findDOMNode(this.refs.TimelineHeader)
+    //console.log(headerNode.scrollLeft, headerNode.offsetWidth)
+    //console.log(e.left)
+    if (this.state.scrollLeader === "Header")
+      this.setState({ BodyScrollPos: e.left })
   }
 
-  handleBodyScroll(e) {
-    const bodyNode = ReactDOM.findDOMNode(this.refs.TimelineBody)
-    console.log(e, bodyNode)
+  handleBodyScrollFrame(e) {
+    //const bodyNode = ReactDOM.findDOMNode(this.refs.TimelineBody)
+    //console.log(bodyNode.scrollTop, bodyNode.offsetHeight)
+    //console.log(e.target)
+    if (this.state.scrollLeader === "Body") {
+      this.setState({ HeaderScrollPos: e.top })
+    }
+  }
+
+  headerTakeLead(e) {
+    //console.log("H")
+    this.setState({ scrollLeader: 'Header' })
+  }
+
+  bodyTakeLead(e) {
+    //console.log("B")
+    this.setState({ scrollLeader: 'Body' })
   }
 
   render() {
     const data = this.reorganiseData(this.props.data);
-    console.log(data);
+    //console.log(data);
     return (
       <Container className="SCTimeline">
-        <TimelineHeader data={data} ref="TimelineHeader" onscroll={this.handleHeaderScroll} />
-        <TimelineBody data={data} ref="TimelineBody" onscroll={this.handleBodyScroll} />
+        <TimelineHeader data={data} isScrollLeader={this.state.scrollLeader === "Header"} scrollPos={this.state.HeaderScrollPos} onScrollFrame={this.handleHeaderScrollFrame} onMouseEnter={this.headerTakeLead} />
+        <TimelineBody data={data} isScrollLeader={this.state.scrollLeader === "Body"} scrollPos={this.state.BodyScrollPos} onScrollFrame={this.handleBodyScrollFrame} onMouseEnter={this.bodyTakeLead} />
       </Container>
     );
   }

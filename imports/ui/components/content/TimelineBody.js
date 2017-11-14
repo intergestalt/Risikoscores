@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 import { CustomScrollbars } from '../';
 import { AnnotatedAsset } from './';
@@ -11,6 +12,25 @@ class TimelineBody extends React.Component {
   constructor(props) {
     super(props);
     this.detailClick = this.detailClick.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    //console.log(this.props, nextProps)
+    //const s = nextProps.scrollState
+    if (nextProps.scrollPos) {
+      //console.log(s, this.props)
+      if (!this.props.isScrollLeader && nextProps.scrollPos) {
+        this.scrollTo(nextProps.scrollPos)
+      }
+      return false
+    }
+    return true;
+  }
+
+  scrollTo(y = 0) {
+    const scrollbars = this.scrollbars;
+    //console.log(y, scrollbars.getScrollHeight()); //return;
+    scrollbars.scrollTop(y * (scrollbars.getScrollHeight() - scrollbars.getClientHeight()));
   }
 
   detailClick(e, asset) {
@@ -55,8 +75,8 @@ class TimelineBody extends React.Component {
       years.push(newYear);
     }
     return (
-      <Container onScroll={this.props.onscroll} className="SCTimelineBody">
-        <CustomScrollbars>
+      <Container className="SCTimelineBody" onMouseEnter={this.props.onMouseEnter}>
+        <CustomScrollbars scrollbarsRef={el => this.scrollbars = el} onScrollFrame={this.props.onScrollFrame}>
           {years}
         </CustomScrollbars>
       </Container>
@@ -65,7 +85,8 @@ class TimelineBody extends React.Component {
 }
 TimelineBody.propTypes = {
   data: PropTypes.object,
-  onscroll: PropTypes.func
+  onscroll: PropTypes.func,
+  scrollPos: PropTypes.number
 };
 
 export default TimelineBody;
