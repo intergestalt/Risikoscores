@@ -12,15 +12,14 @@ class TimelineBody extends React.Component {
   constructor(props) {
     super(props);
     this.detailClick = this.detailClick.bind(this);
+    this.handleScrollFrame = this.handleScrollFrame.bind(this)
+    this.yearsElems = new Map();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    //console.log(this.props, nextProps)
-    //const s = nextProps.scrollState
     if (nextProps.scrollPos) {
-      //console.log(s, this.props)
       if (!this.props.isScrollLeader && nextProps.scrollPos) {
-        this.scrollTo(nextProps.scrollPos)
+        this.scrollTo(this.timelineScrollPosToBodyScrollPos(nextProps.scrollPos))
       }
       return false
     }
@@ -29,8 +28,42 @@ class TimelineBody extends React.Component {
 
   scrollTo(y = 0) {
     const scrollbars = this.scrollbars;
-    //console.log(y, scrollbars.getScrollHeight()); //return;
-    scrollbars.scrollTop(y * (scrollbars.getScrollHeight() - scrollbars.getClientHeight()));
+    scrollbars.scrollTop(y * (scrollbars.getScrollHeight() / (scrollbars.getScrollHeight() + scrollbars.getClientHeight())));
+  }
+
+  timelineScrollPosToBodyScrollPos([elemNumber, elemOffsetRel]) {
+    const el = Array.from(this.yearsElems.values())[elemNumber]
+    const top = el.offsetTop;
+    const height = el.offsetHeight;
+    const y = top + (height * elemOffsetRel)
+    return y;
+  }
+
+  bodyScrollPosToTimelineScrollPos(scroll) {
+    let currentElemNumber = 0;
+    let currentElemOffsetRel = 0;
+    for (let [y, el] of this.yearsElems) {
+      let top = el.offsetTop;
+      let height = el.offsetHeight;
+      let scrollPos = scroll.top * scroll.scrollHeight;
+      let offset = scrollPos - top;
+      if (offset <= height) {
+        currentElemOffsetRel = offset / height
+        break;
+      }
+      currentElemNumber++;
+    }
+    if (currentElemNumber >= this.yearsElems.size) {
+      currentElemNumber = this.yearsElems.size - 1
+      currentElemOffsetRel = 1
+    }
+    return [currentElemNumber, currentElemOffsetRel]
+  }
+
+  handleScrollFrame(scroll) {
+    if (!this.props.isScrollLeader) return;
+    const timelineScrollPos = this.bodyScrollPosToTimelineScrollPos(scroll)
+    this.props.onScroll(timelineScrollPos)
   }
 
   detailClick(e, asset) {
@@ -52,7 +85,7 @@ class TimelineBody extends React.Component {
         <AnnotatedAsset
           key={'_' + i}
           asset={myAsset}
-          text={row.text}
+          text={row.asset.text}
           source={row.source}
           clickCallback={this.detailClick}
         />
@@ -60,7 +93,7 @@ class TimelineBody extends React.Component {
       all.push(newRow);
     }
     return (
-      <div id={yearRow.year} key={yearRow.year}>
+      <div ref={(el) => this.yearsElems.set(yearRow.year, el)} id={yearRow.year} key={yearRow.year}>
         {all}
       </div>
     );
@@ -76,7 +109,7 @@ class TimelineBody extends React.Component {
     }
     return (
       <Container className="SCTimelineBody" onMouseEnter={this.props.onMouseEnter}>
-        <CustomScrollbars scrollbarsRef={el => this.scrollbars = el} onScrollFrame={this.props.onScrollFrame}>
+        <CustomScrollbars scrollbarsRef={el => this.scrollbars = el} onScrollFrame={this.handleScrollFrame}>
           {years}
         </CustomScrollbars>
       </Container>
@@ -85,8 +118,8 @@ class TimelineBody extends React.Component {
 }
 TimelineBody.propTypes = {
   data: PropTypes.object,
-  onscroll: PropTypes.func,
-  scrollPos: PropTypes.number
+  onScroll: PropTypes.func,
+  scrollPos: PropTypes.array
 };
 
 export default TimelineBody;

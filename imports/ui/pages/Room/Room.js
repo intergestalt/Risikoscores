@@ -8,7 +8,7 @@ import { MainColumn, TabColumn, RightColumn, MenuIcon } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
-import { setSelectedTabId, setSelectedRoomId } from '../../../helper/actions';
+import { setSelectedTabId, setSelectedRoomId, setSelectedTabColor } from '../../../helper/actions';
 import { exists, startStreamTimeout } from '../../../helper/global';
 import {
   setSelectGraphNode,
@@ -79,11 +79,17 @@ export default withTracker(props => {
   const sub = Meteor.subscribe('room', roomId);
   const sub2 = Meteor.subscribe('fragments.list');
 
+  const room = Rooms.findOne(roomId)
+
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
   if (exists(tabId)) {
     setSelectedTabId(tabId);
+    if (room) {
+      const tabColor = room.subsections.filter((s) => s.identifier === tabId)[0].color;
+      setSelectedTabColor(tabColor);
+    }
   }
   setSelectedRoomId(roomId);
   var lang = parsed.language;
@@ -92,7 +98,7 @@ export default withTracker(props => {
   }
 
   return {
-    room: Rooms.findOne(roomId),
+    room,
     selectedTabId: tabId,
     fragments: TextFragments.find().fetch(),
     ready: sub.ready() && sub2.ready

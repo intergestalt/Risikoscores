@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Scrollbars } from 'react-custom-scrollbars';
 import styled from 'styled-components';
 import color from 'color';
@@ -14,16 +15,24 @@ class CustomScrollbars extends React.Component {
       clientHeight: 0,
       shadowTopOpacity: 0,
       shadowBottomOpacity: 0,
+      shadowLeftOpacity: 0,
+      shadowRightOpacity: 0,
     };
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   handleUpdate(values) {
-    const { scrollTop, scrollHeight, clientHeight } = values;
+    const { scrollTop, scrollHeight, clientHeight, scrollLeft, scrollWidth, clientWidth } = values;
+    // vertical
     const shadowTopOpacity = 1 / 20 * Math.min(scrollTop, 20);
     const bottomScrollTop = scrollHeight - clientHeight;
     const shadowBottomOpacity = 1 / 20 * (bottomScrollTop - Math.max(scrollTop, bottomScrollTop - 20));
-    this.setState({ shadowTopOpacity, shadowBottomOpacity });
+    // horizontal
+    const shadowLeftOpacity = 1 / 20 * Math.min(scrollLeft, 20);
+    const rightScrollLeft = scrollWidth - clientWidth;
+    const shadowRightOpacity = 1 / 20 * (rightScrollLeft - Math.max(scrollLeft, rightScrollLeft - 20));
+    // set state
+    this.setState({ shadowTopOpacity, shadowBottomOpacity, shadowLeftOpacity, shadowRightOpacity });
   }
 
   renderThumb({ style, ...props }) {
@@ -64,15 +73,19 @@ class CustomScrollbars extends React.Component {
     return <div style={finalStyle} {...props} />;
   }
 
+  renderBlind() {
+    return <div></div>;
+  }
+
 
   render() {
-    const { shadeColor, scrollbarsRef, ...rest } = this.props;
+    const { shadeColor, scrollbarsRef, blind, ...rest } = this.props;
     const scrollbars = <Scrollbars
       autoHide
-      renderThumbHorizontal={this.renderThumb}
-      renderThumbVertical={this.renderThumb}
-      renderTrackHorizontal={this.renderTrackHorizontal}
-      renderTrackVertical={this.renderTrackVertical}
+      renderThumbHorizontal={blind ? this.renderBlind : this.renderThumb}
+      renderThumbVertical={blind ? this.renderBlind : this.renderThumb}
+      renderTrackHorizontal={blind ? this.renderBlind : this.renderTrackHorizontal}
+      renderTrackVertical={blind ? this.renderBlind : this.renderTrackVertical}
       onUpdate={this.handleUpdate}
       ref={this.props.scrollbarsRef}
       {...rest}
@@ -86,6 +99,8 @@ class CustomScrollbars extends React.Component {
           {scrollbars}
           <TopShader style={{ opacity: this.state.shadowTopOpacity }} shadeColor={this.props.shadeColor} />
           <BottomShader style={{ opacity: this.state.shadowBottomOpacity }} shadeColor={this.props.shadeColor} />
+          <LeftShader style={{ opacity: this.state.shadowLeftOpacity }} shadeColor={this.props.shadeColor} />
+          <RightShader style={{ opacity: this.state.shadowRightOpacity }} shadeColor={this.props.shadeColor} />
         </Container>)
     } else {
       return scrollbars
@@ -93,6 +108,10 @@ class CustomScrollbars extends React.Component {
 
   }
 }
+
+CustomScrollbars.propTypes = {
+  blind: PropTypes.bool
+};
 
 export default CustomScrollbars;
 
@@ -129,6 +148,42 @@ const BottomShader = styled.div`
   bottom: 0;
   background: linear-gradient(
     to top,
+    ${props => color(props.shadeColor).opaquer(0.8).string()} 0%,
+    ${props => color(props.shadeColor).fade(1).string()} 80%
+  );
+  `;
+
+const LeftShader = styled.div`
+  z-index:1;
+  position: absolute;
+  height: 100%;
+  width: 3em;
+  content: '';  
+  pointer-events: none;
+
+  left: 0;
+  top:0;
+
+  background: linear-gradient(
+    to right,
+    ${props => color(props.shadeColor).opaquer(0.8).string()} 0%,
+    ${props => color(props.shadeColor).fade(1).string()} 80%
+  );
+  `;
+
+const RightShader = styled.div`
+  z-index:1;
+  position: absolute;
+  height: 100%;
+  width: 3em;
+  content: '';  
+  pointer-events: none;
+
+  right: 0;
+  top:0;
+
+  background: linear-gradient(
+    to left,
     ${props => color(props.shadeColor).opaquer(0.8).string()} 0%,
     ${props => color(props.shadeColor).fade(1).string()} 80%
   );

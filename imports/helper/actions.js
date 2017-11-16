@@ -42,6 +42,11 @@ export function setPreSelectedTabId(id) {
 export function setSelectedTabId(id) {
   Session.set('selectedTabId', id);
 }
+
+export function setSelectedTabColor(id) {
+  Session.set('selectedTabColor', id);
+}
+
 export function setSelectedRoomId(id) {
   Session.set('selectedRoomId', id);
 }
@@ -74,7 +79,7 @@ export function setStreamStarted() {
   Session.set('streamStarted', true);
 }
 
-export function setStreamFinished() {}
+export function setStreamFinished() { }
 
 export function setRealGraph(realGraph) {
   Session.set('realGraph', realGraph);
