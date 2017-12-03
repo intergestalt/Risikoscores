@@ -24,7 +24,7 @@ class AnnotatedAsset extends React.Component {
       />
     );
     return (
-      <div>
+      <div className="AnnotatedAsset">
         {asset}
         {annotation}
       </div>

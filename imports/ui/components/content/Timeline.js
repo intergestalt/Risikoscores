@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import { existsString } from '../../../helper/global';
 import { TimelineHeader, TimelineBody } from './';
+import { getImageAsset } from '../../../helper/asset';
+import { dist } from '../../../config/styles';
 
 class Timeline extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      scrollPos: [0, 0],
+      scrollLeader: 'Body'
+    };
+    this.headerTakeLead = this.headerTakeLead.bind(this);
+    this.bodyTakeLead = this.bodyTakeLead.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
+
   reorganiseData(data) {
     var newData = {};
     newData.context = { ...data.context };
@@ -33,13 +46,42 @@ class Timeline extends React.Component {
     return newData;
   }
 
+  handleScroll(timelineScrollPos) {
+    //console.log(timelineScrollPos)
+    this.setState({ scrollPos: timelineScrollPos });
+  }
+
+  headerTakeLead(e) {
+    //console.log("H")
+    /* disabled */
+    // this.setState({ scrollLeader: 'Header' })
+  }
+
+  bodyTakeLead(e) {
+    //console.log("B")
+    this.setState({ scrollLeader: 'Body' });
+  }
+
   render() {
     const data = this.reorganiseData(this.props.data);
+    //console.log(data);
     return (
-      <div className="SCTimeline">
-        <TimelineHeader data={data} />
-        <TimelineBody data={data} />
-      </div>
+      <Container className="SCTimeline">
+        <TimelineHeader
+          data={data}
+          isScrollLeader={this.state.scrollLeader === 'Header'}
+          scrollPos={this.state.scrollPos}
+          onScroll={this.handleScroll}
+          onMouseEnter={this.headerTakeLead}
+        />
+        <TimelineBody
+          data={data}
+          isScrollLeader={this.state.scrollLeader === 'Body'}
+          scrollPos={this.state.scrollPos}
+          onScroll={this.handleScroll}
+          onMouseEnter={this.bodyTakeLead}
+        />
+      </Container>
     );
   }
 }
@@ -48,3 +90,10 @@ Timeline.propTypes = {
 };
 
 export default Timeline;
+
+const Container = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+`;

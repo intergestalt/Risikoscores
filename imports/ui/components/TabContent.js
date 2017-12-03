@@ -35,10 +35,10 @@ class TabContent extends React.Component {
       );
     } else {
       return (
-        <Content className="TabContent">
+        <ContentNoScroll className="TabContent">
           {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
           <DiyMarkdown>{splitted.text}</DiyMarkdown>
-        </Content>
+        </ContentNoScroll>
       );
     }
   }
@@ -58,6 +58,21 @@ const Content = styled.div`
   position: relative; // see https://stackoverflow.com/questions/15381172/how-to-make-flexbox-children-100-height-of-their-parent
   & > * {
     position: absolute !important; // see above
+  }
+`;
+
+const ContentNoScroll = Content.extend`
+  overflow-y:hidden;
+  & > * {
+    position: initial !important;
+    //position: absolute !important; // see above
+  }  
+  & > *,
+  & > * > * {
+    height: 100%;
+  }
+  &, & * {
+    background-color: inherit; // helps hiding the horizontal scrollbar in Timeline
   }
 `;
 

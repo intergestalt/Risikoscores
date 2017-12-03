@@ -46,7 +46,12 @@ export default withTracker(props => {
 
 const LiWelcome = styled.li`
   background: linear-gradient(to bottom, white 0%, ${colors.lightgrey} 100%);
-  padding: ${dist.small};
   padding-top: calc(${dist.small} - ${dist.lineTopDiff});
-  padding-bottom: calc(${dist.small} - ${dist.lineBottomDiff});
+  padding-bottom: ${dist.small};
+  position: relative;
+  & .Expander {
+    position: absolute;
+    right:0.5em;
+    bottom:0.5em;
+  }    
 `;
