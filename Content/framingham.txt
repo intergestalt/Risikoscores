@@ -1,0 +1,78 @@
+Content
+
+Die Framingham Heart Studie ist die weltweit erste groß angelegte <<<Glossar:Kohortenstudie;Kohortenstudie>>> von Herz-Kreislauferkrankungen. Ihr Name geht auf ihren Entstehungsort Framingham zurück – eine Kleinstadt im US-Bundesstaat Massachussetts. 1948 wurden dort 2/3 aller Erwachsenen auf ihren Gesundheitszustand und ihrer Lebensweisen untersucht und befragt. 
+
+Diese Gruppe, ihre Nachkommen sowie ein später erweiterter Kreis an Teilnehmenden (Framingham Omni-Cohort; Link Flyer) werden bis heute weiter untersucht. Ziel der Initiatoren war es herauszufinden, welche Faktoren die Entstehung von Krankheiten begünstigen. In einer Publikation aus Daten der Framingham-Studie wurde um ca. 1970 der Begriff des <<<Glossar:Risikofaktors;Risikofaktor>>> zum ersten Mal genutzt. Die Forscher betrachteten das Auftreten von Herz-Kreislauferkrankungen als Ereignisse, die durch präventive Maßnahmen von Einzelnen vermieden werden können. Bis heute beeinflusst die Studie weit über Framingham hinaus unser tägliches Leben. Allgemein bekannte Ernährungsempfehlungen „Viel Obst und Gemüse!“ aber auch ärztliche Berechnungen unseres Herz-Kreislauferkrankungs-Risikos sind auch auf die Studie zurückzuführen.
+
+
+Tab 1
+
+[[[{"disableScrolling":"true"}]]]
+<<<Timeline: {"rows":[
+{"year": "2017", "asset":{"type":"image","name":"01_timeline_2017_b.jpg", "text": "Im Lesesaal der Stadtbibliothek von Framingham können sich Interessierte in die Lokalgeschichte Framinghams vertiefen – dort findet sich auch eine Mappe zur Framingham-Herz-Studie. Presseartikel und andere Materialien seit 1948 dokumentieren ihren Verlauf.", "source":""}},
+{"year": "2016", "asset":{"type":"image","name":"02_timeline_2016_a.jpg", "text": "Der Infozettel aus den 1990er Jahren versucht, junge Nichtweiße und Menschen verschiedener Ethnizität zur Teilnehme an der Kohortenstudie anzuregen. Die Studie bemüht sich um eine bessere Abbildung der sich wandelnden sozialen Struktur, um die Bevölkerung der Stadt zu repräsentieren.", "source":""}},
+{"year": "2002", "asset":{"type":"image","name":"03_timeline_2002.jpg", "text": "2016 ging die Framingham-Herz-Studie in die dritte Generation. Das Foto zeigt die 94-jährige Lillian Tirell, die seit 1948 an der Studie teilnimmt; daneben ihre Tochter und Enkeltochter, die später ebenfalls mitmachten.", "source":""}},
+{"year": "2001", "asset":{"type":"image","name":"04_timeline_2001.jpg", "text": "Der Wunsch, anderen Menschen zu helfen, motiviert viele Teilnehmer*innen der Studie.", "source":""}},
+{"year": "2000", "asset":{"type":"image","name":"05_timeline_2000.jpg", "text": "Wissenschaftlern der Boston University gründeten das Wirtschaftsunternehmen Framingham Genomic Medicin Inc. Sie untersuchten die biologischen Proben und Daten aus der Framingham-Herz-Studie mit Techniken der Humangenetik und planten das so gewonnene Wissen mit Pharmaunternehmen kommerziell zu verwerten. Von den Gewinnen profitierten die Teilnehmer*innen der Studie allerdings nicht; einige kündigten sogar an, ihre Teilnahme zu beenden.", "source":""}},
+{"year": "1998", "asset":{"type":"image","name":"06_timeline_1998_g.jpg", "text": "Nicht nur das Leben Studienteilnehmer ist durch Untersuchungen in regelmäßigen Abständen von Framingham-Herz-Studie geprägt – sondern auch die Stadt selbst, denn rund ein Viertel der Bevölkerung nahm seit 1948 an der Studie teil. 1998 feierte die Studie ihren 50. Geburtstag.", "source":""}},
+{"year": "1998", "asset":{"type":"image","name":"07_timeline_1998_f.jpg", "text": "Journalisten nahmen das 50. Jubiläum der Studie zum Anlass, um Menschen zu würdigen, die hinter den Kulissen zum Erfolg des Projekts beitragen – wie die Mathematikerin Karen Mutalik, die für die Archivierung und Verwaltung der Studiendaten verantwortlich ist.", "source":""}},
+{"year": "1998", "asset":{"type":"image","name":"08_timeline_1998_e.jpg", "text": "Nach 50 Jahren streben die Wissenschaftler der Framingham-Herz-Studie weitere 50 Jahre Forschung an. Durch sich neu entwickelnde Wissenschaftsfelder und Forschungsfragen, gewinnen die Daten immer wieder neue Relevanz.", "source":""}},
+{"year": "1998", "asset":{"type":"image","name":"09_timeline_1998_b.jpg", "text": "Mit jeder neuen Generation von Teilnehmer*innen kommen auch neue Verfahren der Datenerhebung dazu, wie etwa bildgebende Verfahren wie Magnetresonanztomographie (MRT) und CAT-Scans.", "source":""}},
+{"year": "1997", "asset":{"type":"image","name":"10_timeline_1997.jpg", "text": "Viele Teilnehmer*innen der Studie sind stolz, auf ihre Weise zur wissenschaftlichen Erforschung von Herz-Kreislauf-Erkrankungen beigetragen zu haben.", "source":""}},
+{"year": "1995", "asset":{"type":"image","name":"11_timeline_1995.jpg", "text": "1995 begann die gezielte Untersuchung der hispanischen Minderheit in Framingham im Rahmen der Gesundheitsstudie.", "source":""}},
+{"year": "1988", "asset":{"type":"image","name":"12_timeline_1988.jpg", "text": "Jim Fair ließ sich als Teilnehmer der Studie jahrzehntelang alle 2 Jahre untersuchen. Neben medizinischen Tests werden auch Gewohnheiten abgefragt, z.B. wie sich die Person ernährt, ob sie Sport treibt, ob sie raucht, Alkohol trinkt etc.", "source":""}},
+{"year": "1987", "asset":{"type":"image","name":"13_timeline_1987.jpg", "text": "Inwieweit haben die Erkenntnisse aus der Studie (etwa der nachgewiesene Zusammenhang zwischen hohem Cholesterinspiegel und Herzkreislauferkrankungen) die Lebensgewohnheiten der Menschen in Framingham verändert? Eher weniger meint die Autorin des Artikels – nach einem Besuch der lokalen McDonalds-Filiale.", "source":""}},
+{"year": "1982", "asset":{"type":"image","name":"14_timeline_1982_a.jpg", "text": "Ein 1982 in Science erschienener Artikel bezeichnete Framingham als „Stadt der Versuchskaninchen“ (The Guinea Pig Town).", "source":""}},
+{"year": "1956", "asset":{"type":"image","name":"15_timeline_1956.jpg", "text": "Im Jahr 1948 war der Herzinfarkt die häufigste Todesursache in den USA. Ein Hauptziel der Studie bestand darin, die Ursachen für diese Volkskrankheit zu ergründen und herauszufinden, wie man sie verhindern oder zumindest angemessen medizinisch behandeln könne.", "source":""}}
+],
+"context":{"room":"framingham", "tab":"tab1"}}
+>>>
+
+
+Tab 2:
+
+**1960**
+Cigarette smoking found to increase the risk of heart disease
+
+**1961**
+Cholesterol level, blood pressure, and electrocardiogram abnormalities found to increase the risk of heart disease
+
+**1967**
+Physical activity found to reduce the risk of heart disease and obesity to increase the risk of heart disease
+
+**1970**
+High blood pressure found to increase the risk of stroke
+
+**1976**
+Menopause found to increase the risk of heart disease
+
+**1978**
+Psychosocial factors found to affect heart disease
+
+**1988**
+High levels of HDL cholesterol found to reduce risk of death
+
+**1998**
+Development of simple coronary disease prediction algorithm involving risk factor categories to allow physicians to predict multivariate coronary heart disease risk in patients without overt CHD
+
+**1999**
+Lifetime risk at age 40 years of developing coronary heart disease is one in two for men and one in three for women
+
+**2001**
+High-normal blood pressure is associated with an increased risk of cardiovascular disease, emphasizing the need to determine whether lowering high-normal blood pressure can reduce the risk of cardiovascular disease.
+
+**2002**
+Lifetime risk of developing high blood pressure in middle-aged adults is 9 in 10.
+
+**2002**
+Obesity is a risk factor for heart failure.
+
+**2008**
+Discovery by Framingham Heart Study and publication of four risk factors that raise probability of developing precursor of heart failure; new 30-year risk estimates developed for serious cardiac events.
+
+**2009-2010**
+Framingham Heart Study researchers contribute to discovering hundreds of new genes underlying major heart disease risk factors—body mass index, blood cholesterol, cigarette smoking, blood pressure and glucose/diabetes
+
+**2010**
+First definitive evidence that occurrence of stroke by age 65 years in a parent increased risk of stroke in offspring by 3-fold
+

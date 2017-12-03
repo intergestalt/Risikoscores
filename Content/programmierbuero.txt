@@ -1,0 +1,34 @@
+Content
+
+Programmierung und grafische Gestaltung sind zentral für die Entwicklung und Verbreitung von Rechenwerkzeugen wie den Risiko-Scores. Beides unterstützt die Algorithmisierung des Alltags.  Dabei werden zum Beispiel visuelle Features als Kommunikationsmittel genutzt. Smiley, Zahlenkolonne oder Tortendiagramm beeinflussen, wie wir den Score einordnen und verstehen.
+
+
+Tab 1
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_neurath.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_arriba.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_uk.png","text": "", "source":""}}
+],
+"context":{"room":"programmierbuero", "tab":"tab1"}}
+>>>
+
+Tab 2
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_balken.png","text": "", "source":""}}
+],
+"context":{"room":"programmierbuero", "tab":"tab2"}}
+>>>
+
+Tab 3
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_ampel.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_ampel.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_ampel.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_ampel.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"05_ampel.png","text": "", "source":""}}
+],
+"context":{"room":"programmierbuero", "tab":"tab3"}}
+>>>

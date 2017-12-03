@@ -1,0 +1,100 @@
+
+Content
+
+Arriba steht für „Absolute und Relative Risikoreduktion: Individuelle Beratung in der Allgemeinarztpraxis“. Arriba ist ein Risiko-Score zur Prävention von Herz-Kreislauf-Krankheiten – oder genauer gesagt eine softwaregestützte Entscheidungs- oder Beratungshilfe, die eine individuelle Risikoprognose mit einem Gesprächsleitfaden für gemeinsame Entscheidungsfindung kombiniert. Die Datenbasis von Arriba ist transnational. Neben der US-amerikanischen Framingham Studie (link) bildet die britische regionale Herzstudie seine Grundlage. Entwickelt wurde Arriba vor allem auf Initiative von Allgemeinmedizinern, die ihre Beratung zur Prävention von Krankheiten wissenschaftlich fundieren wollten. Mit Smartphones, Apps und Social Media haben Scores in allen Lebensbereichen Einzug gehalten. In der Medizin werden Scores eingesetzt um Entscheidungen in Beratung und Behandlung zu fundieren. Der Arriba-Score ist gleichzeitig Rechenwerkzeug für die Berechnung individualisierter Risiken sowie ein Skript (link) für die Kommunikation mit Patienten. Der Verband der Allgemeinmediziner empfiehlt dieses Skript; klinische Beratung und Hausarztpraxen verwenden es. Viele gesetzliche Krankenkassen unterstützen die Entwicklung der Nutzung von Bevölkerungsstudien und Scores. Dabei spielen Kosteneffizienz und Einsparungsmöglichkeiten bei Behandlungen eine große Rolle. Der Arriba-Score bleibt in Bewegung, da auch neue Daten eingespeist und Anwendungsfelder getestet werden (link zu weiteren Räumen: Framingham, Hausarztpraxis). Mit dem Einsatz von Scores werden Entscheidungen mithilfe von Algorithmen getroffen; Daten und Algorithmen treten somit als wirkmächtige Akteure auf den Plan.
+
+
+Tab 1
+
+"When Azande ask about health or marriage or hunting they are seeking information about the movement of psychic forces which might cause them misfortune. They do not attempt simply to discover the objective conditions at a certain point of time in the future, nor the objective results of a certain action, but the inclination of mystical powers, for those conditions and the result depend upon them. … [A] man's future health and happiness depend on future conditions that are already in existence and can be exposed by the oracles and altered. The future depends on the dis- position of mystical forces that can be tackled here and now. Moreover, when the oracles announce that a man will fall sick, ... his 'condition' is therefore already bad, his future is already part of him."
+
+Evans-Pritchard 1937
+
+
+Tab 2
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_pdf.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_pdf.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_pdf.jpg","text": "", "source":"https://www.arriba-hausarzt.de/material/"}},
+{"asset":{"type":"image","name":"01_software.png","text": "", "source":"https://www.arriba-hausarzt.de/material/"}}
+],
+"context":{"room":"arriba", "tab":"tab2"}}
+>>>
+
+Tab 3
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_schema.jpg","text": "", "source":""}}
+],
+"context":{"room":"arriba", "tab":"tab3"}}
+>>>
+
+Tab 4
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_spiel.jpg","text": "Skizze", "source":"Copyright HH"}}
+],
+"context":{"room":"arriba", "tab":"tab4"}}
+>>>
+
+Risikoscorespiel
+
+Die Idee ist einen eigenen Test zu entwerfen, bei dem einige Fragen beantworten muß. Aus den Antworten ergibt sich dann ein Score und dementsprechend ein Risiko. Es ist strukturell analog zum Arribascore. Fragen -> Antworten -> Score -> Risikowert. Im Gegensatz dazu aber stilistisch und inhaltlich anders, nämlich nicht wissenschaftlich, sondern komisch und an populären Tests wie jene im Jugendmagazin Bravo bzw. deren Persiflagen im Satiremagazin Titanic orientiert. 
+
+Übergeordnete Frage
+
+Die übergeordnete Frage des Tests ist „Wie hoch ist ihr Risiko, dass sie sich in den nächsten zehn Jahren zu viel Sorgen machen“ oder „Riskieren Sie zu viele Sorgen“
+
+Mögliche Fragen. 
+
+Und mögliche Antworten. In Klammern mögliche Auswirkungen auf den Risikoscore. Eventuell durch küchenpsychologische Querverbindungen zu anderen Antworten motiviert. (Alles noch provisorisch, um einen Eindruck zu verschaffen)
+Generell würden wir uns auf ca. 5 Fragen beschränken wollen, da es eher ums Prinzip geht.
+
+1. Alter. (Ergibt das Basisrisiko pro Alter. Etwa junge Leute machen sich perse weniger Sorgen. Alte vielleicht auch)
+
+2. Planen Sie Kinder, haben sie Kinder (Deutlich erhöhtes Risikoempfinden bei einem Kind, wieder steigenden Relaxtheit ab dem zweiten Kind)
+
+Fragen nach Reizthemen:
+
+3. Woran denken sie, wenn sie Pommes sehen: Lecker, Fett, Krebs, Toast Hawai (Aufsteigendes Risikopotential)
+
+Analog auch mit anderen Nahrungsmitteln denkbar: Ei, Süßspeisen etc.
+
+5. Haben sie zu Rauchen aufgehört, rauchen sie... (jemand der aufgehört hat bekommt ein Risikogefühl, weil diese Entscheidung für ein realistisches Risikomanagement spricht, jemand der nie geraucht hat ist paranoid etc.) 
+
+6. Wie möchten sie ihr Steak: Blutig, Medium, Durch, lieber Salat (aufsteigendes Risikobedürfnis)
+
+7. Haben sie den Arribascore schon ausgefüllt? Was ist das, Nein, Ja
+
+8. Habe. Sie Cholesterin im Blut? Ja? Nein? Noch nie an Cholesterin gedacht.
+
+9. Gefällt ihnen ihr Body Mass Index. Ja, Nein, ich bin zu dick, BMI? 
+
+10. Was bereitet ihnen Sorgen? Mehrfachauswahl möglich. Kaffee, Cholesterin, Eier, Hoher Blutdruck, Toast Hawai, Ungesättigte Fettsäuren, Bewegung, Regelmäßiger Sport, Burger, Rotes Fleisch, Soja, Salat
+
+11. Für wie Risikofreudig halten sie sich. Skala von 1 bis 5. (Auswirkungen auf den Score unklar. Eventuell kann man das wissenschaftlich ermittelte Risikorisiko mit der Selbsteinschätzung verknüpfen. 
+
+Feedback
+
+	•	Ein schnöder Satz: „Das Risiko, dass sie sich in den nächsten 10 Jahren zu viele Sorgen machen, ist 35%.“ Diese Zahl ändert sich dann sofort, sobald man eine Frage anders bewertet, dann kann man den Algorithmus live nachvollziehen, Man könnte auch überlegen den Score schon einzublenden, wenn noch nicht alle Fragen beantwortet sind, um den Algorithmus transparenter zu machen. Oder man blendet kurz groß die duchr eine Antwort gewonnenen Risikopunkte ein.
+	•	Man könnte aus der Prozentzahl oder den Antworten noch einen seriösen Satz oder gar Testbericht ableiten. 
+	•	Man kann das ganze auch als Spiel verschiedener Kommentatoren umsetzen. Je nachdem welche Antworten gewählt werden bekommt ein Kommentar eins Beobachters eingeblendet. Diese sind eine Frau Sorge nachempfundene Person und eine Herrn Süß nachempfundene Person und der Computer-Doc. Frau Sorge würde dann Tipps geben, sich mehr Sorgen um die Gesundheit zu machen oder beipflichten, wenn jemand lieber Salat als Schnitzel ist. Herr süß würde das umgekehrt das Laster empfehlen. Ein wenig wie Engelchen und Teufelchen bei Tim und Struppi. Der Computer-Doc würde eventuell seriöses Feedback geben. Diese Antworten würden dann in einem eigenen Bericht vielleicht mit Bild eingeblendet und die Beantwortung der Fragen hätte etwas Dialogisches. Z. B. Frau Sorge poppt rein, wenn der Mauszeiger über dem roten Fleisch schwebt. Oder der Arzt kommentiert wohlwollend etc.
+
+Layout
+
+Alles auf einer Seite. 
+Im Hauptbereich die Fragen. 
+Links unten: Score, Risikowert, Risikosatz („Das Risiko, dass sie sich in den nächsten 10 Jahren zu viele Sorgen machen, ist 35%.“)
+Rechts unten: Eine genauere Erläuterung des Risikosatzes und der Berechnung bzw. eine durchaus ernst Beschreibung, wie der Wert zustandekommt. Die Erklärung erklärt auch die Struktur des Tests (insofern sie analog zum Arriba-Score ist).
+Die Kommentatoren swipen/poppen in den Bildschirm. Die reinpoppenden Charaktere unterstreichen noch mal das un-ernste.
+Im Anhang eine Skizze von Holger. Schraffiert ist das Overlay, so wie die Bilder-Fullscreen-Ansicht.
+
+Gimmicks 
+
+	•	Man könnte das Spiel überhaupt erst freischalten, nachdem ein Popup auftaucht, dass das Programmierbüro mit der Umsetzung des Scores fertig ist.
+	•	 Später könnte noch die frohe Kunde aufpoppen, dass das Graphikbüro mit dem Design für das Resultat fertig ist und man bekommt statt der schnöden Prozentzahl z.B. die grinsenden Gesichter präsentiert.
+	•	Die Smileyparade führt zum Graphikbüro. 
+
+
+

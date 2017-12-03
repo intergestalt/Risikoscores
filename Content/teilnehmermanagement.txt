@@ -1,0 +1,43 @@
+Content
+
+Tab 1
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_quilt.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_street.jpg","text": "", "source":""}}
+],
+"context":{"room":"teilnehmermanagement", "tab":"tab1"}}
+>>>
+
+Tab 2
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_2016.jpg","text": "", "source":""}}
+],
+"context":{"room":"teilnehmermanagement", "tab":"tab2"}}
+>>>
+
+<<<ExternalLink: Hamburg Health;http://risiko.hamal.uberspace.de/uploads/pdfs/hamburg_health.pdf>>>
+
+Tab 3
+
+An solchen großen Sachen nehm' ich eigentlich nie teil oder hab' da nich' so'n Interesse, aber das Interesse wuchs dann, hab' ich mir halt dann noch mal durchgelesen und […] dachte "Ja, warum nich'? Is' ja ganz interessant mal." Obwohl, dadrin hatt' ich irgendwo gelesen, also man bekommt keine Diagnose und nichts, dacht' ich "Naja, is' ja eigentlich auch komisch, wenn se jetzt wirklich was finden, werden wa sehen. Aber ich bin ja eigentlich gesund und, ja, wenn ich da der Wissenschaft dienen kann, warum nich'? Is' ja vielleicht mal ganz interessant, sowas mitzumachen." (Teilnehmerin)
+
+"Wir müssen sie in Liebe betten, damit sie wiederkommen.“ – Studienschwester (Callcenter und Untersuchungszentrum)
+
+Tab 4 
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_mitarbeiter.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_mitarbeiter.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_mitarbeiter.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_mitarbeiter.jpg","text": "", "source":""}}
+],
+"context":{"room":"teilnehmermanagement", "tab":"tab4"}}
+>>>
+
+Tab 5
+
+<<<ExternalLink: Bulletin_2007_02_16;http://risiko.hamal.uberspace.de/uploads/pdfs/Bulletin_2007_02_16.pdf>>>
+<<<ExternalLink: BWHBulletins_NursesHealthStudy;http://risiko.hamal.uberspace.de/uploads/pdfs/BWHBulletins_NursesHealthStudy.pdf>>>
+<<<ExternalLink: Speizer_Frank;http://risiko.hamal.uberspace.de/uploads/pdfs/Speizer_Frank.pdf>>>

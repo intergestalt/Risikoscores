@@ -1,0 +1,29 @@
+Content
+
+Die Arztpraxis ist besonders dichter Ort, an dem viele Akteure aufeinander treffen – Ärzte, Richtlinien, Software, Patienten, diagnostische Messgeräte, Geschichten, Daten – und an Behandlungsabläufen individuell getüftelt wird. Für viele Krankheitsbilder gibt es heute standardisierte Behandlungsabläufe. Solche medizinischen Leitlinien sollen Ergebnisse epidemiologischer Studien in die Praxis überführen. Leitlinien zu kardiovaskulären Erkrankungen sehen etwa vor, dass ein Arzt Risiko-Rechner benutzt. So soll der Arriba–Score zur Prävention von Herz-Kreislauf-Erkrankungen eingesetzt. Dadurch entstehen Reibungen zwischen zwei Wissensformen: dem Erfahrungswissen der Ärzt*innen und einem quantifizierten Risikowissen. Erfahrungswissen entsteht dadurch, dass Ärzt*innen ihre Patient*innen jahrelang begleiten. Risikowissen entsteht in der Auswertung von großen Datenmengen aus medizinischen Daten ganzer Kollektive, ein enger Kontakt zum einzelnen Patienten ist nicht notwendig. So können Risiko-Scores als eine neue Wissensform über Patienten in die ärztlicihe Praxis verstanden werden, über die andere Ärzt*innen-Patient*innen-Beziehungen entstehen. Auch verändert sich die Basis für Behandlungsentscheidungen, die nun in Abstimmung mit dem Score direkt mit der Patientin und den visualisiertem Risikowissen verhandelt werden kann. . Mittels eigener Praxissoftware, die Risiko-Scores integriert, werden diese Scores selbst mit der tatsächlichen Krankheitserfahrung der beratenen Menschen verglichen. Im Fall des von uns untersuchten Risiko-Scores geschieht dies im Rahmen der Einführung der hausarztzentrierten Versorgung. Algorithmen und ihre Verbesserung werden so zum integrierten Bestandteil ärztlicher Praxis.
+
+Tab1
+
+Zitate von Nutzer*innen und Gegner*innen unter Ärzt*innen
+(als Text)
+
+"OK, listen, if he smokes, he has an 18-times-greater risk of so and so, then those are the sorts of numbers that he finds interesting, or if he were to lose 10 kilos, then perhaps he won’t need any blood pressure tablets in the coming year, see, those are the sorts of numbers, that’s what he finds interesting, and that’s what I don’t get from the scores, see, and therefore I hardly ever use them. . . . what was missing completely until now is an instrument, where we can . . . these things, such as physical activity, for instance, or smoking, directly include in such a thing: there is always data, that’s the effect of a drug, how many percentages or how many per-mil improvement causes that and so; there is, so far, almost no data about this much, much more important area, which are also much, much more effective . . ." (Müller-Riemenschneider e.a. 2010, S. 721f.)
+
+"Well, but our health care system is not set up in this way, we don’t do primary prevention, that in everybody we, who somehow comes along, perform the maximum program [ . . . ] and you can’t [evaluate] every healthy person on such a score—you may be able to do that in the context of studies or, I don’t know, but not in the primary care practice. That’s completely impracticable, well, really.
+. . . they come because they are sick, primarily we do not examine healthy, no, that’s a health, political, societal, or whatever task, school, district registration office, don’t know! But not the practice! (Müller-Riemenschneider e.a. 2010, S. 722)"
+
+"Many just don’t want to hear that sort of thing. (Yeah!) “I already know that I’m too fat and I smoke. So? So, and?” And they’re off! (Exactly!)
+“And I haven’t been seeing you for half a year because every time, you tell me I should stop smoking!” (Müller-Riemenschneider e.a. 2010, S. 722)"
+
+"[ . . . ] when you try to do a normal examination, then even with labtype measurements and a normal clinic and with proper case histories, including whether they smoke and what food and drink they have, and how much exercise they do—“What sort of sports do you do?” and so on, then I don’t need a score, I don’t need an index, I can just go along with my medical knowledge and give them advice. The scores and such indices are there for me, although I don’t really need them; well, it’s really scientific, and the patient often wouldn’t even understand them. (Müller-Riemenschneider e.a. 2010, S. 722)"
+
+
+Tab 2
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_arriba.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_arriba.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_procam.jpg","text": "", "source":""}}
+],
+"context":{"room":"arztpraxis", "tab":"tab2"}}
+>>>

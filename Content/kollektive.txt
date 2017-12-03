@@ -1,0 +1,30 @@
+Content
+
+Die Gesundheitswissenschaften beschäftigt sich mit Entwicklungen von Gesundheit und Krankheit größerer Menschengruppen bis zu ganzen Staaten. Dafür erheben epidemiologische Studien Daten, aus denen Kennzahlen für die Gesundheit von Bevölkerungsgruppen berechnet werden. Epidemiologische Risiko-Scores leiten aus dem Krankheitsgeschehen in der Bevölkerung wiederum Prognosen für einzelne Individuen ab, die die ärztliche Beratung in Ratschläge für die jeweiligen Patienten übersetzt.
+
+Tab 1
+
+Nachricht: Habe Post von dieser komischen Studie bekommen, jetzt schon zum zweiten Mal, stehen die auch bald vor meiner Tür oder was? Sie nennen mich „ausgewählt“. Für wie blöd halten sie mich? Die nehmen glaub ich nur Teilnehmer mit einem deutschen Pass. Dass die soviel Geld kriegen, wo die Leute doch wahrscheinlich an anderen Faktoren erkranken, Flucht, Arbeitsverhältnisse, Umweltgifte. 
+
+Antwort: Die Gezogenen übers Einwohnermeldeamt brauchen nicht unbedingt einen deutschen Pass. Es gibt sogar Studienzentren, die ihren Schwerpunkt auf eben jene Migration setzen. In manchen Studienzentren arbeiten ebenfalls mehrheitlich Personen, deren Eltern nicht in den territorialen Grenzen Deutschlands geboren sind. Ich weiß, dass muss einer reduktionistischen Politik der Zahl keinen Einhalt entgegen setzen. Trotzdem deine Kritik greift zu kurz. Vielleicht ist es ja auch so, dass ein Satz der so beginnen kann: „das sagen die Statistik“ viel mehr bewirken als noch ein Erfahrungsbericht eines syrischen Flüchtlings?
+
+Tab 2
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_statistik.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_statistik.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_statistik.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_statistik.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"05_statistik.jpg","text": "", "source":""}}
+],
+"context":{"room":"kollektive", "tab":"tab2"}}
+>>>
+
+Tab 3
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_daten.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_daten.png","text": "", "source":""}}
+],
+"context":{"room":"kollektive", "tab":"tab3"}}
+>>>

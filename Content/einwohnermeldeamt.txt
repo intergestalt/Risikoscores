@@ -1,0 +1,29 @@
+Content
+
+Das Einwohnermeldeamt ist ein besonderer Datenknotenpunkt für epidemiologische Forschung. Es bildet zunächst eine zentrale Registerstelle aller Bürgerinnen und Bürger. Forschergruppen können das Einwohnermeldeamt kontaktieren, wenn sie bevölkerungsbasierte Studien durchführen wollen. Anders als etwa frühere Volkszählungen arbeiten die meisten bevölkerungsbezogenen Studien heute mit Stichproben. Dabei entscheidet ein Algorithmus, welche Bürger und Bürgerinnen nach dem Zufallsprinzip aus dem Melderegister zur Studienteilnahme eingeladen werden. Eine Zufallsauswahl ist Voraussetzung, um statistisch fundierte Aussagen über den Zusammenhang zwischen Lebensumständen und Erkrankung zu treffen.
+
+
+Tab 1
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_perozzo.jpg","text": "", "source":""}}
+],
+"context":{"room":"einwohnermeldeamt", "tab":"tab1"}}
+>>>
+
+Tab 2
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_architektur.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_architektur.jpg","text": "", "source":""}}
+],
+"context":{"room":"einwohnermeldeamt", "tab":"tab2"}}
+>>>
+
+Tab 3
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_pdf.jpg","text": "", "source":""}}
+],
+"context":{"room":"einwohnermeldeamt", "tab":"tab3"}}
+>>>
