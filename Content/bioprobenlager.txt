@@ -10,7 +10,8 @@ Tab 1
 {"asset":{"type":"image","name":"03_ordnen.jpg","text": "", "source":""}},
 {"asset":{"type":"image","name":"04_ordnen.jpg","text": "", "source":""}},
 {"asset":{"type":"image","name":"05_ordnen.jpg","text": "", "source":""}},
-{"asset":{"type":"image","name":"06_ordnen.jpg","text": "", "source":""}}
+{"asset":{"type":"image","name":"06_ordnen.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"07_ordnen.jpg","text": "", "source":""}}
 ],
 "context":{"room":"bioprobenlager", "tab":"tab1"}}
 >>>

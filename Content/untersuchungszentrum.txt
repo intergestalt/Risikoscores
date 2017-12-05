@@ -44,3 +44,21 @@ Tab 2
 ],
 "context":{"room":"untersuchungszentrum", "tab":"tab2"}}
 >>>
+
+Tab 3
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_fitness.jpg","text": "Manche moderne Fitness-Center bieten inzwischen eine Leistungsdiagnostik an, die an Tests der Spiroergometrie für medizinische Untersuchungen erinnert.", "source":""}},
+{"asset":{"type":"image","name":"02_fitness.jpg","text": "Als Sensoren dienen eine Atemeinheit mit Einwegmundstück...", "source":""}},
+{"asset":{"type":"image","name":"03_fitness.jpg","text": "... und ein Pulsmesser.", "source":""}},
+{"asset":{"type":"image","name":"04_fitness.jpg","text": "Die aufgenommen Sensordaten werden per Kabel und Bluetooth an ein Messgerät geschickt, weiterverarbeitet und schließlich an ein Diagnosetool auf einem Labtop übermittelt.", "source":""}},
+{"asset":{"type":"image","name":"05_fitness.jpg","text": "Der Proband klemmt sich die Nase ab, damit er nur durch das Mundstück atmet. Außerdem legt er den Pulsmesser an.", "source":""}},
+{"asset":{"type":"image","name":"06_fitness.jpg","text": "Danach rennt er ca. 20 Minuten auf einem Laufband", "source":""}},
+{"asset":{"type":"image","name":"07_fitness.jpg","text": "Das Diagnosetool zeigt die gemessenen Daten in Echtzeit an. Gemessen wird der Sauerstofffluß, das Atemvolumen und die Atemfrequenz, der Kohlendioxidfluß und die Herzfrequenz.", "source":""}},
+{"asset":{"type":"image","name":"08_fitness.jpg","text": "Aus diesen Meßdaten wird der Kalorienverbrauch und die Fett- und Kohlenhydratverbrennung näherungsweise berechnet und in eimem Graphen aufgezeichnet.", "source":""}},
+{"asset":{"type":"image","name":"09_fitness.jpg","text": "Am Ende werden die auf diese Art gewonnen Daten in eine Tabelle sortiert, die den Energiestoffwechsel der Testperiode erfaßt.", "source":""}},
+{"asset":{"type":"image","name":"10_fitness.jpg","text": "Ergebnis ist dann ein <<<ExternalLink: Testbericht;http://risiko.hamal.uberspace.de/uploads/pdfs/testbericht.pdf>>> auf dessen Grundlage man die Effizienz des Trainings steigern kann.", "source":""}},
+{"asset":{"type":"image","name":"11_fitness.jpg","text": "Zeit für einen Proteindrink!", "source":""}}
+],
+"context":{"room":"untersuchungszentrum", "tab":"tab3"}}
+>>>

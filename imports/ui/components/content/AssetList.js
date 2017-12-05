@@ -29,7 +29,13 @@ class AssetList extends React.Component {
       const newRow = (
         <tr key={'_' + i}>
           <td>
-            <AnnotatedAsset asset={myAsset} clickCallback={this.detailClick} />
+            <AnnotatedAsset
+              key={'_' + i}
+              asset={myAsset}
+              text={row.asset.text}
+              source={row.asset.source}
+              clickCallback={this.detailClick}
+            />
           </td>
         </tr>
       );
@@ -54,6 +60,4 @@ AssetList.propTypes = {
 
 export default AssetList;
 
-const Table = styled.table`
-  width: 100%;
-`;
+const Table = styled.table`width: 100%;`;

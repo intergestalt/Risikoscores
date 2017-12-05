@@ -92,7 +92,7 @@ class TimelineBody extends React.Component {
           key={'_' + i}
           asset={myAsset}
           text={row.asset.text}
-          source={row.source}
+          source={row.asset.source}
           clickCallback={this.detailClick}
         />
       );
