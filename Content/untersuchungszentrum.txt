@@ -7,6 +7,31 @@ keinen Einfluss auf das Leben der Probanden haben und Messergebnisse dürfen kau
 
 Tab 1
 
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"05_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"06_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"07_studie.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"08_studie.jpg","text": "", "source":""}}
+],
+"context":{"room":"untersuchungszentrum", "tab":"tab1"}}
+>>>
+
+Tab 2
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_history.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_history.jpg","text": "", "source":""}}
+],
+"context":{"room":"untersuchungszentrum", "tab":"tab2"}}
+>>>
+
+
+Tab 3
+
 U]nd das warn zum Beispiel so 'ne Sachen, wo's mich wirklich interessiert hat, […] wie ich da grade abschneide, weil ich mir über 'n paar Sachen so eh schon mal Sorgen gemacht hatte. […] Ich frag' mich schon öfter „Riecht es wirklich nur so wenig, wenn ich hier koche oder lässt wirklich, leidet wirklich mein Geruchssinn unter diesen ständigen Erkältungen?“ und so. Also das warn schon meine Fragen, die ich mir auch erhoffte 'n bissn beantwortet zu kriegen, […] das [war das] Grundmissverständnis, weil es denen ja nich' darum ging, mir zu erzählen, wie gesund oder nich' gesund ich bin oder nur in arg definierten, limitierten Ausmaßen. […] Das is' ja 'ne wissenschaftliche Untersuchung, 's is' ja keine ärztliche Untersuchung, […] es is' ja ganz klar, dass die sich jetzt nich' mit mir hinsetzen zum Abschlussgespräche und sagen „Frau Mh-mh-mh, Sie müssen abnehmen, und dies' und jenes, was weiß ich, […] noch mal zum HNO-Arzt gehen.“ […] Und ich hab' zum Beispiel […] so ‚aufmüpfige‘ Gedanken gehabt, wie „Wenn ich jetzt die nächsten Jahre bis ich das nächste Mal untersucht werde total gesund lebe, Veganerin werde und 40 Kilo abnehme, versau' ich denen dann ihr Studienergebnis? Ja? Werd' ich dann aussortiert wegen, wegen Ausreißer in der […] Datenerhebung sozusagen?“. – Teilnehmerin
 
 
@@ -45,7 +70,7 @@ Tab 2
 "context":{"room":"untersuchungszentrum", "tab":"tab2"}}
 >>>
 
-Tab 3
+Tab 4
 
 <<<AssetList: {"rows":[
 {"asset":{"type":"image","name":"01_fitness.jpg","text": "Manche moderne Fitness-Center bieten inzwischen eine Leistungsdiagnostik an, die an Tests der Spiroergometrie für medizinische Untersuchungen erinnert.", "source":""}},
@@ -60,5 +85,5 @@ Tab 3
 {"asset":{"type":"image","name":"10_fitness.jpg","text": "Ergebnis ist dann ein <<<ExternalLink: Testbericht;http://risiko.hamal.uberspace.de/uploads/pdfs/testbericht.pdf>>> auf dessen Grundlage man die Effizienz des Trainings steigern kann.", "source":""}},
 {"asset":{"type":"image","name":"11_fitness.jpg","text": "Zeit für einen Proteindrink!", "source":""}}
 ],
-"context":{"room":"untersuchungszentrum", "tab":"tab3"}}
+"context":{"room":"untersuchungszentrum", "tab":"tab4"}}
 >>>
