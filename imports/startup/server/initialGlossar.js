@@ -15,12 +15,12 @@ export function getInitialGlossar() {
         'Gegensatz zu <<<Glossar:Qualitativ;Qualitativ>>>. Ist man normalerweise gewöhnt, die Dinge unter qualitativen Aspekten zu betrachten und etwa zu sagen, etwas sei schön oder häßlich, gut oder schlecht, so kann man ach versuchen diese Eigenschaften in Quantitäten, letztlich Zahlen aufzulösen. Ein Fieberkranker mag immer noch schwitzen, zittern und allerlei qualitative Symptome haben, worauf es nunmehr ankommt ist die Temperatur seines Körpers auf ei er Skala von 0 bis 100. Eine gelbe Butterblume mag noch so kräftig leuchten und sogar Aspekte anderer Farben in sich tragen: Quantitativ sind Farben einfach ein Spektrum verschiedener Wellenlängen unterschiedlicher Gewichtung. Die moderne Wissenschaft ist letztlich der Versuch unsere Welt in ihrer Mannigfaltigkeit zu quantifizieren, sie verschiedenen Formeln, Tabellen und Kalkülen gleichzumachen und letztlich zu vermessen.'
     },
     {
-        id: getId('Qualitativ'),
-        name: 'Qualitativ',
-        text:
-          'Gegensatz zu <<<Glossar:Quantitativ;Quantitativ>>>. Begreift man die einzelnen Gegenstände nach ihren konkreten Eigenschaften und betrachtet man die Welt ihrem Zusammenhang, so sieht man sie unter qualitativen Gesichtspunkten. Das Herz rast dann in Panik, während es unter <<<Glossar:Quantitativ;quantitativen>>> Gesichtspunkten einfach einen Puls von 150 hätte.'
-      },
-      {
+      id: getId('Qualitativ'),
+      name: 'Qualitativ',
+      text:
+        'Gegensatz zu <<<Glossar:Quantitativ;Quantitativ>>>. Begreift man die einzelnen Gegenstände nach ihren konkreten Eigenschaften und betrachtet man die Welt ihrem Zusammenhang, so sieht man sie unter qualitativen Gesichtspunkten. Das Herz rast dann in Panik, während es unter <<<Glossar:Quantitativ;quantitativen>>> Gesichtspunkten einfach einen Puls von 150 hätte.'
+    },
+    {
       id: getId('Risikofaktoren-Epidemiologie'),
       name: 'Risikofaktoren-Epidemiologie',
       text:
@@ -73,6 +73,196 @@ export function getInitialGlossar() {
       name: 'Biomarker',
       text:
         'Ein charakteristisches Merkmal irgendwo in unserer Biologie, welches auf einen normalen oder krankhaften biologischen Prozess verweist. Dies können Gene, Zellen, Enzyme oder ähnliches sein. Am bekanntesten dürfte die der Analyse des Blutbildes entnommenen Biomarker sein, die sogenannten Blutwerte. Denen kann die Medizin Information über allerlei Erkrankungen entnehmen und etwa Krebs diagnostizieren.'
+    },
+    {
+      id: getId('Zeitregime'),
+      name: 'Zeitregime',
+      text: ''
+    },
+    {
+      id: getId('Hausarztzentrierte'),
+      name: 'Hausarztzentrierte',
+      text: ''
+    },
+    {
+      id: getId('Prädiktion'),
+      name: 'Prädiktion',
+      text: ''
+    },
+    {
+      id: getId('Versorgung'),
+      name: 'Versorgung',
+      text: ''
+    },
+    {
+      id: getId('Antizipation'),
+      name: 'Antizipation',
+      text: ''
+    },
+    {
+      id: getId('Praxissoftware'),
+      name: 'Praxissoftware',
+      text: ''
+    },
+    {
+      id: getId('Study nurse'),
+      name: 'Study nurse',
+      text: ''
+    },
+    {
+      id: getId('Einwilligungserklärung'),
+      name: 'Einwilligungserklärung',
+      text: ''
+    },
+    {
+      id: getId('Nurses Health Study'),
+      name: 'Nurses Health Study',
+      text: ''
+    },
+    {
+      id: getId('Population'),
+      name: 'Population',
+      text: ''
+    },
+    {
+      id: getId('Anonymisierung'),
+      name: 'Anonymisierung',
+      text: ''
+    },
+    {
+      id: getId('Studienteilnehmer'),
+      name: 'Studienteilnehmer',
+      text: ''
+    },
+    {
+      id: getId('Pseudonymisierung'),
+      name: 'Pseudonymisierung',
+      text: ''
+    },
+    {
+      id: getId('Wissenschaftler'),
+      name: 'Wissenschaftler',
+      text: ''
+    },
+    {
+      id: getId('Server'),
+      name: 'Server',
+      text: ''
+    },
+    {
+      id: getId('Infrastruktur'),
+      name: 'Infrastruktur',
+      text: ''
+    },
+    {
+      id: getId('Risikoschätzer'),
+      name: 'Risikoschätzer',
+      text: ''
+    },
+    {
+      id: getId('Anrufung/Interpellation'),
+      name: 'Anrufung/Interpellation',
+      text: ''
+    },
+    {
+      id: getId('Gestaltung'),
+      name: 'Gestaltung',
+      text: ''
+    },
+    {
+      id: getId('Klinische Praxis'),
+      name: 'Klinische Praxis',
+      text: ''
+    },
+    {
+      id: getId('Visualisierung'),
+      name: 'Visualisierung',
+      text: ''
+    },
+    {
+      id: getId('Algorithmus'),
+      name: 'Algorithmus',
+      text: ''
+    },
+    {
+      id: getId('Bevölkerungsmedizin'),
+      name: 'Bevölkerungsmedizin',
+      text: ''
+    },
+    {
+      id: getId('Kennzahlen'),
+      name: 'Kennzahlen',
+      text: ''
+    },
+    {
+      id: getId('Sterbetafeln'),
+      name: 'Sterbetafeln',
+      text: ''
+    },
+    {
+      id: getId('Lebensversicherung'),
+      name: 'Lebensversicherung',
+      text: ''
+    },
+    {
+      id: getId('Effizienz'),
+      name: 'Effizienz',
+      text: ''
+    },
+    {
+      id: getId('Infrastruktur'),
+      name: 'Infrastruktur',
+      text: ''
+    },
+    {
+      id: getId('Governance'),
+      name: 'Governance',
+      text: ''
+    },
+    {
+      id: getId('Repräsentativ'),
+      name: 'Repräsentativ',
+      text: ''
+    },
+    {
+      id: getId('Stichprobe'),
+      name: 'Stichprobe',
+      text: ''
+    },
+    {
+      id: getId('Mikrozensus'),
+      name: 'Mikrozensus',
+      text: ''
+    },
+    {
+      id: getId('Register'),
+      name: 'Register',
+      text: ''
+    },
+    {
+      id: getId('Follow-up'),
+      name: 'Follow-up',
+      text: ''
+    },
+    {
+      id: getId('Kardiovaskulär'),
+      name: 'Kardiovaskulär',
+      text: ''
+    },
+    {
+      id: getId('Kohortenstudien'),
+      name: 'Kohortenstudien',
+      text: ''
+    },
+    {
+      id: getId('Gesundheitsförderung'),
+      name: 'Gesundheitsförderung',
+      text: ''
+    },
+    {
+      id: getId('Risikoschätzung'),
+      name: 'Risikoschätzung',
+      text: ''
     }
   ];
   return glossar;
