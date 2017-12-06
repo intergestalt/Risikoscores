@@ -8,3 +8,5 @@ mongodb-backups-uberspace/
 var/*
 !var/.gitkeep
 yarn-error.log
+.meteor/.DS_Store
+.DS_Store

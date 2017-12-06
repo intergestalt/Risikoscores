@@ -24,7 +24,9 @@ Tab 2
 
 <<<AssetList: {"rows":[
 {"asset":{"type":"image","name":"01_history.jpg","text": "", "source":""}},
-{"asset":{"type":"image","name":"02_history.jpg","text": "", "source":""}}
+{"asset":{"type":"image","name":"02_history.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_history.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_history.jpg","text": "", "source":""}}
 ],
 "context":{"room":"untersuchungszentrum", "tab":"tab2"}}
 >>>

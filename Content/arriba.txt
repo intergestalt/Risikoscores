@@ -31,11 +31,19 @@ Tab 3
 >>>
 
 Tab 4
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_vorbeugen.jpg","text": "Skizze", "source":""}},
+{"asset":{"type":"image","name":"02_vorbeugen.jpg","text": "Skizze", "source":""}}
+],
+"context":{"room":"arriba", "tab":"tab4"}}
+>>>
+
+Tab 5
 
 <<<AssetList: {"rows":[
 {"asset":{"type":"image","name":"01_spiel.jpg","text": "Skizze", "source":"Copyright HH"}}
 ],
-"context":{"room":"arriba", "tab":"tab4"}}
+"context":{"room":"arriba", "tab":"tab5"}}
 >>>
 
 Risikoscorespiel
