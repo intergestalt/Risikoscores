@@ -70,15 +70,19 @@ function convertImages(force = false) {
         if (sizeObj.width > dimensions.width) {
           process.stdout.write("too small, using original dimensions ...");
           //continue;
-          sizeObj.width = dimensions.width;
+          targetWidth = dimensions.width;
+        } else {
+          targetWidth = sizeObj.width;
         }
+
+        process.stdout.write("" + targetWidth + "w ...")
 
         const result = await resizePromise({
           srcPath: file,
           dstPath: destFile,
           strip: true,
-          customArgs: ['-auto-orient'],
-          width: sizeObj.width,
+          customArgs: ['-bordercolor', 'none', '-border', '1x1', '-trim', '-auto-orient', '+repage'],
+          width: targetWidth,
           quality: sizeObj.quality,
         });
 
