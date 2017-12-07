@@ -192,6 +192,18 @@ export function getTabDetailIndex() {
   return -1;
 }
 
+export function setTabDetailIndex(i) {
+  var detail = Session.get('tabDetail');
+  if (exists(detail)) {
+    if (exists(detail.index)) {
+      detail.index = i;
+    }
+  } else {
+    detail = { index: i }
+  }
+  Session.set('tabDetail', detail);
+}
+
 export function getTabSlider(room, tab) {
   var slider = Session.get('tabSlider');
   if (!exists(room) && !exists(tab)) {

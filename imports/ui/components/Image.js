@@ -22,6 +22,7 @@ class Image extends React.Component {
           src={imgSrc}
           srcSet={getSrcsetString(imgSrc, sizeName)}
           title={title}
+          imgStyles={this.props.imgStyles}
         />
       );
     }
@@ -42,7 +43,8 @@ class Image extends React.Component {
 }
 Image.propTypes = {
   asset: PropTypes.object,
-  clickCallback: PropTypes.func
+  clickCallback: PropTypes.func,
+  imgStyles: PropTypes.string
 };
 
 export default Image;
@@ -50,6 +52,7 @@ export default Image;
 const Img = styled.img`
   width: 100%;
   display: block;
+  ${ props => props.imgStyles};
 `;
 
 const A = styled.a`
