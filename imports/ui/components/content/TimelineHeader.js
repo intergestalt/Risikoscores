@@ -69,7 +69,8 @@ class TimelineHeader extends React.Component {
     let years = [];
     for (var i = 0; i < this.props.data.rows.length; i++) {
       const row = this.props.data.rows[i];
-      const newYear = <Year innerRef={(el) => this.yearsElems.set(row.year, el)} key={row.year}>{row.year}</Year>;
+      const index = i;
+      const newYear = <Year onClick={() => this.props.onYearClick(index)} innerRef={(el) => this.yearsElems.set(row.year, el)} key={row.year}>{row.year}</Year>;
       years.push(newYear);
     }
     return (
@@ -103,11 +104,15 @@ const Header = styled.div`
     margin-bottom:-15px;
     position: absolute;
     top:0;
+    pointer-events: none;
  `;
 
-const Year = styled.span`
+const Year = styled.a`
     padding: 0 2em;
     line-height: ${dist.medium};
     &:first-child { padding-left: 4em }
     &:last-child { padding-right: 4em }
+    pointer-events: all;
+    color: white;
+    cursor: pointer;
  `;
