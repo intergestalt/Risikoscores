@@ -43,12 +43,16 @@ export function getRoomQuestions(all) {
     }
   }
   if (own.length > 0) {
-    index = zuffi(own.length - 1);
-    result.push(own[index]);
+    //index = zuffi(own.length - 1);
+    for (var i = 0; i < own.length; i++) {
+      result.push(own[i]);
+    }
   }
   if (foreign.length > 0) {
-    index = zuffi(foreign.length - 1);
-    result.push(foreign[index]);
+    //index = zuffi(foreign.length - 1);
+    for (var i = 0; i < foreign.length; i++) {
+      result.push(foreign[i]);
+    }
   }
   cacheRoomQuestions(result, roomId);
   return result;
