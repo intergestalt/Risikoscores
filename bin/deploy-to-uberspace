@@ -35,6 +35,8 @@ echo "Continuing remotely:"
 
 ssh $uberspace_username@$uberspace_host /bin/bash << EOF
 
+source ~/.bash_profile
+
 echo node_path: $node_path
 echo -n nodejs version...
 $node_path/node --version
@@ -46,7 +48,7 @@ echo "Unpacking..."
 tar -xzf *.tar.gz
 
 echo "Installing node modules..."
-source ~/.bash_profile
+
 cd ~/tmp/build/bundle/programs/server/
 $node_path/npm install
 $node_path/npm install lodash.keys
