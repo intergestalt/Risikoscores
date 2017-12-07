@@ -23,7 +23,8 @@ Tab 2
 <<<AssetList: {"rows":[
 {"asset":{"type":"image","name":"01_arriba.jpg","text": "", "source":""}},
 {"asset":{"type":"image","name":"02_arriba.png","text": "", "source":""}},
-{"asset":{"type":"image","name":"03_procam.jpg","text": "", "source":""}}
+{"asset":{"type":"image","name":"03_procam.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_arzt.jpg","text": "", "source":""}}
 ],
 "context":{"room":"arztpraxis", "tab":"tab2"}}
 >>>

@@ -2,6 +2,20 @@ Content
 
 Wir leben in einer Risikogesellschaft: Die Zukunft erscheint als ein Raum, den Spekulationen und Prognosen ausloten und scheinbar vorwegnehmen. Seien es Wetterprognosen, Aktienkurse oder unser Krankheitsirisko – online finden wir was dazu. Mathematische und statistische Verfahren erzeugen Zukunftsberechnungen, die uns im Alltag begleiten und unser Handeln beeinflussen. Nicht nur die Medizin ermittelt Risiken und prognostiziert mögliche Entwicklungen. Epidemiologische Risiko-Scores agieren in einem weit größeren Universum von Risikoberechnungen und -vorhersagen, die mittlerweile online frei verfügbar sind. Wir sind gewohnt, Suchwerkzeuge im Netz einzusetzen, alle möglichen Apps zu nutzen und auch unser Verhalten daran auszurichten. Während viele Marketing-Scores Kundendaten auswerten, die online erfasst werden, verwenden epidemiologische Scores (bisher) speziell erhobene Daten ausgewählter Menschen, die bewusst ihre Informationen für die epidemiologischen Studien zu Verfügung gestellt haben.  
 
+Tab 2
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"05_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"06_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"07_ausstellung.jpg","text": "", "source":""}}
+],
+"context":{"room":"www", "tab":"tab2"}}
+>>>
+
 Tab 1
 
 Links für den Raum www & Co:
@@ -17,3 +31,17 @@ Links für den Raum www & Co:
 <<<ExternalLink:www.google.org/flutrends/about/;www.google.org/flutrends/about/>>>
 -
 <<<ExternalLink:www.youtube.com/watch?v=bqdu6tWZcmw;www.youtube.com/watch?v=bqdu6tWZcmw>>>
+
+Tab 2
+
+ <<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"05_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"06_ausstellung.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"07_ausstellung.jpg","text": "", "source":""}}
+],
+"context":{"room":"www", "tab":"tab2"}}
+>>>

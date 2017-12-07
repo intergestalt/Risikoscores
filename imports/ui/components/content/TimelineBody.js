@@ -5,8 +5,9 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import { CustomScrollbars } from '../';
 import { AnnotatedAsset } from './';
-import { getImageAsset } from '../../../helper/asset';
+import { getImageAsset, getSliderAssetIndex } from '../../../helper/asset';
 import { dist } from '../../../config/styles';
+import { setTabDetail } from '../../../helper/actions';
 
 class TimelineBody extends React.Component {
   constructor(props) {

@@ -6,7 +6,9 @@ Das Einwohnermeldeamt ist ein besonderer Datenknotenpunkt für epidemiologische 
 Tab 1
 
  <<<AssetList: {"rows":[
-{"asset":{"type":"image","name":"01_perozzo.jpg","text": "", "source":""}}
+{"asset":{"type":"image","name":"01_geschichte.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_geschichte.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_geschichte.jpg","text": "", "source":""}}
 ],
 "context":{"room":"einwohnermeldeamt", "tab":"tab1"}}
 >>>

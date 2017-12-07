@@ -7,8 +7,9 @@ Tab 1
 
 <<<AssetList: {"rows":[
 {"asset":{"type":"image","name":"01_neurath.png","text": "", "source":""}},
-{"asset":{"type":"image","name":"02_arriba.png","text": "", "source":""}},
-{"asset":{"type":"image","name":"03_uk.png","text": "", "source":""}}
+{"asset":{"type":"image","name":"02_neurath.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_arriba.png","text": "", "source":""}},
+{"asset":{"type":"image","name":"04_uk.png","text": "", "source":""}}
 ],
 "context":{"room":"programmierbuero", "tab":"tab1"}}
 >>>
@@ -31,4 +32,14 @@ Tab 3
 {"asset":{"type":"image","name":"05_ampel.png","text": "", "source":""}}
 ],
 "context":{"room":"programmierbuero", "tab":"tab3"}}
+>>>
+
+Tab 4
+
+<<<AssetList: {"rows":[
+{"asset":{"type":"image","name":"01_rechner.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"02_rechner.jpg","text": "", "source":""}},
+{"asset":{"type":"image","name":"03_rechner.jpg","text": "", "source":""}}
+],
+"context":{"room":"programmierbuero", "tab":"tab4"}}
 >>>
