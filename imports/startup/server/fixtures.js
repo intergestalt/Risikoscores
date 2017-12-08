@@ -45,6 +45,7 @@ const textFragments = [
   'startInfo',
   'menuIcon',
   'aboutLink',
+  'aboutText',
   'languageLink'
 ];
 

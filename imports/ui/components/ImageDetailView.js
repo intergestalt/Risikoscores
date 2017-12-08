@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
-import { Image } from './';
+import { Image, Close } from './';
 import {
   isTabDetail,
   getTabSlider,
@@ -48,14 +48,10 @@ class ImageDetailView extends React.Component {
     const asset = slider.list[startIndex];
     return (
       <Container className="ImageDetailView">
-        <Close
-          href="#"
-          onClick={e => {
-            this.clickCallback(e);
-          }}
-        >
-          X
-        </Close>
+        <Close onClick={e => {
+          this.clickCallback(e);
+        }}
+        />
         <Prev onClick={this.prev}>&lt;</Prev>
         <Image imgStyles={imgStyles} asset={asset} />
         <Next onClick={this.next} >&gt;</Next>
@@ -81,19 +77,6 @@ const Container = styled.div`
   width: 100% !important;
   background-color: ${colors.shade};
   z-index: 11;
-`
-const Close = styled.a`
-  position: absolute;
-  top:${ dist.tiny};
-  right:${ dist.tiny};
-  border: 1px solid;
-  line-height:1.1em;
-  padding: 1px 0.3em 0 0.3em;
-  color: ${ colors.lightgrey};
-  font-family: 'Roboto Light';
-  &:hover {
-    text-decoration: none;
-  }
 `
 
 const imgStyles = `

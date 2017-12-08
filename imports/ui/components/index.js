@@ -29,6 +29,7 @@ import RoomQuestionsHeader from './RoomQuestionsHeader';
 import DiyMarkdown from './DiyMarkdown';
 import Image from './Image';
 import CustomScrollbars from './CustomScrollbars';
+import Close from './Close';
 
 import StartLeft from './StartLeft';
 import StartRight from './StartRight';
@@ -43,6 +44,7 @@ import StartGeneralMenuArea from './StartGeneralMenuArea';
 import StartGraphArea from './StartGraphArea';
 import StartGeneralMenu from './StartGeneralMenu';
 import StartRoomMenu from './StartRoomMenu';
+import StartAbout from './StartAbout';
 
 export {
   MenuIcon,
@@ -83,5 +85,7 @@ export {
   StartGraphArea,
   StartGeneralMenu,
   StartRoomMenu,
-  Image
+  StartAbout,
+  Image,
+  Close
 };

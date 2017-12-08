@@ -55,8 +55,8 @@ const Container = styled.div`
   padding: ${dist.named.columnPadding} 0;
   box-sizing: border-box;
   bottom: 0;
-  width:50%;
-  width:calc( 50% - ${dist.named.columnPadding} );
+  width:100%;
+  width:calc( 100% - ${dist.named.columnPadding} );
   height:100vh;
   max-height: 75vw;
 `;

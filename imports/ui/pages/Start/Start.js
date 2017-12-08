@@ -26,6 +26,7 @@ class Start extends React.Component {
   renderLoading() {
     return <div className="Start">Loading...</div>;
   }
+
   render() {
     if (!this.props.ready) {
       return this.renderLoading();
@@ -49,7 +50,7 @@ export default withTracker(props => {
   return {
     rooms: Rooms.find({}, { sort }).fetch(),
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready()
+    ready: sub.ready() && sub2.ready(),
   };
 })(Start);
 

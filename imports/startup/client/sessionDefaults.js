@@ -14,3 +14,4 @@ Session.setDefault('streamStarted', false);
 Session.setDefault('streamFinished', false);
 Session.setDefault('realGraph', null);
 Session.setDefault('graphNodeId', null);
+Session.setDefault('showAbout', false);

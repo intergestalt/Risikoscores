@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Session } from 'meteor/session';
 import styled from 'styled-components';
 import { withTracker } from 'meteor/react-meteor-data';
 import GraphDB from '../../collections/graph';
 
-import { StartRoomMenuArea, StartGeneralMenuArea, StartGraphArea } from './';
+import { StartRoomMenuArea, StartGeneralMenuArea, StartGraphArea, StartAbout } from './';
 import { colors, dist } from '../../config/styles';
 
 class StartRight extends React.Component {
@@ -28,6 +29,7 @@ class StartRight extends React.Component {
           graph={this.props.graph}
         />
         <StartGeneralMenuArea />
+        {this.props.showAbout && <StartAbout />}
       </Container>
     );
   }
@@ -42,11 +44,13 @@ export default withTracker(props => {
 
   return {
     graph: GraphDB.find().fetch(),
-    ready: sub.ready()
+    ready: sub.ready(),
+    showAbout: Session.get('showAbout'),
   };
 })(StartRight);
 
 const Container = styled.div`
   background-color: ${colors.darkgrey};
   padding: ${dist.named.columnPadding};
+  position: relative;
 `;
