@@ -29,7 +29,7 @@ class StartRight extends React.Component {
           graph={this.props.graph}
         />
         <StartGeneralMenuArea />
-        {this.props.showAbout && <StartAbout />}
+        <StartAbout show={this.props.showAbout} />
       </Container>
     );
   }
@@ -53,4 +53,5 @@ const Container = styled.div`
   background-color: ${colors.darkgrey};
   padding: ${dist.named.columnPadding};
   position: relative;
+  overflow: hidden;
 `;

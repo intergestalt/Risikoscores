@@ -20,7 +20,7 @@ class StartAbout extends React.Component {
   render() {
     var text = getFragment('aboutText', this.props.lang);
     return (
-      <Container className="StartAbout">
+      <Container className="StartAbout" show={this.props.show}>
         <Close onClick={this.handleClose} />
         <DiyMarkdown>{text}</DiyMarkdown>
       </Container>
@@ -43,6 +43,8 @@ const Container = styled.div`
   top:0;
   right:0;
   color: white;
+  transition: all 0.5s;
+  transform: translateX(${props => props.show ? "0" : "-100%"});
   box-sizing: border-box;
   padding-top: calc( ${ dist.small} - ${dist.lineTopDiff} );
   padding-bottom: calc( ${ dist.small} - ${dist.lineBottomDiff} );
