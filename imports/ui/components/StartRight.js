@@ -50,7 +50,8 @@ export default withTracker(props => {
 })(StartRight);
 
 const Container = styled.div`
-  background-color: ${colors.darkgrey};
+  background-color: ${colors.mediumgrey};
+  background: linear-gradient(to bottom, ${colors.mediumgrey} 0%, ${colors.darkgrey} 100%);
   padding: ${dist.named.columnPadding};
   position: relative;
   overflow: hidden;

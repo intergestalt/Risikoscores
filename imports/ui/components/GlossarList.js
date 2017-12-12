@@ -58,10 +58,7 @@ export default GlossarList;
 
 const Content = styled.div`
   ${snippets.glossarText};
-  &,
-  & a {
-    color: white;
-  }
+  color: white;
   h2 {
     margin: 1em 0;
     ${snippets.headlineText};

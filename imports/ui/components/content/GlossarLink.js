@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { showGlossarDetail } from '../../../helper/actions';
+import { colors } from '../../../config/styles';
 
 class GlossarLink extends React.Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class GlossarLink extends React.Component {
       dummy = ': Is in Room';
     }
     return (
-      <a
+      <A
         className="SCGlossarLink"
         href="#"
         onClick={e => {
@@ -23,7 +25,7 @@ class GlossarLink extends React.Component {
         }}
       >
         {this.props.text}{dummy}
-      </a>
+      </A>
     );
   }
 }
@@ -34,3 +36,7 @@ GlossarLink.propTypes = {
 };
 
 export default GlossarLink;
+
+const A = styled.a`
+  color: ${ colors.named.glossar} !important;
+`
