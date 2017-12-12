@@ -7,10 +7,27 @@ import { Image } from './';
 class Slideshow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      index: 0
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      this.handleClick()
+    }, 10000)
+  }
+
+  handleClick() {
+    const length = this.props.assets.length;
+    const index = this.state.index
+    const newIndex = index < length - 1 ? index + 1 : 0
+    this.setState({ index: newIndex })
   }
 
   render() {
-    return <Image asset={this.props.assets[0]} />;
+    return <Image onClick={this.handleClick} asset={this.props.assets[this.state.index]} />;
   }
 }
 

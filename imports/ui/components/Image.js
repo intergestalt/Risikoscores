@@ -23,6 +23,7 @@ class Image extends React.Component {
           srcSet={getSrcsetString(imgSrc, sizeName)}
           title={title}
           imgStyles={this.props.imgStyles}
+          onClick={this.props.onClick}
         />
       );
     }

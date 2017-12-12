@@ -55,9 +55,6 @@ class ImageDetailView extends React.Component {
         <Prev onClick={this.prev}>&lt;</Prev>
         <Image imgStyles={imgStyles} asset={asset} />
         <Next onClick={this.next} >&gt;</Next>
-        <div>
-          Slider {startIndex} {asset.text} {asset.source}
-        </div>
       </Container>
     );
   }
@@ -94,6 +91,7 @@ const Nav = styled.div`
   font-size: 5vh;  
   text-align: center;
   cursor: pointer;
+  user-select: none;
 `
 
 const Prev = Nav.extend`
