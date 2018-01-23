@@ -1,6 +1,6 @@
 import color from 'color';
 
-const maxDarken = 0.5;
+const maxDarken = 0.6;
 
 const tabColors = (tabColor, steps) => {
   let out = []
