@@ -63,6 +63,7 @@ class Room extends React.Component {
           selectedTabId={selectedTabId}
           tabs={this.props.room.subsections}
           roomId={this.props.room._id}
+          roomColor={this.props.room.color}
         />
         <RightColumn
           graphNodeId={selectedGraphNodeId}

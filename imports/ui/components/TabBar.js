@@ -21,7 +21,9 @@ class TabBar extends React.Component {
       const tab = this.props.tabs[i];
       var className = 'Tab';
 
-      if (selectedTabId === tab.identifier) {
+      isSelected = selectedTabId === tab.identifier;
+
+      if (isSelected) {
         className = 'SelectedTab';
         content = localeStr(tab.title);
       }
@@ -30,7 +32,7 @@ class TabBar extends React.Component {
           key={'_tab' + i}
           to={'/rooms/' + this.props.roomId + '?tabId=' + tab.identifier}
           className={className}
-          style={{ backgroundColor: tab.color }}
+          style={{ backgroundColor: isSelected ? this.props.roomColor : tab.color }}
         >
           <TabText>{localeStr(tab.title)}</TabText>
         </Tab>
@@ -44,6 +46,7 @@ class TabBar extends React.Component {
 
 TabBar.propTypes = {
   roomId: PropTypes.string,
+  roomColor: PropTypes.string,
   selectedTabId: PropTypes.string,
   preSelectedTabId: PropTypes.string,
   tabs: PropTypes.array
@@ -57,7 +60,7 @@ const Bar = styled.nav`
   flex-wrap: wrap;
 `;
 
-const Tab = styled(NavLink)`
+const Tab = styled(NavLink) `
   ${snippets.tabText} display:block;
   min-width: calc(100% / 3);
   box-sizing: border-box;
@@ -67,6 +70,7 @@ const Tab = styled(NavLink)`
   text-decoration: none;
   color: black;
   white-space: no-wrap;
+    transition: background-color 0.2s;
 `;
 
 const TabText = styled.span`

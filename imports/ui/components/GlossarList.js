@@ -37,8 +37,6 @@ class GlossarList extends React.Component {
     var roomEntryList = this.getGlossarList(roomGlossar, true);
     var title = getFragment('glossar');
 
-    console.log(this.props.roomGlossar)
-
     return (
       <Content className="GlossarContent GlossarList">
         <Title>{title}</Title>

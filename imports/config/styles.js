@@ -73,7 +73,7 @@ export { colors, snippets, dist };
 
 /**************************************************************
   
-  Sketch to illustrate lineTopDiff and lineBottomDiff
+  This is a sketch illustrating lineTopDiff and lineBottomDiff
   all according to standard line height and the custom font
   
   | upper border of line -------------------------------------
