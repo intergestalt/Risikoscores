@@ -12,13 +12,11 @@ class GlossarLink extends React.Component {
 
   render() {
     var dummy = '';
-    if (this.props.highlighted) {
-      dummy = ': Is in Room';
-    }
     return (
       <A
         className="SCGlossarLink"
         href="#"
+        highlighted={this.props.highlighted}
         onClick={e => {
           e.preventDefault();
           showGlossarDetail(this.props.entry);
@@ -39,7 +37,13 @@ export default GlossarLink;
 
 const A = styled.a`
   color: ${colors.named.glossar};
-  .GlossarContent & {
+  .GlossarArea & {
+    opacity: ${ props => props.highlighted ? 1 : 0.5};
+  }
+  .GlossarDetail & {
+    opacity: 1;
+  }
+  .GlossarList & {
     color: white;
   }  
 `

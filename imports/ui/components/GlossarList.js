@@ -40,11 +40,8 @@ class GlossarList extends React.Component {
     console.log(this.props.roomGlossar)
 
     return (
-      <Content className="GlossarContent">
+      <Content className="GlossarContent GlossarList">
         <Title>{title}</Title>
-        <h2>Raum Einträge</h2>
-        <ul>{roomEntryList}</ul>
-        <h2>Alle Einträge</h2>
         <ul>{entryList}</ul>
       </Content>
     );
@@ -70,4 +67,5 @@ const Content = styled.div`
 const Title = styled.h3`
   ${snippets.headlineText};
   color: ${colors.named.glossar};
+  margin-bottom: 1em;
 `;
