@@ -26,7 +26,7 @@ class TabContent extends React.Component {
       return (
         <Content className="TabContent">
           <CustomScrollbars>
-            <ScrollContainer>
+            <ScrollContainer className="ScrollContainer">
               {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
               <DiyMarkdown>{splitted.text}</DiyMarkdown>
             </ScrollContainer>
@@ -76,6 +76,8 @@ const ContentNoScroll = Content.extend`
   }
 `;
 
-const ScrollContainer = styled.div``;
+const ScrollContainer = styled.div`
+  padding-bottom: 10em; // TODO insert height of MENU button
+`;
 
 const Headline = styled.h1`${snippets.headlineText};`;

@@ -30,11 +30,14 @@ DiyMarkdown.propTypes = {
 export default DiyMarkdown;
 
 const Styled = styled.div`
-  & p:not(:last-child) {
+  & > p:not(:last-child) {
     margin-bottom: 1em;
   }
   p {
     padding-left: ${dist.named.columnPadding};
     padding-right: ${dist.named.columnPadding};
+  }
+  & > p:first-child {
+    margin-top: 1em;
   }
 `;
