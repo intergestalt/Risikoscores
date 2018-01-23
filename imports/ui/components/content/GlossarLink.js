@@ -38,7 +38,10 @@ GlossarLink.propTypes = {
 export default GlossarLink;
 
 const A = styled.a`
-  color: white !important;
+  color: ${colors.named.glossar};
+  .GlossarContent & {
+    color: white;
+  }  
 `
 
 // ${ colors.named.glossar}
