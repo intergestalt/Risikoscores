@@ -58,5 +58,5 @@ const Content = styled.div`
 const Headline = styled.h1`
   ${snippets.headlineText};
   color: ${colors.named.room};
-  padding: 0 ${dist.named.columnPadding} 1em;
+  padding: 0 ${dist.named.columnPadding} 0;
 `;

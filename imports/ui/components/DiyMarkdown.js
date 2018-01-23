@@ -37,7 +37,7 @@ const Styled = styled.div`
     padding-left: ${dist.named.columnPadding};
     padding-right: ${dist.named.columnPadding};
   }
-  & > p:first-child {
+  & > *:not(.SCTimeline):first-child {
     margin-top: 1em;
   }
 `;
