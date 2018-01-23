@@ -12,7 +12,7 @@ const helpTexts = {
     [[[{"disableScrolling":"true"}]]]
 
     Glossar Links:
-    <<<Glossar:Kohortenstudie;Kohortenstudie>>>
+    <<<Glossar:Kohortenstudie;die Kohortenstudie>>>
 
     Available special components for Tab:
     Timeline: {...}

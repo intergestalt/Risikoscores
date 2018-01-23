@@ -34,8 +34,10 @@ class GlossarList extends React.Component {
     const glossar = sortGlossar(this.props.glossar);
     var entryList = this.getGlossarList(glossar);
     const roomGlossar = getRoomGlossar(glossar, this.props.roomGlossar);
-    var roomEntryList = this.getGlossarList(roomGlossar, false);
+    var roomEntryList = this.getGlossarList(roomGlossar, true);
     var title = getFragment('glossar');
+
+    console.log(this.props.roomGlossar)
 
     return (
       <Content className="GlossarContent">
