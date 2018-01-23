@@ -6,7 +6,8 @@ import {
   Link,
   GlossarLink,
   Timeline,
-  AssetList
+  AssetList,
+  Quote
 } from '../ui/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
@@ -118,7 +119,14 @@ function renderSpecialComponent(specialComponent, id, glossar) {
     return <Timeline key={'_' + id} data={options} />;
   } else if (name === 'assetlist') {
     return <AssetList key={'_' + id} data={options} />;
-  }
+  } else if (name === 'quote') {
+    return <Quote 
+      key={'_' + id} 
+      text={options.text} 
+      source={options.source}
+      audio={options.audio}
+    />;
+  }  
 }
 
 function getSpanComponent(md, text, id) {

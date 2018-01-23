@@ -94,6 +94,11 @@ export default withTracker(props => {
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
+  if (!tabId) {
+    if (room && room.subsections) {
+      tabId = room.subsections[0].identifier // set default tab
+    }
+  }
   if (exists(tabId)) {
     setSelectedTabId(tabId);
     if (room && room.subsections) {

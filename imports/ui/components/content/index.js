@@ -9,6 +9,7 @@ import AnnotatedAsset from './AnnotatedAsset';
 import Asset from './Asset';
 import Annotation from './Annotation';
 import DetailButton from './DetailButton';
+import Quote from './Quote';
 
 export {
   ExternalLink,
@@ -21,5 +22,6 @@ export {
   Asset,
   AnnotatedAsset,
   Annotation,
-  DetailButton
+  DetailButton,
+  Quote,
 };
