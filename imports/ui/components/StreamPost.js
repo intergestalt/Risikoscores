@@ -93,7 +93,12 @@ const Header = styled.div`
   margin: 0 ${dist.small};
 `;
 
-const Content = styled.div`margin: 0;`;
+const Content = styled.div`
+  margin: 0;
+  & p {
+    margin-top:0 !important;
+  }
+`;
 
 const Img = styled.img`
   width: 100%;
