@@ -103,8 +103,7 @@ export default withTracker(props => {
   if (exists(tabId)) {
     setSelectedTabId(tabId);
     if (room && room.subsections) {
-      const tabColor = room.subsections.filter(s => s.identifier === tabId)[0]
-        .color;
+      const tabColor = room.color;
       setSelectedTabColor(tabColor);
     }
   }
