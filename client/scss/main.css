@@ -11,6 +11,15 @@
   padding: 1rem;
 }
 
+.AdminWrapper form input,
+.AdminWrapper form textarea {
+  border-color: black !important;
+}
+
+.AdminWrapper *:not(a) {
+  color: black !important;
+}
+
 .AdminWrapper h1,
 .AdminWrapper h2,
 .AdminWrapper h3,
@@ -25,6 +34,21 @@
 
 .AdminWrapper .small {
   color: #aaa;
+}
+
+.AdminEditRoom #uniforms-0000-000f > div + div {
+  margin-top: 3em;
+  
+}
+
+.AdminEditRoom form > div[required] {
+  margin-bottom: 3em !important;
+  background-color: lightgrey;
+  padding: 1em !important;
+  border-radius: 1em;
+}
+.AdminEditRoom form > div[required] * {
+  border-color: black;
 }
 
 /*** CLIENT ***/

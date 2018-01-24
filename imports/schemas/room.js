@@ -6,11 +6,11 @@ import {
 
 const RoomSchema = new SimpleSchema(
   {
-    name: {
-      type: MultilingualStringSchema
-    },
     color: {
       type: String
+    },
+    name: {
+      type: MultilingualStringSchema
     },
     mainText: {
       type: MultilingualTextSchema
