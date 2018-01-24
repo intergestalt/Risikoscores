@@ -53,6 +53,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
+  padding-bottom: calc(1em + ${dist.lineBottomDiff});
 `;
 
 const Headline = styled.h1`
