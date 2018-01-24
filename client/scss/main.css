@@ -16,7 +16,7 @@
   border-color: black !important;
 }
 
-.AdminWrapper *:not(a) {
+.AdminWrapper form *:not(a) {
   color: black !important;
 }
 
