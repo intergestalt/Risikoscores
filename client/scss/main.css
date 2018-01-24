@@ -27,6 +27,11 @@
   color: #aaa;
 }
 
+.AdminWrapper .DeleteButton {
+  float:right;
+  transform: translateY(-100%);
+}
+
 /*** CLIENT ***/
 
 /*** Room ***/

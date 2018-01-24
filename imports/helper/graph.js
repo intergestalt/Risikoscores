@@ -131,6 +131,11 @@ export function getNeighbours(nodeId, realGraph) {
 export function getOutgoingEdges(nodeId, realGraph) {
   const nodesHash = realGraph.nodesHash;
   const node = nodesHash[nodeId];
+
+  if (!node) {
+    console.log(nodeId + " DOES NOT EXIST", realGraph)
+  }
+
   const result = [];
   for (var i = 0; i < node.neighbours.length; i++) {
     const neighbourId = node.neighbours[i];

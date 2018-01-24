@@ -36,6 +36,6 @@ export default withTracker(props => {
   Meteor.subscribe('graph.list');
 
   return {
-    graph: Graph.find().fetch()
+    graph: Graph.find({}, { sort: { _id: 1 } }).fetch()
   };
 })(AdminGraph);
