@@ -17,6 +17,9 @@ import { exists } from '../../helper/global';
 class GraphArea extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      roomId: undefined,
+    }
     this.callback = this.callback.bind(this);
     this.graphCallback = this.graphCallback.bind(this);
   }
@@ -31,6 +34,7 @@ class GraphArea extends React.Component {
     } else {
       setSelectGraphNode(getSelectedRoomId());
     }
+    this.setState({ roomId })
   }
 
   renderLoading() {
@@ -53,7 +57,7 @@ class GraphArea extends React.Component {
           expanded={isGraphExpanded()}
           directionDown={false}
         />
-        <GraphHeader />
+        <GraphHeader roomId={this.state.roomId} />
         <Graph
           width={`calc( ( 100vw / 3 ) - ( 2 * ${dist.named.columnPadding} ) )`}
           height={`calc( ( 100vh / 3 ) - ${dist.named.columnPadding} )`}
@@ -69,7 +73,8 @@ class GraphArea extends React.Component {
 
 GraphArea.propTypes = {
   graph: PropTypes.array,
-  graphNodeId: PropTypes.string
+  graphNodeId: PropTypes.string,
+  room: PropTypes.object,
 };
 
 export default withTracker(props => {

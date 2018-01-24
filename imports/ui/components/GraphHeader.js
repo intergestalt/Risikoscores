@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
+import Rooms from '../../collections/rooms';
 import styled from 'styled-components';
 import { getFragment } from '../../helper/fragment';
 
@@ -9,8 +12,8 @@ class GraphHeader extends React.Component {
   }
 
   render() {
-    var title = getFragment('graphTitle');
-
+    var title = this.props.title || getFragment('graphTitle');
+    console.log(this.props.title)
     return (
       <Container className="GraphHeader">
         <h3>{title}</h3>
@@ -19,7 +22,16 @@ class GraphHeader extends React.Component {
   }
 }
 
-export default GraphHeader;
+export default withTracker(props => {
+  const sub2 = Meteor.subscribe('rooms.list');
+  const language = Session.get("language");
+  const room = Rooms.findOne(props.roomId);
+  const title = (room && language) ? room.name[language] : null
+
+  return {
+    title
+  };
+})(GraphHeader);
 
 const Container = styled.div`
   position: absolute;

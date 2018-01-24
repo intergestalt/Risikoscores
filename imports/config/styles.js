@@ -41,8 +41,8 @@ const snippets = {
   `,
   annotationText: `
     font-family: 'Roboto Regular';
-    line-height: 13px;
-    font-size: 11px;
+    line-height: 14px;
+    font-size: 13px;
   `,
   tabText: `
     font-family: 'Roboto Light';
