@@ -27,7 +27,7 @@ export function getGraph() {
       pseudo: false,
       x: 33,
       y: 27,
-      neighbours: 'einwohnermeldeamt;pseudo1;teilnehmermanagement;arztpraxis'
+      neighbours: 'einwohnermeldeamt;www;teilnehmermanagement;arztpraxis'
     },
     {
       _id: 'bioprobenlager',
@@ -49,7 +49,7 @@ export function getGraph() {
       pseudo: false,
       x: 12,
       y: 45,
-      neighbours: 'pseudo2;arztpraxis'
+      neighbours: 'population;arztpraxis'
     },
     {
       _id: 'teilnehmermanagement',
@@ -80,20 +80,6 @@ export function getGraph() {
       y: 77,
       neighbours: 'arriba;framingham;population;www'
     },
-    {
-      _id: 'pseudo1',
-      pseudo: true,
-      x: 20,
-      y: 20,
-      neighbours: 'population;pseudo2'
-    },
-    {
-      _id: 'pseudo2',
-      pseudo: true,
-      x: 15,
-      y: 25,
-      neighbours: 'pseudo1;www'
-    }
   ];
   return graph;
 }
