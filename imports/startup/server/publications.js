@@ -36,6 +36,11 @@ Meteor.publish('questions.list', function () {
   return Questions.find({});
 });
 
+Meteor.publish('questions.listByRoom', function (roomId) {
+  return Questions.find({ roomId });
+});
+
+
 Meteor.publish('questions', function (id) {
   return Questions.find(id);
 });
