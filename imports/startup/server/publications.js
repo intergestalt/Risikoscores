@@ -6,6 +6,7 @@ import TextFragments from '../../collections/textFragments';
 import Graph from '../../collections/graph';
 import Questions from '../../collections/questions';
 import UploadsStatus from '../../collections/uploadsStatus';
+import Uploads from '../../collections/uploads';
 
 Meteor.publish('rooms.list', function () {
   return Rooms.find({}, { fields: { name: 1, _id: 1 } });
@@ -49,4 +50,8 @@ Meteor.publish('graph', function (id) {
 
 Meteor.publish('uploadStatus.list', function () {
   return UploadsStatus.find();
+});
+
+Meteor.publish('uploads.list', function () {
+  return Uploads.find();
 });

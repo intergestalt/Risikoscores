@@ -5,6 +5,7 @@ import parsePath from 'parse-filepath'; // for client-side
 import fs from 'fs';
 import im from 'imagemagick';
 import UploadsStatus from '../collections/uploadsStatus';
+import Uploads from '../collections/uploads';
 import { imageSizes } from '../config/imagesSizes';
 
 const wrapWithPromise = wrappedFunction => (...args) => (
@@ -64,6 +65,10 @@ function convertImages(force = false) {
         }
 
         updateStatus({ processingFile: `${dirRelativeToUploads}/${path.basename(destFile)}` })
+        const uploadId = `${dirRelativeToUploads}/${p.base}`
+        Uploads.upsert({ _id: uploadId }, {
+          $set: { _id: uploadId }
+        })
 
         const dimensions = await getImageDimensions(file);
 
@@ -105,6 +110,7 @@ function updateStatus(state) {
 
 function clearCache() {
   console.log("processing images")
+  Uploads.remove({}, { multi: true })
   recursive(global.cache_dir, async function (err, files) {
     // loop files
     for (let file of files) {
