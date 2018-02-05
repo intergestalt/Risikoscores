@@ -38,6 +38,6 @@ export default withTracker(props => {
   Meteor.subscribe('questions.list');
 
   return {
-    questions: Questions.find().fetch()
+    questions: Questions.find({}, { sort: { roomId: 1, 'text.de': 1 } }).fetch()
   };
 })(AdminQuestions);
