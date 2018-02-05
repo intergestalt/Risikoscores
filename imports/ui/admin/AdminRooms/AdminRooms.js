@@ -35,6 +35,6 @@ export default withTracker(props => {
   Meteor.subscribe('rooms.list');
 
   return {
-    rooms: Rooms.find().fetch()
+    rooms: Rooms.find({}, { sort: { 'name.de': 1 } }).fetch()
   };
 })(AdminRooms);

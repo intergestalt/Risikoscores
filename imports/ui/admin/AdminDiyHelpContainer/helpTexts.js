@@ -8,14 +8,20 @@ const helpTexts = {
     [[[ ]]] for configuration
   `,
   'diyMarkdownRoom': `
-    Switch scrolling of the Tab content off (Required for Timeline Component):
-    [[[{"disableScrolling":"true"}]]]
 
-    Glossar Links:
+    Interner Link:
+    <<<Link:TEXT;RAUMNAME;TABNAME>>>
+    <<<Link:Behandlungsabläufe;arztpraxis;tab2>>>
+
+    Glossar Link:
+    <<<Glossar:ZIELBEGRIFF;TEXT>>>
     <<<Glossar:Kohortenstudie;die Kohortenstudie>>>
 
-    Available special components for Tab:
-    Timeline: {...}
+    <<<Quote: {
+      "text": "Ich glaube, solche Scores…",
+      "audio": "Abschnitt_11.2.mp3",
+      "source": "Müller-Riemenschneider 1999"
+    }>>>
 
     AssetList
     <<<AssetList: {"rows":[
@@ -24,13 +30,13 @@ const helpTexts = {
       {"asset":{"type":"image","name":"03_procam.jpg","text": "", "source":""}}
       ],
       "context":{"room":"arztpraxis", "tab":"tab2"}}
-      >>>
+    >>>
 
-    <<<Quote: {
-      "text": "Ich glaube, solche Scores…",
-      "audio": "Abschnitt_11.2.mp3",
-      "source": "Müller-Riemenschneider 1999"
-    }>>>
+    Available special components for Tab:
+    Timeline: {...}
+
+    Switch scrolling of the Tab content off (Required for Timeline Component):
+    [[[{"disableScrolling":"true"}]]]    
     `
 }
 

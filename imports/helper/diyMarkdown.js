@@ -120,13 +120,13 @@ function renderSpecialComponent(specialComponent, id, glossar) {
   } else if (name === 'assetlist') {
     return <AssetList key={'_' + id} data={options} />;
   } else if (name === 'quote') {
-    return <Quote 
-      key={'_' + id} 
-      text={options.text} 
+    return <Quote
+      key={'_' + id}
+      text={options.text}
       source={options.source}
       audio={options.audio}
     />;
-  }  
+  }
 }
 
 function getSpanComponent(md, text, id) {
