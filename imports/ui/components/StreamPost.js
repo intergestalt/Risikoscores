@@ -86,7 +86,9 @@ const Li = styled.li`
   }
 `;
 
-const LiLoading = Li.extend`padding: ${dist.medium};`;
+const LiLoading = Li.extend`
+padding: ${dist.small} 0 0 ${dist.small};
+`;
 
 const Header = styled.div`
   ${snippets.smallText};

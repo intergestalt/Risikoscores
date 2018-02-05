@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { colors } from '../../config/styles';
+import color from 'color';
+import { colors, dist } from '../../config/styles';
 
 class StreamLoading extends React.Component {
   constructor(props) {
@@ -46,11 +47,15 @@ const dotsAnim = keyframes`
 
 const Container = styled.div`
   display: inline-block;
+  background-color: ${color(colors.lightgrey).fade(0.5).string()};
+  padding: ${ dist.tiny};
+  border-radius: ${dist.small};
+  opacity: 0.7;
 `;
 
 const Dot = styled.span`
   /*font-size: 2em;*/
-  color: ${ colors.darkgrey}
+  color: ${ colors.darkgrey};
   &:not(:first-child) {
     /*padding-left:0.5ex;*/
   }
