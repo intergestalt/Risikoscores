@@ -18,7 +18,7 @@ class GraphArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      roomId: undefined,
+      selectedRoomId: undefined,
     }
     this.callback = this.callback.bind(this);
     this.graphCallback = this.graphCallback.bind(this);
@@ -28,13 +28,14 @@ class GraphArea extends React.Component {
     e.preventDefault();
     toggleGraph(e);
   }
+
   graphCallback(roomId) {
     if (exists(roomId)) {
       setSelectGraphNode(roomId);
     } else {
       setSelectGraphNode(getSelectedRoomId());
     }
-    this.setState({ roomId })
+    this.setState({ selectedRoomId: roomId })
   }
 
   renderLoading() {
@@ -57,7 +58,7 @@ class GraphArea extends React.Component {
           expanded={isGraphExpanded()}
           directionDown={false}
         />
-        <GraphHeader roomId={this.state.roomId} />
+        <GraphHeader roomId={this.state.selectedRoomId} />
         <Graph
           width={`calc( ( 100vw / 3 ) - ( 2 * ${dist.named.columnPadding} ) )`}
           height={`calc( ( 100vh / 3 ) - ${dist.named.columnPadding} )`}
