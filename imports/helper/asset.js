@@ -3,6 +3,9 @@ import { setTabSlider, getTabSlider } from './actions';
 
 export function getImageSrc(asset) {
   var subfolder = asset.subfolder;
+  if (!asset.name || asset.name.toLowerCase() === "fehlt" || asset.name === "-") {
+    return `//dummyimage.com/600x400/000655/fff&text=${asset.title ? (asset.title.de || asset.title.en) : "(fehlt)"}&ignore=`
+  }
   if (existsString(subfolder)) {
     return (imgSrc =
       '/uploads/' + asset.folder + '/' + subfolder + '/' + asset.name);

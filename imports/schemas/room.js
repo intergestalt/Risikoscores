@@ -30,6 +30,9 @@ const RoomSchema = new SimpleSchema(
     'images.$.name': {
       type: String
     },
+    'images.$.title': {
+      type: MultilingualStringSchema
+    },
     'images.$.order': {
       type: Number
     },
