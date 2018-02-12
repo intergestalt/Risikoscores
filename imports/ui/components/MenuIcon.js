@@ -40,7 +40,7 @@ class MenuIcon extends React.Component {
                 <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
               </filter>
             </defs>
-            <polygon points="120,50 88,100 28,100 0,50 28,0 88,0" filter="url(#f3)"></polygon>
+            <polygon points="120,50 88,100 28,100 0,50 28,0 88,0"></polygon>
           </IconSvg>
           <Text>Menu</Text>
         </a>
@@ -70,6 +70,10 @@ const FloatMenu = styled.nav`
     color: white;
     position: relative;
     z-index: 10;
+    display:block;
+    pointer-events: none;
+    -webkit-filter: drop-shadow( 12px 12px 4px rgba(0,0,0,.55) );
+    filter: drop-shadow( 12px 12px 4px rgba(0,0,0,.55) );
   }
 `;
 
