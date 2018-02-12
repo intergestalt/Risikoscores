@@ -66,6 +66,7 @@ class GraphArea extends React.Component {
           graphCallback={this.graphCallback}
           selectedId={this.props.graphNodeId}
           graph={this.props.graph}
+          restrictNavigation={true}
         />
       </Area>
     );

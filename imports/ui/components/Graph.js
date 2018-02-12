@@ -11,7 +11,7 @@ import {
   getOutgoingEdges
 } from '../../helper/graph';
 import { exists } from '../../helper/global';
-import { getSelectGraphNode } from '../../helper/actions';
+import { getSelectGraphNode, getSelectedRoomId } from '../../helper/actions';
 import { colors } from '../../config/styles';
 
 class Graph extends React.Component {
@@ -19,11 +19,21 @@ class Graph extends React.Component {
     super(props);
   }
 
-  selectNode(nodeId) {
+  selectNode(selectedNodeId, presentNodeId = false) {
+    nodeId = presentNodeId || selectedNodeId;
     const realGraph = getTheRealGraph(this.props.graph);
     const neighbours = getNeighbours(nodeId, realGraph);
     const outgoingEdges = getOutgoingEdges(nodeId, realGraph);
     const modeMap = getGraphModes(realGraph, nodeId, neighbours, outgoingEdges);
+    if (presentNodeId === nodeId) {
+      modeMap.nodeModes[presentNodeId].neighbour = true;
+      modeMap.nodeModes[presentNodeId].selected = false;
+      modeMap.nodeModes[selectedNodeId].neighbour = false;
+      modeMap.nodeModes[selectedNodeId].selected = true;
+      for (let i in modeMap.nodeModes) {
+        modeMap.nodeModes[i].passive = !modeMap.nodeModes[i].neighbour && !modeMap.nodeModes[i].selected
+      }
+    }
     return modeMap;
   }
 
@@ -69,6 +79,7 @@ class Graph extends React.Component {
       if (exists(nodeMode)) {
         var selected = nodeMode.selected;
         var neighbour = nodeMode.neighbour;
+        var passive = nodeMode.passive;
       }
       if (!node.pseudo) {
         nodes.push(
@@ -78,6 +89,7 @@ class Graph extends React.Component {
             neighbour={neighbour}
             node={node}
             graphCallback={this.props.graphCallback}
+            passive={passive}
           />
         );
       }
@@ -90,7 +102,8 @@ class Graph extends React.Component {
     var modeMap = { nodeModes: {}, edgeModes: {} };
 
     if (exists(this.props.selectedId)) {
-      modeMap = this.selectNode(this.props.selectedId);
+      const presentNodeId = this.props.restrictNavigation ? this.props.selectedRoomId : false;
+      modeMap = this.selectNode(this.props.selectedId, presentNodeId);
     }
     const lines = this.getEdges(realGraph, modeMap);
     const circles = this.getNodes(realGraph, modeMap);
@@ -120,16 +133,14 @@ Graph.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   backgroundColor: PropTypes.string,
+  restrictNavigation: PropTypes.bool,
 };
 
 export default withTracker(props => {
   return {
-    selectedId: getSelectGraphNode()
+    selectedId: getSelectGraphNode(),
+    selectedRoomId: getSelectedRoomId(),
   };
 })(Graph);
 
-const SvgContainer = styled.svg`
-  circle {
-    cursor: pointer;
-  }
-`;
+const SvgContainer = styled.svg``;

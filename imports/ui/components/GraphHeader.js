@@ -13,7 +13,6 @@ class GraphHeader extends React.Component {
 
   render() {
     var title = this.props.title || getFragment('graphTitle');
-    console.log(this.props.title)
     return (
       <Container className="GraphHeader">
         <h3>{title}</h3>
