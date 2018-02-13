@@ -13,7 +13,7 @@ class AdminQuestions extends React.Component {
           {questions.map(entry => {
             return (
               <li key={entry._id}>
-                <ListItem entry={entry} />
+                <ListItem entry={entry} collection={Questions} />
               </li>
             );
           })}

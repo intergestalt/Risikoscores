@@ -13,7 +13,7 @@ class AdminGlossar extends React.Component {
           {glossar.map(entry => {
             return (
               <li key={entry._id}>
-                <ListItem entry={entry} />
+                <ListItem entry={entry} collection={Glossar} />
               </li>
             );
           })}
