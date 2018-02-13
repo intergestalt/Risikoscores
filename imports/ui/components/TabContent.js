@@ -23,7 +23,6 @@ class TabContent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
     if (this.props.tab.identifier !== nextProps.tab.identifier) {
       this.setState({ hidden: true })
       setTimeout(() => {

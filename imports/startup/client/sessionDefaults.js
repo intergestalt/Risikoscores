@@ -15,3 +15,6 @@ Session.setDefault('streamFinished', false);
 Session.setDefault('realGraph', null);
 Session.setDefault('graphNodeId', null);
 Session.setDefault('showAbout', false);
+Session.setDefault('powerOn', true);
+Session.setDefault('powerWasOff', false);
+Session.setDefault('serverMute', false);

@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-var tweenState = require('react-tween-state');
 import styled from 'styled-components';
+import ReactStateAnimation from 'react-state-animation'
 
 import { existsString } from '../../../helper/global';
 import { TimelineHeader, TimelineBody } from './';
 import { getImageAsset } from '../../../helper/asset';
 import { dist } from '../../../config/styles';
-
-console.log(tweenState)
 
 class Timeline extends React.Component {
   constructor(props) {
@@ -22,6 +20,7 @@ class Timeline extends React.Component {
     this.bodyTakeLead = this.bodyTakeLead.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
     this.handleYearClick = this.handleYearClick.bind(this)
+    this._animate = new ReactStateAnimation(this)
   }
 
   reorganiseData(data) {
@@ -57,11 +56,7 @@ class Timeline extends React.Component {
 
   handleYearClick(index) {
     this.setState({ scrollLeader: 'Anim' })
-    tweenState('scrollPos', {
-      easing: tweenState.easingTypes.easeInOutQuad,
-      duration: 500,
-      endValue: [index, 0]
-    });
+    this._animate.linearInOut('scrollPos', [index, 0], 1000)
   }
 
   headerTakeLead(e) {

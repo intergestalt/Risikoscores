@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
 import Rooms from '../../../collections/rooms';
@@ -57,7 +58,7 @@ class Room extends React.Component {
       selectedGraphNodeId = this.props.room._id;
     }
     return (
-      <RoomElem className="Room">
+      <RoomElem className="Room" powerOn={this.props.powerOn}>
         <MainColumn room={this.props.room} />
         <TabColumn
           selectedTabId={selectedTabId}
@@ -117,7 +118,8 @@ export default withTracker(props => {
     room,
     selectedTabId: tabId,
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready
+    ready: sub.ready() && sub2.ready,
+    powerOn: Session.get("powerOn")
   };
 })(Room);
 
@@ -129,7 +131,25 @@ const RoomElem = styled.div`
     height: 100%;
     width: calc(100% / 3);
     overflow: hidden;
+    transition: opacity 0.5s, background-color 0.5s, color 1s 0.5s;
   }
   height: 100%;
   overflow: hidden;
+  ${props => props.powerOn ? '' : `
+  background-color: black;
+    & > *:not(nav) {
+      background-color: black;
+      opacity:0.5;
+      transition: opacity 0.5s, background-color 0.5s;
+    }
+    * {
+      color: transparent !important;
+      border-color: transparent;
+      background-image:none;
+    }
+    img {
+      visibility:hidden;
+    }
+  `}
+
 `;
