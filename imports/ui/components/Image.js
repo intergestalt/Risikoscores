@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { getImageSrc } from '../../helper/asset.js';
+import { getLanguage } from '../../helper/actions';
 import { exists } from '../../helper/global';
 import { getSrcsetString } from '../../helper/uploads';
 
@@ -15,13 +16,14 @@ class Image extends React.Component {
     const sizeName = this.props.size || false;
     var imageEntity = null;
     if (exists(this.props.asset)) {
-      const title = this.props.asset.title;
+      const title = this.props.asset.title && getLanguage() ? this.props.asset.title[getLanguage()] : "";
       const imgSrc = getImageSrc(this.props.asset);
       imageEntity = (
         <Img
           src={imgSrc}
           srcSet={getSrcsetString(imgSrc, sizeName)}
           title={title}
+          alt={title}
           imgStyles={this.props.imgStyles}
           onClick={this.props.onClick}
         />

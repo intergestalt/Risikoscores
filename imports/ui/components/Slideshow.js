@@ -19,6 +19,10 @@ class Slideshow extends React.Component {
     }, 10000)
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
+
   handleClick() {
     const length = this.props.assets.length;
     const index = this.state.index
