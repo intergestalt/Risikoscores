@@ -19,12 +19,13 @@ class Graph extends React.Component {
     super(props);
   }
 
-  selectNode(selectedNodeId, presentNodeId = false) {
+  selectNode(selectedNodeId, presentNodeId = null) {
     nodeId = presentNodeId || selectedNodeId;
     const realGraph = getTheRealGraph(this.props.graph);
     const neighbours = getNeighbours(nodeId, realGraph);
     const outgoingEdges = getOutgoingEdges(nodeId, realGraph);
     const modeMap = getGraphModes(realGraph, nodeId, neighbours, outgoingEdges);
+    // patch modeMap for restricted nativation (TODO: move to getGraphModes())
     if (presentNodeId === nodeId) {
       modeMap.nodeModes[presentNodeId].neighbour = true;
       modeMap.nodeModes[presentNodeId].selected = false;
@@ -102,7 +103,7 @@ class Graph extends React.Component {
     var modeMap = { nodeModes: {}, edgeModes: {} };
 
     if (exists(this.props.selectedId)) {
-      const presentNodeId = this.props.restrictNavigation ? this.props.selectedRoomId : false;
+      const presentNodeId = this.props.restrictNavigation ? this.props.selectedRoomId : null;
       modeMap = this.selectNode(this.props.selectedId, presentNodeId);
     }
     const lines = this.getEdges(realGraph, modeMap);
