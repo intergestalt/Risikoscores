@@ -29,8 +29,10 @@ class Graph extends React.Component {
     if (presentNodeId === nodeId) {
       modeMap.nodeModes[presentNodeId].neighbour = true;
       modeMap.nodeModes[presentNodeId].selected = false;
-      modeMap.nodeModes[selectedNodeId].neighbour = false;
-      modeMap.nodeModes[selectedNodeId].selected = true;
+      if (modeMap.nodeModes[selectedNodeId]) {
+        modeMap.nodeModes[selectedNodeId].neighbour = false;
+        modeMap.nodeModes[selectedNodeId].selected = true;
+      }
       for (let i in modeMap.nodeModes) {
         modeMap.nodeModes[i].passive = !modeMap.nodeModes[i].neighbour && !modeMap.nodeModes[i].selected
       }
