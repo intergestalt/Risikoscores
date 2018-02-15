@@ -27,11 +27,13 @@ class AdminEditRoom extends React.Component {
     // workaround for bug of tabs which don't update their order in ui
     this.tabOrderChanged = false;
     this.tabOrderChanged = doc.subsections.length != this.props.room.subsections.length
-    for (let i in doc.subsections) {
-      console.log(doc.subsections[i].order, this.props.room.subsections[i].order)
-      if (doc.subsections[i].order != this.props.room.subsections[i].order) {
-        this.tabOrderChanged = true;
-        break;
+    if (!this.tabOrderChanged) {
+      for (let i in doc.subsections) {
+        console.log(doc.subsections[i].order, this.props.room.subsections[i].order)
+        if (doc.subsections[i].order != this.props.room.subsections[i].order) {
+          this.tabOrderChanged = true;
+          break;
+        }
       }
     }
 
