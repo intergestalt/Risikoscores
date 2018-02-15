@@ -3,6 +3,7 @@ import serveStatic from 'serve-static';
 import express from 'express';
 import { Meteor } from 'meteor/meteor';
 import { convertImages } from '../../helper/uploads';
+import Rooms from '../../collections/rooms';
 
 // configure uploads directory using environment variable
 var_dir = process.env.RISIKOSCORES_VAR_DIR || process.env.PWD + '/var';
@@ -38,6 +39,14 @@ app.use('/uploads', serveStatic(uploads_dir, { 'index': false })) // then upload
 WebApp.connectHandlers.use(app);
 
 /* alternatively run on different port: app.listen(3002) */
+
+// listen to saves and regenerate missing
+Rooms.find().observeChanges({
+  changed(id, fields) {
+    console.log(`Room ${id} changed.`);
+    convertImages();
+  }
+})
 
 // do initial conversions
 Meteor.setTimeout(() => {
