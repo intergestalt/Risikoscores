@@ -51,6 +51,14 @@
   border-color: black;
 }
 
+.AdminWrapper form button[type=submit] {
+  position:fixed; top: 2em; right: 3em;
+}
+
+.AdminWrapper form button[type=submit]:hover {
+  background-color:yellow;
+}
+
 /*** CLIENT ***/
 
 /*** Room ***/
