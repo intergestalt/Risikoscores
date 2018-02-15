@@ -23,6 +23,18 @@ class AdminEditRoom extends React.Component {
 
   save(doc) {
     let room = cleanForSave(doc);
+
+    // workaround for bug of tabs which don't update their order in ui
+    this.tabOrderChanged = false;
+    this.tabOrderChanged = doc.subsections.length != this.props.room.subsections.length
+    for (let i in doc.subsections) {
+      console.log(doc.subsections[i].order, this.props.room.subsections[i].order)
+      if (doc.subsections[i].order != this.props.room.subsections[i].order) {
+        this.tabOrderChanged = true;
+        break;
+      }
+    }
+
     if (!room._id) {
       console.log('INSERT:');
       console.log(room);
@@ -30,22 +42,24 @@ class AdminEditRoom extends React.Component {
     } else {
       console.log('UPDATE ID:' + room._id);
       console.log(room);
-      room.subsections.sort((a, b) => (a.order > b.order))
       Rooms.update(
         room._id,
         {
           $set: room
         },
-        this.saveCallback
+        (error, data) => { this.saveCallback(error, data, doc) }
       );
     }
   }
 
-  saveCallback(error, data) {
+  saveCallback(error, data, doc) {
     if (error) {
       alert('ERROR - NOT SAVED');
     } else {
       alert('SAVED');
+      if (this.tabOrderChanged) {
+        location.reload();
+      }
     }
   }
 
