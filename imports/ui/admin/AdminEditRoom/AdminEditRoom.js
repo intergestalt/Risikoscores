@@ -30,6 +30,7 @@ class AdminEditRoom extends React.Component {
     } else {
       console.log('UPDATE ID:' + room._id);
       console.log(room);
+      room.subsections.sort((a, b) => (a.order > b.order))
       Rooms.update(
         room._id,
         {
