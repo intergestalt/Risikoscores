@@ -38,7 +38,7 @@ export function getGraph() {
         'framingham;untersuchungszentrum;serverraum;teilnehmermanagement'
     },
     {
-      _id: 'programmierbüro',
+      _id: 'programmierbuero',
       pseudo: false,
       x: 10,
       y: 60,

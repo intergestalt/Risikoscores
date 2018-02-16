@@ -28,7 +28,7 @@ const rooms = [
   'einwohnermeldeamt',
   'population',
   'bioprobenlager',
-  'programmierbüro',
+  'programmierbuero',
   'www',
   'teilnehmermanagement',
   'untersuchungszentrum',
