@@ -82,7 +82,7 @@ class AdminEditRoom extends React.Component {
   render() {
     return (
       <div className="AdminEditRoom">
-        <h2>Edit Room</h2>
+        <h2>Edit Room <i>{this.props.room && this.props.room._id}</i></h2>
         <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownRoom']}>
           {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
         </AdminDiyHelpContainer>
