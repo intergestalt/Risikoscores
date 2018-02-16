@@ -26,7 +26,7 @@ const rooms = [
   'arriba',
   'framingham',
   'einwohnermeldeamt',
-  'population',
+  'wissenschaft',
   'bioprobenlager',
   'programmierbuero',
   'www',

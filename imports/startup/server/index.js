@@ -7,6 +7,6 @@ import './publications';
 import './methods';
 
 // startup
-import './migrate';
+import './migrations';
 import './fixtures';
 import './uploads';

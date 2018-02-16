@@ -1,9 +1,11 @@
 /* eslint-disable no-console, no-undef */
 
+// From programmierbüro to programmierbuero
+
 import { Meteor } from 'meteor/meteor';
 
-import Rooms from '../../collections/rooms';
-import Graph from '../../collections/graph';
+import Rooms from '../../../collections/rooms';
+import Graph from '../../../collections/graph';
 
 let doc = null
 
