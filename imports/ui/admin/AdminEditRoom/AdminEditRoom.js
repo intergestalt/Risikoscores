@@ -5,7 +5,8 @@ import RoomSchema from '../../../schemas/room';
 import AdminDiyHelpContainer from '../AdminDiyHelpContainer';
 
 const lazy_imports = async () => {
-  AutoForm = (await import('uniforms-antd/AutoForm')).default
+  AutoForm = (await import('uniforms-antd/AutoForm')).default;
+  message = (await import('antd')).message
 };
 
 import { cleanForSave } from '../../../helper/room';
@@ -56,9 +57,9 @@ class AdminEditRoom extends React.Component {
 
   saveCallback(error, data, doc) {
     if (error) {
-      alert('ERROR - NOT SAVED');
+      message.success('Error - not saved');
     } else {
-      alert('SAVED');
+      message.success('Saved');
       if (this.tabOrderChanged) {
         location.reload();
       }
@@ -83,7 +84,7 @@ class AdminEditRoom extends React.Component {
     return (
       <div className="AdminEditRoom">
         <h2>Edit Room <i>{this.props.room && this.props.room._id}</i></h2>
-        <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownRoom']}>
+        <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownLink', 'diyMarkdownGlossar', 'diyMarkdownRoom']}>
           {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
         </AdminDiyHelpContainer>
       </div>

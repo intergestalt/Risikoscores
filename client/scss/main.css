@@ -7,6 +7,7 @@
 
 /*** ADMIN ***/
 
+
 .AdminWrapper {
   padding: 1rem;
 }
@@ -25,16 +26,17 @@
 .AdminWrapper h3,
 .AdminWrapper h4,
 .AdminWrapper p {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .AdminWrapper h1,
 .AdminWrapper h2 {
-  margin-top: 1rem;
+  margin-top: 1em;
 }
 
+.AdminWrapper h1,
 .AdminWrapper h2 {
-  font-size:1rem;  
+  font-size:28px;  
 }
 
 .AdminWrapper h2 i {
@@ -42,7 +44,15 @@
 }
 
 .AdminWrapper br {
-  line-height: 1.25rem;
+  line-height: 1.25em;
+}
+
+.AdminWrapper p,
+.AdminWrapper a,
+.AdminWrapper form label,
+.AdminWrapper form input,
+.AdminWrapper form textarea {
+  font-size: 15px;
 }
 
 .AdminWrapper .small {
@@ -51,7 +61,6 @@
 
 .AdminEditRoom #uniforms-0000-000f > div + div {
   margin-top: 3em;
-  
 }
 
 .AdminEditRoom form > div[required] {

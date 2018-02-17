@@ -51,7 +51,7 @@ class AdminWrapper extends React.Component {
       <div className="AdminWrapper" style={{ backgroundColor: "#fdfdfd" }}>
         <link href='/vendor/antd/antd.css' type="text/css" rel="stylesheet" />
         <nav>
-          <Link style={{ paddingRight: "1em" }} to="/admin">Home</Link>
+          <Link style={{ paddingRight: "1em" }} to="/admin"><b>Home</b></Link>
           <Link style={{ paddingRight: "1em" }} to="/" target="preview">Site</Link>
           <AccountsUIWrapper />
         </nav>

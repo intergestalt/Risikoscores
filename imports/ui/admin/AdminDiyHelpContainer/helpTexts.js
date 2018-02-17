@@ -7,15 +7,17 @@ const helpTexts = {
     <<< >>> for components
     [[[ ]]] for configuration
   `,
-  'diyMarkdownRoom': `
-
+  'diyMarkdownLink': `
     Interner Link:
     <<<Link:TEXT;RAUMNAME;TABNAME>>>
     <<<Link:Behandlungsabläufe;arztpraxis;tab2>>>
-
+  `,
+  'diyMarkdownGlossar': `
     Glossar Link:
     <<<Glossar:ZIELBEGRIFF;TEXT>>>
     <<<Glossar:Kohortenstudie;die Kohortenstudie>>>
+  `,
+  'diyMarkdownRoom': `
 
     <<<Quote: {
       "text": "Ich glaube, solche Scores…",
