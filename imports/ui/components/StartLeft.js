@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Questions from '../../collections/questions';
-import { Stream, CustomScrollbars } from './';
+import { Stream, CustomScrollbars, Loading } from './';
 import { colors } from '../../config/styles';
 
 class StartLeft extends React.Component {
@@ -12,7 +12,7 @@ class StartLeft extends React.Component {
     super(props);
   }
   renderLoading() {
-    return <Container className="StartLeft">Loading...</Container>;
+    return <Container className="StartLeft"><Loading /></Container>;
   }
   render() {
     if (!this.props.ready) {

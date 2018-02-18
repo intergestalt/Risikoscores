@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
 import GraphDB from '../../collections/graph';
-import { GraphHeader, Graph, Expander } from './';
+import { GraphHeader, Graph, Expander, Loading } from './';
 import {
   toggleGraph,
   isGraphExpanded,
@@ -39,7 +39,7 @@ class GraphArea extends React.Component {
   }
 
   renderLoading() {
-    return <div className="GraphArea">Loading...</div>;
+    return <div className="GraphArea"><Loading /></div>;
   }
   render() {
     if (!this.props.ready) {

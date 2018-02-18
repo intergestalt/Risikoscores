@@ -30,6 +30,7 @@ import DiyMarkdown from './DiyMarkdown';
 import Image from './Image';
 import CustomScrollbars from './CustomScrollbars';
 import Close from './Close';
+import Loading from './Loading';
 
 import StartLeft from './StartLeft';
 import StartRight from './StartRight';
@@ -87,5 +88,6 @@ export {
   StartRoomMenu,
   StartAbout,
   Image,
-  Close
+  Close,
+  Loading,
 };

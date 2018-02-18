@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Questions from '../../collections/questions';
 import { localeStr, shuffleArray } from '../../helper/global';
-import { DiyMarkdown } from './';
+import { DiyMarkdown, Loading } from './';
 import { dist } from '../../config/styles';
 
 class RoomQuestions extends React.Component {
@@ -19,7 +19,7 @@ class RoomQuestions extends React.Component {
   }
 
   renderLoading() {
-    return <div className="QuestionsArea">Loading...</div>;
+    return <div className="QuestionsArea"><Loading /></div>;
   }
 
   render() {

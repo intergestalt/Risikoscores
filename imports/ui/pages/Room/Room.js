@@ -10,7 +10,8 @@ import {
   TabColumn,
   RightColumn,
   MenuIcon,
-  ImageDetailView
+  ImageDetailView,
+  Loading
 } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
@@ -44,7 +45,7 @@ class Room extends React.Component {
   }
 
   renderLoading() {
-    return <div className="Room">Loading...</div>;
+    return <Loading />;
   }
 
   renderRoom() {
