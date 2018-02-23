@@ -4,13 +4,7 @@ import { Session } from 'meteor/session';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Rooms from '../../../collections/rooms';
-
-const variants = [
-  { _id: 'live', name: 'Normal' },
-  { _id: 'CHSB', name: 'CHSB' },
-  { _id: 'PVHH', name: 'PVHH' },
-  { _id: 'Ariana', name: 'Ariana' },
-]
+import { variants } from '../../../config/variants';
 
 class RoomChooser extends React.Component {
   constructor(props) {
