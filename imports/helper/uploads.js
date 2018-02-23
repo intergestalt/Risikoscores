@@ -7,6 +7,7 @@ import im from 'imagemagick';
 import UploadsStatus from '../collections/uploadsStatus';
 import Uploads from '../collections/uploads';
 import { imageSizes } from '../config/imagesSizes';
+import { uploads_dir, cache_dir } from '../config/uploads';
 
 const wrapWithPromise = wrappedFunction => (...args) => (
   new Promise((resolve, reject) => {
@@ -33,7 +34,7 @@ const identifyPromise = wrapWithPromise(im.identify)
 
 function convertImages(force = false) {
   console.log("processing images")
-  recursive(global.uploads_dir, async function (err, files) {
+  recursive(uploads_dir, async function (err, files) {
     // filter images
     const validFiles = files.filter((file) => (['.jpg', '.png', '.jpeg'].indexOf(path.extname(file)) > -1))
 
@@ -49,12 +50,12 @@ function convertImages(force = false) {
       updateStatus({ totalConvertedImageFiles: index })
 
       const p = path.parse(file);
-      const dirRelativeToUploads = p.dir.substr(global.uploads_dir.length);
+      const dirRelativeToUploads = p.dir.substr(uploads_dir.length);
 
       // loop image sizes
       for (let sizeObj of imageSizes) {
 
-        const destFile = global.cache_dir + generateFilepath(dirRelativeToUploads + '/' + p.base, sizeObj);
+        const destFile = cache_dir + generateFilepath(dirRelativeToUploads + '/' + p.base, sizeObj);
         mkdir.mkdirSync(path.dirname(destFile));
 
         process.stdout.write(`processing ${dirRelativeToUploads}/${p.base} -> ${path.basename(destFile)} ...`);
@@ -111,7 +112,7 @@ function updateStatus(state) {
 function clearCache() {
   console.log("processing images")
   Uploads.remove({}, { multi: true })
-  recursive(global.cache_dir, async function (err, files) {
+  recursive(cache_dir, async function (err, files) {
     // loop files
     for (let file of files) {
       console.log("removing " + file)

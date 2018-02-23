@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Button, Spin } from 'antd';
 import UploadsStatus from '../../../collections/uploadsStatus';
 import Uploads from '../../../collections/uploads';
+import { url_prefix } from '../../../config/uploads';
 
 class AdminUploads extends React.Component {
   constructor() {
@@ -28,7 +29,7 @@ class AdminUploads extends React.Component {
   renderUploadsList() {
     if (!this.props.uploads) return
     const list = this.props.uploads.map((u) => (
-      <li key={u._id}><a target="_preview" href={"/uploads/" + u._id}>{u._id}</a></li>
+      <li key={u._id}><a target="_preview" href={url_prefix + "/" + u._id}>{u._id}</a></li>
     ))
     return (
       <ul>

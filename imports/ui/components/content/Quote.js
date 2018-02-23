@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import { dist } from '../../../config/styles';
 import { Asset, Annotation } from './';
+import { url_prefix } from '../../../config/uploads';
 
 class Quote extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Quote extends React.Component {
   renderAudio() {
     const file = this.props.file
     if (!file) return false;
-    
+
     return (
       <audio src={file} controls="controls"></audio>
     )
@@ -24,7 +25,7 @@ class Quote extends React.Component {
   renderSource() {
     const source = this.props.source
     if (!source) return false;
-    
+
     return (
       <Source>{source}</Source>
     )
@@ -33,9 +34,9 @@ class Quote extends React.Component {
   render() {
     return (
       <Container className="Quote">
-      {this.renderAudio()}
-      {this.props.text}
-      {this.renderSource()}
+        {this.renderAudio()}
+        {this.props.text}
+        {this.renderSource()}
       </Container>
     );
   }
@@ -51,7 +52,7 @@ export default withTracker(props => {
   if (props.audio) {
     const roomId = getSelectedRoomId();
     const tabId = getSelectedTabId();
-    file = "/uploads/" + roomId + "/" + tabId + "/" + props.audio
+    file = url_prefix + "/" + roomId + "/" + tabId + "/" + props.audio
   }
   return {
     file

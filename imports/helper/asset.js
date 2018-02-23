@@ -1,5 +1,6 @@
 import { existsString, exists } from './global';
 import { setTabSlider, getTabSlider } from './actions';
+import { url_prefix } from '../config/uploads';
 
 export function getImageSrc(asset) {
   var subfolder = asset.subfolder;
@@ -8,9 +9,9 @@ export function getImageSrc(asset) {
   }
   if (existsString(subfolder)) {
     return (imgSrc =
-      '/uploads/' + asset.folder + '/' + subfolder + '/' + asset.name);
+      url_prefix + '/' + asset.folder + '/' + subfolder + '/' + asset.name);
   } else {
-    return (imgSrc = '/uploads/' + asset.folder + '/' + asset.name);
+    return (imgSrc = url_prefix + '/' + asset.folder + '/' + asset.name);
   }
 }
 
