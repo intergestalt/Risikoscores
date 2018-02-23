@@ -74,7 +74,7 @@
 }
 
 .AdminWrapper form button[type=submit] {
-  position:fixed; top: 2em; right: 3em;
+  position:fixed; top: 1.5em; right: 3em;
 }
 
 .AdminWrapper form button[type=submit]:hover {

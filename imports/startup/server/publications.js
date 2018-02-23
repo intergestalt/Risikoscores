@@ -8,12 +8,16 @@ import Questions from '../../collections/questions';
 import UploadsStatus from '../../collections/uploadsStatus';
 import Uploads from '../../collections/uploads';
 
-Meteor.publish('rooms.list', function () {
-  return Rooms.find({}, { fields: { name: 1, _id: 1 } });
+Meteor.publish('rooms.list', function (variant = 'live') {
+  return Rooms.find({ variant }, { fields: { name: 1, _id: 1, key: 1 } });
 });
 
-Meteor.publish('room', function (id) {
-  return Rooms.find(id);
+Meteor.publish('room', function (key, variant = 'live') {
+  return Rooms.find({ key, variant });
+});
+
+Meteor.publish('room.variants.list', function (key) {
+  return Rooms.find({ key } /*,{ fields: { variant: 1, key: 1, _id: 1 } }*/);
 });
 
 Meteor.publish('glossar.list', function () {

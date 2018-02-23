@@ -27,6 +27,7 @@ import {
   getSelectedRoomId,
   setLanguage
 } from '../../../helper/actions';
+import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
 
 class Room extends React.Component {
   constructor(props) {
@@ -56,7 +57,7 @@ class Room extends React.Component {
     const roomGlossar = findGlossar(this.props.room);
     var selectedGraphNodeId = this.state.selectedGraphNodeId;
     if (!exists(selectedGraphNodeId)) {
-      selectedGraphNodeId = this.props.room._id;
+      selectedGraphNodeId = this.props.room.key;
     }
     return (
       <RoomElem className="Room" powerOn={this.props.powerOn}>
@@ -64,7 +65,7 @@ class Room extends React.Component {
         <TabColumn
           selectedTabId={selectedTabId}
           tabs={this.props.room.subsections}
-          roomId={this.props.room._id}
+          roomId={this.props.room.key}
           roomColor={this.props.room.color}
         />
         <RightColumn
@@ -74,6 +75,9 @@ class Room extends React.Component {
         />
         <MenuIcon />
         <ImageDetailView />
+        <RoomChooserFixed className="RoomChooserFixed">
+          <RoomChooser roomKey={this.props.room.key} disableNonExistingVariants />
+        </RoomChooserFixed>
       </RoomElem>
     );
   }
@@ -89,10 +93,17 @@ class Room extends React.Component {
 
 export default withTracker(props => {
   const roomId = props.match.params._id;
-  const sub = Meteor.subscribe('room', roomId);
+  const variant = Session.get("roomVariant");
+  const sub = Meteor.subscribe('room', roomId, variant);
   const sub2 = Meteor.subscribe('fragments.list');
 
-  const room = Rooms.findOne(roomId);
+  let room = Rooms.findOne({ key: roomId, variant });
+
+  if (!room && sub.ready()) {
+    console.log("moving to live version")
+    Session.set("roomVariant", 'live');
+    room = Rooms.findOne({ key: roomId, variant: 'live' });
+  }
 
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
@@ -119,7 +130,7 @@ export default withTracker(props => {
     room,
     selectedTabId: tabId,
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready,
+    ready: sub.ready() && sub2.ready() && room,
     powerOn: Session.get("powerOn")
   };
 })(Room);
@@ -127,7 +138,7 @@ export default withTracker(props => {
 const RoomElem = styled.div`
   display: flex;
   flex-direction: row;
-  & > *:not(nav) {
+  & > *:not(nav):not(.RoomChooserFixed) {
     flex: 1;
     height: 100%;
     width: calc(100% / 3);
@@ -154,3 +165,13 @@ const RoomElem = styled.div`
   `}
 
 `;
+
+const RoomChooserFixed = styled.div`
+    position:fixed;
+    bottom: 1.5em;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index:999;
+    opacity: 0.9;
+    box-shadow: 1ex 1ex 1ex rgba(0,0,0,0.6);
+`

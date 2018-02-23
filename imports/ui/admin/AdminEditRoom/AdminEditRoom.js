@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import Rooms from '../../../collections/rooms';
 import RoomSchema from '../../../schemas/room';
 import AdminDiyHelpContainer from '../AdminDiyHelpContainer';
+import { RoomChooser } from '../AdminHelpers';
 
 const lazy_imports = async () => {
   AutoForm = (await import('uniforms-antd/AutoForm')).default;
@@ -20,44 +22,49 @@ class AdminEditRoom extends React.Component {
       this.setState({ importsReady: true });
       this.forceUpdate();
     })
+    this.save = this.save.bind(this)
   }
 
   save(doc) {
     let room = cleanForSave(doc);
 
-    // workaround for bug of tabs which don't update their order in ui
+    // workaround for bug of reordered tabs which don't update their position in ui
     this.tabOrderChanged = false;
-    this.tabOrderChanged = (doc.subsections.length != this.props.room.subsections.length)
-    if (!this.tabOrderChanged) {
-      for (let i in doc.subsections) {
-        console.log(doc.subsections[i].order, this.props.room.subsections[i].order)
-        if (doc.subsections[i].order != this.props.room.subsections[i].order) {
-          this.tabOrderChanged = true;
-          break;
+    if (this.props.room && this.props.room.subsections) {
+      this.tabOrderChanged = (doc.subsections.length != this.props.room.subsections.length)
+      if (!this.tabOrderChanged) {
+        for (let i in doc.subsections) {
+          //console.log(doc.subsections[i].order, this.props.room.subsections[i].order)
+          if (doc.subsections[i].order != this.props.room.subsections[i].order) {
+            this.tabOrderChanged = true;
+            break;
+          }
         }
       }
     }
 
-    if (!room._id) {
-      console.log('INSERT:');
-      console.log(room);
-      Rooms.insert(room, this.saveCallback);
-    } else {
-      console.log('UPDATE ID:' + room._id);
-      console.log(room);
-      Rooms.update(
-        room._id,
-        {
-          $set: room
-        },
+    console.log("SAVING:", room)
+
+    if (room._new) {
+      delete room._new;
+      Rooms.insert(
+        room,
         (error, data) => { this.saveCallback(error, data, doc) }
-      );
+      )
     }
+    Rooms.update(
+      room._id,
+      {
+        $set: room
+      },
+      (error, data) => { this.saveCallback(error, data, doc) }
+    );
   }
 
   saveCallback(error, data, doc) {
     if (error) {
-      message.success('Error - not saved');
+      message.error('Error - not saved');
+      console.log(error)
     } else {
       message.success('Saved');
       if (this.tabOrderChanged) {
@@ -83,7 +90,7 @@ class AdminEditRoom extends React.Component {
   render() {
     return (
       <div className="AdminEditRoom">
-        <h2>Edit Room <i>{this.props.room && this.props.room._id}</i></h2>
+        <h2>Edit Room <i>{this.props.room_id}</i>  <RoomChooser roomKey={this.props.room_id} controls /></h2>
         <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownLink', 'diyMarkdownGlossar', 'diyMarkdownRoom']}>
           {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
         </AdminDiyHelpContainer>
@@ -94,10 +101,20 @@ class AdminEditRoom extends React.Component {
 
 export default withTracker(props => {
   const room_id = props.match.params._id;
-  const sub = Meteor.subscribe('room', room_id);
+  const roomVariant = Session.get("roomVariant");
+  const sub = Meteor.subscribe('room', room_id, roomVariant);
+  let room = Rooms.findOne({ key: room_id, variant: roomVariant });
+  if (sub.ready() && !room) room = {
+    _new: true,
+    key: room_id,
+    variant: roomVariant
+  }
+
+  console.log(room_id, roomVariant, room)
 
   return {
-    room: Rooms.findOne(room_id),
+    room,
+    room_id,
     ready: sub.ready()
   };
 })(AdminEditRoom);

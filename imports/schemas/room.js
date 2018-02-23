@@ -6,6 +6,16 @@ import {
 
 const RoomSchema = new SimpleSchema(
   {
+    key: {
+      type: String,
+      uniforms: { component: () => null }
+    },
+    variant: {
+      type: String,
+      defaultValue: 'live',
+      uniforms: { component: () => null }
+    },
+
     color: {
       type: String
     },

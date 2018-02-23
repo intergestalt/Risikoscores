@@ -14,7 +14,7 @@ class MainColumn extends React.Component {
     return (
       <Column className="MainColumn">
         <MainImages
-          roomFolder={this.props.room._id}
+          roomFolder={this.props.room.key}
           images={this.props.room.images}
         />
         <MainContent style={{ overflow: 'auto' }} room={this.props.room} />
