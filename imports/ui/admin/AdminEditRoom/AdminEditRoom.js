@@ -23,6 +23,7 @@ class AdminEditRoom extends React.Component {
       this.forceUpdate();
     })
     this.save = this.save.bind(this)
+    this.renderForm = this.renderForm.bind(this)
   }
 
   save(doc) {
@@ -77,6 +78,7 @@ class AdminEditRoom extends React.Component {
     return (
       <AutoForm
         schema={RoomSchema}
+        disabled={this.props.formDisabled}
         onSubmit={doc => this.save(doc)}
         model={this.props.room}
       />
@@ -90,7 +92,9 @@ class AdminEditRoom extends React.Component {
   render() {
     return (
       <div className="AdminEditRoom">
-        <h2>Edit Room <i>{this.props.room_id}</i>  <RoomChooser roomKey={this.props.room_id} controls /></h2>
+        <h2>
+          <a href="admin/rooms">&lt;</a>
+          Edit Room <i>{this.props.room_id}</i>  <RoomChooser roomKey={this.props.room_id} controls /></h2>
         <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownLink', 'diyMarkdownGlossar', 'diyMarkdownRoom']}>
           {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
         </AdminDiyHelpContainer>
@@ -107,14 +111,13 @@ export default withTracker(props => {
   if (sub.ready() && !room) room = {
     _new: true,
     key: room_id,
-    variant: roomVariant
+    variant: roomVariant,
   }
-
-  console.log(room_id, roomVariant, room)
 
   return {
     room,
     room_id,
-    ready: sub.ready()
+    ready: sub.ready(),
+    formDisabled: Meteor.user() && Meteor.user().username != "admin" && roomVariant == "live"
   };
 })(AdminEditRoom);
