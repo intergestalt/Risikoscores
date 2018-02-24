@@ -23,9 +23,9 @@ class AdminRoute extends React.Component {
 
   render() {
     ({ component, ...rest } = this.props);
-
+    
     return (
-      <AdminWrapper authenticated={this.props.authenticated}>
+      <AdminWrapper authenticated={this.props.authenticated} subLink={this.props.parent}>
         <Route {...rest} render={(props) => {
           return React.createElement(component, { ...props })
         }} />
@@ -52,6 +52,9 @@ class AdminWrapper extends React.Component {
         <link href='/vendor/antd/antd.css' type="text/css" rel="stylesheet" />
         <nav>
           <Link style={{ paddingRight: "1em" }} to="/admin"><b>Home</b></Link>
+          {this.props.subLink &&
+            <Link style={{ position:"relative", left: "-1em" }} to={this.props.subLink.path}><b> &gt; {this.props.subLink.text}</b></Link>
+          }
           <Link style={{ paddingRight: "1em" }} to="/" target="preview">Site</Link>
           <AccountsUIWrapper />
         </nav>

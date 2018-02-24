@@ -93,7 +93,6 @@ class AdminEditRoom extends React.Component {
     return (
       <div className="AdminEditRoom">
         <h2>
-          <a href="admin/rooms">&lt;</a>
           Edit Room <i>{this.props.room_id}</i>  <RoomChooser roomKey={this.props.room_id} controls /></h2>
         <AdminDiyHelpContainer segments={['intro', 'diyMarkdownIntro', 'diyMarkdownLink', 'diyMarkdownGlossar', 'diyMarkdownRoom']}>
           {this.props.ready && this.state.importsReady ? this.renderForm() : this.renderLoading()}
