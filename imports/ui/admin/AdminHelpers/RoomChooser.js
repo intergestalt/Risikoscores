@@ -19,7 +19,7 @@ class RoomChooser extends React.Component {
   }
 
   handleReset(event) {
-    if (!confirm(`Delete ${this.props.roomVariant} content of this room and replace with content of the normal version?`)) return;
+    if (!confirm(`Overwrite ${this.props.roomVariant} version of this room with content of the normal version?`)) return;
     Meteor.call("initRoomVariant", { key: this.props.roomKey, variant: this.props.roomVariant })
   }
 
