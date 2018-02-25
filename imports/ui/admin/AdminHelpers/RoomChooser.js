@@ -51,7 +51,7 @@ class RoomChooser extends React.Component {
           <button
             onClick={this.handleReset}
             disabled={this.props.roomVariant == "live"}
-          >restore</button>
+          >reset</button>
           &nbsp;
         <button
             onClick={this.handleDelete}
