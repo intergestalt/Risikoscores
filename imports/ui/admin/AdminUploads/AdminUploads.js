@@ -5,6 +5,7 @@ import { Button, Spin } from 'antd';
 import UploadsStatus from '../../../collections/uploadsStatus';
 import Uploads from '../../../collections/uploads';
 import { url_prefix } from '../../../config/uploads';
+import { getSrcsetString } from '../../../helper/uploads';
 
 class AdminUploads extends React.Component {
   constructor() {
@@ -28,8 +29,21 @@ class AdminUploads extends React.Component {
 
   renderUploadsList() {
     if (!this.props.uploads) return
+
+    const thumbImgStyle = {
+      height: "1em",
+      width: "1.5em",
+      marginRight: "1ex",
+      objectFit: "contain",
+      objectPosition: "left center"
+    }
     const list = this.props.uploads.map((u) => (
-      <li key={u._id}><a target="_preview" href={url_prefix + "/" + u._id}>{u._id}</a></li>
+      <li key={u._id}>
+        <a target="_preview" href={url_prefix + "/" + u._id}>
+          <img style={thumbImgStyle} srcSet={getSrcsetString(url_prefix + "/" + u._id, "thumb")} />
+          {u._id}
+        </a>
+      </li>
     ))
     return (
       <ul>
