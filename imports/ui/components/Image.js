@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
 import { getImageSrc } from '../../helper/asset.js';
@@ -17,7 +19,7 @@ class Image extends React.Component {
     var imageEntity = null;
     if (exists(this.props.asset)) {
       const title = this.props.asset.title && getLanguage() ? this.props.asset.title[getLanguage()] : "";
-      const imgSrc = getImageSrc(this.props.asset);
+      const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
       imageEntity = (
         <Img
           src={imgSrc}
@@ -50,7 +52,11 @@ Image.propTypes = {
   imgStyles: PropTypes.string
 };
 
-export default Image;
+export default withTracker(props => {
+  return {
+    roomVariant: Session.get("roomVariant")
+  }
+})(Image);
 
 const Img = styled.img`
   width: 100%;

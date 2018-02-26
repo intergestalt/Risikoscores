@@ -1,17 +1,17 @@
 import { existsString, exists } from './global';
 import { setTabSlider, getTabSlider } from './actions';
-import { url_prefix } from '../config/uploads';
+import { getUrlPrefix } from '../helper/uploads';
 
-export function getImageSrc(asset) {
+export function getImageSrc(asset, roomVariant = false) {
   var subfolder = asset.subfolder;
   if (!asset.name || asset.name.toLowerCase() === "fehlt" || asset.name === "-") {
     return `//dummyimage.com/600x400/000655/fff&text=${asset.title ? (asset.title.de || asset.title.en) : "(fehlt)"}&ignore=`
   }
   if (existsString(subfolder)) {
     return (imgSrc =
-      url_prefix + '/' + asset.folder + '/' + subfolder + '/' + asset.name);
+      getUrlPrefix(roomVariant) + '/' + asset.folder + '/' + subfolder + '/' + asset.name);
   } else {
-    return (imgSrc = url_prefix + '/' + asset.folder + '/' + asset.name);
+    return (imgSrc = getUrlPrefix(roomVariant) + '/' + asset.folder + '/' + asset.name);
   }
 }
 
@@ -19,6 +19,7 @@ export function isImage(asset) {
   if (asset.type === 'image') return true;
   return false;
 }
+
 export function annotateAsset(asset, text, source) {
   return {
     ...asset,

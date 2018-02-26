@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import { getSelectedTabId, getSelectedRoomId } from '../../../helper/actions';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { dist } from '../../../config/styles';
 import { Asset, Annotation } from './';
-import { url_prefix } from '../../../config/uploads';
+import { getUrlPrefix } from '../../../helper/uploads';
 
 class Quote extends React.Component {
   constructor(props) {
@@ -52,7 +53,7 @@ export default withTracker(props => {
   if (props.audio) {
     const roomId = getSelectedRoomId();
     const tabId = getSelectedTabId();
-    file = url_prefix + "/" + roomId + "/" + tabId + "/" + props.audio
+    file = getUrlPrefix(Session.get("roomVariant")) + "/" + roomId + "/" + tabId + "/" + props.audio
   }
   return {
     file

@@ -8,7 +8,7 @@ import { keyframes } from 'styled-components';
 import ReactStateAnimation from 'react-state-animation';
 
 import { dist } from '../../../config/styles';
-import { url_prefix } from '../../../config/uploads';
+import { getUrlPrefix } from '../../../helper/uploads';
 
 class ServerAudio extends React.Component {
   constructor(props) {
@@ -139,13 +139,13 @@ export default withTracker(props => {
   if (props.audio) {
     const roomId = getSelectedRoomId();
     const tabId = getSelectedTabId();
-    file = url_prefix + "/" + roomId + "/" + props.audio
+    file = getUrlPrefix(Session.get("roomVariant")) + "/" + roomId + "/" + props.audio
   }
   return {
     file,
     powerOn: Session.get("powerOn"),
     powerWasOff: Session.get("powerWasOff"),
-    serverMute: Session.get("serverMute")
+    serverMute: Session.get("serverMute"),
   };
 })(ServerAudio);
 

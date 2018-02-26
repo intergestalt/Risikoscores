@@ -7,7 +7,8 @@ import im from 'imagemagick';
 import UploadsStatus from '../collections/uploadsStatus';
 import Uploads from '../collections/uploads';
 import { imageSizes } from '../config/imagesSizes';
-import { uploads_dir, cache_dir } from '../config/uploads';
+import { uploads_dir, cache_dir, url_prefix } from '../config/uploads';
+import { variants } from '../config/variants';
 
 const wrapWithPromise = wrappedFunction => (...args) => (
   new Promise((resolve, reject) => {
@@ -151,4 +152,13 @@ function getSrcsetString(orig_path, sizeName = false) {
   }
 }
 
-export { convertImages, clearCache, getSrcsetString }
+function getUrlPrefix(roomVariant = false) {
+  if (!roomVariant) {
+    return url_prefix
+  } else {
+    const variantDir = variants.find(v => (v._id == roomVariant)).dir
+    return url_prefix + (variantDir === "" ? "" : '/') + variantDir
+  }
+}
+
+export { convertImages, clearCache, getSrcsetString, getUrlPrefix }
