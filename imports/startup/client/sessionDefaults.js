@@ -19,3 +19,4 @@ Session.setDefault('powerOn', true);
 Session.setDefault('powerWasOff', false);
 Session.setDefault('serverMute', false);
 Session.setDefault('roomVariant', 'live');
+Session.setDefault('roomVisitCounter', -1);

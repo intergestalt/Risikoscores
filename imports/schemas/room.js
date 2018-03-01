@@ -16,9 +16,6 @@ const RoomSchema = new SimpleSchema(
       uniforms: { component: () => null }
     },
 
-    color: {
-      type: String
-    },
     name: {
       type: MultilingualStringSchema
     },

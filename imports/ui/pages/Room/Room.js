@@ -28,6 +28,7 @@ import {
   setLanguage
 } from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
+import { tabColors, tabColorPalette } from '../../../config/tabColors';
 
 class Room extends React.Component {
   constructor(props) {
@@ -43,6 +44,16 @@ class Room extends React.Component {
 
   componentWillUnmount() {
     document.documentElement.classList.toggle('noscroll', false);
+  }
+
+  componentWillMount() {
+    Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.room && this.props.room && nextProps.room._id != this.props.room._id) {
+      Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1)
+    }
   }
 
   renderLoading() {
@@ -66,7 +77,7 @@ class Room extends React.Component {
           selectedTabId={selectedTabId}
           tabs={this.props.room.subsections}
           roomId={this.props.room.key}
-          roomColor={this.props.room.color}
+          roomColor={this.props.roomColor}
         />
         <RightColumn
           graphNodeId={selectedGraphNodeId}
@@ -108,6 +119,7 @@ export default withTracker(props => {
   const queryString = require('query-string');
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
+  var roomColor = 'grey';
   if (!tabId) {
     if (room && room.subsections) {
       tabId = room.subsections[0].identifier // set default tab
@@ -116,8 +128,14 @@ export default withTracker(props => {
   if (exists(tabId)) {
     setSelectedTabId(tabId);
     if (room && room.subsections) {
-      const tabColor = room.color;
-      setSelectedTabColor(tabColor);
+      roomColor = tabColorPalette[Session.get('roomVisitCounter') % 3];
+      const tabColorsArray = tabColors(roomColor, room.subsections.length)
+      let i = 0;
+      for (let s of room.subsections) {
+        s.color = tabColorsArray[i];
+        i++;
+      }
+      setSelectedTabColor(roomColor);
     }
   }
   setSelectedRoomId(roomId);
@@ -129,6 +147,7 @@ export default withTracker(props => {
   return {
     room,
     selectedTabId: tabId,
+    roomColor,
     fragments: TextFragments.find().fetch(),
     ready: sub.ready() && sub2.ready() && room,
     powerOn: Session.get("powerOn")

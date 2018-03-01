@@ -1,3 +1,3 @@
-import './fix_programmierbuero';
-import './rename_population';
-import './room_add_key_variant';
+import './01_fix_programmierbuero';
+import './02_rename_population';
+import './03_room_add_key_variant';

@@ -1,4 +1,5 @@
 import color from 'color';
+import { colors } from './styles';
 
 const maxDarken = 0.6;
 
@@ -12,4 +13,10 @@ const tabColors = (tabColor, steps) => {
   return out;
 }
 
-export { tabColors }
+tabColorPalette = [
+  colors.violet,
+  colors.turqoise,
+  colors.orange
+]
+
+export { tabColors, tabColorPalette }

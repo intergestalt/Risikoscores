@@ -40,4 +40,18 @@ const Styled = styled.div`
   & > *:not(.SCTimeline):first-child {
     margin-top: 1em;
   }
+  .responsive-iframe-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+    margin: 1em -${dist.named.columnPadding};
+  }
+  .responsive-iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }  
 `;
