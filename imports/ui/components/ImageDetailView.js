@@ -74,7 +74,7 @@ class ImageDetailView extends React.Component {
           this.clickCallback(e);
         }}
         />
-        <Prev onClick={this.prev}>&lt;</Prev>
+        {slider.list.length > 1 && <Prev onClick={this.prev}>&lt;</Prev>}
         <FigureContainer>
           <Figure>
             <ImgContainer
@@ -97,7 +97,7 @@ class ImageDetailView extends React.Component {
             </Figcaption>
           </Figure>
         </FigureContainer>
-        <Next onClick={this.next} >&gt;</Next>
+        {slider.list.length > 1 && <Next onClick={this.next} >&gt;</Next>}
       </Container>
     );
   }

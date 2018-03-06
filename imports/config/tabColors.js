@@ -14,7 +14,7 @@ const tabColors = (tabColor, steps) => {
 }
 
 tabColorPalette = [
-  colors.violet,
+  colors.magenta,
   colors.turqoise,
   colors.orange
 ]
