@@ -22,6 +22,8 @@ class Image extends React.Component {
       const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
       imageEntity = (
         <Img
+          innerRef={this.props.imgRef}
+          onLoad={this.props.onLoad}
           src={imgSrc}
           srcSet={getSrcsetString(imgSrc, sizeName)}
           title={title}
@@ -49,7 +51,9 @@ class Image extends React.Component {
 Image.propTypes = {
   asset: PropTypes.object,
   clickCallback: PropTypes.func,
-  imgStyles: PropTypes.string
+  imgStyles: PropTypes.string,
+  imgRef: PropTypes.func,
+  onLoad: PropTypes.func,
 };
 
 export default withTracker(props => {

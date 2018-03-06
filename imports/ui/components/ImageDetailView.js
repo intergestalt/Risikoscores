@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
+import { contain } from 'intrinsic-scale';
+import ResizeAware from 'react-resize-aware';
 
 import { Image, Close } from './';
 import {
@@ -10,16 +12,37 @@ import {
   setTabDetail,
   setTabDetailIndex
 } from '../../helper/actions';
-import { colors, dist } from '../../config/styles';
+import { Annotation } from './content/';
+import { dist, snippets, colors } from '../../config/styles';
 
 class ImageDetailView extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {}
     this.clickCallback = this.clickCallback.bind(this);
+    this.adjustCaptionWidth = this.adjustCaptionWidth.bind(this);
+    this.handleImgLoad = this.adjustCaptionWidth;
+    this.handleResize = this.adjustCaptionWidth;
   }
   clickCallback(e) {
     e.preventDefault();
     setTabDetail(false, -1);
+  }
+
+  adjustCaptionWidth(event, repeat = 0, prevWidth = null) {
+    const img = this.imgElem;
+    const dim = contain(img.width, img.height, img.naturalWidth, img.naturalHeight);
+    this.setState({ captionWidth: dim.width + 'px' }, () => {
+      if (dim.width != prevWidth && repeat < 10) {
+        this.adjustCaptionWidth(null, repeat + 1, dim.width)
+      } else {
+        this.adjustCaptionPosition(img.height - dim.height);
+      }
+    })
+  }
+
+  adjustCaptionPosition(topOffset) {
+    this.setState({ captionTopOffset: (-topOffset / 2) + 'px' })
   }
 
   prev() {
@@ -42,7 +65,6 @@ class ImageDetailView extends React.Component {
     }
     const slider = getTabSlider();
     //this is a list of all annotated assets;
-    console.log(slider);
     const startIndex = getTabDetailIndex();
     //this is the start index.
     const asset = slider.list[startIndex];
@@ -53,7 +75,28 @@ class ImageDetailView extends React.Component {
         }}
         />
         <Prev onClick={this.prev}>&lt;</Prev>
-        <Image imgStyles={imgStyles} asset={asset} />
+        <FigureContainer>
+          <Figure>
+            <ImgContainer
+              onlyEvent
+              onResize={this.handleResize}
+              className="ImgContainer"
+            >
+              <Image
+                imgStyles={imgStyles}
+                asset={asset}
+                imgRef={(elem) => { this.imgElem = elem; }}
+                onLoad={(this.handleImgLoad)}
+              />
+            </ImgContainer>
+            <Figcaption width={this.state.captionWidth} top={this.state.captionTopOffset}>
+              <Annotation
+                clickCallback={this.props.clickCallback}
+                asset={asset}
+              />
+            </Figcaption>
+          </Figure>
+        </FigureContainer>
         <Next onClick={this.next} >&gt;</Next>
       </Container>
     );
@@ -75,13 +118,45 @@ const Container = styled.div`
   background-color: ${colors.shade};
   z-index: 11;
 `
+const FigureContainer = styled.div`
+  display: flex;
+  height:100%; 
+`;
+
+const Figure = styled.figure`
+  width:70%; 
+  max-height:100%;
+  margin:auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const ImgContainer = styled(ResizeAware) `
+  display: flex;
+  overflow: hidden;
+`
 
 const imgStyles = `
-height:100%; 
-width:70%; 
-margin:auto;
-object-fit: contain;
+  width: 100%;
+  object-fit: contain;
 `;
+
+const Figcaption = styled.figcaption`
+  display: block;
+  color: white;
+  margin: auto;
+  margin-top: 0;
+  max-height: 50vh;
+  position: relative;
+  width: ${ (props) => props.width || 'auto'};
+  top: ${ (props) => props.top || '0'};
+  margin-bottom: calc( -1em + ${ dist.lineBottomDiff});
+  p {
+    padding-left: 0 !important;
+    padding-right 0 !important;
+  }
+`
 
 const Nav = styled.div`
   position: absolute;
