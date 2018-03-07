@@ -12,17 +12,22 @@ import {
   setTabDetail,
   setTabDetailIndex
 } from '../../helper/actions';
+import { Loading } from './';
 import { Annotation } from './content/';
 import { dist, snippets, colors } from '../../config/styles';
 
 class ImageDetailView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      positioned: false,
+    }
     this.clickCallback = this.clickCallback.bind(this);
     this.adjustCaptionWidth = this.adjustCaptionWidth.bind(this);
     this.handleImgLoad = this.adjustCaptionWidth;
     this.handleResize = this.adjustCaptionWidth;
+    this.prev = this.prev.bind(this)
+    this.next = this.next.bind(this)
   }
   clickCallback(e) {
     e.preventDefault();
@@ -42,10 +47,11 @@ class ImageDetailView extends React.Component {
   }
 
   adjustCaptionPosition(topOffset) {
-    this.setState({ captionTopOffset: (-topOffset / 2) + 'px' })
+    this.setState({ captionTopOffset: (-topOffset / 2) + 'px', positioned: true })
   }
 
   prev() {
+    this.setState({ positioned: false });
     const n = getTabSlider().list.length;
     const i = getTabDetailIndex();
     const new_i = i > 1 ? i - 1 : n - 1;
@@ -53,10 +59,19 @@ class ImageDetailView extends React.Component {
   }
 
   next() {
+    this.setState({ positioned: false });
     const n = getTabSlider().list.length;
     const i = getTabDetailIndex();
     const new_i = i < n - 1 ? i + 1 : 0;
     setTabDetailIndex(new_i)
+  }
+
+  renderLoading() {
+    return (
+      <LoadingContainer>
+        <Loading />
+      </LoadingContainer>
+    )
   }
 
   render() {
@@ -74,8 +89,9 @@ class ImageDetailView extends React.Component {
           this.clickCallback(e);
         }}
         />
+        {!this.state.positioned && this.renderLoading()}
         {slider.list.length > 1 && <Prev onClick={this.prev}>&lt;</Prev>}
-        <FigureContainer>
+        <FigureContainer visible={this.state.positioned}>
           <Figure>
             <ImgContainer
               onlyEvent
@@ -121,6 +137,15 @@ const Container = styled.div`
 const FigureContainer = styled.div`
   display: flex;
   height:100%; 
+  visibility: ${ (props) => (props.visible ? 'visible' : 'hidden')};
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 100%;
 `;
 
 const Figure = styled.figure`
@@ -163,6 +188,7 @@ const Nav = styled.div`
   width:15%;
   color:white;
   top:50%;
+  transform: translateY(-50%);
   font-size: 5vh;  
   text-align: center;
   cursor: pointer;
