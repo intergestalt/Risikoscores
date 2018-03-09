@@ -6,6 +6,16 @@ import {
 
 const RoomSchema = new SimpleSchema(
   {
+    key: {
+      type: String,
+      uniforms: { component: () => null }
+    },
+    variant: {
+      type: String,
+      defaultValue: 'live',
+      uniforms: { component: () => null }
+    },
+
     name: {
       type: MultilingualStringSchema
     },
@@ -27,6 +37,9 @@ const RoomSchema = new SimpleSchema(
     'images.$.name': {
       type: String
     },
+    'images.$.title': {
+      type: MultilingualStringSchema
+    },
     'images.$.order': {
       type: Number
     },
@@ -39,9 +52,6 @@ const RoomSchema = new SimpleSchema(
     },
     'subsections.$.text': {
       type: MultilingualTextSchema
-    },
-    'subsections.$.color': {
-      type: String
     },
     'subsections.$.order': {
       type: Number,

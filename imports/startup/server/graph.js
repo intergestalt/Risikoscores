@@ -20,14 +20,14 @@ export function getGraph() {
       pseudo: false,
       x: 80,
       y: 25,
-      neighbours: 'population;teilnehmermanagement'
+      neighbours: 'wissenschaft;teilnehmermanagement'
     },
     {
-      _id: 'population',
+      _id: 'wissenschaft',
       pseudo: false,
       x: 33,
       y: 27,
-      neighbours: 'einwohnermeldeamt;pseudo1;teilnehmermanagement;arztpraxis'
+      neighbours: 'einwohnermeldeamt;www;teilnehmermanagement;arztpraxis'
     },
     {
       _id: 'bioprobenlager',
@@ -38,7 +38,7 @@ export function getGraph() {
         'framingham;untersuchungszentrum;serverraum;teilnehmermanagement'
     },
     {
-      _id: 'programmierbüro',
+      _id: 'programmierbuero',
       pseudo: false,
       x: 10,
       y: 60,
@@ -49,7 +49,7 @@ export function getGraph() {
       pseudo: false,
       x: 12,
       y: 45,
-      neighbours: 'pseudo2;arztpraxis'
+      neighbours: 'wissenschaft;arztpraxis'
     },
     {
       _id: 'teilnehmermanagement',
@@ -57,7 +57,7 @@ export function getGraph() {
       x: 90,
       y: 35,
       neighbours:
-        'einwohnermeldeamt;arriba;population;serverraum;bioprobenlager'
+        'einwohnermeldeamt;arriba;wissenschaft;serverraum;bioprobenlager'
     },
     {
       _id: 'untersuchungszentrum',
@@ -78,22 +78,8 @@ export function getGraph() {
       pseudo: false,
       x: 25,
       y: 77,
-      neighbours: 'arriba;framingham;population;www'
+      neighbours: 'arriba;framingham;wissenschaft;www'
     },
-    {
-      _id: 'pseudo1',
-      pseudo: true,
-      x: 20,
-      y: 20,
-      neighbours: 'population;pseudo2'
-    },
-    {
-      _id: 'pseudo2',
-      pseudo: true,
-      x: 15,
-      y: 25,
-      neighbours: 'pseudo1;www'
-    }
   ];
   return graph;
 }

@@ -26,9 +26,9 @@ const rooms = [
   'arriba',
   'framingham',
   'einwohnermeldeamt',
-  'population',
+  'wissenschaft',
   'bioprobenlager',
-  'programmierbüro',
+  'programmierbuero',
   'www',
   'teilnehmermanagement',
   'untersuchungszentrum',
@@ -45,6 +45,7 @@ const textFragments = [
   'startInfo',
   'menuIcon',
   'aboutLink',
+  'aboutText',
   'languageLink'
 ];
 
@@ -76,7 +77,7 @@ Meteor.startup(() => {
       const name = room[0].toUpperCase() + room.substring(1);
       Rooms.insert({
         ...RoomSchema.clean({}),
-        _id: room,
+        key: room,
         name: { en: name, de: name }
       });
     }

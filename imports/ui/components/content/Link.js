@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 
 import {
   setSelectGraphNode,
@@ -19,14 +21,20 @@ class Link extends React.Component {
     this.clickCallback = this.clickCallback.bind(this);
   }
 
+  componentWillMount() {
+    const selectedRoomId = getSelectedRoomId();
+    const lang = getLanguage();
+    this.sameRoom = selectedRoomId == this.props.room
+    console.log(selectedRoomId, this.props.room, this.sameRoom)
+    this.path = '/rooms/' + this.props.room + '?language=' + lang;
+    if (exists(this.props.tab)) {
+      this.path += '&tabId=' + this.props.tab;
+    }
+  }
+
   clickCallback(e, roomId, tabId) {
     e.preventDefault();
-    const lang = getLanguage();
-    var path = '/rooms/' + this.props.room + '?language=' + lang;
-    if (exists(this.props.tab)) {
-      path = path + '&tabId=' + this.props.tab;
-    }
-    this.props.history.push(path);
+    this.props.history.push(this.path);
   }
 
   enterCallback(e, roomId, tabId) {
@@ -46,7 +54,8 @@ class Link extends React.Component {
   render() {
     return (
       <a
-        href="#"
+        style={this.sameRoom ? { color: this.props.color } : {}}
+        href={this.sameRoom ? '#' : this.path}
         onClick={e => {
           this.clickCallback(e, this.props.room, this.props.tab);
         }}
@@ -68,4 +77,8 @@ Link.propTypes = {
   tab: PropTypes.string
 };
 
-export default withRouter(Link);
+export default withTracker((props) => {
+  return {
+    color: Session.get('selectedTabColor')
+  }
+})(withRouter(Link));

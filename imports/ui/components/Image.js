@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
 import { getImageSrc } from '../../helper/asset.js';
+import { getLanguage } from '../../helper/actions';
 import { exists } from '../../helper/global';
 import { getSrcsetString } from '../../helper/uploads';
 
@@ -15,13 +18,18 @@ class Image extends React.Component {
     const sizeName = this.props.size || false;
     var imageEntity = null;
     if (exists(this.props.asset)) {
-      const imgSrc = getImageSrc(this.props.asset);
-      const title = this.props.asset.title;
+      const title = this.props.asset.title && getLanguage() ? this.props.asset.title[getLanguage()] : "";
+      const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
       imageEntity = (
         <Img
+          innerRef={this.props.imgRef}
+          onLoad={this.props.onLoad}
           src={imgSrc}
           srcSet={getSrcsetString(imgSrc, sizeName)}
           title={title}
+          alt={title}
+          imgStyles={this.props.imgStyles}
+          onClick={this.props.onClick}
         />
       );
     }
@@ -42,14 +50,22 @@ class Image extends React.Component {
 }
 Image.propTypes = {
   asset: PropTypes.object,
-  clickCallback: PropTypes.func
+  clickCallback: PropTypes.func,
+  imgStyles: PropTypes.string,
+  imgRef: PropTypes.func,
+  onLoad: PropTypes.func,
 };
 
-export default Image;
+export default withTracker(props => {
+  return {
+    roomVariant: Session.get("roomVariant")
+  }
+})(Image);
 
 const Img = styled.img`
   width: 100%;
   display: block;
+  ${ props => props.imgStyles};
 `;
 
 const A = styled.a`

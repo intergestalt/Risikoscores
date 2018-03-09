@@ -13,7 +13,7 @@ class AdminGlossar extends React.Component {
           {glossar.map(entry => {
             return (
               <li key={entry._id}>
-                <ListItem entry={entry} />
+                <ListItem entry={entry} collection={Glossar} />
               </li>
             );
           })}
@@ -38,6 +38,6 @@ export default withTracker(props => {
   Meteor.subscribe('glossar.list');
 
   return {
-    glossar: Glossar.find().fetch()
+    glossar: Glossar.find({}, { sort: { "name.de": 1 } }).fetch()
   };
 })(AdminGlossar);

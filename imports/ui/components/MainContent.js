@@ -53,10 +53,11 @@ const Container = styled.div`
 
 const Content = styled.div`
   padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
+  padding-bottom: calc(1em + ${dist.lineBottomDiff});
 `;
 
 const Headline = styled.h1`
   ${snippets.headlineText};
   color: ${colors.named.room};
-  padding: 0 ${dist.named.columnPadding} 1em;
+  padding: 0 ${dist.named.columnPadding} 0;
 `;

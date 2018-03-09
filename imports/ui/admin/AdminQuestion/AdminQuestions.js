@@ -13,7 +13,7 @@ class AdminQuestions extends React.Component {
           {questions.map(entry => {
             return (
               <li key={entry._id}>
-                <ListItem entry={entry} />
+                <ListItem entry={entry} collection={Questions} />
               </li>
             );
           })}
@@ -38,6 +38,6 @@ export default withTracker(props => {
   Meteor.subscribe('questions.list');
 
   return {
-    questions: Questions.find().fetch()
+    questions: Questions.find({}, { sort: { roomId: 1, 'text.de': 1 } }).fetch()
   };
 })(AdminQuestions);

@@ -12,14 +12,15 @@ const colors = {
   cyan: 'rgb(0,255,255)',
   lightgrey: 'rgb(204,204,204)',
   mediumgrey: 'rgb(128,128,128)',
-  darkgrey: 'rgb(89,89,89)'
+  darkgrey: 'rgb(89,89,89)',
+  shade: 'rgba(0,0,0,0.9)',
 };
 
 colors.named = {
   button1: colors.orange,
   button2: colors.cyan,
   room: colors.blue,
-  glossar: colors.red
+  glossar: colors.red,
 };
 
 const snippets = {
@@ -40,8 +41,8 @@ const snippets = {
   `,
   annotationText: `
     font-family: 'Roboto Regular';
-    line-height: 13px;
-    font-size: 11px;
+    line-height: 16px;
+    font-size: 13px;
   `,
   tabText: `
     font-family: 'Roboto Light';
@@ -72,7 +73,7 @@ export { colors, snippets, dist };
 
 /**************************************************************
   
-  Sketch to illustrate lineTopDiff and lineBottomDiff
+  This is a sketch illustrating lineTopDiff and lineBottomDiff
   all according to standard line height and the custom font
   
   | upper border of line -------------------------------------

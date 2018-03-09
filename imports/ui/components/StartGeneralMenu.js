@@ -22,7 +22,8 @@ class StartGeneralMenu extends React.Component {
   }
   callbackAbout(e) {
     e.preventDefault();
-    console.log('ABOUT');
+    const showAbout = Session.equals('showAbout', true)
+    Session.set('showAbout', !showAbout)
   }
 
   render() {

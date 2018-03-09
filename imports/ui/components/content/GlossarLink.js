@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 
+import Glossar from '../../../collections/glossar';
 import { showGlossarDetail } from '../../../helper/actions';
+import { colors } from '../../../config/styles';
+import { getLanguage } from '../../../helper/actions';
 
 class GlossarLink extends React.Component {
   constructor(props) {
@@ -10,20 +16,22 @@ class GlossarLink extends React.Component {
 
   render() {
     var dummy = '';
-    if (this.props.highlighted) {
-      dummy = ': Is in Room';
-    }
+    const doc = this.props.doc;
+    const title = (doc && doc.name && this.props.lang) ? doc.name[this.props.lang] : null
     return (
-      <a
+      <A
         className="SCGlossarLink"
         href="#"
+        title={title || `${this.props.entry} ⚠`}
+        highlighted={this.props.highlighted}
         onClick={e => {
           e.preventDefault();
           showGlossarDetail(this.props.entry);
         }}
       >
         {this.props.text}{dummy}
-      </a>
+        {!title && '⚠'}
+      </A>
     );
   }
 }
@@ -33,4 +41,26 @@ GlossarLink.propTypes = {
   highlighted: PropTypes.bool
 };
 
-export default GlossarLink;
+export default withTracker(props => {
+  const sub = Meteor.subscribe('glossar.list'); // SubsManager to the rescue!
+  return {
+    doc: Glossar.findOne({ _id: props.entry }),
+    lang: getLanguage(),
+    ready: sub.ready()
+  }
+})(GlossarLink);
+
+const A = styled.a`
+  color: ${colors.named.glossar};
+  .GlossarArea & {
+    opacity: ${ props => props.highlighted ? 1 : 0.5};
+  }
+  .GlossarDetail & {
+    opacity: 1;
+  }
+  .GlossarList & {
+    color: white;
+  }  
+`
+
+// ${ colors.named.glossar}

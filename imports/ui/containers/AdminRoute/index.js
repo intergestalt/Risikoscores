@@ -6,6 +6,7 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import filterDOMProps from 'uniforms/filterDOMProps';
+import autosize from 'autosize';
 
 import AccountsUIWrapper from '../../admin/AccountsUIWrapper.jsx';
 
@@ -22,13 +23,9 @@ class AdminRoute extends React.Component {
 
   render() {
     ({ component, ...rest } = this.props);
-
-    if (!this.props.authenticated) {
-      return <AccountsUIWrapper />
-    }
-
-    else return (
-      <AdminWrapper>
+    
+    return (
+      <AdminWrapper authenticated={this.props.authenticated} subLink={this.props.parent}>
         <Route {...rest} render={(props) => {
           return React.createElement(component, { ...props })
         }} />
@@ -39,72 +36,39 @@ class AdminRoute extends React.Component {
 
 class AdminWrapper extends React.Component {
 
+  componentDidMount() {
+    this.check = setInterval(function () {
+      autosize(document.querySelectorAll('textarea'));
+    }, 1000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.check)
+  }
+
   render() {
     return (
       <div className="AdminWrapper" style={{ backgroundColor: "#fdfdfd" }}>
         <link href='/vendor/antd/antd.css' type="text/css" rel="stylesheet" />
-        <nav><Link to="/admin">Home</Link></nav>
-        {this.props.children}
+        <nav>
+          <Link style={{ paddingRight: "1em" }} to="/admin"><b>Home</b></Link>
+          {this.props.subLink &&
+            <Link style={{ position:"relative", left: "-1em" }} to={this.props.subLink.path}><b> &gt; {this.props.subLink.text}</b></Link>
+          }
+          <Link style={{ paddingRight: "1em" }} to="/" target="preview">Site</Link>
+          <AccountsUIWrapper />
+        </nav>
+        {this.props.authenticated && this.props.children}
       </div>
     )
   };
 }
 
 
-/*
-const AdminRoute = ({ component, ...rest }) => (
-  <Route {...rest} render={(props) => {
-    console.log(props)
-    return props.authenticated ?
-      (React.createElement(component, { ...props, loggingIn, authenticated })) :
-      (<AccountsUIWrapper />);
-  }} />
-);
-*/
-
-/*
-class AdminRoute extends React.Component {
-
-  authorizedContent = () =>{
-    return (
-      <div className="AdminRoute">
-        <nav>
-          <AccountsUIWrapper />
-          {/*!this.props.hideMenu && <Menu router={this.props.router} />*//*}
-</nav>
-<div className="main">
-{this.props.children}
-<Alert position='top-left'
-effect='slide'
-timeout={1500}
-/>
-</div>
-</div>
-);
-}
-
-unauthorizedContent() {
-return (
-<div className="AdminRoute">
-<nav>
-<AccountsUIWrapper />
-</nav>
-</div>
-);
-}
-
-render() {
-// console.log(this.props.router)
-return this.props.authenticated ? this.authorizedContent() : this.unauthorizedContent();
-}
-}
-*/
-
-
 export default withTracker(props => {
   const loggingIn = Meteor.loggingIn();
   const userId = Meteor.userId();
   return {
-    authenticated: true // !loggingIn && !!userId,
+    authenticated: !loggingIn && !!userId,
   };
 })(AdminRoute);

@@ -26,7 +26,23 @@ class MenuIcon extends React.Component {
             this.clickCallback(e);
           }}
         >
-          Menu
+          <IconSvg xmlns="http://www.w3.org/2000/svg" version="1.1" >
+            <defs>
+              <filter id="f3" x="0" y="0" width="150%" height="150%">
+                <feOffset result="offOut" in="SourceGraphic" dx="12" dy="12" />
+                <feColorMatrix result="matrixOut" in="offOut" type="matrix"
+                  values={`
+          0 0 0 0 0
+          0 0 0 0 0
+          0 0 0 0 0
+          0 0 0 0.65 0`} />
+                <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="6" />
+                <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+              </filter>
+            </defs>
+            <polygon points="120,50 88,100 28,100 0,50 28,0 88,0"></polygon>
+          </IconSvg>
+          <Text>Menu</Text>
         </a>
       </FloatMenu>
     );
@@ -37,59 +53,44 @@ export default withRouter(MenuIcon);
 
 const FloatMenu = styled.nav`
   position: fixed;
-  bottom: 2rem;
-  line-height: 10rem;
-  width: 10rem;
-  height: 10rem;
+  bottom: 2.5rem;
+  line-height: 100px;
+  width: 120px;
+  height: 100px;
   left: 50%;
   transform: translateX(-50%);
   pointer-events: none;
   text-align: center;
   z-index:1;
-  &:after {
-    content: '⬢';
-    font-size: 10rem;
-    position: absolute;
-    left: 0;
-    right: 0;
-    text-shadow: 1rem 1rem 1rem rgba(0, 0, 0, 0.66);
-  }
   a {
-    top: 0.75rem; // this depends on the relative height of the hexagon character to the line-height
+    height:inherit;
+    width:inherit;
+    line-height: inherit;
     pointer-events: all;
     color: white;
     position: relative;
     z-index: 10;
+    display:block;
+    pointer-events: none;
+    -webkit-filter: drop-shadow( 12px 12px 4px rgba(0,0,0,.55) );
+    filter: drop-shadow( 12px 12px 4px rgba(0,0,0,.55) );
   }
 `;
 
-// Alternative with SVG:
-/*
-  <IconSvg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="350">
-    <defs>
-      <filter id="f3" >
-        <feOffset result="offOut" in="SourceAlpha" dx="50" dy="50" />
-        <feColorMatrix result="matrixOut" in="offOut" type="matrix"
-          values={`
-          0 0 0 0 0
-          0 0 0 0 0
-          0 0 0 0 0
-          0 0 0 0.6 0`} />
-        <feGaussianBlur result="offOut" in="blurOut" stdDeviation="30" />
-        <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
-      </filter>
-    </defs>
-    <polygon points="300,150 225,280 75,280 0,150 75,20 225,20" filter="url(#f3)"></polygon>
-  </IconSvg>
-
 const IconSvg = styled.svg.attrs({
-  width: props => props.width || 100, // TODO: calculate relative lengths everywhere
+  width: props => (props.width || 120 * 1.5),
+  height: props => (props.height || 100 * 1.5),
 }) `
   position: fixed;
-  bottom: 2rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-33%);
   fill:black;
   pointer-events: none;
-`  
-*/
+  polygon {
+    pointer-events: all;
+    cursor: pointer;
+  }
+`
+const Text = styled.span`
+  position: relative;
+`

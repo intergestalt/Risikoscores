@@ -6,7 +6,7 @@ const defaultColor = 'url(#grad1)';//colors.darkgrey; // 'transparent';
 const selectedColor = colors.blue;
 const neighbourColor = colors.yellow;
 const defaultEdgeColor = '#eeeeee';
-const selectedEdgeColor = '#eeeeee';
+const selectedEdgeColor = colors.yellow;
 const defaultLinkColor = 'white';
 
 export function cleanForSave(entry) {

@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
 import GraphDB from '../../collections/graph';
-import { GraphHeader, Graph, Expander } from './';
+import { GraphHeader, Graph, Expander, Loading } from './';
 import {
   toggleGraph,
   isGraphExpanded,
@@ -17,6 +17,9 @@ import { exists } from '../../helper/global';
 class GraphArea extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedRoomId: undefined,
+    }
     this.callback = this.callback.bind(this);
     this.graphCallback = this.graphCallback.bind(this);
   }
@@ -25,16 +28,18 @@ class GraphArea extends React.Component {
     e.preventDefault();
     toggleGraph(e);
   }
+
   graphCallback(roomId) {
     if (exists(roomId)) {
       setSelectGraphNode(roomId);
     } else {
       setSelectGraphNode(getSelectedRoomId());
     }
+    this.setState({ selectedRoomId: roomId })
   }
 
   renderLoading() {
-    return <div className="GraphArea">Loading...</div>;
+    return <div className="GraphArea"><Loading /></div>;
   }
   render() {
     if (!this.props.ready) {
@@ -53,7 +58,7 @@ class GraphArea extends React.Component {
           expanded={isGraphExpanded()}
           directionDown={false}
         />
-        <GraphHeader />
+        <GraphHeader roomId={this.state.selectedRoomId} />
         <Graph
           width={`calc( ( 100vw / 3 ) - ( 2 * ${dist.named.columnPadding} ) )`}
           height={`calc( ( 100vh / 3 ) - ${dist.named.columnPadding} )`}
@@ -61,6 +66,7 @@ class GraphArea extends React.Component {
           graphCallback={this.graphCallback}
           selectedId={this.props.graphNodeId}
           graph={this.props.graph}
+          restrictNavigation={true}
         />
       </Area>
     );
@@ -69,7 +75,8 @@ class GraphArea extends React.Component {
 
 GraphArea.propTypes = {
   graph: PropTypes.array,
-  graphNodeId: PropTypes.string
+  graphNodeId: PropTypes.string,
+  room: PropTypes.object,
 };
 
 export default withTracker(props => {

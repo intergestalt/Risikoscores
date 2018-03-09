@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import { Graph } from './';
+import { Graph, Loading } from './';
 import { setSelectGraphNode } from '../../helper/actions';
 import { exists } from '../../helper/global';
 import { dist, colors } from '../../config/styles';
@@ -21,7 +21,7 @@ class StartGraphArea extends React.Component {
   }
 
   renderLoading() {
-    return <div className="StartGraphArea">Loading...</div>;
+    return <div className="StartGraphArea"><Loading /></div>;
   }
   render() {
     if (!this.props.ready) {
@@ -55,8 +55,8 @@ const Container = styled.div`
   padding: ${dist.named.columnPadding} 0;
   box-sizing: border-box;
   bottom: 0;
-  width:50%;
-  width:calc( 50% - ${dist.named.columnPadding} );
+  width:100%;
+  width:calc( 100% - ${dist.named.columnPadding} );
   height:100vh;
   max-height: 75vw;
 `;

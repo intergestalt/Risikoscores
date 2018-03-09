@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
-import Questions from '../../collections/questions';
 import { RoomQuestions, Expander, RoomQuestionsHeader, CustomScrollbars } from './';
 import { toggleQuestions, isQuestionsExpanded } from '../../helper/actions';
 import { colors, dist } from '../../config/styles';
@@ -19,13 +18,7 @@ class QuestionsArea extends React.Component {
     toggleQuestions();
   }
 
-  renderLoading() {
-    return <div className="QuestionsArea">Loading...</div>;
-  }
   render() {
-    if (!this.props.ready) {
-      return this.renderLoading();
-    }
     //questionsExpanded == true => height:60%
     //questionsExpanded == false => height:33%
     var height = 33.3333;
@@ -42,7 +35,7 @@ class QuestionsArea extends React.Component {
         <CustomScrollbars autoHide>
           <InnerContainer>
             <RoomQuestionsHeader />
-            <RoomQuestions questions={this.props.questions} />
+            <RoomQuestions roomId={this.props.room._id} />
           </InnerContainer>
         </CustomScrollbars>
       </Area>
@@ -55,11 +48,7 @@ QuestionsArea.propTypes = {
 };
 
 export default withTracker(props => {
-  const sub = Meteor.subscribe('questions.list');
-
   return {
-    questions: Questions.find().fetch(),
-    ready: sub.ready(),
     questionsExpanded: isQuestionsExpanded()
   };
 })(QuestionsArea);

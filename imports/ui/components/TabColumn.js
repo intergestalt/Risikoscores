@@ -16,15 +16,13 @@ class TabColumn extends React.Component {
   render() {
     var selectedTabId = this.props.selectedTabId;
 
-    const color = this.props.tabs
-      ? this.props.tabs.find(tab => tab.identifier == this.props.selectedTabId)
-          .color
-      : 'transparent';
+    const color = this.props.roomColor;
 
     return (
       <Column className="TabColumn" style={{ backgroundColor: color }}>
         <TabBar
           roomId={this.props.roomId}
+          roomColor={this.props.roomColor}
           selectedTabId={this.props.selectedTabId}
           preSelectedTabId={this.props.preSelectedTabId}
           tabs={this.props.tabs}
@@ -40,6 +38,7 @@ class TabColumn extends React.Component {
 
 TabColumn.propTypes = {
   roomId: PropTypes.string,
+  roomColor: PropTypes.string,
   tabs: PropTypes.array,
   selectedTabId: PropTypes.string
 };

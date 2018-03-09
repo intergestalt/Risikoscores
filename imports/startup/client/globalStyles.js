@@ -40,9 +40,6 @@ injectGlobal`
   a {
     text-decoration: none;
     color: ${colors.blue};
-    &.SCGlossarLink {
-      color ${colors.named.glossar};
-    }
     &:hover {
       text-decoration: underline;
     }

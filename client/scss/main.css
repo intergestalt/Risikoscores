@@ -7,8 +7,18 @@
 
 /*** ADMIN ***/
 
+
 .AdminWrapper {
   padding: 1rem;
+}
+
+.AdminWrapper form input,
+.AdminWrapper form textarea {
+  border-color: darkgrey !important;
+}
+
+.AdminWrapper form *:not(a) {
+  color: black !important;
 }
 
 .AdminWrapper h1,
@@ -16,15 +26,69 @@
 .AdminWrapper h3,
 .AdminWrapper h4,
 .AdminWrapper p {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
+}
+
+.AdminWrapper h1,
+.AdminWrapper h2 {
+  margin-top: 1em;
+}
+
+.AdminWrapper h1,
+.AdminWrapper h2 {
+  font-size:28px;  
+}
+
+.AdminWrapper h2 i {
+  font-style: italic;
 }
 
 .AdminWrapper br {
-  line-height: 1.25rem;
+  line-height: 1.25em;
+}
+
+.AdminWrapper p,
+.AdminWrapper a,
+.AdminWrapper form label,
+.AdminWrapper form input,
+.AdminWrapper form textarea {
+  font-size: 15px;
 }
 
 .AdminWrapper .small {
   color: #aaa;
+}
+
+.AdminEditRoom #uniforms-0000-000f > div + div {
+  margin-top: 3em;
+}
+
+.AdminEditRoom form > div[required] {
+  margin-bottom: 3em !important;
+  background-color: lightgrey;
+  padding: 1em !important;
+  border-radius: 1em;
+}
+.AdminEditRoom form > div[required] * {
+  border-color: darkgrey;
+}
+
+.AdminWrapper form button[type=submit] {
+  position:fixed; top: 1.5em; right: 3em;
+}
+
+.AdminWrapper form button[type=submit]:hover {
+  background-color:yellow;
+}
+
+.AdminWrapper button {
+}
+
+.AdminWrapper .anticon-plus-square-o {
+  background-color: lightgreen;
+}
+.AdminWrapper .ant-btn-circle-outline {
+  background-color: lightcoral;
 }
 
 /*** CLIENT ***/

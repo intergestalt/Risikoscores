@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import ReactStateAnimation from 'react-state-animation'
 
 import { existsString } from '../../../helper/global';
 import { TimelineHeader, TimelineBody } from './';
@@ -13,11 +14,13 @@ class Timeline extends React.Component {
     super(props);
     this.state = {
       scrollPos: [0, 0],
-      scrollLeader: 'Body'
-    };
-    this.headerTakeLead = this.headerTakeLead.bind(this);
-    this.bodyTakeLead = this.bodyTakeLead.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
+      scrollLeader: "Body"
+    }
+    this.headerTakeLead = this.headerTakeLead.bind(this)
+    this.bodyTakeLead = this.bodyTakeLead.bind(this)
+    this.handleScroll = this.handleScroll.bind(this)
+    this.handleYearClick = this.handleYearClick.bind(this)
+    this._animate = new ReactStateAnimation(this)
   }
 
   reorganiseData(data) {
@@ -51,6 +54,11 @@ class Timeline extends React.Component {
     this.setState({ scrollPos: timelineScrollPos });
   }
 
+  handleYearClick(index) {
+    this.setState({ scrollLeader: 'Anim' })
+    this._animate.linearInOut('scrollPos', [index, 0], 1000)
+  }
+
   headerTakeLead(e) {
     //console.log("H")
     /* disabled */
@@ -67,20 +75,8 @@ class Timeline extends React.Component {
     //console.log(data);
     return (
       <Container className="SCTimeline">
-        <TimelineHeader
-          data={data}
-          isScrollLeader={this.state.scrollLeader === 'Header'}
-          scrollPos={this.state.scrollPos}
-          onScroll={this.handleScroll}
-          onMouseEnter={this.headerTakeLead}
-        />
-        <TimelineBody
-          data={data}
-          isScrollLeader={this.state.scrollLeader === 'Body'}
-          scrollPos={this.state.scrollPos}
-          onScroll={this.handleScroll}
-          onMouseEnter={this.bodyTakeLead}
-        />
+        <TimelineHeader data={data} isScrollLeader={this.state.scrollLeader === "Header"} scrollPos={this.state.scrollPos} onScroll={this.handleScroll} onMouseEnter={this.headerTakeLead} onYearClick={this.handleYearClick} />
+        <TimelineBody data={data} isScrollLeader={this.state.scrollLeader === "Body"} scrollPos={this.state.scrollPos} onScroll={this.handleScroll} onMouseEnter={this.bodyTakeLead} ref={instance => { this.body = instance }} />
       </Container>
     );
   }

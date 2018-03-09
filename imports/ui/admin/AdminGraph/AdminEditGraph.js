@@ -3,6 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Graph from '../../../collections/graph';
 import GraphNodeSchema from '../../../schemas/graph';
 import AutoForm from 'uniforms-antd/AutoForm';
+import { message } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 
 import { cleanForSave } from '../../../helper/graph';
@@ -24,9 +25,9 @@ class AdminEditGraph extends React.Component {
 
   saveCallback(error, data) {
     if (error) {
-      alert('ERROR - NOT SAVED');
+      message.success('Error - not saved');
     } else {
-      alert('SAVED');
+      message.success('Saved');
     }
   }
 

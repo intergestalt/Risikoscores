@@ -3,9 +3,11 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Questions from '../../../collections/questions';
 import QuestionSchema from '../../../schemas/question';
 import AutoForm from 'uniforms-antd/AutoForm';
+import { message } from 'antd';
 import enUS from 'antd/lib/locale-provider/en_US';
 
 import { cleanForSave } from '../../../helper/question';
+import AdminDiyHelpContainer from '../AdminDiyHelpContainer/AdminDiyHelpContainer';
 
 class AdminEditQuestion extends React.Component {
   save(doc) {
@@ -24,19 +26,21 @@ class AdminEditQuestion extends React.Component {
 
   saveCallback(error, data) {
     if (error) {
-      alert('ERROR - NOT SAVED');
+      message.success('Error - not saved');
     } else {
-      alert('SAVED');
+      message.success('Saved');
     }
   }
 
   renderForm() {
     return (
-      <AutoForm
-        schema={QuestionSchema}
-        onSubmit={doc => this.save(doc)}
-        model={this.props.question}
-      />
+      <AdminDiyHelpContainer segments={['intro', 'diyMarkdownLink']}>
+        <AutoForm
+          schema={QuestionSchema}
+          onSubmit={doc => this.save(doc)}
+          model={this.props.question}
+        />
+      </AdminDiyHelpContainer>
     );
   }
 

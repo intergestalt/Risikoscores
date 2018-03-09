@@ -5,7 +5,10 @@ import parsePath from 'parse-filepath'; // for client-side
 import fs from 'fs';
 import im from 'imagemagick';
 import UploadsStatus from '../collections/uploadsStatus';
+import Uploads from '../collections/uploads';
 import { imageSizes } from '../config/imagesSizes';
+import { uploads_dir, cache_dir, url_prefix } from '../config/uploads';
+import { variants } from '../config/variants';
 
 const wrapWithPromise = wrappedFunction => (...args) => (
   new Promise((resolve, reject) => {
@@ -32,7 +35,7 @@ const identifyPromise = wrapWithPromise(im.identify)
 
 function convertImages(force = false) {
   console.log("processing images")
-  recursive(global.uploads_dir, async function (err, files) {
+  recursive(uploads_dir, async function (err, files) {
     // filter images
     const validFiles = files.filter((file) => (['.jpg', '.png', '.jpeg'].indexOf(path.extname(file)) > -1))
 
@@ -48,12 +51,12 @@ function convertImages(force = false) {
       updateStatus({ totalConvertedImageFiles: index })
 
       const p = path.parse(file);
-      const dirRelativeToUploads = p.dir.substr(global.uploads_dir.length);
+      const dirRelativeToUploads = p.dir.substr(uploads_dir.length);
 
       // loop image sizes
       for (let sizeObj of imageSizes) {
 
-        const destFile = global.cache_dir + generateFilepath(dirRelativeToUploads + '/' + p.base, sizeObj);
+        const destFile = cache_dir + generateFilepath(dirRelativeToUploads + '/' + p.base, sizeObj);
         mkdir.mkdirSync(path.dirname(destFile));
 
         process.stdout.write(`processing ${dirRelativeToUploads}/${p.base} -> ${path.basename(destFile)} ...`);
@@ -64,6 +67,10 @@ function convertImages(force = false) {
         }
 
         updateStatus({ processingFile: `${dirRelativeToUploads}/${path.basename(destFile)}` })
+        const uploadId = `${dirRelativeToUploads}/${p.base}`
+        Uploads.upsert({ _id: uploadId }, {
+          $set: { _id: uploadId }
+        })
 
         const dimensions = await getImageDimensions(file);
 
@@ -105,7 +112,8 @@ function updateStatus(state) {
 
 function clearCache() {
   console.log("processing images")
-  recursive(global.cache_dir, async function (err, files) {
+  Uploads.remove({}, { multi: true })
+  recursive(cache_dir, async function (err, files) {
     // loop files
     for (let file of files) {
       console.log("removing " + file)
@@ -144,4 +152,13 @@ function getSrcsetString(orig_path, sizeName = false) {
   }
 }
 
-export { convertImages, clearCache, getSrcsetString }
+function getUrlPrefix(roomVariant = false) {
+  if (!roomVariant) {
+    return url_prefix
+  } else {
+    const variantDir = variants.find(v => (v._id == roomVariant)).dir
+    return url_prefix + (variantDir === "" ? "" : '/') + variantDir
+  }
+}
+
+export { convertImages, clearCache, getSrcsetString, getUrlPrefix }

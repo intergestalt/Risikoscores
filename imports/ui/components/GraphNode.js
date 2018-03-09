@@ -40,10 +40,10 @@ class GraphNode extends React.Component {
     return (
       <circle
         onClick={e => {
-          this.clickCallback(e, this.props.node.id);
+          this.props.passive || this.clickCallback(e, this.props.node.id);
         }}
         onMouseEnter={e => {
-          this.enterCallback(e, this.props.node.id);
+          this.props.passive || this.enterCallback(e, this.props.node.id);
         }}
         onMouseLeave={e => {
           this.leaveCallback(e);
@@ -52,6 +52,7 @@ class GraphNode extends React.Component {
         cy={this.props.node.y + '%'}
         r={'1ex'}
         fill={color}
+        style={{ cursor: this.props.passive ? "" : "pointer" }}
       />
     );
   }
@@ -61,7 +62,8 @@ GraphNode.propTypes = {
   graphCallback: PropTypes.func,
   node: PropTypes.object,
   selected: PropTypes.bool,
-  neighbour: PropTypes.bool
+  neighbour: PropTypes.bool,
+  passive: PropTypes.bool,
 };
 
 export default withRouter(GraphNode);

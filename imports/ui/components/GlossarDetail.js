@@ -15,7 +15,7 @@ class GlossarDetail extends React.Component {
     var text = localeStr(this.props.entry.text);
     var title = localeStr(this.props.entry.name);
     return (
-      <Container className="GlossarContent">
+      <Container className="GlossarContent GlossarDetail">
         <h1>{title}</h1>
         <GlossarClose />
         <DiyMarkdown>{text}</DiyMarkdown>

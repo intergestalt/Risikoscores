@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { tabColors } from '../config/tabColors';
 
 const Rooms = new Mongo.Collection('rooms');
 

@@ -11,6 +11,24 @@ import { snippets, dist } from '../../config/styles';
 class TabContent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hidden: true
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ hidden: false })
+    }, 100)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.tab.identifier !== nextProps.tab.identifier) {
+      this.setState({ hidden: true })
+      setTimeout(() => {
+        this.setState({ hidden: false })
+      }, 100)
+    }
   }
 
   render() {
@@ -22,11 +40,13 @@ class TabContent extends React.Component {
     const options = splitted.options;
     var scroll = !getOptionFlag(options, 'disableScrolling');
 
+    const tabClass = "TabContent " + (this.state.hidden ? "hidden" : "")
+
     if (scroll) {
       return (
-        <Content className="TabContent">
+        <Content className={tabClass}>
           <CustomScrollbars>
-            <ScrollContainer>
+            <ScrollContainer className="ScrollContainer">
               {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
               <DiyMarkdown>{splitted.text}</DiyMarkdown>
             </ScrollContainer>
@@ -35,7 +55,7 @@ class TabContent extends React.Component {
       );
     } else {
       return (
-        <ContentNoScroll className="TabContent">
+        <ContentNoScroll className={tabClass}>
           {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
           <DiyMarkdown>{splitted.text}</DiyMarkdown>
         </ContentNoScroll>
@@ -52,6 +72,13 @@ TabContent.propTypes = {
 export default TabContent;
 
 const Content = styled.div`
+  &:not(.hidden) {
+    transition: opacity 0.6s;
+  }
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+  }
   //overflow-y: auto;
   overflow-x: hidden;
   flex: 1;
@@ -76,6 +103,8 @@ const ContentNoScroll = Content.extend`
   }
 `;
 
-const ScrollContainer = styled.div``;
+const ScrollContainer = styled.div`
+  padding-bottom: 10em; // TODO insert height of MENU button
+`;
 
 const Headline = styled.h1`${snippets.headlineText};`;

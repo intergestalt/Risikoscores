@@ -3,8 +3,15 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Button, Spin } from 'antd';
 import UploadsStatus from '../../../collections/uploadsStatus';
+import Uploads from '../../../collections/uploads';
+import { url_prefix } from '../../../config/uploads';
+import { getSrcsetString } from '../../../helper/uploads';
 
 class AdminUploads extends React.Component {
+  constructor() {
+    super()
+    this.renderUploadsList = this.renderUploadsList.bind(this)
+  }
 
   regenerateImages() {
     Meteor.call('uploads.regenerateImages', {});
@@ -20,9 +27,34 @@ class AdminUploads extends React.Component {
     });
   }
 
+  renderUploadsList() {
+    if (!this.props.uploads) return
+
+    const thumbImgStyle = {
+      height: "1em",
+      width: "1.5em",
+      marginRight: "1ex",
+      objectFit: "contain",
+      objectPosition: "left center"
+    }
+    const list = this.props.uploads.map((u) => (
+      <li key={u._id}>
+        <a target="_preview" href={url_prefix + "/" + u._id}>
+          <img style={thumbImgStyle} srcSet={getSrcsetString(url_prefix + "/" + u._id, "thumb")} />
+          {u._id}
+        </a>
+      </li>
+    ))
+    return (
+      <ul>
+        {list}
+      </ul>
+    )
+  }
+
   render() {
     const status = this.props.status;
-    console.log(status)
+
     return (
       <div className="AdminUploads">
         <h2>Manage Cache</h2>
@@ -50,16 +82,21 @@ class AdminUploads extends React.Component {
             <span> </span>{this.props.ready ? status.processingFile : ''}
           </small>
         </div>
-      </div>
+        <div style={{ marginTop: '3em', color: 'grey' }} >
+          <h2>Uploaded Images</h2>
+          {this.renderUploadsList()}
+        </div>
+      </div >
     );
   }
 }
 
 export default withTracker(props => {
   const sub = Meteor.subscribe('uploadStatus.list');
-  console.log(UploadsStatus.find().fetch())
+  const sub2 = Meteor.subscribe('uploads.list');
   return {
     status: UploadsStatus.find().fetch()[0],
+    uploads: Uploads.find().fetch(),
     ready: sub.ready()
   };
 })(AdminUploads);

@@ -34,15 +34,12 @@ class GlossarList extends React.Component {
     const glossar = sortGlossar(this.props.glossar);
     var entryList = this.getGlossarList(glossar);
     const roomGlossar = getRoomGlossar(glossar, this.props.roomGlossar);
-    var roomEntryList = this.getGlossarList(roomGlossar, false);
+    var roomEntryList = this.getGlossarList(roomGlossar, true);
     var title = getFragment('glossar');
 
     return (
-      <Content className="GlossarContent">
+      <Content className="GlossarContent GlossarList">
         <Title>{title}</Title>
-        <h2>Raum Einträge</h2>
-        <ul>{roomEntryList}</ul>
-        <h2>Alle Einträge</h2>
         <ul>{entryList}</ul>
       </Content>
     );
@@ -58,10 +55,7 @@ export default GlossarList;
 
 const Content = styled.div`
   ${snippets.glossarText};
-  &,
-  & a {
-    color: white;
-  }
+  color: white;
   h2 {
     margin: 1em 0;
     ${snippets.headlineText};
@@ -71,4 +65,5 @@ const Content = styled.div`
 const Title = styled.h3`
   ${snippets.headlineText};
   color: ${colors.named.glossar};
+  margin-bottom: 1em;
 `;

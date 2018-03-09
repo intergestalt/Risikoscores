@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
-import { StartLeft, StartRight } from '../../components';
+import { StartLeft, StartRight, Loading } from '../../components';
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
@@ -24,8 +24,9 @@ class Start extends React.Component {
   }
 
   renderLoading() {
-    return <div className="Start">Loading...</div>;
+    return <Loading />;
   }
+
   render() {
     if (!this.props.ready) {
       return this.renderLoading();
@@ -49,7 +50,7 @@ export default withTracker(props => {
   return {
     rooms: Rooms.find({}, { sort }).fetch(),
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready()
+    ready: sub.ready() && sub2.ready(),
   };
 })(Start);
 
