@@ -8,7 +8,7 @@ import {
   Timeline,
   AssetList,
   Quote,
-  ServerAudio,
+  ServerAudio
 } from '../ui/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
@@ -25,6 +25,7 @@ var simpleParams = {
   ExternalLink: ['text', 'url'],
   Link: ['text', 'room', 'tab'],
   Glossar: ['entry', 'text'],
+  Quote: ['text', 'source', 'audio'],
   Timeline: ['data']
 };
 
@@ -121,19 +122,23 @@ function renderSpecialComponent(specialComponent, id, glossar) {
   } else if (name === 'assetlist') {
     return <AssetList key={'_' + id} data={options} />;
   } else if (name === 'quote') {
-    return <Quote
-      key={'_' + id}
-      text={options.text}
-      source={options.source}
-      audio={options.audio}
-    />;
+    return (
+      <Quote
+        key={'_' + id}
+        text={options.text}
+        source={options.source}
+        audio={options.audio}
+      />
+    );
   } else if (name === 'serveraudio') {
-    return <ServerAudio
-      key={'_' + id}
-      text={options.text}
-      source={options.source}
-      audio={options.audio}
-    />;
+    return (
+      <ServerAudio
+        key={'_' + id}
+        text={options.text}
+        source={options.source}
+        audio={options.audio}
+      />
+    );
   }
 }
 
