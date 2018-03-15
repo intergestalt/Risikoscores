@@ -4,6 +4,7 @@ import { Session } from 'meteor/session';
 import { getSelectedTabId, getSelectedRoomId } from '../../../helper/actions';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import LazyLoad from 'react-lazyload';
 
 import { dist } from '../../../config/styles';
 import { Asset, Annotation } from './';
@@ -18,7 +19,11 @@ class Quote extends React.Component {
     const file = this.props.file;
     if (!file) return false;
 
-    return <audio src={file} controls="controls" />;
+    return (
+      <LazyLoad height={100}>
+        <audio src={file} controls="controls" />
+      </LazyLoad>
+    );
   }
   renderText(text) {
     text = text.replace(/<br\/>/g, '\n');

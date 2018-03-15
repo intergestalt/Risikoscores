@@ -19,10 +19,15 @@ const helpTexts = {
   `,
   'diyMarkdownRoom': `
 
+    <<<Quote: TEXT; SOURCE; AUDIOFILE>>>
+    <<<Quote: Ich glaube, solche Scores…; Müller-Riemenschneider 1999; Abschnitt_11.2.mp3>>>
+
+    or:
+
     <<<Quote: {
       "text": "Ich glaube, solche Scores…",
-      "audio": "Abschnitt_11.2.mp3",
-      "source": "Müller-Riemenschneider 1999"
+      "source": "Müller-Riemenschneider 1999",
+      "audio": "Abschnitt_11.2.mp3"
     }>>>
 
     AssetList
