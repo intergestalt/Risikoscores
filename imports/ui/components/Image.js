@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import styled from 'styled-components';
-import {LazyLoad} from 'react-lazyload';
 
 import { getImageSrc } from '../../helper/asset.js';
 import { getLanguage } from '../../helper/actions';
 import { exists } from '../../helper/global';
 import { getSrcsetString } from '../../helper/uploads';
 
-@lazyload({
-  height: 200,
-  once: true,
-  offset: 100
-})
 class Image extends React.Component {
   constructor(props) {
     super(props);
@@ -28,6 +22,7 @@ class Image extends React.Component {
       const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
       imageEntity = (
         <Img
+          key={imgSrc}
           innerRef={this.props.imgRef}
           onLoad={this.props.onLoad}
           src={imgSrc}
