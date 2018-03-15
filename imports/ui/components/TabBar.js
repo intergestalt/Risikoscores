@@ -74,9 +74,13 @@ const Tab = styled(NavLink) `
 `;
 
 const TabText = styled.span`
-  ${snippets.tabText} .SelectedTab & {
+  ${snippets.tabText} 
+  /* position: relative;
+  top: -0.03em;*/
+  display: inline-block;
+  .SelectedTab &, .Tab:hover & {
     background-image: linear-gradient(to bottom, black 33%, transparent 33%);
-    background-position: 0 1.03em;
+    background-position: 0 1.65em;
     background-repeat: repeat-x;
     background-size: 2px 6px;
   }
