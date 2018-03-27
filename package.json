@@ -25,6 +25,7 @@
     "react-addons-pure-render-mixin": "^15.6.2",
     "react-custom-scrollbars": "^4.2.0",
     "react-dom": "^16.0.0",
+    "react-lazyload": "^2.3.0",
     "react-meteor-data": "^0.2.10",
     "react-resize-aware": "^2.7.0",
     "react-router-dom": "^4.2.2",

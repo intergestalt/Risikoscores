@@ -22,6 +22,7 @@ class Image extends React.Component {
       const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
       imageEntity = (
         <Img
+          key={imgSrc}
           innerRef={this.props.imgRef}
           onLoad={this.props.onLoad}
           src={imgSrc}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import LazyLoad from 'react-lazyload';
 
 import { existsString } from '../../../helper/global';
 import {
@@ -27,17 +28,16 @@ class AssetList extends React.Component {
       const row = rows[i];
       var myAsset = getImageAsset(row.asset, context.room, context.tab);
       const newRow = (
-        <tr key={'_' + i}>
-          <td>
+        <li key={'_' + i + '_' + row.name}>
+          <LazyLoad height={200} offset={200} once overflow>
             <AnnotatedAsset
-              key={'_' + i}
               asset={myAsset}
               text={row.asset.text}
               source={row.asset.source}
               clickCallback={this.detailClick}
             />
-          </td>
-        </tr>
+          </LazyLoad>
+        </li>
       );
       result.push(newRow);
     }
@@ -47,9 +47,9 @@ class AssetList extends React.Component {
     const rows = this.renderRows(this.props.data.rows, this.props.data.context);
     return (
       <div className="SCTimeline">
-        <Table>
-          <tbody>{rows}</tbody>
-        </Table>
+        <ol>
+          {rows}
+        </ol>
       </div>
     );
   }
