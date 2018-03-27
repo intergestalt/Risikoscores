@@ -93,7 +93,7 @@ Meteor.startup(() => {
     }
   });
   //Glossar.remove({});
-  glossar.forEach(entry => {
+  /* glossar.forEach(entry => {
     const name = entry.name;
     const id = entry.id;
     if (!Glossar.findOne(id)) {
@@ -106,7 +106,7 @@ Meteor.startup(() => {
         text: { de: entry.text }
       });
     }
-  });
+  });*/
 
   /*Questions.remove({});
   questions.forEach(question => {
