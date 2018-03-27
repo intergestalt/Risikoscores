@@ -47,12 +47,16 @@ class Room extends React.Component {
   }
 
   componentWillMount() {
-    Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1)
+    Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.room && this.props.room && nextProps.room._id != this.props.room._id) {
-      Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1)
+    if (
+      nextProps.room &&
+      this.props.room &&
+      nextProps.room._id != this.props.room._id
+    ) {
+      Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1);
     }
   }
 
@@ -87,7 +91,10 @@ class Room extends React.Component {
         <MenuIcon />
         <ImageDetailView />
         <RoomChooserFixed className="RoomChooserFixed">
-          <RoomChooser roomKey={this.props.room.key} disableNonExistingVariants />
+          <RoomChooser
+            roomKey={this.props.room.key}
+            disableNonExistingVariants
+          />
         </RoomChooserFixed>
       </RoomElem>
     );
@@ -104,15 +111,15 @@ class Room extends React.Component {
 
 export default withTracker(props => {
   const roomId = props.match.params._id;
-  const variant = Session.get("roomVariant");
+  const variant = Session.get('roomVariant');
   const sub = Meteor.subscribe('room', roomId, variant);
   const sub2 = Meteor.subscribe('fragments.list');
 
   let room = Rooms.findOne({ key: roomId, variant });
 
   if (!room && sub.ready()) {
-    console.log("moving to live version")
-    Session.set("roomVariant", 'live');
+    console.log('moving to live version');
+    Session.set('roomVariant', 'live');
     room = Rooms.findOne({ key: roomId, variant: 'live' });
   }
 
@@ -122,14 +129,14 @@ export default withTracker(props => {
   var roomColor = 'grey';
   if (!tabId) {
     if (room && room.subsections) {
-      tabId = room.subsections[0].identifier // set default tab
+      tabId = room.subsections[0].identifier; // set default tab
     }
   }
   if (exists(tabId)) {
     setSelectedTabId(tabId);
     if (room && room.subsections) {
       roomColor = tabColorPalette[Session.get('roomVisitCounter') % 3];
-      const tabColorsArray = tabColors(roomColor, room.subsections.length)
+      const tabColorsArray = tabColors(roomColor, room.subsections.length);
       let i = 0;
       for (let s of room.subsections) {
         s.color = tabColorsArray[i];
@@ -150,7 +157,7 @@ export default withTracker(props => {
     roomColor,
     fragments: TextFragments.find().fetch(),
     ready: sub.ready() && sub2.ready() && room,
-    powerOn: Session.get("powerOn")
+    powerOn: Session.get('powerOn')
   };
 })(Room);
 
@@ -166,7 +173,10 @@ const RoomElem = styled.div`
   }
   height: 100%;
   overflow: hidden;
-  ${props => props.powerOn ? '' : `
+  ${props =>
+    props.powerOn
+      ? ''
+      : `
   background-color: black;
     & > *:not(nav) {
       background-color: black;
@@ -181,16 +191,15 @@ const RoomElem = styled.div`
     img {
       visibility:hidden;
     }
-  `}
-
+  `};
 `;
 
 const RoomChooserFixed = styled.div`
-    position:fixed;
-    bottom: 1.5em;
-    left: 50vw;
-    transform: translateX(-50%);
-    z-index:999;
-    opacity: 0.9;
-    box-shadow: 1ex 1ex 1ex rgba(0,0,0,0.6);
-`
+  position: fixed;
+  bottom: 1.5em;
+  left: 50vw;
+  transform: translateX(-50%);
+  z-index: 999;
+  opacity: 0.9;
+  box-shadow: 1ex 1ex 1ex rgba(0, 0, 0, 0.6);
+`;

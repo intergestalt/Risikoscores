@@ -13,21 +13,21 @@ class TabContent extends React.Component {
     super(props);
     this.state = {
       hidden: true
-    }
+    };
   }
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ hidden: false })
-    }, 100)
+      this.setState({ hidden: false });
+    }, 100);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.tab.identifier !== nextProps.tab.identifier) {
-      this.setState({ hidden: true })
+      this.setState({ hidden: true });
       setTimeout(() => {
-        this.setState({ hidden: false })
-      }, 100)
+        this.setState({ hidden: false });
+      }, 100);
     }
   }
 
@@ -40,7 +40,7 @@ class TabContent extends React.Component {
     const options = splitted.options;
     var scroll = !getOptionFlag(options, 'disableScrolling');
 
-    const tabClass = "TabContent " + (this.state.hidden ? "hidden" : "")
+    const tabClass = 'TabContent ' + (this.state.hidden ? 'hidden' : '');
 
     if (scroll) {
       return (
@@ -89,16 +89,17 @@ const Content = styled.div`
 `;
 
 const ContentNoScroll = Content.extend`
-  overflow-y:hidden;
+  overflow-y: hidden;
   & > * {
     position: initial !important;
     //position: absolute !important; // see above
-  }  
+  }
   & > *,
   & > * > * {
     height: 100%;
   }
-  &, & * {
+  &,
+  & * {
     background-color: inherit; // helps hiding the horizontal scrollbar in Timeline
   }
 `;
@@ -107,4 +108,6 @@ const ScrollContainer = styled.div`
   padding-bottom: 10em; // TODO insert height of MENU button
 `;
 
-const Headline = styled.h1`${snippets.headlineText};`;
+const Headline = styled.h1`
+  ${snippets.headlineText};
+`;

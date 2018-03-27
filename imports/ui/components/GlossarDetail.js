@@ -34,6 +34,6 @@ const Container = styled.div`
   color: white;
   .DiyMarkdown p {
     padding-left: 0;
-    padding-right:0;
+    padding-right: 0;
   }
 `;

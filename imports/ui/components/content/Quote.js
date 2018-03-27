@@ -31,8 +31,8 @@ class Quote extends React.Component {
     var paragraphs = [];
     for (var i = 0; i < blocks.length; i++) {
       const e = blocks[i];
-      var entry = <div>{e}</div>;
-      if (e == '') entry = <div>&nbsp;</div>;
+      var entry = <div key={i}>{e}</div>;
+      if (e == '') entry = <div key={i}>&nbsp;</div>;
       paragraphs.push(entry);
     }
     return <div>{paragraphs}</div>;

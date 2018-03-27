@@ -252,7 +252,10 @@ function diyMarkdownBlock(text, blockId, glossar = true) {
 
 export function diyMarkdown(text, glossar = true) {
   if (!text) return;
+  text = text.replace(/\*\*/g, 'XXX');
   text = text.replace(/\*/g, '&ast;');
+  text = text.replace(new RegExp('XXX', 'g'), '**');
+
   const blocks = text.split('\n\n');
   const components = [];
   for (var i = 0; i < blocks.length; i++) {
