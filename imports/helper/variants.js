@@ -15,9 +15,9 @@ function initRoomVariant(key, variant, sourceVariant = 'live') {
   doc.variant = variant;
   delete doc._id;
   Rooms.remove({ key, variant }, () => {
-    Rooms.insert(doc)
+    Rooms.insert(doc);
   });
-  copyRoomFiles(key, sourceVariant, variant)
+  copyRoomFiles(key, sourceVariant, variant);
 }
 
 // clear content of room variant
@@ -32,45 +32,47 @@ function clearRoomVariant(key, variant) {
   };
 
   Rooms.remove({ key, variant }, () => {
-    Rooms.insert(doc)
+    Rooms.insert(doc);
   });
 }
 
 // delete room variant
 function deleteRoomVariant(key, variant) {
   if (variant == 'live') return;
-  Rooms.remove({ key, variant }, () => { });
+  Rooms.remove({ key, variant }, () => {});
   //deleteRoomFiles(key, variant)
 }
 
 function deleteRoomFiles(room, variant) {
-  if (variant == "live") return
-  const roomDir = variants.find(v => (v._id == variant)).dir
-  const liveDir = variants.find(v => (v._id == "live")).dir
+  if (variant == 'live') return;
+  const roomDir = variants.find(v => v._id == variant).dir;
+  const liveDir = variants.find(v => v._id == 'live').dir;
   if (liveDir == roomDir) {
-    console.log("Not deleting room files in live directory");
+    console.log('Not deleting room files in live directory');
     return;
   }
-  const dir = uploads_dir + "/" + roomDir + (roomDir === "" ? "" : '/') + room
-  console.log("removing files from " + dir)
+  const dir = uploads_dir + '/' + roomDir + (roomDir === '' ? '' : '/') + room;
+  console.log('removing files from ' + dir);
   fs.remove(dir);
 }
 
 function copyRoomFiles(room, variantFrom, variantTo) {
-  const from = variants.find(v => (v._id == variantFrom))
-  const to = variants.find(v => (v._id == variantTo))
+  const from = variants.find(v => v._id == variantFrom);
+  const to = variants.find(v => v._id == variantTo);
   if (!from || !to) {
-    console.log("room variants to copy not found")
+    console.log('room variants to copy not found');
     return;
   }
   if (from.dir === to.dir) {
     return;
   }
-  const source = uploads_dir + "/" + from.dir + (from.dir === "" ? "" : '/') + room
-  const destination = uploads_dir + "/" + to.dir + (to.dir === "" ? "" : '/') + room
-  console.log(`copying files from ${source} to ${destination}`)
-  mkdir.mkdirSync(destination)
-  ncp(source, destination, function (err) {
+  const source =
+    uploads_dir + '/' + from.dir + (from.dir === '' ? '' : '/') + room;
+  const destination =
+    uploads_dir + '/' + to.dir + (to.dir === '' ? '' : '/') + room;
+  console.log(`copying files from ${source} to ${destination}`);
+  mkdir.mkdirSync(destination);
+  ncp(source, destination, function(err) {
     if (err) {
       return console.error(err);
     }
@@ -79,4 +81,17 @@ function copyRoomFiles(room, variantFrom, variantTo) {
   });
 }
 
-export { initRoomVariant, clearRoomVariant, deleteRoomVariant }
+// set a room variant live
+function setRoomVariantNormal(key, variant) {
+  if (variant == 'live') return;
+  Rooms.remove({ key: key, variant: 'live' }); // vorhandenen live-raum entfernen
+  Rooms.update({ key: key, variant: variant }, { $set: { variant: 'live' } }); // SB-raum zum live-raum machen
+  copyRoomFiles(key, variant, 'live');
+}
+
+export {
+  initRoomVariant,
+  clearRoomVariant,
+  deleteRoomVariant,
+  setRoomVariantNormal
+};

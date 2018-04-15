@@ -1,24 +1,32 @@
 import { Meteor } from 'meteor/meteor';
 import { convertImages, clearCache } from '../../helper/uploads';
-import { initRoomVariant, clearRoomVariant, deleteRoomVariant } from '../../helper/variants';
+import {
+  setRoomVariantNormal,
+  initRoomVariant,
+  clearRoomVariant,
+  deleteRoomVariant
+} from '../../helper/variants';
 
 Meteor.methods({
-  'uploads.clearCache'({ }) {
+  'uploads.clearCache'({}) {
     clearCache();
   },
-  'uploads.regenerateMissingImages'({ }) {
+  'uploads.regenerateMissingImages'({}) {
     convertImages();
   },
-  'uploads.regenerateImages'({ }) {
+  'uploads.regenerateImages'({}) {
     convertImages(true);
   },
-  'initRoomVariant'({ key, variant }) {
-    initRoomVariant(key, variant)
+  initRoomVariant({ key, variant }) {
+    initRoomVariant(key, variant);
   },
-  'clearRoomVariant'({ key, variant }) {
-    clearRoomVariant(key, variant)
+  clearRoomVariant({ key, variant }) {
+    clearRoomVariant(key, variant);
   },
-  'deleteRoomVariant'({ key, variant }) {
-    deleteRoomVariant(key, variant)
+  deleteRoomVariant({ key, variant }) {
+    deleteRoomVariant(key, variant);
+  },
+  setRoomVariantNormal({ key, variant }) {
+    setRoomVariantNormal(key, variant);
   }
 });
