@@ -21,12 +21,17 @@ class StartGraphArea extends React.Component {
   }
 
   renderLoading() {
-    return <div className="StartGraphArea"><Loading /></div>;
+    return (
+      <div className="StartGraphArea">
+        <Loading />
+      </div>
+    );
   }
   render() {
     if (!this.props.ready) {
       return this.renderLoading();
     }
+    console.log('THIS: ' + this.props.selectedId);
     return (
       <Container className="StartGraphArea">
         <Graph
@@ -55,8 +60,8 @@ const Container = styled.div`
   padding: ${dist.named.columnPadding} 0;
   box-sizing: border-box;
   bottom: 0;
-  width:100%;
-  width:calc( 100% - ${dist.named.columnPadding} );
-  height:100vh;
+  width: 100%;
+  width: calc(100% - ${dist.named.columnPadding});
+  height: 100vh;
   max-height: 75vw;
 `;

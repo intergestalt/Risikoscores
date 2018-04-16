@@ -34,7 +34,8 @@ class Graph extends React.Component {
         modeMap.nodeModes[selectedNodeId].selected = true;
       }
       for (let i in modeMap.nodeModes) {
-        modeMap.nodeModes[i].passive = !modeMap.nodeModes[i].neighbour && !modeMap.nodeModes[i].selected
+        modeMap.nodeModes[i].passive =
+          !modeMap.nodeModes[i].neighbour && !modeMap.nodeModes[i].selected;
       }
     }
     return modeMap;
@@ -103,23 +104,40 @@ class Graph extends React.Component {
   render() {
     const realGraph = getTheRealGraph(this.props.graph);
     var modeMap = { nodeModes: {}, edgeModes: {} };
-
     if (exists(this.props.selectedId)) {
-      const presentNodeId = this.props.restrictNavigation ? this.props.selectedRoomId : null;
+      const presentNodeId = this.props.restrictNavigation
+        ? this.props.selectedRoomId
+        : null;
       modeMap = this.selectNode(this.props.selectedId, presentNodeId);
     }
     const lines = this.getEdges(realGraph, modeMap);
     const circles = this.getNodes(realGraph, modeMap);
 
     return (
-      <SvgContainer className="Graph" style={{ width: this.props.width, height: this.props.height }}>
+      <SvgContainer
+        className="Graph"
+        style={{ width: this.props.width, height: this.props.height }}
+      >
         <defs>
-          <radialGradient id="grad1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-            <stop offset="70%" style={{
-              stopColor: 'white',
-              stopOpacity: 1
-            }} />
-            <stop offset="80%" style={{ stopColor: this.props.backgroundColor, stopOpacity: 0 }} />
+          <radialGradient
+            id="grad1"
+            cx="50%"
+            cy="50%"
+            r="50%"
+            fx="50%"
+            fy="50%"
+          >
+            <stop
+              offset="70%"
+              style={{
+                stopColor: 'white',
+                stopOpacity: 1
+              }}
+            />
+            <stop
+              offset="80%"
+              style={{ stopColor: this.props.backgroundColor, stopOpacity: 0 }}
+            />
           </radialGradient>
         </defs>
         {lines}
@@ -136,13 +154,13 @@ Graph.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   backgroundColor: PropTypes.string,
-  restrictNavigation: PropTypes.bool,
+  restrictNavigation: PropTypes.bool
 };
 
 export default withTracker(props => {
   return {
     selectedId: getSelectGraphNode(),
-    selectedRoomId: getSelectedRoomId(),
+    selectedRoomId: getSelectedRoomId()
   };
 })(Graph);
 

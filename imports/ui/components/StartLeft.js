@@ -12,7 +12,11 @@ class StartLeft extends React.Component {
     super(props);
   }
   renderLoading() {
-    return <Container className="StartLeft"><Loading /></Container>;
+    return (
+      <Container className="StartLeft">
+        <Loading />
+      </Container>
+    );
   }
   render() {
     if (!this.props.ready) {
@@ -34,7 +38,6 @@ StartLeft.propTypes = {
 
 export default withTracker(props => {
   const sub = Meteor.subscribe('questions.list');
-
   return {
     questions: Questions.find().fetch(),
     ready: sub.ready()

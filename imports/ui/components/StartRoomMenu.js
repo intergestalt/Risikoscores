@@ -58,7 +58,7 @@ class StartRoomMenu extends React.Component {
 
     for (var i = 0; i < this.props.rooms.length; i++) {
       const room = this.props.rooms[i];
-      const roomId = room._id;
+      const roomId = room.key;
       var text = localeStr(room.name, this.props.lang);
       var selected = false;
       var neighbour = false;
@@ -133,11 +133,11 @@ const Ul = styled.ul`
   position: absolute;
   pointer-events: none;
   & li {
-    pointer-events:all;
+    pointer-events: all;
   }
 `;
 
-const LinkStyled = styled(Link) `
+const LinkStyled = styled(Link)`
   &:hover {
     text-decoration: none;
   }

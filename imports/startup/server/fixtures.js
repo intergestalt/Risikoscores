@@ -72,7 +72,7 @@ Meteor.startup(() => {
 
   //Rooms.remove({});
   rooms.forEach(room => {
-    if (!Rooms.findOne(room)) {
+    if (!Rooms.findOne({ key: room })) {
       console.log('inserting room ' + room);
       const name = room[0].toUpperCase() + room.substring(1);
       Rooms.insert({

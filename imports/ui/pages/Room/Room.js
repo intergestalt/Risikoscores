@@ -114,7 +114,6 @@ export default withTracker(props => {
   const variant = Session.get('roomVariant');
   const sub = Meteor.subscribe('room', roomId, variant);
   const sub2 = Meteor.subscribe('fragments.list');
-
   let room = Rooms.findOne({ key: roomId, variant });
 
   if (!room && sub.ready()) {

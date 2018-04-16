@@ -2,7 +2,7 @@ import { setRealGraph, getRealGraph } from './actions';
 import { exists, existsString } from './global';
 import { colors } from '../config/styles';
 
-const defaultColor = 'url(#grad1)';//colors.darkgrey; // 'transparent';
+const defaultColor = 'url(#grad1)'; //colors.darkgrey; // 'transparent';
 const selectedColor = colors.blue;
 const neighbourColor = colors.yellow;
 const defaultEdgeColor = '#eeeeee';
@@ -171,7 +171,6 @@ export function getTheRealGraph(graph) {
         newNeighbours.push(neighbourId);
       }
     }
-
     const newNode = {
       id: oldNode._id,
       pseudo: oldNode.pseudo,

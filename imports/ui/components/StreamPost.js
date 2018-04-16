@@ -36,8 +36,8 @@ class StreamPost extends React.Component {
     if (this.state.stillLoading) {
       return this.renderLoading();
     }
-
     const question = this.props.question;
+    console.log(question);
     var text = localeStr(question.text, this.props.lang);
     var title = localeStr(question.title, this.props.lang);
     var image = null;
@@ -78,7 +78,7 @@ export default withTracker(props => {
 const Li = styled.li`
   padding: ${dist.medium} 0 0 0;
   padding-top: calc(
-    ${dist.medium} - ( ${dist.lineTopDiff} + ${dist.lineBottomDiff} )
+    ${dist.medium} - (${dist.lineTopDiff} + ${dist.lineBottomDiff})
   );
   &:last-child {
     padding-bottom: ${dist.medium};
@@ -87,7 +87,7 @@ const Li = styled.li`
 `;
 
 const LiLoading = Li.extend`
-padding: ${dist.small} 0 0 ${dist.small};
+  padding: ${dist.small} 0 0 ${dist.small};
 `;
 
 const Header = styled.div`
@@ -98,7 +98,7 @@ const Header = styled.div`
 const Content = styled.div`
   margin: 0;
   & p {
-    margin-top:0 !important;
+    margin-top: 0 !important;
   }
 `;
 

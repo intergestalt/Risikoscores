@@ -24,8 +24,7 @@ class Link extends React.Component {
   componentWillMount() {
     const selectedRoomId = getSelectedRoomId();
     const lang = getLanguage();
-    this.sameRoom = selectedRoomId == this.props.room
-    console.log(selectedRoomId, this.props.room, this.sameRoom)
+    this.sameRoom = selectedRoomId == this.props.room;
     this.path = '/rooms/' + this.props.room + '?language=' + lang;
     if (exists(this.props.tab)) {
       this.path += '&tabId=' + this.props.tab;
@@ -77,8 +76,8 @@ Link.propTypes = {
   tab: PropTypes.string
 };
 
-export default withTracker((props) => {
+export default withTracker(props => {
   return {
     color: Session.get('selectedTabColor')
-  }
+  };
 })(withRouter(Link));

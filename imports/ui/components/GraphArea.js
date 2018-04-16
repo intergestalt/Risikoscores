@@ -18,8 +18,8 @@ class GraphArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRoomId: undefined,
-    }
+      selectedRoomId: undefined
+    };
     this.callback = this.callback.bind(this);
     this.graphCallback = this.graphCallback.bind(this);
   }
@@ -35,11 +35,15 @@ class GraphArea extends React.Component {
     } else {
       setSelectGraphNode(getSelectedRoomId());
     }
-    this.setState({ selectedRoomId: roomId })
+    this.setState({ selectedRoomId: roomId });
   }
 
   renderLoading() {
-    return <div className="GraphArea"><Loading /></div>;
+    return (
+      <div className="GraphArea">
+        <Loading />
+      </div>
+    );
   }
   render() {
     if (!this.props.ready) {
@@ -76,7 +80,7 @@ class GraphArea extends React.Component {
 GraphArea.propTypes = {
   graph: PropTypes.array,
   graphNodeId: PropTypes.string,
-  room: PropTypes.object,
+  room: PropTypes.object
 };
 
 export default withTracker(props => {
@@ -94,8 +98,8 @@ const Area = styled.div`
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.mediumgrey};
   box-sizing:border-box;
-  padding: ${ dist.named.columnPadding};
-  padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});  
+  padding: ${dist.named.columnPadding};
+  padding-top: calc( ${dist.named.columnPadding} - ${dist.lineTopDiff});  
   position: relative;
   & .Expander {
     position: absolute;
