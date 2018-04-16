@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
-import { RoomQuestions, Expander, RoomQuestionsHeader, CustomScrollbars } from './';
+import {
+  RoomQuestions,
+  Expander,
+  RoomQuestionsHeader,
+  CustomScrollbars
+} from './';
 import { toggleQuestions, isQuestionsExpanded } from '../../helper/actions';
 import { colors, dist } from '../../config/styles';
 
@@ -35,7 +40,8 @@ class QuestionsArea extends React.Component {
         <CustomScrollbars autoHide>
           <InnerContainer>
             <RoomQuestionsHeader />
-            <RoomQuestions roomId={this.props.room._id} />
+            <RoomQuestions roomId={this.props.room.key} />
+            <RoomQuestions originId={this.props.room.key} />
           </InnerContainer>
         </CustomScrollbars>
       </Area>
@@ -58,8 +64,8 @@ const Area = styled.div`
   //flex:  ${props => props.relativeHeight};
   background-color: ${colors.lightgrey};
   //overflow-y: auto;
-  //padding: ${ dist.named.columnPadding};
-  //padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
+  //padding: ${dist.named.columnPadding};
+  //padding-top: calc( ${dist.named.columnPadding} - ${dist.lineTopDiff});
   position: relative;
   & .Expander {
     position: absolute;
@@ -70,5 +76,5 @@ const Area = styled.div`
 `;
 
 const InnerContainer = styled.div`
-padding-top: calc( ${ dist.named.columnPadding} - ${dist.lineTopDiff});
+  padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
 `;

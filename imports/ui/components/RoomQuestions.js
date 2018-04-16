@@ -7,6 +7,7 @@ import Questions from '../../collections/questions';
 import { localeStr, shuffleArray } from '../../helper/global';
 import { DiyMarkdown, Loading } from './';
 import { dist } from '../../config/styles';
+import { existsString, exists } from '../../helper/global';
 
 class RoomQuestions extends React.Component {
   constructor(props) {
@@ -14,13 +15,18 @@ class RoomQuestions extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log(nextProps)
+    console.log(nextProps);
     return true;
   }
 
   renderLoading() {
-    return <div className="QuestionsArea"><Loading /></div>;
+    return (
+      <div className="QuestionsArea">
+        <Loading />
+      </div>
+    );
   }
+  renderQuestions(questions) {}
 
   render() {
     if (!this.props.ready) {
@@ -44,16 +50,34 @@ class RoomQuestions extends React.Component {
 }
 
 RoomQuestions.propTypes = {
-  roomId: PropTypes.string
+  roomId: PropTypes.string,
+  originId: PropTypes.string
 };
 
 export default withTracker(props => {
-  const sub = Meteor.subscribe('questions.listByRoom', props.roomId);
+  var sub;
+  var questions;
+  if (exists(props.roomId)) {
+    sub = Meteor.subscribe('questions.listByRoom', props.roomId);
+    questions = shuffleArray(
+      Questions.find({ roomId: props.roomId }, { sort: { _id: 1 } }).fetch()
+    );
+  } else {
+    sub = Meteor.subscribe('questions.listByOrigin', props.originId);
+    questions = shuffleArray(
+      Questions.find(
+        { originRoomId: props.originId },
+        { sort: { _id: 1 } }
+      ).fetch()
+    );
+  }
 
   return {
-    questions: shuffleArray(Questions.find({}, { sort: { _id: 1 } }).fetch()),
-    ready: sub.ready(),
+    questions: questions,
+    ready: sub.ready()
   };
 })(RoomQuestions);
 
-const Li = styled.li`margin-top: 1em;`;
+const Li = styled.li`
+  margin-top: 1em;
+`;

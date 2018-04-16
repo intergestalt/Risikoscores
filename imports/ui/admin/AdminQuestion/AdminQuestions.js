@@ -29,6 +29,8 @@ class AdminQuestions extends React.Component {
       <div className="AdminQuestions">
         <h2>Questions</h2>
         {this.renderQuestions(this.props.questions)}
+        <h2>Intersections</h2>
+        {this.renderQuestions(this.props.interQuestions)}
       </div>
     );
   }
@@ -38,6 +40,13 @@ export default withTracker(props => {
   Meteor.subscribe('questions.list');
 
   return {
-    questions: Questions.find({}, { sort: { roomId: 1, 'text.de': 1 } }).fetch()
+    questions: Questions.find(
+      { originRoomId: null },
+      { sort: { roomId: 1, 'text.de': 1 } }
+    ).fetch(),
+    interQuestions: Questions.find(
+      { originRoomId: { $ne: null } },
+      { sort: { roomId: 1, 'text.de': 1 } }
+    ).fetch()
   };
 })(AdminQuestions);
