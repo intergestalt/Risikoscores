@@ -56,7 +56,7 @@ const App = appProps => (
           exact
           name="admin-room-edit"
           path="/admin/rooms/:_id"
-          parent={{path:"/admin/rooms", text: "Rooms"}}          
+          parent={{ path: '/admin/rooms', text: 'Rooms' }}
           component={AdminEditRoom}
         />
         <AdminRoute
@@ -69,13 +69,14 @@ const App = appProps => (
           exact
           name="admin-glossar-edit"
           path="/admin/glossar/:_id"
-          parent={{path:"/admin/glossar", text: "Glossar"}}          
+          parent={{ path: '/admin/glossar', text: 'Glossar' }}
           component={AdminEditGlossar}
         />
         <AdminRoute
           exact
           name="admin-glossar-add"
           path="/admin/glossar-add"
+          parent={{ path: '/admin/glossar', text: 'Glossar' }}
           component={AdminAddGlossar}
         />
         <AdminRoute
@@ -88,7 +89,7 @@ const App = appProps => (
           exact
           name="admin-fragment-edit"
           path="/admin/fragment/:_id"
-          parent={{path:"/admin/fragments", text: "Fragments"}}          
+          parent={{ path: '/admin/fragments', text: 'Fragments' }}
           component={AdminEditFragment}
         />
         <AdminRoute
@@ -101,7 +102,7 @@ const App = appProps => (
           exact
           name="admin-graph-edit"
           path="/admin/graph/:_id"
-          parent={{path:"/admin/graph", text: "Graph"}}
+          parent={{ path: '/admin/graph', text: 'Graph' }}
           component={AdminEditGraph}
         />
         <AdminRoute
@@ -114,14 +115,14 @@ const App = appProps => (
           exact
           name="admin-question-edit"
           path="/admin/questions/:_id"
-          parent={{path:"/admin/questions", text: "Questions"}}
+          parent={{ path: '/admin/questions', text: 'Questions' }}
           component={AdminEditQuestion}
         />
         <AdminRoute
           exact
           name="admin-question-add"
           path="/admin/questions-add"
-          parent={{path:"/admin/questions", text: "Questions"}}
+          parent={{ path: '/admin/questions', text: 'Questions' }}
           component={AdminAddQuestion}
         />
         <AdminRoute

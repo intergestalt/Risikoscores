@@ -72,6 +72,16 @@ export function localeStr(obj, lang = null) {
   return '';
 }
 
+export function getUrl(str) {
+  var result = str.replace(/\//g, '%2F');
+  return result;
+}
+
+export function getUnUrl(str) {
+  var result = str.replace(/\%2F/g, '/');
+  return result;
+}
+
 export function zuffi(max) {
   var zuffi = Math.trunc(Math.random() * max);
   if (zuffi < 0) zuffi = 0;

@@ -38,6 +38,6 @@ export default withTracker(props => {
   Meteor.subscribe('glossar.list');
 
   return {
-    glossar: Glossar.find({}, { sort: { "name.de": 1 } }).fetch()
+    glossar: Glossar.find({}, { sort: { 'name.de': 1 } }).fetch()
   };
 })(AdminGlossar);

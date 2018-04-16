@@ -8,6 +8,7 @@ import enUS from 'antd/lib/locale-provider/en_US';
 
 import { cleanForSave } from '../../../helper/glossar';
 import AdminDiyHelpContainer from '../AdminDiyHelpContainer/AdminDiyHelpContainer';
+import { getUnUrl } from '../../../helper/global';
 
 class AdminEditGlossar extends React.Component {
   save(doc) {
@@ -53,16 +54,14 @@ class AdminEditGlossar extends React.Component {
         <AdminDiyHelpContainer segments={['intro', 'diyMarkdownGlossar']}>
           {this.props.ready ? this.renderForm() : this.renderLoading()}
         </AdminDiyHelpContainer>
-
       </div>
     );
   }
 }
 
 export default withTracker(props => {
-  const glossar_id = props.match.params._id;
+  var glossar_id = getUnUrl(props.match.params._id);
   const sub = Meteor.subscribe('glossar', glossar_id);
-
   return {
     glossar: Glossar.findOne(glossar_id),
     ready: sub.ready()
