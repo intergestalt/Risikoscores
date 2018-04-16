@@ -31,7 +31,6 @@ class StartGraphArea extends React.Component {
     if (!this.props.ready) {
       return this.renderLoading();
     }
-    console.log('THIS: ' + this.props.selectedId);
     return (
       <Container className="StartGraphArea">
         <Graph

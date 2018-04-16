@@ -70,7 +70,7 @@ export function getStreamQuestions(all, rooms, index) {
   for (var i = 0; i < rooms.length; i++) {
     const room = rooms[i];
     const title = room.name;
-    roomObj[room._id] = title;
+    roomObj[room.key] = title;
   }
   var result = [];
   all = shuffleArray(all);

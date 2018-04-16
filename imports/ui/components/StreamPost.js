@@ -37,7 +37,6 @@ class StreamPost extends React.Component {
       return this.renderLoading();
     }
     const question = this.props.question;
-    console.log(question);
     var text = localeStr(question.text, this.props.lang);
     var title = localeStr(question.title, this.props.lang);
     var image = null;
