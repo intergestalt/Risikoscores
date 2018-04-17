@@ -8,6 +8,7 @@ import Rooms from '../../collections/rooms';
 import RoomSchema from '../../schemas/room';
 import Glossar from '../../collections/glossar';
 import GlossarSchema from '../../schemas/glossar';
+import PopupSchema from '../../schemas/popup';
 import TextFragments from '../../collections/textFragments';
 import TextFragmentSchema from '../../schemas/textFragment';
 import Questions from '../../collections/questions';

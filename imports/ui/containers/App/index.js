@@ -17,6 +17,11 @@ import {
   AdminAddGlossar
 } from '../../admin/AdminGlossar';
 import {
+  AdminPopup,
+  AdminEditPopup,
+  AdminAddPopup
+} from '../../admin/AdminPopup';
+import {
   AdminQuestions,
   AdminEditQuestion,
   AdminAddQuestion
@@ -78,6 +83,26 @@ const App = appProps => (
           path="/admin/glossar-add"
           parent={{ path: '/admin/glossar', text: 'Glossar' }}
           component={AdminAddGlossar}
+        />
+        <AdminRoute
+          exact
+          name="admin-popups-index"
+          path="/admin/popups"
+          component={AdminPopup}
+        />
+        <AdminRoute
+          exact
+          name="admin-popup-edit"
+          path="/admin/popups/:_id"
+          parent={{ path: '/admin/popups', text: 'Popups' }}
+          component={AdminEditPopup}
+        />
+        <AdminRoute
+          exact
+          name="admin-popup-add"
+          path="/admin/popup-add"
+          parent={{ path: '/admin/popups', text: 'Popups' }}
+          component={AdminAddPopup}
         />
         <AdminRoute
           exact

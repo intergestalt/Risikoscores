@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import Rooms from '../../collections/rooms';
 import Glossar from '../../collections/glossar';
+import Popups from '../../collections/popups';
 import TextFragments from '../../collections/textFragments';
 import Graph from '../../collections/graph';
 import Questions from '../../collections/questions';
@@ -65,4 +66,12 @@ Meteor.publish('uploadStatus.list', function() {
 
 Meteor.publish('uploads.list', function() {
   return Uploads.find();
+});
+
+Meteor.publish('popups.list', function() {
+  return Popups.find({});
+});
+
+Meteor.publish('popup', function(id) {
+  return Popups.find(id);
 });

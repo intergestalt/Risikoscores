@@ -1,23 +1,26 @@
 const helpTexts = {
-  'intro': `
+  intro: `
     ### Help
   `,
-  'diyMarkdownIntro': `
+  diyMarkdownIntro: `
     General Syntax: 
     <<< >>> for components
     [[[ ]]] for configuration
   `,
-  'diyMarkdownLink': `
+  diyMarkdownLink: `
     Interner Link:
     <<<Link:TEXT;RAUMNAME;TABNAME>>>
     <<<Link:Behandlungsabläufe;arztpraxis;tab2>>>
   `,
-  'diyMarkdownGlossar': `
+  diyMarkdownGlossar: `
     Glossar Link:
     <<<Glossar:ZIELBEGRIFF;TEXT>>>
     <<<Glossar:Kohortenstudie;die Kohortenstudie>>>
   `,
-  'diyMarkdownRoom': `
+  diyMarkdownPopup: `
+  Die Störer
+`,
+  diyMarkdownRoom: `
 
     <<<Quote: TEXT; SOURCE; AUDIOFILE>>>
     <<<Quote: Ich glaube, solche Scores…; Müller-Riemenschneider 1999; Abschnitt_11.2.mp3>>>
@@ -45,6 +48,6 @@ const helpTexts = {
     Switch scrolling of the Tab content off (Required for Timeline Component):
     [[[{"disableScrolling":"true"}]]]    
     `
-}
+};
 
 export default helpTexts;

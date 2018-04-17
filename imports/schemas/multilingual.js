@@ -25,7 +25,31 @@ const MultilingualTextSchema = new SimpleSchema(
     }
   }
 );
-
+const MultilingualOptionalTextSchema = new SimpleSchema(
+  {
+    de: {
+      type: String,
+      uniforms: {
+        component: LongTextField,
+        className: 'languageField'
+      },
+      optional: true
+    },
+    en: {
+      type: String,
+      uniforms: {
+        component: LongTextField,
+        className: 'languageField'
+      },
+      optional: true
+    }
+  },
+  {
+    clean: {
+      getAutoValues: true
+    }
+  }
+);
 const MultilingualStringSchema = new SimpleSchema(
   {
     de: {
@@ -48,5 +72,31 @@ const MultilingualStringSchema = new SimpleSchema(
     }
   }
 );
-
-export { MultilingualStringSchema, MultilingualTextSchema };
+const MultilingualOptionalStringSchema = new SimpleSchema(
+  {
+    de: {
+      type: String,
+      uniforms: {
+        className: 'languageField'
+      }
+    },
+    en: {
+      type: String,
+      uniforms: {
+        className: 'languageField'
+      },
+      optional: true
+    }
+  },
+  {
+    clean: {
+      getAutoValues: true
+    }
+  }
+);
+export {
+  MultilingualStringSchema,
+  MultilingualTextSchema,
+  MultilingualOptionalTextSchema,
+  MultilingualOptionalStringSchema
+};
