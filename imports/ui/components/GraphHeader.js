@@ -23,9 +23,9 @@ class GraphHeader extends React.Component {
 
 export default withTracker(props => {
   const sub2 = Meteor.subscribe('rooms.list');
-  const language = Session.get("language");
-  const room = Rooms.findOne(props.roomId);
-  const title = (room && language) ? room.name[language] : null
+  const language = Session.get('language');
+  const room = Rooms.findOne({ key: props.roomId });
+  const title = room && language ? room.name[language] : null;
 
   return {
     title

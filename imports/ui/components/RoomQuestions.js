@@ -33,7 +33,7 @@ class RoomQuestions extends React.Component {
       return this.renderLoading();
     }
     var questions = [];
-    const myQuestions = shuffleArray(this.props.questions);
+    const myQuestions = this.props.questions;
     for (var i = 0; i < myQuestions.length; i++) {
       const question = myQuestions[i];
       var text = localeStr(question.text);
@@ -51,22 +51,23 @@ class RoomQuestions extends React.Component {
 
 RoomQuestions.propTypes = {
   roomId: PropTypes.string,
-  originId: PropTypes.string
+  targetId: PropTypes.string
 };
 
 export default withTracker(props => {
   var sub;
   var questions;
-  if (exists(props.roomId)) {
+  if (exists(props.targetId)) {
+    sub = Meteor.subscribe('questions.listByOrigin', props.roomId);
+    questions = Questions.find(
+      { originRoomId: props.roomId, roomId: props.targetId },
+      { sort: { _id: 1 } }
+    ).fetch();
+  } else {
     sub = Meteor.subscribe('questions.listByRoom', props.roomId);
     questions = shuffleArray(
-      Questions.find({ roomId: props.roomId }, { sort: { _id: 1 } }).fetch()
-    );
-  } else {
-    sub = Meteor.subscribe('questions.listByOrigin', props.originId);
-    questions = shuffleArray(
       Questions.find(
-        { originRoomId: props.originId },
+        { originRoomId: null, roomId: props.roomId },
         { sort: { _id: 1 } }
       ).fetch()
     );

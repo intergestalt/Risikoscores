@@ -25,6 +25,7 @@ import GraphNode from './GraphNode';
 import GraphEdge from './GraphEdge';
 import RoomQuestions from './RoomQuestions';
 import RoomQuestionsHeader from './RoomQuestionsHeader';
+import RoomInterHeader from './RoomInterHeader';
 
 import DiyMarkdown from './DiyMarkdown';
 import Image from './Image';
@@ -70,6 +71,7 @@ export {
   GraphNode,
   GraphEdge,
   RoomQuestionsHeader,
+  RoomInterHeader,
   RoomQuestions,
   DiyMarkdown,
   CustomScrollbars,
@@ -89,5 +91,5 @@ export {
   StartAbout,
   Image,
   Close,
-  Loading,
+  Loading
 };

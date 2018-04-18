@@ -68,7 +68,6 @@ class GraphArea extends React.Component {
           height={`calc( ( 100vh / 3 ) - ${dist.named.columnPadding} )`}
           backgroundColor={colors.mediumgrey}
           graphCallback={this.graphCallback}
-          selectedId={this.props.graphNodeId}
           graph={this.props.graph}
           restrictNavigation={true}
         />

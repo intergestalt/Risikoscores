@@ -42,6 +42,7 @@ const textFragments = [
   'closeGlossar',
   'graphTitle',
   'roomQuestionsTitle',
+  'roomInterTitle',
   'startTitle',
   'startInfo',
   'menuIcon',

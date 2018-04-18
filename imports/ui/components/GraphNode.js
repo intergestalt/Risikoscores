@@ -52,7 +52,7 @@ class GraphNode extends React.Component {
         cy={this.props.node.y + '%'}
         r={'1ex'}
         fill={color}
-        style={{ cursor: this.props.passive ? "" : "pointer" }}
+        style={{ cursor: this.props.passive ? '' : 'pointer' }}
       />
     );
   }
@@ -63,7 +63,7 @@ GraphNode.propTypes = {
   node: PropTypes.object,
   selected: PropTypes.bool,
   neighbour: PropTypes.bool,
-  passive: PropTypes.bool,
+  passive: PropTypes.bool
 };
 
 export default withRouter(GraphNode);

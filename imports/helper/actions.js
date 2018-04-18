@@ -79,7 +79,7 @@ export function setStreamStarted() {
   Session.set('streamStarted', true);
 }
 
-export function setStreamFinished() { }
+export function setStreamFinished() {}
 
 export function setRealGraph(realGraph) {
   Session.set('realGraph', realGraph);
@@ -163,6 +163,7 @@ export function getSelectGraphNode() {
   const value = Session.get('graphNodeId');
   return value;
 }
+
 export function getLanguage() {
   return Session.get('language');
 }
@@ -199,7 +200,7 @@ export function setTabDetailIndex(i) {
       detail.index = i;
     }
   } else {
-    detail = { index: i }
+    detail = { index: i };
   }
   Session.set('tabDetail', detail);
 }

@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
+import { exists } from '../../helper/global';
+import { getSelectGraphNode, getSelectedRoomId } from '../../helper/actions';
 
 import {
   RoomQuestions,
   Expander,
   RoomQuestionsHeader,
+  RoomInterHeader,
   CustomScrollbars
 } from './';
 import { toggleQuestions, isQuestionsExpanded } from '../../helper/actions';
@@ -30,6 +33,31 @@ class QuestionsArea extends React.Component {
     if (this.props.questionsExpanded) {
       height = 60;
     }
+    const graphNode = this.props.graphNode;
+    var questions = true;
+    if (graphNode != null && graphNode != getSelectedRoomId()) {
+      questions = false;
+    }
+    var content = null;
+    if (questions) {
+      content = (
+        <InnerContainer>
+          <RoomQuestionsHeader />
+          <RoomQuestions roomId={this.props.room.key} />
+        </InnerContainer>
+      );
+    } else {
+      content = (
+        <InnerContainer>
+          <RoomInterHeader />
+          <RoomQuestions
+            roomId={this.props.room.key}
+            targetId={secondaryGraphNode}
+          />
+        </InnerContainer>
+      );
+    }
+
     return (
       <Area className="QuestionsArea" relativeHeight={height}>
         <Expander
@@ -37,13 +65,7 @@ class QuestionsArea extends React.Component {
           expanded={isQuestionsExpanded()}
           directionDown={false}
         />
-        <CustomScrollbars autoHide>
-          <InnerContainer>
-            <RoomQuestionsHeader />
-            <RoomQuestions roomId={this.props.room.key} />
-            <RoomQuestions originId={this.props.room.key} />
-          </InnerContainer>
-        </CustomScrollbars>
+        <CustomScrollbars autoHide>{content}</CustomScrollbars>
       </Area>
     );
   }
@@ -55,7 +77,8 @@ QuestionsArea.propTypes = {
 
 export default withTracker(props => {
   return {
-    questionsExpanded: isQuestionsExpanded()
+    questionsExpanded: isQuestionsExpanded(),
+    graphNode: getSelectGraphNode()
   };
 })(QuestionsArea);
 
