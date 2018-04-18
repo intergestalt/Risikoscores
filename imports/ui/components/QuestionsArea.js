@@ -50,10 +50,7 @@ class QuestionsArea extends React.Component {
       content = (
         <InnerContainer>
           <RoomInterHeader />
-          <RoomQuestions
-            roomId={this.props.room.key}
-            targetId={secondaryGraphNode}
-          />
+          <RoomQuestions roomId={this.props.room.key} targetId={graphNode} />
         </InnerContainer>
       );
     }
