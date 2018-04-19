@@ -80,6 +80,7 @@ class Graph extends React.Component {
       var nodeMode = nodeModes[nodeId];
       var selected = false;
       var neighbour = false;
+      var passive = null;
       if (exists(nodeMode)) {
         selected = nodeMode.selected;
         neighbour = nodeMode.neighbour;
