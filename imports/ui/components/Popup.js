@@ -27,7 +27,7 @@ Popup.propTypes = {};
 
 export default withTracker(props => {
   return {
-    popupActive: getPopupActive();
+    popupActive: getPopupActive()
   };
 })(Popup);
 
