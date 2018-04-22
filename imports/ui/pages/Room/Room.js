@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import styled from 'styled-components';
+import { colors } from '../../../config/styles';
 
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
@@ -11,7 +12,8 @@ import {
   RightColumn,
   MenuIcon,
   ImageDetailView,
-  Loading
+  Loading,
+  Popup
 } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
@@ -25,7 +27,8 @@ import { exists, startStreamTimeout } from '../../../helper/global';
 import {
   setSelectGraphNode,
   getSelectedRoomId,
-  setLanguage
+  setLanguage,
+  setPopupActive
 } from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
 import { tabColors, tabColorPalette } from '../../../config/tabColors';
@@ -33,9 +36,14 @@ import { tabColors, tabColorPalette } from '../../../config/tabColors';
 class Room extends React.Component {
   constructor(props) {
     super(props);
+    this.clickCallback = this.clickCallback.bind(this);
     this.state = { selectedGraphNodeId: null };
   }
-
+  clickCallback(e, roomId, tabId) {
+    e.preventDefault();
+    console.log('POPUP!');
+    setPopupActive(true);
+  }
   componentDidMount() {
     document.documentElement.classList.toggle('noscroll', true);
     setSelectGraphNode(getSelectedRoomId());
@@ -74,6 +82,14 @@ class Room extends React.Component {
     if (!exists(selectedGraphNodeId)) {
       selectedGraphNodeId = this.props.room.key;
     }
+    /*        <a
+          href={'#'}
+          onClick={e => {
+            this.clickCallback(e);
+          }}
+        >
+          Click Me
+        </a>*/
     return (
       <RoomElem className="Room" powerOn={this.props.powerOn}>
         <MainColumn room={this.props.room} />
@@ -96,6 +112,7 @@ class Room extends React.Component {
             disableNonExistingVariants
           />
         </RoomChooserFixed>
+        <Popup />
       </RoomElem>
     );
   }

@@ -47,6 +47,7 @@ import StartGraphArea from './StartGraphArea';
 import StartGeneralMenu from './StartGeneralMenu';
 import StartRoomMenu from './StartRoomMenu';
 import StartAbout from './StartAbout';
+import Popup from './Popup';
 
 export {
   MenuIcon,
@@ -91,5 +92,6 @@ export {
   StartAbout,
   Image,
   Close,
-  Loading
+  Loading,
+  Popup
 };

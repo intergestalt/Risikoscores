@@ -135,10 +135,19 @@ export function getCachedRoomQuestions() {
   const questions = Session.get('cachedRoomQuestions');
   return questions;
 }
+
 export function getStreamIndex() {
   const value = Session.get('streamIndex');
   return value;
 }
+export function getPopupActive() {
+  const value = Session.get('popupActive');
+  return value;
+}
+export function setPopupActive(active) {
+  Session.set('popupActive', active);
+}
+
 export function getCachedStreamQuestions() {
   const questions = Session.get('cachedStreamQuestions');
   return questions;
