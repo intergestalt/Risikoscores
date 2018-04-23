@@ -1,5 +1,5 @@
 import { Session } from 'meteor/session';
-import { exists, zuffi } from './global';
+import { exists, zuffi, shuffleArray } from './global';
 
 export function toggleLanguage() {
   var language = Session.get('language');
@@ -58,6 +58,10 @@ export function cacheStreamQuestions(questions) {
   Session.set('cachedStreamQuestions', questions);
 }
 
+export function cachePopups(popups) {
+  Session.set('cachedPopups', shuffleArray(popups));
+}
+
 export function setStreamIndex(index) {
   Session.set('streamIndex', index);
 }
@@ -75,12 +79,31 @@ export function incStreamIndex() {
   Session.set('streamIndex', index);
 }
 
+export function setPopupsIndex(index) {
+  Session.set('popupsIndex', index);
+}
+
+export function incPopupsIndex() {
+  var index = Session.get('popupsIndex');
+  index++;
+  var popups = getCachedPopups();
+  if (index >= popups.length) {
+    index = 0;
+  }
+  Session.set('popupsIndex', index);
+}
+
 export function setStreamStarted() {
   Session.set('streamStarted', true);
 }
 
-export function setStreamFinished() {}
+export function setPopupsFinished() {}
 
+export function setPopupsStarted() {
+  Session.set('popupsStarted', true);
+}
+
+export function setStreamFinished() {}
 export function setRealGraph(realGraph) {
   Session.set('realGraph', realGraph);
 }
@@ -140,19 +163,36 @@ export function getStreamIndex() {
   const value = Session.get('streamIndex');
   return value;
 }
+export function getPopupsIndex() {
+  const value = Session.get('popupsIndex');
+  return value;
+}
 export function getPopupActive() {
   const value = Session.get('popupActive');
   return value;
 }
+export function getPopupClosing() {
+  const value = Session.get('popupClosing');
+  return value;
+}
 export function setPopupActive(active) {
+  if (!active) {
+    setPopupClosing(false);
+  }
   Session.set('popupActive', active);
+}
+export function setPopupClosing(closing) {
+  Session.set('popupClosing', closing);
 }
 
 export function getCachedStreamQuestions() {
   const questions = Session.get('cachedStreamQuestions');
   return questions;
 }
-
+export function getCachedPopups() {
+  const questions = Session.get('cachedPopups');
+  return questions;
+}
 export function isStreamStarted() {
   const value = Session.get('streamStarted');
   return value;
@@ -160,6 +200,16 @@ export function isStreamStarted() {
 
 export function isStreamFinished() {
   const value = Session.get('streamFinished');
+  return value;
+}
+
+export function isPopupsStarted() {
+  const value = Session.get('popupsFinished');
+  return value;
+}
+
+export function isPopupsFinished() {
+  const value = Session.get('popupsFinished');
   return value;
 }
 

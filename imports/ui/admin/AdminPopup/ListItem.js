@@ -6,7 +6,7 @@ import { getUrl, exists } from '../../../helper/global';
 class ListItem extends React.Component {
   render() {
     var title = null;
-    if (exists(this.props.entry.title.de)) {
+    if (exists(this.props.entry.title)) {
       title = this.props.entry.title.de;
     }
     return (

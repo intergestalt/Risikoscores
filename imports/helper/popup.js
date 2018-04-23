@@ -1,21 +1,30 @@
 import { localeStr } from './global';
 import { Session } from 'meteor/session';
+import { exists, zuffi } from './global';
+import { getCachedPopups, cachePopups, getPopupsIndex } from './actions';
+import Popups from '../collections/popups';
 
 export function cleanForSave(entry) {
   const result = entry;
   return result;
 }
-function comparePopups(p1, p2) {
-  const n1 = localeStr(p1.name);
-  const n2 = localeStr(p2.name);
-  if (n1 > n2) {
-    return 1;
+export function getPopup(index) {
+  if (!exists(index)) {
+    index = getPopupsIndex();
   }
-  if (n1 < n2) {
-    return -1;
+  var last = getCachedPopups();
+  if (exists(last)) {
+    if (index > last.length) {
+      index = last.length;
+    }
+    return last[index];
   }
-  return 0;
+  return null;
 }
-export function sortPopups(popups) {
-  return popups.sort(comparePopups);
+
+export function loadPopups() {
+  const sub = Meteor.subscribe('popups.list', () => {
+    var popups = Popups.find({}).fetch();
+    cachePopups(popups);
+  });
 }

@@ -8,7 +8,7 @@ import { StartLeft, StartRight, Loading } from '../../components';
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
-import { startStreamTimeout } from '../../../helper/global';
+import { startStreamTimeout, startPopupsTimeout } from '../../../helper/global';
 import { setSelectedRoomId, setSelectGraphNode } from '../../../helper/actions';
 
 class Start extends React.Component {
@@ -17,6 +17,7 @@ class Start extends React.Component {
     setSelectGraphNode(null);
     document.documentElement.classList.toggle('noscroll', true);
     startStreamTimeout();
+    startPopupsTimeout();
   }
 
   componentWillUnmount() {
@@ -45,12 +46,13 @@ export default withTracker(props => {
   const sub = Meteor.subscribe('rooms.list');
   const sub2 = Meteor.subscribe('fragments.list');
   const language = Session.get('language');
-  const sort = {}; sort['name.' + language] = 1;
+  const sort = {};
+  sort['name.' + language] = 1;
 
   return {
     rooms: Rooms.find({}, { sort }).fetch(),
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready(),
+    ready: sub.ready() && sub2.ready()
   };
 })(Start);
 

@@ -23,7 +23,11 @@ import {
   setSelectedRoomId,
   setSelectedTabColor
 } from '../../../helper/actions';
-import { exists, startStreamTimeout } from '../../../helper/global';
+import {
+  exists,
+  startStreamTimeout,
+  startPopupsTimeout
+} from '../../../helper/global';
 import {
   setSelectGraphNode,
   getSelectedRoomId,
@@ -36,18 +40,14 @@ import { tabColors, tabColorPalette } from '../../../config/tabColors';
 class Room extends React.Component {
   constructor(props) {
     super(props);
-    this.clickCallback = this.clickCallback.bind(this);
     this.state = { selectedGraphNodeId: null };
   }
-  clickCallback(e, roomId, tabId) {
-    e.preventDefault();
-    console.log('POPUP!');
-    setPopupActive(true);
-  }
+
   componentDidMount() {
     document.documentElement.classList.toggle('noscroll', true);
     setSelectGraphNode(getSelectedRoomId());
     startStreamTimeout();
+    startPopupsTimeout();
   }
 
   componentWillUnmount() {
@@ -82,14 +82,7 @@ class Room extends React.Component {
     if (!exists(selectedGraphNodeId)) {
       selectedGraphNodeId = this.props.room.key;
     }
-    /*        <a
-          href={'#'}
-          onClick={e => {
-            this.clickCallback(e);
-          }}
-        >
-          Click Me
-        </a>*/
+
     return (
       <RoomElem className="Room" powerOn={this.props.powerOn}>
         <MainColumn room={this.props.room} />
@@ -180,7 +173,7 @@ export default withTracker(props => {
 const RoomElem = styled.div`
   display: flex;
   flex-direction: row;
-  & > *:not(nav):not(.RoomChooserFixed) {
+  & > *:not(nav):not(.RoomChooserFixed):not(.Popup) {
     flex: 1;
     height: 100%;
     width: calc(100% / 3);

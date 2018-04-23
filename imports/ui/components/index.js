@@ -48,6 +48,7 @@ import StartGeneralMenu from './StartGeneralMenu';
 import StartRoomMenu from './StartRoomMenu';
 import StartAbout from './StartAbout';
 import Popup from './Popup';
+import ClosePopup from './ClosePopup';
 
 export {
   MenuIcon,
@@ -93,5 +94,6 @@ export {
   Image,
   Close,
   Loading,
-  Popup
+  Popup,
+  ClosePopup
 };

@@ -1,11 +1,18 @@
-import { Session } from 'meteor/session';
 import {
   incStreamIndex,
   setStreamStarted,
   isStreamStarted,
   isStreamFinished,
-  getLanguage
+  getStreamIndex,
+  setPopupsStarted,
+  isPopupsStarted,
+  isPopupsFinished,
+  getPopupsIndex,
+  getLanguage,
+  getPopupActive,
+  setPopupActive
 } from './actions';
+import { loadPopups } from './popup';
 
 export function exists(v) {
   if (v === null) return false;
@@ -92,7 +99,7 @@ export function zuffi(max) {
 const streamZuffiDelay = [1, 4, 4, 4, 4, 8, 8, 8, 8, 16, 32, 64, 128];
 
 export function getStartStreamDelay() {
-  var index = Session.get('streamIndex');
+  var index = getStreamIndex();
 
   if (index >= streamZuffiDelay.length) {
     index = streamZuffiDelay.length - 1;
@@ -118,5 +125,39 @@ export function startStreamTimeout() {
   if (!isStreamStarted()) {
     streamTimeout();
     setStreamStarted();
+  }
+}
+
+const popupZuffiDelay = [20, 120];
+
+export function getStartPopupsDelay() {
+  var index = getPopupsIndex();
+  if (index >= popupZuffiDelay.length) {
+    index = popupZuffiDelay.length - 1;
+  }
+  const zuffiDelay = popupZuffiDelay[index] * 1000;
+  const zuffiOffset = Math.trunc(zuffiDelay / 2);
+  const delay = zuffi(zuffiDelay) + zuffiOffset;
+  return delay;
+}
+
+function popupsTimeout() {
+  if (isPopupsFinished()) {
+    return;
+  }
+  const delay = getStartPopupsDelay();
+  setTimeout(() => {
+    if (!getPopupActive()) {
+      setPopupActive(true);
+    }
+    popupsTimeout();
+  }, delay);
+}
+
+export function startPopupsTimeout() {
+  if (!isPopupsStarted()) {
+    loadPopups();
+    popupsTimeout();
+    setPopupsStarted();
   }
 }

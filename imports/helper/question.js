@@ -4,8 +4,7 @@ import {
   getSelectedRoomId,
   cacheRoomQuestions,
   getCachedStreamQuestions,
-  cacheStreamQuestions,
-  getStreamIndex
+  cacheStreamQuestions
 } from './actions';
 
 import { exists, zuffi, shuffleArray } from './global';

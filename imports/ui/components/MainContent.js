@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import color from 'color';
 
+import { setPopupActive } from '../../helper/actions';
 import { localeStr } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
 import { getImageAsset } from '../../helper/asset';
@@ -12,8 +13,12 @@ import { DiyMarkdown, CustomScrollbars } from './';
 class MainContent extends React.Component {
   constructor(props) {
     super(props);
+    this.clickCallback = this.clickCallback.bind(this);
   }
-
+  clickCallback(e, roomId, tabId) {
+    e.preventDefault();
+    setPopupActive(true);
+  }
   render() {
     var textBoth = localeStr(this.props.room.mainText);
     const splitted = splitOptions(textBoth);
@@ -29,6 +34,14 @@ class MainContent extends React.Component {
     const title = localeStr(this.props.room.name);
     return (
       <Container>
+        <a
+          href={'#'}
+          onClick={e => {
+            this.clickCallback(e);
+          }}
+        >
+          Störer
+        </a>
         <CustomScrollbars autoHide shadeColor={colors.lightgrey}>
           <Content className="MainContent">
             <Headline>{title}</Headline>
