@@ -15,7 +15,6 @@ class RoomQuestions extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    console.log(nextProps);
     return true;
   }
 
@@ -56,13 +55,17 @@ RoomQuestions.propTypes = {
 
 export default withTracker(props => {
   var sub;
-  var questions;
+  var questions = [];
+  var ready = false;
   if (exists(props.targetId)) {
     sub = Meteor.subscribe('questions.listByOrigin', props.roomId);
-    questions = Questions.find(
-      { originRoomId: props.roomId, roomId: props.targetId },
-      { sort: { _id: 1 } }
-    ).fetch();
+
+    question = Questions.findOne({
+      originRoomId: props.roomId,
+      roomId: props.targetId
+    });
+    if (question) questions.push(question);
+    ready = sub.ready();
   } else {
     sub = Meteor.subscribe('questions.listByRoom', props.roomId);
     questions = shuffleArray(
@@ -71,11 +74,12 @@ export default withTracker(props => {
         { sort: { _id: 1 } }
       ).fetch()
     );
+    ready = sub.ready();
   }
 
   return {
     questions: questions,
-    ready: sub.ready()
+    ready: ready
   };
 })(RoomQuestions);
 

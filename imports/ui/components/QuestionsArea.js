@@ -49,7 +49,7 @@ class QuestionsArea extends React.Component {
     } else {
       content = (
         <InnerContainer>
-          <RoomInterHeader />
+          <RoomInterHeader roomId={this.props.room.key} targetId={graphNode} />
           <RoomQuestions roomId={this.props.room.key} targetId={graphNode} />
         </InnerContainer>
       );

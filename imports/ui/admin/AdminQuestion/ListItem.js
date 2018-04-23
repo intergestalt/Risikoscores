@@ -10,22 +10,26 @@ class ListItem extends React.Component {
       target = this.props.entry.originRoomId + ' -> ';
     }
     return (
-      <span>
-        <i style={{ marginRight: '1em' }}>
-          {target}
-          {this.props.entry.roomId}
-        </i>
-        <NavLink to={'/admin/questions/' + this.props.entry._id}>
-          {this.props.entry.text.de}
-        </NavLink>
-        <DeleteButton
-          collection={this.props.collection}
-          id={this.props.entry._id}
-          text={this.props.entry.text.de}
-          small
-          style={{ paddingLeft: '1em' }}
-        />
-      </span>
+      <table>
+        <td>
+          <i style={{ marginRight: '1em' }}>
+            {target}
+            {this.props.entry.roomId}
+          </i>
+        </td>
+        <td>
+          <NavLink to={'/admin/questions/' + this.props.entry._id}>
+            {this.props.entry.text.de}
+          </NavLink>
+          <DeleteButton
+            collection={this.props.collection}
+            id={this.props.entry._id}
+            text={this.props.entry.text.de}
+            small
+            style={{ paddingLeft: '1em' }}
+          />
+        </td>
+      </table>
     );
   }
 }

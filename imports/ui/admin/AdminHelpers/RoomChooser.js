@@ -142,7 +142,6 @@ export default withTracker(props => {
   if (props.roomKey && props.disableNonExistingVariants) {
     const sub = Meteor.subscribe('room.variants.list');
     const docs = Rooms.find({ key: props.roomKey }).fetch();
-    console.log(docs);
     existingVariants = docs.map(doc => doc.variant);
   }
 

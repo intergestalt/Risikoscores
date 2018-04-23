@@ -46,7 +46,7 @@ export default withTracker(props => {
     ).fetch(),
     interQuestions: Questions.find(
       { originRoomId: { $ne: null } },
-      { sort: { roomId: 1, 'text.de': 1 } }
+      { sort: { originRoomId: 1, 'text.de': 1 } }
     ).fetch()
   };
 })(AdminQuestions);

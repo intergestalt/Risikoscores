@@ -10,25 +10,29 @@ import { dist } from '../../config/styles';
 class Loading extends React.Component {
   constructor(props) {
     super(props);
+    var timeout = null;
     this.state = {
-      hide: true,
-    }
+      hide: true
+    };
   }
 
+  componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
+  }
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ hide: false })
-    }, 1000)
+    this.timeout = setTimeout(() => {
+      this.setState({ hide: false });
+    }, 1000);
   }
 
   render() {
-    if (!this.props.language || this.state.hide) return <Container className="Loading" />;
-    const word = this.props.language == "de" ? "Lädt" : "Loading"
-    return (
-      <Container className="Loading">
-        {word}...
-      </Container>
-    )
+    if (!this.props.language || this.state.hide)
+      return <Container className="Loading" />;
+    const word = this.props.language == 'de' ? 'Lädt' : 'Loading';
+    return <Container className="Loading">{word}...</Container>;
   }
 }
 
@@ -41,5 +45,5 @@ export default withTracker(props => {
 })(Loading);
 
 const Container = styled.div`
-  padding:${dist.named.columnPadding}
-`
+  padding: ${dist.named.columnPadding};
+`;
