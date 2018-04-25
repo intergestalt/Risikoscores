@@ -21,22 +21,18 @@ import { storeFragments } from '../../../helper/fragment';
 import {
   setSelectedTabId,
   setSelectedRoomId,
-  setSelectedTabColor
-} from '../../../helper/actions';
-import {
-  exists,
-  startStreamTimeout,
-  startPopupsTimeout
-} from '../../../helper/global';
-import {
+  setSelectedTabColor,
   setSelectGraphNode,
   getSelectedRoomId,
   setLanguage,
   setPopupActive
 } from '../../../helper/actions';
+import { exists } from '../../../helper/global';
+import { startPopupsTimeout } from '../../../helper/popup';
+import { startStreamTimeout } from '../../../helper/stream';
+import {} from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
 import { tabColors, tabColorPalette } from '../../../config/tabColors';
-
 class Room extends React.Component {
   constructor(props) {
     super(props);

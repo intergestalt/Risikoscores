@@ -8,8 +8,9 @@ import { StartLeft, StartRight, Loading } from '../../components';
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
-import { startStreamTimeout, startPopupsTimeout } from '../../../helper/global';
+import { startPopupsTimeout } from '../../../helper/popup';
 import { setSelectedRoomId, setSelectGraphNode } from '../../../helper/actions';
+import { startStreamTimeout } from '../../../helper/stream';
 
 class Start extends React.Component {
   componentDidMount() {

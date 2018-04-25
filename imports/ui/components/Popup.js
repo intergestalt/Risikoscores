@@ -4,7 +4,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled, { keyframes } from 'styled-components';
 import { colors, dist } from '../../config/styles';
 
-import { getPopupActive, getPopupClosing } from '../../helper/actions';
+import {
+  getPopupActive,
+  getPopupClosing,
+  setPopupActive,
+  getPopupRoom,
+  getSelectedRoomId
+} from '../../helper/actions';
 import { getPopup } from '../../helper/popup';
 import { exists, localeStr } from '../../helper/global';
 import { Image, ClosePopup } from './';
@@ -42,9 +48,16 @@ export default withTracker(props => {
   var closing = getPopupClosing();
   var popup = null;
   if (active) {
-    popup = getPopup();
-    if (!exists(popup)) {
+    if (getPopupRoom() != getSelectedRoomId()) {
+      console.log('RoomChanged');
+      setPopupActive(false);
       active = false;
+    } else {
+      popup = getPopup();
+      if (!exists(popup)) {
+        setPopupActive(false);
+        active = false;
+      }
     }
   }
   return {

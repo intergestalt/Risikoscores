@@ -175,11 +175,16 @@ export function getPopupClosing() {
   const value = Session.get('popupClosing');
   return value;
 }
+export function getPopupRoom() {
+  const value = Session.get('popupRoom');
+  return value;
+}
 export function setPopupActive(active) {
   if (!active) {
     setPopupClosing(false);
   }
   Session.set('popupActive', active);
+  Session.set('popupRoom', getSelectedRoomId());
 }
 export function setPopupClosing(closing) {
   Session.set('popupClosing', closing);
@@ -204,7 +209,7 @@ export function isStreamFinished() {
 }
 
 export function isPopupsStarted() {
-  const value = Session.get('popupsFinished');
+  const value = Session.get('popupsStarted');
   return value;
 }
 

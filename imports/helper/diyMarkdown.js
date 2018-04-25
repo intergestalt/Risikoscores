@@ -8,7 +8,8 @@ import {
   Timeline,
   AssetList,
   Quote,
-  ServerAudio
+  ServerAudio,
+  Piktocomic
 } from '../ui/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
@@ -121,6 +122,8 @@ function renderSpecialComponent(specialComponent, id, glossar) {
     return <Timeline key={'_' + id} data={options} />;
   } else if (name === 'assetlist') {
     return <AssetList key={'_' + id} data={options} />;
+  } else if (name === 'piktocomic') {
+    return <Piktocomic key={'_' + id} data={options} />;
   } else if (name === 'quote') {
     return (
       <Quote

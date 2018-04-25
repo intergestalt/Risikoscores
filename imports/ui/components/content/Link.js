@@ -9,7 +9,8 @@ import {
   setSelectGraphNode,
   getSelectedRoomId,
   setPreSelectedTabId,
-  getLanguage
+  getLanguage,
+  setPopupActive
 } from '../../../helper/actions';
 import { exists } from '../../../helper/global';
 

@@ -8,6 +8,7 @@ import {
   setPopupClosing,
   incPopupsIndex
 } from '../../helper/actions';
+import { closePopup } from '../../helper/popup';
 
 class ClosePopup extends React.Component {
   constructor(props) {
@@ -15,11 +16,7 @@ class ClosePopup extends React.Component {
     this.closePopup = this.closePopup.bind(this);
   }
   closePopup() {
-    setPopupClosing(true);
-    setTimeout(() => {
-      incPopupsIndex();
-      setPopupActive(false);
-    }, 1000);
+    closePopup();
   }
   render() {
     return (

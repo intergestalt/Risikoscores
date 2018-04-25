@@ -39,7 +39,7 @@ StartLeft.propTypes = {
 export default withTracker(props => {
   const sub = Meteor.subscribe('questions.list');
   return {
-    questions: Questions.find().fetch(),
+    questions: Questions.find({ originRoomId: null }).fetch(),
     ready: sub.ready()
   };
 })(StartLeft);

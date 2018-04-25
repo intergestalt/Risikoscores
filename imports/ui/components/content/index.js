@@ -11,6 +11,7 @@ import Annotation from './Annotation';
 import DetailButton from './DetailButton';
 import Quote from './Quote';
 import ServerAudio from './ServerAudio';
+import Piktocomic from './Piktocomic';
 
 export {
   ExternalLink,
@@ -26,4 +27,5 @@ export {
   DetailButton,
   Quote,
   ServerAudio,
+  Piktocomic
 };

@@ -76,7 +76,7 @@ var PopupDiv = styled.div`
     props.popupLoaded
       ? props =>
           props.popupClosing
-            ? `animation: ${moveOut} 1s ease-in-out;`
-            : `animation: ${moveIn} 1s ease-in-out;`
+            ? `animation: ${moveOut} 200ms ease-in-out;`
+            : `animation: ${moveIn} 200ms ease-in-out;`
       : ''};
 `;

@@ -21,7 +21,7 @@ class RoomInterHeader extends React.Component {
 }
 
 export default withTracker(props => {
-  const sub2 = Meteor.subscribe('rooms.list');
+  const sub2 = Meteor.subscribe('room');
   const room = Rooms.findOne({ key: props.roomId });
   const title = localeStr(room.name);
   const room2 = Rooms.findOne({ key: props.targetId });

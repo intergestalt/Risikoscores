@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import color from 'color';
 
-import { setPopupActive } from '../../helper/actions';
+import { setPopupActive, incPopupsIndex } from '../../helper/actions';
 import { localeStr } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
 import { getImageAsset } from '../../helper/asset';
@@ -18,6 +18,7 @@ class MainContent extends React.Component {
   clickCallback(e, roomId, tabId) {
     e.preventDefault();
     setPopupActive(true);
+    incPopupsIndex();
   }
   render() {
     var textBoth = localeStr(this.props.room.mainText);
