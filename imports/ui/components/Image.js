@@ -18,7 +18,10 @@ class Image extends React.Component {
     const sizeName = this.props.size || false;
     var imageEntity = null;
     if (exists(this.props.asset)) {
-      const title = this.props.asset.title && getLanguage() ? this.props.asset.title[getLanguage()] : "";
+      const title =
+        this.props.asset.title && getLanguage()
+          ? this.props.asset.title[getLanguage()]
+          : '';
       const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
       imageEntity = (
         <Img
@@ -54,19 +57,19 @@ Image.propTypes = {
   clickCallback: PropTypes.func,
   imgStyles: PropTypes.string,
   imgRef: PropTypes.func,
-  onLoad: PropTypes.func,
+  onLoad: PropTypes.func
 };
 
 export default withTracker(props => {
   return {
-    roomVariant: Session.get("roomVariant")
-  }
+    roomVariant: Session.get('roomVariant')
+  };
 })(Image);
 
 const Img = styled.img`
   width: 100%;
   display: block;
-  ${ props => props.imgStyles};
+  ${props => props.imgStyles};
 `;
 
 const A = styled.a`

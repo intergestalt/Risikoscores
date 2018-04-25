@@ -5,12 +5,23 @@ import styled, { keyframes } from 'styled-components';
 import { colors, dist } from '../../../config/styles';
 
 import { getPopupClosing } from '../../../helper/actions';
+import { getTopRightAnimations } from '../../../helper/popup';
 import { exists, localeStr } from '../../../helper/global';
 import { Image, ClosePopup } from '../.';
 
 class BannerTopRight extends React.Component {
   constructor(props) {
     super(props);
+    this.imageLoaded = this.imageLoaded.bind(this);
+    this.state = { popupLoaded: false };
+  }
+  imageLoaded() {
+    const height = this.imgElem.clientHeight;
+    const width = this.imgElem.clientWidth;
+    const anim = getTopRightAnimations(width, height);
+    moveIn = anim.moveIn;
+    moveOut = anim.moveOut;
+    this.setState({ popupLoaded: true });
   }
 
   render() {
@@ -23,13 +34,23 @@ class BannerTopRight extends React.Component {
       };
       image = (
         <div className="StreamPostImage">
-          <Image asset={asset} />
+          <Image
+            imgRef={elem => {
+              this.imgElem = elem;
+            }}
+            asset={asset}
+            onLoad={this.imageLoaded}
+          />
         </div>
       );
     }
 
     return (
-      <PopupDiv className="Popup" popupClosing={this.props.popupClosing}>
+      <PopupDiv
+        className="Popup"
+        popupLoaded={this.state.popupLoaded}
+        popupClosing={this.props.popupClosing}
+      >
         <ClosePopup />
         {image}
       </PopupDiv>
@@ -44,35 +65,18 @@ BannerTopRight.propTypes = {
 
 export default BannerTopRight;
 
-const moveIn = keyframes`
-0% {
-  top:-100%;
-  right:-100%;
-}
-100% {
-  top:0%;
-  right:0%;
-}
-`;
-
-const moveOut = keyframes`
-0% {
-  top:0%;
-  right:0%;
-}
-100% {
-  top:-100%;
-  right:-100%;
-}
-`;
 var PopupDiv = styled.div`
   position: absolute;
+  opacity: ${props => (props.popupLoaded ? '1' : '0')};
   right: 0px;
   top: 0px;
   width: 200px;
   z-index: 20;
   ${props =>
-    props.popupClosing
-      ? `animation: ${moveOut} 1s ease-in-out;`
-      : `animation: ${moveIn} 1s ease-in-out;`};
+    props.popupLoaded
+      ? props =>
+          props.popupClosing
+            ? `animation: ${moveOut} 1s ease-in-out;`
+            : `animation: ${moveIn} 1s ease-in-out;`
+      : ''};
 `;
