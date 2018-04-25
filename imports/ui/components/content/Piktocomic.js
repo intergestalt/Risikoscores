@@ -11,6 +11,7 @@ class Piktocomic extends React.Component {
   constructor(props) {
     super(props);
     this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleMouseOver = this.handleMouseOver.bind(this);
     this.normalLoaded = this.normalLoaded.bind(this);
     this.patientLoaded = this.patientLoaded.bind(this);
     this.doctorLoaded = this.doctorLoaded.bind(this);
@@ -23,6 +24,12 @@ class Piktocomic extends React.Component {
       doctorVisible: false
     };
   }
+  handleMouseOver(e) {
+    const height = this.imgElem.clientHeight;
+    const width = this.imgElem.clientWidth;
+    this.setState({ height, width });
+  }
+
   handleMouseMove(e) {
     if (!this.state.patientLoaded) return;
     if (!this.state.doctorLoaded) return;
@@ -83,8 +90,11 @@ class Piktocomic extends React.Component {
       this.props.data.context.tab
     );
     return (
-      <div onMouseMove={this.handleMouseMove}>
-        <ImageSpan visible={this.state.normalVisible}>
+      <PiktoDiv
+        onMouseMove={this.handleMouseMove}
+        onMouseOver={this.handleMouseOver}
+      >
+        <ImageSpan2 visible={this.state.normalVisible}>
           <Image
             asset={normal}
             imgRef={elem => {
@@ -92,14 +102,14 @@ class Piktocomic extends React.Component {
             }}
             onLoad={this.normalLoaded}
           />
-        </ImageSpan>
+        </ImageSpan2>
         <ImageSpan visible={this.state.doctorVisible}>
           <Image asset={doctor} onLoad={this.doctorLoaded} />
         </ImageSpan>
         <ImageSpan visible={this.state.patientVisible}>
           <Image asset={patient} onLoad={this.patientLoaded} />
         </ImageSpan>
-      </div>
+      </PiktoDiv>
     );
   }
 }
@@ -107,6 +117,17 @@ Piktocomic.propTypes = {};
 
 export default Piktocomic;
 
+var PiktoDiv = styled.div`
+  position: relative;
+  width: 100%;
+  heigth: 100%;
+`;
+
+var ImageSpan2 = styled.span`
+  position: relative;
+  width: 100%;
+  opacity: ${props => (props.visible ? '1' : '0')};
+`;
 var ImageSpan = styled.span`
   position: absolute;
   top: 0px;
