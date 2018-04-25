@@ -49,7 +49,6 @@ export default withTracker(props => {
   var popup = null;
   if (active) {
     if (getPopupRoom() != getSelectedRoomId()) {
-      console.log('RoomChanged');
       setPopupActive(false);
       active = false;
     } else {
