@@ -14,7 +14,7 @@ import {
 import { getPopup } from '../../helper/popup';
 import { exists, localeStr } from '../../helper/global';
 import { Image, ClosePopup } from './';
-import { BannerBottom, BannerTopRight } from './popups';
+import { BannerBottom, BannerTopRight, VideoBottom } from './popups';
 
 class Popup extends React.Component {
   constructor(props) {
@@ -27,6 +27,10 @@ class Popup extends React.Component {
       if (popup.type == 'bannerBottom') {
         return (
           <BannerBottom popup={popup} popupClosing={this.props.popupClosing} />
+        );
+      } else if (popup.type == 'videoBottom') {
+        return (
+          <VideoBottom popup={popup} popupClosing={this.props.popupClosing} />
         );
       } else if (popup.type == 'bannerTopRight') {
         return (

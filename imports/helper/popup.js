@@ -33,7 +33,7 @@ export function getPopup(index) {
   }
   return null;
 }
-const popupZuffiDelay = [20, 120];
+const popupZuffiDelay = [20, 120, 120];
 
 export function getStartPopupsDelay() {
   var index = getPopupsIndex();
@@ -81,59 +81,43 @@ export function loadPopups() {
   });
 }
 
-export function getBottomAnimations(height) {
-  var h = '-100%';
-  if (exists(height)) {
-    h = '-' + height + 'px';
-  }
+export function getBottomAnimations() {
   const moveIn = keyframes`
                             0% {
-                              bottom:${h};
+                              transform: translateY(100%);
                             }
                             100% {
-                              bottom:0%;
+                              transform: translateY(0%);
                             }
                             `;
 
   const moveOut = keyframes`
                             0% {
-                              bottom:0%;
+                              transform: translateY(0%);
                             }
                             100% {
-                              bottom:${h};
+                              transform: translateY(100%);
                             }
                             `;
   return { moveIn, moveOut };
 }
 
-export function getTopRightAnimations(width, height) {
-  var w = '-100%';
-  var h = '-100%';
-  if (exists(height)) {
-    h = '-' + height + 'px';
-  }
-  if (exists(width)) {
-    w = '-' + width + 'px';
-  }
+export function getTopRightAnimations() {
   const moveIn = keyframes`
                     0% {
-                      top:${h};
-                      right:${w};
+                      transform: translateX(100%) translateY(-100%);
                     }
                     100% {
-                      top:0%;
-                      right:0%;
+                      transform: translateX(0%) translateY(0%);
                     }
                     `;
 
   const moveOut = keyframes`
                     0% {
-                      top:0%;
-                      right:0%;
+                      transform: translateX(0%) translateY(0%);
                     }
                     100% {
-                      top:${h};
-                      right:${w};
+                      transform: translateX(100%) translateY(-100%);
                     }
                     `;
   return { moveIn, moveOut };

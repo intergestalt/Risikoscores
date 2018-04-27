@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
-import { colors, dist } from '../../../config/styles';
+import { withRouter } from 'react-router-dom';
 
-import { getPopupClosing } from '../../../helper/actions';
+import { colors, dist } from '../../../config/styles';
+import { getPopupClosing, getLanguage } from '../../../helper/actions';
 import { getBottomAnimations } from '../../../helper/popup';
 import { exists, localeStr } from '../../../helper/global';
 import { Image, ClosePopup } from '../.';
@@ -12,16 +13,17 @@ import { Image, ClosePopup } from '../.';
 class BannerBottom extends React.Component {
   constructor(props) {
     super(props);
-
+    this.clickCallback = this.clickCallback.bind(this);
     this.imageLoaded = this.imageLoaded.bind(this);
     this.state = { popupLoaded: false };
   }
-
+  clickCallback(e, nodeId) {
+    const lang = getLanguage();
+    const popup = this.props.popup;
+    const path = '/rooms/' + popup.targetRoomId + '?language=' + lang;
+    this.props.history.push(path);
+  }
   imageLoaded() {
-    const height = this.imgElem.clientHeight;
-    const anim = getBottomAnimations(height);
-    moveIn = anim.moveIn;
-    moveOut = anim.moveOut;
     this.setState({ popupLoaded: true });
   }
 
@@ -35,7 +37,7 @@ class BannerBottom extends React.Component {
       };
 
       image = (
-        <div className="BannerImage">
+        <div onClick={this.clickCallback} className="BannerImage">
           <Image
             imgRef={elem => {
               this.imgElem = elem;
@@ -64,7 +66,11 @@ BannerBottom.propTypes = {
   popupClosing: PropTypes.bool
 };
 
-export default BannerBottom;
+export default withRouter(BannerBottom);
+
+const anim = getBottomAnimations();
+const moveIn = anim.moveIn;
+const moveOut = anim.moveOut;
 
 var PopupDiv = styled.div`
   position: absolute;
@@ -72,6 +78,7 @@ var PopupDiv = styled.div`
   opacity: ${props => (props.popupLoaded ? '1' : '0')};
   width: 100%;
   z-index: 20;
+  cursor: pointer;
   ${props =>
     props.popupLoaded
       ? props =>

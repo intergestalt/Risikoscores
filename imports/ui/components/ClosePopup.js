@@ -9,6 +9,7 @@ import {
   incPopupsIndex
 } from '../../helper/actions';
 import { closePopup } from '../../helper/popup';
+import { Image } from '.';
 
 class ClosePopup extends React.Component {
   constructor(props) {
@@ -19,13 +20,18 @@ class ClosePopup extends React.Component {
     closePopup();
   }
   render() {
+    const closeAsset = {
+      type: 'image',
+      name: 'close.png',
+      folder: 'popups'
+    };
     return (
       <CloseDiv
         onClick={e => {
           this.closePopup(e);
         }}
       >
-        X
+        <Image asset={closeAsset} />
       </CloseDiv>
     );
   }
@@ -39,11 +45,9 @@ export default withTracker(props => {
 
 const CloseDiv = styled.div`
   position: absolute;
-  background-color: ${colors.red};
-  text-align: center;
-  vertical-align: center;
-  right: 10px;
-  top: 10px;
-  width: 40px;
-  height: 40px;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  width: ${dist.small};
+  height: ${dist.small};
 `;

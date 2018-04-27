@@ -59,12 +59,15 @@ export default withTracker(props => {
   var ready = false;
   if (exists(props.targetId)) {
     sub = Meteor.subscribe('questions.listByOrigin', props.roomId);
+    questions = Questions.find(
+      {
+        originRoomId: props.roomId,
+        roomId: props.targetId
+      },
+      { sort: { _id: 1 } }
+    ).fetch();
+    //    question = Questions.findOne({
 
-    question = Questions.findOne({
-      originRoomId: props.roomId,
-      roomId: props.targetId
-    });
-    if (question) questions.push(question);
     ready = sub.ready();
   } else {
     sub = Meteor.subscribe('questions.listByRoom', props.roomId);

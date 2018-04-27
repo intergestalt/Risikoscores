@@ -15,7 +15,13 @@ class RoomInterHeader extends React.Component {
 
   render() {
     var title = getFragment('roomInterTitle');
-    title = this.props.title + ' -> ' + this.props.title2;
+    title = '';
+    if (this.props.ready) {
+      title =
+        localeStr(this.props.room.name) +
+        ' -> ' +
+        localeStr(this.props.room2.name);
+    }
     return <Header className="RoomQuestionsHeader">{title}</Header>;
   }
 }
@@ -25,10 +31,11 @@ export default withTracker(props => {
   const room = Rooms.findOne({ key: props.roomId });
   const title = localeStr(room.name);
   const room2 = Rooms.findOne({ key: props.targetId });
-  const title2 = localeStr(room2.name);
+  ready = sub2.ready();
   return {
-    title: title,
-    title2: title2
+    room: room,
+    room2: room2,
+    ready: ready
   };
 })(RoomInterHeader);
 const Header = styled.h3`
