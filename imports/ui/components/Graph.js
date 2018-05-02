@@ -41,8 +41,6 @@ class Graph extends React.Component {
     if (!this.props.start) {
       this.setState({ beam: true });
     }
-    //setPlayAudioFile('tos-transporter.mp3');
-    //setPlayAudio(true);
     setPlayAudioAll(true);
     if (!this.props.start) {
       this.timer = setTimeout(() => {
