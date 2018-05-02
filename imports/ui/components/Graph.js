@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
 import { GraphEdge, GraphNode } from './';
 import {
@@ -11,14 +12,50 @@ import {
   getOutgoingEdges
 } from '../../helper/graph';
 import { exists } from '../../helper/global';
-import { getSelectGraphNode, getSelectedRoomId } from '../../helper/actions';
+import {
+  getSelectGraphNode,
+  getSelectedRoomId,
+  getLanguage,
+  setPlayAudio,
+  setPlayAudioFile,
+  setPlayAudioAll
+} from '../../helper/actions';
 import { colors } from '../../config/styles';
 
 class Graph extends React.Component {
   constructor(props) {
     super(props);
+    this.clickCallback = this.clickCallback.bind(this);
+    this.timer = null;
+    this.state = {
+      beam: false
+    };
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+  clickCallback(e, nodeId) {
+    if (this.state.beam) return;
+    if (getSelectedRoomId() == nodeId) return;
+    if (!this.props.start) {
+      this.setState({ beam: true });
+    }
+    //setPlayAudioFile('tos-transporter.mp3');
+    //setPlayAudio(true);
+    setPlayAudioAll(true);
+    if (!this.props.start) {
+      this.timer = setTimeout(() => {
+        const lang = getLanguage();
+        const path = '/rooms/' + nodeId + '?language=' + lang;
+        this.props.history.push(path);
+      }, 2000);
+    } else {
+      const lang = getLanguage();
+      const path = '/rooms/' + nodeId + '?language=' + lang;
+      this.props.history.push(path);
+    }
+  }
   selectNode(selectedNodeId, presentNodeId = null) {
     nodeId = presentNodeId || selectedNodeId;
     const realGraph = getTheRealGraph(this.props.graph);
@@ -93,7 +130,8 @@ class Graph extends React.Component {
             selected={selected}
             neighbour={neighbour}
             node={node}
-            graphCallback={this.props.graphCallback}
+            graphCallback={this.state.beam ? null : this.props.graphCallback}
+            clickCallback={this.clickCallback}
             passive={passive}
           />
         );
@@ -113,11 +151,29 @@ class Graph extends React.Component {
     }
     const lines = this.getEdges(realGraph, modeMap);
     const circles = this.getNodes(realGraph, modeMap);
+    var angelX = this.props.angelX;
+    if (!exists(angelX)) angelX = 0;
+    var angelY = this.props.angelY;
+    if (!exists(angelY)) angelY = 0;
+    var transformStr = 'rotateX(' + angelX + 'deg) rotateY(' + angelY + 'deg)';
 
-    return (
+    var animIt = this.state.beam;
+    var animationDuration = 0;
+    if (this.state.beam) {
+      animationDuration = 2000;
+    }
+    if (this.props.start) {
+      animIt = false;
+    }
+
+    const svg = (
       <SvgContainer
         className="Graph"
-        style={{ width: this.props.width, height: this.props.height }}
+        style={{
+          width: this.props.width,
+          height: this.props.height,
+          transform: 'rotateX(' + angelX + 'deg) rotateY(' + angelY + 'deg)'
+        }}
       >
         <defs>
           <radialGradient
@@ -137,7 +193,10 @@ class Graph extends React.Component {
             />
             <stop
               offset="80%"
-              style={{ stopColor: this.props.backgroundColor, stopOpacity: 0 }}
+              style={{
+                stopColor: this.props.backgroundColor,
+                stopOpacity: 0
+              }}
             />
           </radialGradient>
         </defs>
@@ -145,6 +204,15 @@ class Graph extends React.Component {
         {circles}
       </SvgContainer>
     );
+    if (this.props.start) {
+      return svg;
+    } else {
+      return (
+        <AnimWrapper animationDuration={animationDuration} animation={animIt}>
+          {svg}
+        </AnimWrapper>
+      );
+    }
   }
 }
 
@@ -155,7 +223,8 @@ Graph.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   backgroundColor: PropTypes.string,
-  restrictNavigation: PropTypes.bool
+  restrictNavigation: PropTypes.bool,
+  animation: PropTypes.bool
 };
 
 export default withTracker(props => {
@@ -163,6 +232,16 @@ export default withTracker(props => {
     selectedId: getSelectGraphNode(),
     selectedRoomId: getSelectedRoomId()
   };
-})(Graph);
+})(withRouter(Graph));
 
 const SvgContainer = styled.svg``;
+
+const AnimWrapper = styled.div`
+  ${props =>
+    props.animation
+      ? 'transform: rotateY(1800deg) rotateX(500deg) scale(0);' +
+        'transition: transform ' +
+        props.animationDuration +
+        'ms ease-in-out;'
+      : ''};
+`;

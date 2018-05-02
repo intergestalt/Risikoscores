@@ -25,7 +25,13 @@ import {
   setSelectGraphNode,
   getSelectedRoomId,
   setLanguage,
-  setPopupActive
+  setPopupActive,
+  getPlayAudio,
+  setPlayAudioAll,
+  getPlayAudioFile,
+  setPlayAudio,
+  getPlayAudioFirst,
+  setPlayAudioFirst
 } from '../../../helper/actions';
 import { exists } from '../../../helper/global';
 import { startPopupsTimeout } from '../../../helper/popup';
@@ -33,10 +39,18 @@ import { startStreamTimeout } from '../../../helper/stream';
 import {} from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
 import { tabColors, tabColorPalette } from '../../../config/tabColors';
+import { getUrlPrefix } from '../../../helper/uploads';
+
 class Room extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selectedGraphNodeId: null };
+    this.click = this.click.bind(this);
+    this.audioStarted = this.audioStarted.bind(this);
+    this.onCanPlayThrough = this.onCanPlayThrough.bind(this);
+    this.audioEnded = this.audioEnded.bind(this);
+    this.audioPlaying = false;
+    this.audioElem = null;
   }
 
   componentDidMount() {
@@ -64,8 +78,44 @@ class Room extends React.Component {
     }
   }
 
+  audioFinished() {
+    // if (this.audioPlaying) {
+    //   console.log('FINISHED');
+    //    this.audioPlaying = false;
+    //setPlayAudio(false);
+    //  }
+  }
+  audioStarted() {}
+  onCanPlayThrough() {}
+  audioEnded() {
+    setPlayAudio(false);
+    setPlayAudioFirst(false);
+    setPlayAudioAll(false);
+  }
+  getSound() {
+    var sound = null;
+    if (this.props.playAudio) {
+      const file = getUrlPrefix() + '/live/sounds/' + getPlayAudioFile();
+      sound = (
+        <Audio
+          onEnded={this.audioEnded}
+          onPlaying={this.audioStarted}
+          onCanPlayThrough={this.onCanPlayThrough}
+          autoPlay
+          controls
+        >
+          <source src={file} type="audio/mpeg " />
+        </Audio>
+      );
+    }
+    return sound;
+  }
   renderLoading() {
-    return <Loading />;
+    return (
+      <span>
+        <Loading />
+      </span>
+    );
   }
 
   renderRoom() {
@@ -80,7 +130,7 @@ class Room extends React.Component {
     }
 
     return (
-      <RoomElem className="Room" powerOn={this.props.powerOn}>
+      <RoomElem key="_room" className="Room" powerOn={this.props.powerOn}>
         <MainColumn room={this.props.room} />
         <TabColumn
           selectedTabId={selectedTabId}
@@ -107,11 +157,20 @@ class Room extends React.Component {
   }
 
   render() {
+    var page = null;
     if (!this.props.ready) {
-      return this.renderLoading();
+      page = this.renderLoading();
+    } else {
+      page = this.renderRoom();
     }
     storeFragments(this.props.fragments);
-    return this.renderRoom();
+    var result = (
+      <span>
+        {this.getSound()}
+        {page}
+      </span>
+    );
+    return result;
   }
 }
 
@@ -155,14 +214,14 @@ export default withTracker(props => {
   if (exists(lang)) {
     setLanguage(lang);
   }
-
   return {
     room,
     selectedTabId: tabId,
     roomColor,
     fragments: TextFragments.find().fetch(),
-    ready: sub.ready() && sub2.ready() && room,
-    powerOn: Session.get('powerOn')
+    ready: sub.ready() && sub2.ready(), // && room,
+    powerOn: Session.get('powerOn'),
+    playAudio: getPlayAudio() || getPlayAudioFirst()
   };
 })(Room);
 
@@ -207,4 +266,7 @@ const RoomChooserFixed = styled.div`
   z-index: 999;
   opacity: 0.9;
   box-shadow: 1ex 1ex 1ex rgba(0, 0, 0, 0.6);
+`;
+const Audio = styled.audio`
+  display: none;
 `;

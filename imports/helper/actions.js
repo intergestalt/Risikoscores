@@ -186,6 +186,26 @@ export function setPopupActive(active) {
   Session.set('popupActive', active);
   Session.set('popupRoom', getSelectedRoomId());
 }
+
+export function setPlayAudio(value) {
+  Session.set('playAudio', value);
+}
+export function setPlayAudioAll(value) {
+  Session.set('playAudioAll', value);
+}
+export function getPlayAudioAll() {
+  return Session.get('playAudioAll');
+}
+export function setPlayAudioFirst(value) {
+  Session.set('playAudioFirst', value);
+}
+export function getPlayAudioFirst() {
+  return Session.get('playAudioFirst');
+}
+
+export function setPlayAudioFile(name) {
+  Session.set('playAudioFile', name);
+}
 export function setPopupClosing(closing) {
   Session.set('popupClosing', closing);
 }
@@ -232,6 +252,15 @@ export function getLanguage() {
   return Session.get('language');
 }
 
+export function getPlayAudio() {
+  return Session.get('playAudio');
+}
+export function getPlayAudioFile() {
+  if (Session.get('playAudioFirst')) {
+    return 'silence.mp3';
+  }
+  return Session.get('playAudioFile');
+}
 export function isTabDetail() {
   var detail = Session.get('tabDetail');
   if (exists(detail)) {

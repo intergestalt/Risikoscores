@@ -23,3 +23,6 @@ Session.setDefault('powerWasOff', false);
 Session.setDefault('serverMute', false);
 Session.setDefault('roomVariant', 'live');
 Session.setDefault('roomVisitCounter', -1);
+Session.setDefault('playAudio', false);
+Session.setDefault('playAudioFirst', true);
+Session.setDefault('playAudioFile', '');

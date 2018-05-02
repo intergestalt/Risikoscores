@@ -40,6 +40,7 @@ class StartGraphArea extends React.Component {
           backgroundColor={colors.darkgrey}
           graphCallback={this.graphCallback}
           graph={this.props.graph}
+          start={true}
         />
       </Container>
     );

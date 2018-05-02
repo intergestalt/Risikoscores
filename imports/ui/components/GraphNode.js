@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 
 import { getColor } from '../../helper/graph';
-import { getLanguage } from '../../helper/actions';
 
 class GraphNode extends React.Component {
   constructor(props) {
     super(props);
-    this.clickCallback = this.clickCallback.bind(this);
     this.enterCallback = this.enterCallback.bind(this);
     this.leaveCallback = this.leaveCallback.bind(this);
   }
@@ -21,11 +18,6 @@ class GraphNode extends React.Component {
     if (this.props.graphCallback) {
       this.props.graphCallback();
     }
-  }
-  clickCallback(e, nodeId) {
-    const lang = getLanguage();
-    const path = '/rooms/' + nodeId + '?language=' + lang;
-    this.props.history.push(path);
   }
 
   render() {
@@ -40,7 +32,7 @@ class GraphNode extends React.Component {
     return (
       <circle
         onClick={e => {
-          this.props.passive || this.clickCallback(e, this.props.node.id);
+          this.props.passive || this.props.clickCallback(e, this.props.node.id);
         }}
         onMouseEnter={e => {
           this.props.passive || this.enterCallback(e, this.props.node.id);
@@ -60,10 +52,11 @@ class GraphNode extends React.Component {
 
 GraphNode.propTypes = {
   graphCallback: PropTypes.func,
+  clickCallback: PropTypes.func,
   node: PropTypes.object,
   selected: PropTypes.bool,
   neighbour: PropTypes.bool,
   passive: PropTypes.bool
 };
 
-export default withRouter(GraphNode);
+export default GraphNode;

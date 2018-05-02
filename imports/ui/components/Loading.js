@@ -30,9 +30,13 @@ class Loading extends React.Component {
 
   render() {
     if (!this.props.language || this.state.hide)
-      return <Container className="Loading" />;
+      return <Container key="_Loading" className="Loading" />;
     const word = this.props.language == 'de' ? 'Lädt' : 'Loading';
-    return <Container className="Loading">{word}...</Container>;
+    return (
+      <Container key="_Loading" className="Loading">
+        {word}...
+      </Container>
+    );
   }
 }
 
