@@ -49,6 +49,11 @@ import StartRoomMenu from './StartRoomMenu';
 import StartAbout from './StartAbout';
 import Popup from './Popup';
 import ClosePopup from './ClosePopup';
+import Game from './Game';
+import GameBar from './GameBar';
+import GameContent from './GameContent';
+import GameBottom from './GameBottom';
+import GamePopup from './GamePopup';
 
 export {
   MenuIcon,
@@ -95,5 +100,10 @@ export {
   Close,
   Loading,
   Popup,
-  ClosePopup
+  ClosePopup,
+  Game,
+  GameBottom,
+  GameBar,
+  GameContent,
+  GamePopup
 };

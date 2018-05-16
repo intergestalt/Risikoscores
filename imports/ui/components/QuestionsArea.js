@@ -39,18 +39,22 @@ class QuestionsArea extends React.Component {
       questions = false;
     }
     var content = null;
+    var roomId = null;
+    if (exists(this.props.room)) {
+      roomId = this.props.room.key;
+    }
     if (questions) {
       content = (
         <InnerContainer>
           <RoomQuestionsHeader />
-          <RoomQuestions roomId={this.props.room.key} />
+          <RoomQuestions roomId={roomId} />
         </InnerContainer>
       );
     } else {
       content = (
         <InnerContainer>
-          <RoomInterHeader roomId={this.props.room.key} targetId={graphNode} />
-          <RoomQuestions roomId={this.props.room.key} targetId={graphNode} />
+          <RoomInterHeader roomId={roomId} targetId={graphNode} />
+          <RoomQuestions roomId={roomId} targetId={graphNode} />
         </InnerContainer>
       );
     }

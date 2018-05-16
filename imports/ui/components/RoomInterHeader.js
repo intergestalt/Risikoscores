@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 import { getFragment } from '../../helper/fragment';
 import { dist } from '../../config/styles';
-import { localeStr } from '../../helper/global';
+import { localeStr, exists } from '../../helper/global';
 import Rooms from '../../collections/rooms';
 
 class RoomInterHeader extends React.Component {
@@ -16,7 +16,11 @@ class RoomInterHeader extends React.Component {
   render() {
     var title = getFragment('roomInterTitle');
     title = '';
-    if (this.props.ready) {
+    if (
+      this.props.ready &&
+      exists(this.props.room) &&
+      exists(this.props.room2)
+    ) {
       title =
         localeStr(this.props.room.name) +
         ' -> ' +
@@ -29,7 +33,10 @@ class RoomInterHeader extends React.Component {
 export default withTracker(props => {
   const sub2 = Meteor.subscribe('room');
   const room = Rooms.findOne({ key: props.roomId });
-  const title = localeStr(room.name);
+  var title = null;
+  if (exists(room)) {
+    title = localeStr(room.name);
+  }
   const room2 = Rooms.findOne({ key: props.targetId });
   ready = sub2.ready();
   return {

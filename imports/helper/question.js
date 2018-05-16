@@ -1,59 +1,16 @@
 import {
   isSelectedRoomIdChanged,
-  getCachedRoomQuestions,
   getSelectedRoomId,
-  cacheRoomQuestions,
   getCachedStreamQuestions,
-  cacheStreamQuestions
+  cacheStreamQuestions,
+  setCachedQuestions,
+  getCachedQuestions
 } from './actions';
 
 import { exists, zuffi, shuffleArray } from './global';
 
 export function cleanForSave(entry) {
   const result = entry;
-  return result;
-}
-
-export function getRoomQuestions(all) {
-  var roomId = getSelectedRoomId();
-
-  var last = getCachedRoomQuestions();
-  if (exists(last)) {
-    var lastRoomId = last.roomId;
-    if (exists(lastRoomId)) {
-      if (lastRoomId === roomId) {
-        const r = last.questions;
-        if (exists(r)) {
-          return r;
-        }
-      }
-    }
-  }
-  var result = [];
-  var own = [];
-  var foreign = [];
-  for (var i = 0; i < all.length; i++) {
-    const q = all[i];
-    if (q.roomId === roomId) {
-      own.push(q);
-    }
-    if (q.originRoomId === roomId) {
-      foreign.push(q);
-    }
-  }
-  if (own.length > 0) {
-    //index = zuffi(own.length - 1);
-    for (var i = 0; i < own.length; i++) {
-      result.push(own[i]);
-    }
-  }
-  if (foreign.length > 0) {
-    //index = zuffi(foreign.length - 1);
-    for (var i = 0; i < foreign.length; i++) {
-      result.push(foreign[i]);
-    }
-  }
-  cacheRoomQuestions(result, roomId);
   return result;
 }
 
@@ -93,4 +50,30 @@ export function setLoading(index, yes) {
     last[index].loading = yes;
     cacheStreamQuestions(last);
   }
+}
+
+export function storeQuestions(questions) {
+  if (Array.isArray(questions)) {
+    setCachedQuestions(questions);
+  }
+}
+
+export function getQuestions(roomId, targetId) {
+  const questions = getCachedQuestions();
+  var result = [];
+  if (exists(questions)) {
+    for (var i = 0; i < questions.length; i++) {
+      const q = questions[i];
+      if (exists(targetId)) {
+        if (q.originRoomId == roomId && q.roomId == targetId) {
+          result.push(q);
+        }
+      } else {
+        if (q.roomId == roomId) {
+          result.push(q);
+        }
+      }
+    }
+  }
+  return result;
 }

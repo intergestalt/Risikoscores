@@ -14,13 +14,14 @@ const colors = {
   mediumgrey: 'rgb(128,128,128)',
   darkgrey: 'rgb(89,89,89)',
   shade: 'rgba(0,0,0,0.9)',
+  white: 'rgb(255,255,255)'
 };
 
 colors.named = {
   button1: colors.orange,
   button2: colors.cyan,
   room: colors.blue,
-  glossar: colors.red,
+  glossar: colors.red
 };
 
 const snippets = {

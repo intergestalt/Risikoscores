@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import color from 'color';
 
 import { setPopupActive, incPopupsIndex } from '../../helper/actions';
-import { localeStr } from '../../helper/global';
+import { localeStr, exists } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
 import { getImageAsset } from '../../helper/asset';
 import { snippets, dist, colors } from '../../config/styles';
@@ -21,18 +21,24 @@ class MainContent extends React.Component {
     incPopupsIndex();
   }
   render() {
-    var textBoth = localeStr(this.props.room.mainText);
-    const splitted = splitOptions(textBoth);
-    const text = splitted.text;
-    const options = splitted.options;
-    const backgroundImage = getOption(options, 'backgroundImage');
+    var text = null;
+    var backgroundImage = null;
+    var title = '';
+    if (exists(this.props.room)) {
+      var textBoth = localeStr(this.props.room.mainText);
+      const splitted = splitOptions(textBoth);
+      text = splitted.text;
+      const options = splitted.options;
+      backgroundImage = getOption(options, 'backgroundImage');
+      title = localeStr(this.props.room.name);
+    }
+
     var imageAsset = null;
     if (backgroundImage) {
       console.log('Backgroundimage ' + backgroundImage);
       imageAsset = getImageAsset(backgroundImage, this.props.room._id);
       console.log(imageAsset);
     }
-    const title = localeStr(this.props.room.name);
     return (
       <Container>
         <a

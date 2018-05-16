@@ -74,7 +74,7 @@ const moveOut = anim.moveOut;
 
 var PopupDiv = styled.div`
   position: absolute;
-  bottom: 0px;
+  bottom: ${props => (props.popupLoaded ? '0px' : '-2000px')};
   opacity: ${props => (props.popupLoaded ? '1' : '0')};
   width: 100%;
   z-index: 20;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { localeStr, existsString } from '../../helper/global';
+import { localeStr, existsString, exists } from '../../helper/global';
 import { snippets, dist } from '../../config/styles';
 
 class TabBar extends React.Component {
@@ -17,27 +17,31 @@ class TabBar extends React.Component {
     if (existsString(this.props.preSelectedTabId)) {
       selectedTabId = this.props.preSelectedTabId;
     }
-    for (var i = 0; i < this.props.tabs.length; i++) {
-      const tab = this.props.tabs[i];
-      var className = 'Tab';
+    if (exists(this.props.tabs)) {
+      for (var i = 0; i < this.props.tabs.length; i++) {
+        const tab = this.props.tabs[i];
+        var className = 'Tab';
 
-      isSelected = selectedTabId === tab.identifier;
+        isSelected = selectedTabId === tab.identifier;
 
-      if (isSelected) {
-        className = 'SelectedTab';
-        content = localeStr(tab.title);
+        if (isSelected) {
+          className = 'SelectedTab';
+          content = localeStr(tab.title);
+        }
+        const entry = (
+          <Tab
+            key={'_tab' + i}
+            to={'/rooms/' + this.props.roomId + '?tabId=' + tab.identifier}
+            className={className}
+            style={{
+              backgroundColor: isSelected ? this.props.roomColor : tab.color
+            }}
+          >
+            <TabText>{localeStr(tab.title)}</TabText>
+          </Tab>
+        );
+        myTabs.push(entry);
       }
-      const entry = (
-        <Tab
-          key={'_tab' + i}
-          to={'/rooms/' + this.props.roomId + '?tabId=' + tab.identifier}
-          className={className}
-          style={{ backgroundColor: isSelected ? this.props.roomColor : tab.color }}
-        >
-          <TabText>{localeStr(tab.title)}</TabText>
-        </Tab>
-      );
-      myTabs.push(entry);
     }
 
     return <Bar className="TabBar">{myTabs}</Bar>;
@@ -60,7 +64,7 @@ const Bar = styled.nav`
   flex-wrap: wrap;
 `;
 
-const Tab = styled(NavLink) `
+const Tab = styled(NavLink)`
   ${snippets.tabText} display:block;
   min-width: calc(100% / 3);
   box-sizing: border-box;
@@ -70,15 +74,15 @@ const Tab = styled(NavLink) `
   text-decoration: none;
   color: black;
   white-space: no-wrap;
-    transition: background-color 0.2s;
+  transition: background-color 0.2s;
 `;
 
 const TabText = styled.span`
-  ${snippets.tabText} 
-  /* position: relative;
+  ${snippets.tabText} /* position: relative;
   top: -0.03em;*/
   display: inline-block;
-  .SelectedTab &, .Tab:hover & {
+  .SelectedTab &,
+  .Tab:hover & {
     background-image: linear-gradient(to bottom, black 33%, transparent 33%);
     background-position: 0 1.65em;
     background-repeat: repeat-x;

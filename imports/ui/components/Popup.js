@@ -9,7 +9,8 @@ import {
   getPopupClosing,
   setPopupActive,
   getPopupRoom,
-  getSelectedRoomId
+  getSelectedRoomId,
+  getGameStarted
 } from '../../helper/actions';
 import { getPopup } from '../../helper/popup';
 import { exists, localeStr } from '../../helper/global';
@@ -22,6 +23,7 @@ class Popup extends React.Component {
   }
 
   render() {
+    if (this.props.gameStarted) return null;
     if (this.props.popupActive) {
       const popup = this.props.popup;
       if (popup.type == 'bannerBottom') {
@@ -66,6 +68,7 @@ export default withTracker(props => {
   return {
     popup: popup,
     popupActive: active,
-    popupClosing: closing
+    popupClosing: closing,
+    gameStarted: getGameStarted()
   };
 })(Popup);

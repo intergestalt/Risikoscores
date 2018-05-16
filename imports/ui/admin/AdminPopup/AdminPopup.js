@@ -7,13 +7,10 @@ import { NavLink } from 'react-router-dom';
 
 class AdminPopup extends React.Component {
   renderPopups(popups) {
-    console.log('HERE');
-    console.log(popups);
     return (
       <div>
         <ul>
           {popups.map(entry => {
-            console.log(entry);
             return (
               <li key={entry._id}>
                 <ListItem entry={entry} collection={Popups} />

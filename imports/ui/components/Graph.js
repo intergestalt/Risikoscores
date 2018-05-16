@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
+import { keyframes } from 'styled-components';
 
 import { GraphEdge, GraphNode } from './';
 import {
@@ -16,6 +17,8 @@ import {
   getSelectGraphNode,
   getSelectedRoomId,
   getLanguage,
+  setBeamOut,
+  getBeamOut,
   setPlayAudio,
   setPlayAudioFile,
   setPlayAudioAll
@@ -27,27 +30,28 @@ class Graph extends React.Component {
     super(props);
     this.clickCallback = this.clickCallback.bind(this);
     this.timer = null;
-    this.state = {
-      beam: false
-    };
+    this.animationDuration = 1000;
   }
 
   componentWillUnmount() {
     clearTimeout(this.timer);
   }
   clickCallback(e, nodeId) {
-    if (this.state.beam) return;
+    if (getBeamOut()) return;
     if (getSelectedRoomId() == nodeId) return;
     if (!this.props.start) {
-      this.setState({ beam: true });
+      setPlayAudioFile('beam.mp3');
+      setPlayAudio(true);
+      setBeamOut(true);
     }
     setPlayAudioAll(true);
     if (!this.props.start) {
       this.timer = setTimeout(() => {
         const lang = getLanguage();
+        setBeamOut(false);
         const path = '/rooms/' + nodeId + '?language=' + lang;
         this.props.history.push(path);
-      }, 2000);
+      }, this.animationDuration);
     } else {
       const lang = getLanguage();
       const path = '/rooms/' + nodeId + '?language=' + lang;
@@ -128,7 +132,7 @@ class Graph extends React.Component {
             selected={selected}
             neighbour={neighbour}
             node={node}
-            graphCallback={this.state.beam ? null : this.props.graphCallback}
+            graphCallback={this.props.beamOut ? null : this.props.graphCallback}
             clickCallback={this.clickCallback}
             passive={passive}
           />
@@ -154,23 +158,18 @@ class Graph extends React.Component {
     var angelY = this.props.angelY;
     if (!exists(angelY)) angelY = 0;
     var transformStr = 'rotateX(' + angelX + 'deg) rotateY(' + angelY + 'deg)';
+    var animIt = this.props.beamOut;
 
-    var animIt = this.state.beam;
-    var animationDuration = 0;
-    if (this.state.beam) {
-      animationDuration = 2000;
-    }
     if (this.props.start) {
       animIt = false;
     }
-
     const svg = (
       <SvgContainer
         className="Graph"
         style={{
+          transform: transformStr,
           width: this.props.width,
-          height: this.props.height,
-          transform: 'rotateX(' + angelX + 'deg) rotateY(' + angelY + 'deg)'
+          height: this.props.height
         }}
       >
         <defs>
@@ -206,7 +205,14 @@ class Graph extends React.Component {
       return svg;
     } else {
       return (
-        <AnimWrapper animationDuration={animationDuration} animation={animIt}>
+        <AnimWrapper
+          animationIn={!this.props.beamOut}
+          animationDuration={this.animationDuration}
+          animation={true}
+          style={{
+            perspective: '1000px'
+          }}
+        >
           {svg}
         </AnimWrapper>
       );
@@ -228,18 +234,33 @@ Graph.propTypes = {
 export default withTracker(props => {
   return {
     selectedId: getSelectGraphNode(),
-    selectedRoomId: getSelectedRoomId()
+    selectedRoomId: getSelectedRoomId(),
+    beamOut: getBeamOut()
   };
 })(withRouter(Graph));
 
 const SvgContainer = styled.svg``;
-
+const moveOut = keyframes`
+                    0% {
+                      transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) scale(1);
+                    }
+                    100% {
+                      transform: rotateZ(180deg) rotateY(900deg) rotateX(400deg) scale(0);
+                    }
+                    `;
+const moveIn = keyframes`
+                    0% {
+                      transform: rotateZ(180deg) rotateY(900deg) rotateX(400deg) scale(0);
+                    }
+                    100% {
+                      transform: rotateZ(0deg) rotateY(0deg) rotateX(0deg) scale(1);
+                    }
+                    `;
 const AnimWrapper = styled.div`
   ${props =>
     props.animation
-      ? 'transform: rotateY(1800deg) rotateX(500deg) scale(0);' +
-        'transition: transform ' +
-        props.animationDuration +
-        'ms ease-in-out;'
+      ? props.animationIn
+        ? `animation: ${moveIn} ` + props.animationDuration + `ms ease-in-out;`
+        : `animation: ${moveOut} ` + props.animationDuration + `ms ease-in-out;`
       : ''};
 `;

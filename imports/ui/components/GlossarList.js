@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { GlossarLink } from './content';
-import { localeStr } from '../../helper/global';
+import { localeStr, exists } from '../../helper/global';
 import { sortGlossar, getRoomGlossar } from '../../helper/glossar';
 import { getFragment } from '../../helper/fragment';
 import { snippets, colors } from '../../config/styles';
@@ -17,16 +17,18 @@ class GlossarList extends React.Component {
     var entryList = [];
     for (var i = 0; i < glossar.length; i++) {
       const e = glossar[i];
-      const entry = (
-        <li key={'_' + i}>
-          <GlossarLink
-            text={localeStr(e.name)}
-            entry={getId(e._id)}
-            highlighted={highlight && this.props.roomGlossar[e._id]}
-          />
-        </li>
-      );
-      entryList.push(entry);
+      if (exists(this.props.roomGlossar)) {
+        const entry = (
+          <li key={'_' + i}>
+            <GlossarLink
+              text={localeStr(e.name)}
+              entry={getId(e._id)}
+              highlighted={highlight && this.props.roomGlossar[e._id]}
+            />
+          </li>
+        );
+        entryList.push(entry);
+      }
     }
     return entryList;
   }

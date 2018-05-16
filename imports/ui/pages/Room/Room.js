@@ -3,8 +3,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import styled from 'styled-components';
 import { colors } from '../../../config/styles';
+import { keyframes } from 'styled-components';
 
 import Rooms from '../../../collections/rooms';
+import Questions from '../../../collections/questions';
 import TextFragments from '../../../collections/textFragments';
 import {
   MainColumn,
@@ -13,11 +15,13 @@ import {
   MenuIcon,
   ImageDetailView,
   Loading,
-  Popup
+  Popup,
+  Game
 } from '../../components';
 import { findGlossar } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
+import { storeQuestions } from '../../../helper/question';
 import {
   setSelectedTabId,
   setSelectedRoomId,
@@ -31,7 +35,8 @@ import {
   getPlayAudioFile,
   setPlayAudio,
   getPlayAudioFirst,
-  setPlayAudioFirst
+  setPlayAudioFirst,
+  getBeamOut
 } from '../../../helper/actions';
 import { exists } from '../../../helper/global';
 import { startPopupsTimeout } from '../../../helper/popup';
@@ -45,11 +50,7 @@ class Room extends React.Component {
   constructor(props) {
     super(props);
     this.state = { selectedGraphNodeId: null };
-    this.click = this.click.bind(this);
-    this.audioStarted = this.audioStarted.bind(this);
-    this.onCanPlayThrough = this.onCanPlayThrough.bind(this);
     this.audioEnded = this.audioEnded.bind(this);
-    this.audioPlaying = false;
     this.audioElem = null;
   }
 
@@ -78,15 +79,6 @@ class Room extends React.Component {
     }
   }
 
-  audioFinished() {
-    // if (this.audioPlaying) {
-    //   console.log('FINISHED');
-    //    this.audioPlaying = false;
-    //setPlayAudio(false);
-    //  }
-  }
-  audioStarted() {}
-  onCanPlayThrough() {}
   audioEnded() {
     setPlayAudio(false);
     setPlayAudioFirst(false);
@@ -98,14 +90,13 @@ class Room extends React.Component {
       const file = getUrlPrefix() + '/live/sounds/' + getPlayAudioFile();
       sound = (
         <Audio
+          src={file}
           onEnded={this.audioEnded}
-          onPlaying={this.audioStarted}
-          onCanPlayThrough={this.onCanPlayThrough}
           autoPlay
-          controls
-        >
-          <source src={file} type="audio/mpeg " />
-        </Audio>
+          innerRef={audio => {
+            this.audio = audio;
+          }}
+        />
       );
     }
     return sound;
@@ -114,56 +105,74 @@ class Room extends React.Component {
     return (
       <span>
         <Loading />
+        <MenuIcon />
       </span>
     );
   }
 
   renderRoom() {
+    var subsections = null;
+    var roomId = null;
+    var room = null;
+    var roomGlossar = null;
+    if (exists(this.props.room)) {
+      subsections = this.props.room.subsections;
+      room = this.props.room;
+      roomId = this.props.room.key;
+      roomGlossar = findGlossar(this.props.room);
+    }
     var selectedTabId = this.props.selectedTabId;
     if (!exists(selectedTabId)) {
-      selectedTabId = getDefaultTabId(this.props.room.subsections);
+      selectedTabId = getDefaultTabId(subsections);
     }
-    const roomGlossar = findGlossar(this.props.room);
     var selectedGraphNodeId = this.state.selectedGraphNodeId;
     if (!exists(selectedGraphNodeId)) {
-      selectedGraphNodeId = this.props.room.key;
+      selectedGraphNodeId = roomId;
     }
+    //console.log('0: ' + roomId + ' ' + room.key);
 
     return (
-      <RoomElem key="_room" className="Room" powerOn={this.props.powerOn}>
-        <MainColumn room={this.props.room} />
-        <TabColumn
-          selectedTabId={selectedTabId}
-          tabs={this.props.room.subsections}
-          roomId={this.props.room.key}
-          roomColor={this.props.roomColor}
-        />
-        <RightColumn
-          graphNodeId={selectedGraphNodeId}
-          room={this.props.room}
-          roomGlossar={roomGlossar}
-        />
+      <span>
+        <RoomElem
+          animationIn={!this.props.beamOut}
+          animation={true}
+          key="_room"
+          className="Room"
+          powerOn={this.props.powerOn}
+        >
+          <MainColumn room={room} />
+          <TabColumn
+            selectedTabId={selectedTabId}
+            tabs={subsections}
+            roomId={roomId}
+            roomColor={this.props.roomColor}
+          />
+          <RightColumn
+            graphNodeId={selectedGraphNodeId}
+            room={room}
+            roomGlossar={roomGlossar}
+          />
+        </RoomElem>
         <MenuIcon />
         <ImageDetailView />
         <RoomChooserFixed className="RoomChooserFixed">
-          <RoomChooser
-            roomKey={this.props.room.key}
-            disableNonExistingVariants
-          />
+          <RoomChooser roomKey={roomId} disableNonExistingVariants />
         </RoomChooserFixed>
+        <Game />
         <Popup />
-      </RoomElem>
+      </span>
     );
   }
 
   render() {
     var page = null;
-    if (!this.props.ready) {
+    /* if (!this.props.ready) {
       page = this.renderLoading();
-    } else {
-      page = this.renderRoom();
-    }
+    } else {*/
+    page = this.renderRoom();
+    //}
     storeFragments(this.props.fragments);
+    storeQuestions(this.props.questions);
     var result = (
       <span>
         {this.getSound()}
@@ -179,6 +188,7 @@ export default withTracker(props => {
   const variant = Session.get('roomVariant');
   const sub = Meteor.subscribe('room', roomId, variant);
   const sub2 = Meteor.subscribe('fragments.list');
+  const sub3 = Meteor.subscribe('questions.list');
   let room = Rooms.findOne({ key: roomId, variant });
 
   if (!room && sub.ready()) {
@@ -219,13 +229,36 @@ export default withTracker(props => {
     selectedTabId: tabId,
     roomColor,
     fragments: TextFragments.find().fetch(),
+    questions: Questions.find().fetch(),
     ready: sub.ready() && sub2.ready(), // && room,
     powerOn: Session.get('powerOn'),
-    playAudio: getPlayAudio() || getPlayAudioFirst()
+    playAudio: getPlayAudio() || getPlayAudioFirst(),
+    beamOut: getBeamOut()
   };
 })(Room);
-
+const moveOut = keyframes`
+                    0% {
+                      opacity: 1;
+                    }
+                    100% {
+                      opacity: 0;
+                    }
+                    `;
+const moveIn = keyframes`
+                    0% {
+                      opacity: 0;
+                    }
+                    100% {
+                      opacity: 1;
+                    }
+                    `;
 const RoomElem = styled.div`
+  ${props =>
+    props.animation
+      ? props.animationIn
+        ? `animation: ${moveIn} 1000ms ease-in-out;`
+        : `animation: ${moveOut} 1000ms ease-in-out;`
+      : ''};
   display: flex;
   flex-direction: row;
   & > *:not(nav):not(.RoomChooserFixed):not(.Popup) {

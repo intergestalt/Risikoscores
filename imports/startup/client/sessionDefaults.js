@@ -26,3 +26,5 @@ Session.setDefault('roomVisitCounter', -1);
 Session.setDefault('playAudio', false);
 Session.setDefault('playAudioFirst', true);
 Session.setDefault('playAudioFile', '');
+Session.setDefault('beamOut', false);
+Session.setDefault('gameStarted', false);

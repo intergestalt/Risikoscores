@@ -35,8 +35,7 @@ class GraphArea extends React.Component {
       angelX: 0,
       height: 0,
       width: 0,
-      animation: false,
-      selectedSound: false
+      animation: false
     };
     this.timer = null;
   }
@@ -68,19 +67,14 @@ class GraphArea extends React.Component {
     e.preventDefault();
     toggleGraph(e);
   }
-  soundFinished() {
-    this.setState({ selectedSound: false });
-  }
+  soundFinished() {}
   graphCallback(roomId) {
     if (exists(roomId)) {
       setSelectGraphNode(roomId);
-      setPlayAudioFile('tos-transporter.mp3');
+      setPlayAudioFile('tos-computer-01.mp3');
       setPlayAudio(true);
     } else {
-      this.setState({ selectedSound: false });
-      if (!getPlayAudioAll()) {
-        setPlayAudio(false);
-      }
+      setPlayAudio(false);
       setSelectGraphNode(getSelectedRoomId());
     }
     this.setState({ selectedRoomId: roomId });
@@ -164,5 +158,4 @@ const Area = styled.div`
     right:0.5em;
     top:0.5em;
   }  
-  perspective: 2000px;
 }`;

@@ -23,7 +23,16 @@ class TabContent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.tab.identifier !== nextProps.tab.identifier) {
+    var id1 = null;
+    var id2 = null;
+    if (exists(this.props.tab)) {
+      id1 = this.props.tab.identifier;
+    }
+    if (exists(nextProps) && exists(nextProps.tab)) {
+      id2 = nextProps.tab.identifier;
+    }
+
+    if (id1 !== id2) {
       this.setState({ hidden: true });
       setTimeout(() => {
         this.setState({ hidden: false });
@@ -32,13 +41,16 @@ class TabContent extends React.Component {
   }
 
   render() {
-    var textBoth = localeStr(this.props.tab.text);
-    const splitted = splitOptions(textBoth);
-    const text = splitted.text;
-    updateTabSliderAssets(text, this.props.roomId, this.props.tab.identifier);
-
-    const options = splitted.options;
-    var scroll = !getOptionFlag(options, 'disableScrolling');
+    var text = null;
+    var scroll = null;
+    if (exists(this.props.tab)) {
+      const textBoth = localeStr(this.props.tab.text);
+      const splitted = splitOptions(textBoth);
+      text = splitted.text;
+      const options = splitted.options;
+      scroll = !getOptionFlag(options, 'disableScrolling');
+      updateTabSliderAssets(text, this.props.roomId, this.props.tab.identifier);
+    }
 
     const tabClass = 'TabContent ' + (this.state.hidden ? 'hidden' : '');
 
@@ -48,7 +60,7 @@ class TabContent extends React.Component {
           <CustomScrollbars>
             <ScrollContainer className="ScrollContainer">
               {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
-              <DiyMarkdown>{splitted.text}</DiyMarkdown>
+              <DiyMarkdown>{text}</DiyMarkdown>
             </ScrollContainer>
           </CustomScrollbars>
         </Content>
@@ -57,7 +69,7 @@ class TabContent extends React.Component {
       return (
         <ContentNoScroll className={tabClass}>
           {/*<Headline>{localeStr(this.props.tab.title)}</Headline>*/}
-          <DiyMarkdown>{splitted.text}</DiyMarkdown>
+          <DiyMarkdown>{text}</DiyMarkdown>
         </ContentNoScroll>
       );
     }

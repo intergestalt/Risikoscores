@@ -12,6 +12,7 @@ import DetailButton from './DetailButton';
 import Quote from './Quote';
 import ServerAudio from './ServerAudio';
 import Piktocomic from './Piktocomic';
+import GameStarter from './GameStarter';
 
 export {
   ExternalLink,
@@ -27,5 +28,6 @@ export {
   DetailButton,
   Quote,
   ServerAudio,
-  Piktocomic
+  Piktocomic,
+  GameStarter
 };

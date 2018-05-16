@@ -1,3 +1,5 @@
+import { keyframes } from 'styled-components';
+
 import { localeStr } from './global';
 import { Session } from 'meteor/session';
 import { exists, zuffi } from './global';
@@ -14,7 +16,6 @@ import {
   setPopupClosing
 } from './actions';
 import Popups from '../collections/popups';
-import { keyframes } from 'styled-components';
 
 export function cleanForSave(entry) {
   const result = entry;
@@ -101,7 +102,46 @@ export function getBottomAnimations() {
                             `;
   return { moveIn, moveOut };
 }
+export function getLeftAnimations() {
+  const moveIn = keyframes`
+                            0% {
+                              transform: translateX(-100%);
+                            }
+                            100% {
+                              transform: translateX(0%);
+                            }
+                            `;
 
+  const moveOut = keyframes`
+                            0% {
+                              transform: translateX(0%);
+                            }
+                            100% {
+                              transform: translateX(-100%);
+                            }
+                            `;
+  return { moveIn, moveOut };
+}
+export function getRightAnimations() {
+  const moveIn = keyframes`
+                            0% {
+                              transform: translateX(100%);
+                            }
+                            100% {
+                              transform: translateX(0%);
+                            }
+                            `;
+
+  const moveOut = keyframes`
+                            0% {
+                              transform: translateX(0%);
+                            }
+                            100% {
+                              transform: translateX(100%);
+                            }
+                            `;
+  return { moveIn, moveOut };
+}
 export function getTopRightAnimations() {
   const moveIn = keyframes`
                     0% {

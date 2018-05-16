@@ -28,7 +28,6 @@ class GraphNode extends React.Component {
     if (this.props.neighbour) {
       color = getColor('neighbourColor');
     }
-
     return (
       <circle
         onClick={e => {

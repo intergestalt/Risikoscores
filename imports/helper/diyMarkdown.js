@@ -9,7 +9,8 @@ import {
   AssetList,
   Quote,
   ServerAudio,
-  Piktocomic
+  Piktocomic,
+  GameStarter
 } from '../ui/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
@@ -142,6 +143,8 @@ function renderSpecialComponent(specialComponent, id, glossar) {
         audio={options.audio}
       />
     );
+  } else if (name === 'game') {
+    return <GameStarter key={'_' + id} data={options} />;
   }
 }
 

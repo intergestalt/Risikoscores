@@ -214,6 +214,14 @@ export function getCachedStreamQuestions() {
   const questions = Session.get('cachedStreamQuestions');
   return questions;
 }
+export function getCachedQuestions() {
+  const questions = Session.get('cachedQuestions');
+  return questions;
+}
+export function setCachedQuestions(value) {
+  const questions = Session.set('cachedQuestions', value);
+}
+
 export function getCachedPopups() {
   const questions = Session.get('cachedPopups');
   return questions;
@@ -311,4 +319,30 @@ export function getTabSlider(room, tab) {
     }
   }
   return null;
+}
+
+export function getBeamOut() {
+  const value = Session.get('beamOut');
+  return value;
+}
+
+export function setBeamOut(value) {
+  Session.set('beamOut', value);
+}
+
+export function getGameStarted() {
+  const value = Session.get('gameStarted');
+  return value;
+}
+
+export function setGameStarted(value) {
+  Session.set('gameStarted', value);
+}
+export function getGameConfig() {
+  const value = Session.get('gameConfig');
+  return value;
+}
+
+export function setGameConfig(value) {
+  Session.set('gameConfig', value);
 }

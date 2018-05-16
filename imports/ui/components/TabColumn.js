@@ -15,9 +15,7 @@ class TabColumn extends React.Component {
 
   render() {
     var selectedTabId = this.props.selectedTabId;
-
     const color = this.props.roomColor;
-
     return (
       <Column className="TabColumn" style={{ backgroundColor: color }}>
         <TabBar

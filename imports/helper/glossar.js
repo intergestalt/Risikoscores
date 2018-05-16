@@ -25,8 +25,10 @@ export function getRoomGlossar(glossar, roomGlossar) {
   for (var i = 0; i < glossar.length; i++) {
     const entry = glossar[i];
     const key = entry._id;
-    if (roomGlossar[key]) {
-      result.push(entry);
+    if (roomGlossar != null) {
+      if (roomGlossar[key]) {
+        result.push(entry);
+      }
     }
   }
   return result;

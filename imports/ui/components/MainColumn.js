@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { colors } from '../../config/styles';
+import { exists } from '../../helper/global';
 
 class MainColumn extends React.Component {
   constructor(props) {
@@ -11,12 +12,15 @@ class MainColumn extends React.Component {
   }
 
   render() {
+    var images = null;
+    var roomFolder = null;
+    if (exists(this.props.room)) {
+      roomFolder = this.props.room.key;
+      images = this.props.room.images;
+    }
     return (
       <Column className="MainColumn">
-        <MainImages
-          roomFolder={this.props.room.key}
-          images={this.props.room.images}
-        />
+        <MainImages roomFolder={roomFolder} images={images} />
         <MainContent style={{ overflow: 'auto' }} room={this.props.room} />
       </Column>
     );
