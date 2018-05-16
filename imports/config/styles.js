@@ -10,9 +10,12 @@ const colors = {
   magenta: 'rgb(255,0,255)',
   orange: 'rgb(255,115,0)',
   cyan: 'rgb(0,255,255)',
+  verylightgrey: 'rgb(229,229,229)',
   lightgrey: 'rgb(204,204,204)',
+  littlelightgrey: 'rgb(166,166,166)',
   mediumgrey: 'rgb(128,128,128)',
   darkgrey: 'rgb(89,89,89)',
+  verydarkgrey: 'rgb(50,50,50)',
   shade: 'rgba(0,0,0,0.9)',
   white: 'rgb(255,255,255)'
 };
