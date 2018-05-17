@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Slider from 'react-rangeslider';
+import './css/rangeSlider.css';
 
 import { colors } from '../../config/styles';
 import { getStartPopupsDelay } from '../../helper/popup';
@@ -7,6 +9,14 @@ import { localeStr, exists } from '../../helper/global';
 import { Image } from '.';
 
 class GameContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sliderSel: -1
+    };
+    this.handleOnChangeSlider = this.handleOnChangeSlider.bind(this);
+    this.changeSel = this.changeSel.bind(this);
+  }
   getLos(divs) {
     los = [];
     for (var i = 0; i < divs.length; i++) {
@@ -93,24 +103,96 @@ class GameContent extends React.Component {
       </Content>
     );
   }
+
+  handleOnChangeSlider = value => {
+    this.setState({
+      sliderSel: value
+    });
+  };
+  changeSel(answer, questionNum, num) {
+    this.props.selectCallback(questionNum, num);
+    var str = null;
+    if (this.props.selected == 0) {
+      str = answer.sigi;
+    } else if (this.props.selected == 1) {
+      str = answer.riri;
+    } else if (this.props.selected == 2) {
+      str = answer.per;
+    }
+    if (exists(str)) {
+      this.props.toast(str);
+    }
+  }
   getAnswers(page) {
     const question = this.props.question;
     var result = [];
-    const cols = [
-      colors.verylightgrey,
-      colors.lightgrey,
-      colors.littlelightgrey,
-      colors.mediumgrey,
-      colors.darkgrey,
-      colors.verydarkgrey
-    ];
+    const questionNum = page - 2;
 
-    if (question.type == 'slider2') {
+    if (question.type == 'slider') {
+      var labels = {};
+      for (var i = 0; i < question.answers.length; i++) {
+        const answer = question.answers[i];
+        labels[answer.max] = answer.text;
+      }
+
+      var num = 0;
+      var line = question.answer;
+      var akValue = -1;
+      const sel = this.props.selectedAnswers[questionNum];
+      if (exists(sel)) {
+        akValue = sel;
+      }
+      if (this.state.sliderSel >= 0) {
+        akValue = this.state.sliderSel;
+        line = line.replace(/_num_/g, this.state.sliderSel);
+      } else {
+        line = line.replace(/_num_/g, '?');
+      }
+
+      return (
+        <div>
+          <Slider
+            min={0}
+            max={question.max}
+            tooltip={false}
+            value={akValue}
+            onChange={this.handleOnChangeSlider}
+            onChangeComplete={() => {
+              const value = this.state.sliderSel;
+              var num = 0;
+              var myAnswer = null;
+              for (var i = 0; i < question.answers.length; i++) {
+                const answer = question.answers[i];
+                var min = -1;
+                if (i > 0) {
+                  const answer2 = question.answers[i - 1];
+                  min = answer2.max;
+                }
+                if (value > min && value <= answer.max) {
+                  num = i;
+                  myAnswer = answer;
+                }
+              }
+              this.changeSel(myAnswer, questionNum, value);
+            }}
+            labels={labels}
+            orientation="vertical"
+          />
+          {line}
+        </div>
+      );
     } else {
+      const cols = [
+        colors.verylightgrey,
+        colors.lightgrey,
+        colors.littlelightgrey,
+        colors.mediumgrey,
+        colors.darkgrey,
+        colors.verydarkgrey
+      ];
       for (var i = 0; i < question.answers.length; i++) {
         const answer = question.answers[i];
         var color = cols[i % cols.length];
-        const questionNum = page - 2;
         const sel = this.props.selectedAnswers[questionNum];
         if (exists(sel)) {
           if (sel == i) {
@@ -121,18 +203,7 @@ class GameContent extends React.Component {
         const n = (
           <AnswerRow
             onClick={() => {
-              this.props.selectCallback(questionNum, num);
-              var str = null;
-              if (this.props.selected == 0) {
-                str = answer.sigi;
-              } else if (this.props.selected == 1) {
-                str = answer.riri;
-              } else if (this.props.selected == 2) {
-                str = answer.per;
-              }
-              if (exists(str)) {
-                this.props.toast(str);
-              }
+              this.changeSel(answer, questionNum, num);
             }}
             key={'_' + i}
             color={color}

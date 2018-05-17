@@ -74,7 +74,7 @@ var PopupDiv = styled.div`
   z-index: 20;
   bottom: 0;
   cursor: pointer;
-  background-color: ${colors.mediumgrey};
+  background-color: ${colors.verylightgrey};
   ${props =>
     props.popupLoaded
       ? props =>

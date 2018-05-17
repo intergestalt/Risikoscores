@@ -163,7 +163,16 @@ class Game extends React.Component {
         if (answer.score > akMax) {
           akMax = answer.score;
         }
-        if (exists(sel)) {
+        var min = -1;
+        if (ii > 0) {
+          const answer2 = answers[ii - 1];
+          min = answer2.max;
+        }
+        if (question.type === 'slider') {
+          if (sel > min && sel <= answer.max) {
+            score += answer.score;
+          }
+        } else {
           if (ii == sel) {
             score += answer.score;
           }
@@ -183,7 +192,7 @@ class Game extends React.Component {
   getResultPercentStr() {
     const p = this.getResultPercent();
     if (p == -1) {
-      return ' - %';
+      return ' ? %';
     }
     return p + ' %';
   }

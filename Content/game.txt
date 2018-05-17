@@ -1,5 +1,5 @@
 <<<Game: {   
-         "characters":[{"name":"Sigi","family":"Sorglos","image":"sorglos.jpg","comment":"Sorgen sind sowas von grandpa!"}, 
+         "characters":[{"name":"Sigi","family":"Sorglos","image":"sorglos.jpg","comment":"Sorgen sind sowas von Grandpa!"}, 
                        {"name":"Riri","family":"Real","image":"real.jpg","comment":"Wo Sorge und Sorglosigkeit ist, soll Realismus werden!"}, 
                        {"name":"Per","family":"Paranoia","image":"paranoia.jpg","comment":"Sorgenstund hat Gold im Mund!"}],
          "questions":[{"text":"Wie fühlst du dich?",
@@ -26,17 +26,22 @@
                                     "score":3}]},
                         {"text":"Wie oft am Tag wäschst du dir die Hände?",
                         "type":"slider",
-                        "answers":[{"text":"0 Mal",
+                        "max":15,
+                        "answer":"_num_ Mal",
+                        "answers":[{"max":0,
+                                    "text":"Nie",
                                     "sigi":"Man kann’s mit den Keimen auch sportlich nehmen!",
                                     "riri":"Man sollte unbedingt vor dem Essen und nach der Toilette Hände waschen!",
                                     "per":"Iiiiih, die geb ich keine Hand!",
                                     "score":0},
-                                   {"text":"1-4 Mal",
+                                   {"max":4,
+                                    "text":"Manchmal",
                                     "sigi":"Reinlich reinlich, kleinlich, kleinlich ...",
                                     "riri":"Hauptsache, man wäscht sich vor dem Essen und nach der Toilette die Hände.",
                                     "per":"Das ist wohl das Mindeste!",
                                     "score":5},
-                                   {"text":"5-15 Mal",
+                                   {"max":15,
+                                    "text":"Oft",
                                     "sigi":"Immer diese Neurotiker!",
                                     "riri":"Zu häufiges Händewaschen kann trockene Haut bereiten.",
                                     "per":"Der Dreck geht halt nie wirklich ab ...",
@@ -79,7 +84,7 @@
                 "doc":"Die Wahrscheinlichkeit, dass du dir in den nächsten 10 Jahren Sorgen machst, liegt bei sorgenmachenden _num_ Prozent. Du läufst Gefahr, dich mit deinen Sorgen selbst zu sabotieren. Versuche einen Neustart deiner Psyche.",
                 "sigi":"Komm schon du Angsthase! Vollkommen falsche Selbsteinschätzung",
                 "riri":"Zuviele Sorgen trüben den klaren Verstand. So bin ich nicht.",
-                "per":"Endlich jemand mit derselben Paranoia. Wir sind Seelenverwandte"                
+                "per":"Endlich jemand mit derselben Paranoia. Wir sind Seelenverwandte."                
             },
          "context":{"room":"arriba", "tab":"tab4"}}>>>
 
