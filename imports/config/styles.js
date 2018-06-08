@@ -1,5 +1,6 @@
 const colors = {
   paleblue: 'rgb(0,200,255)',
+  verypaleblue: 'rgb(204,244,255)',
   blue: 'rgb(0,0,255)',
   turqoise: 'rgb(0,255,190)',
   violet: 'rgb(150,0,255)',
@@ -9,6 +10,7 @@ const colors = {
   green: 'rgb(40,255,0)',
   magenta: 'rgb(255,0,255)',
   orange: 'rgb(255,115,0)',
+  lightorange: 'rgb(255,177,110)',
   cyan: 'rgb(0,255,255)',
   verylightgrey: 'rgb(229,229,229)',
   lightgrey: 'rgb(204,204,204)',
@@ -25,6 +27,20 @@ colors.named = {
   button2: colors.cyan,
   room: colors.blue,
   glossar: colors.red
+};
+
+const dist = {
+  tiny: '10px', // #0ff
+  small: '21px', // #f0f
+  medium: '30px', // #0f0
+  large: '40px', // #00f
+  homescreen: '12px', // #ff0
+  lineTopDiff: '0.3em', // distance between upper border of line and capital letter
+  lineBottomDiff: '0.3em' // distance between lower border of line and capital letter
+};
+
+dist.named = {
+  columnPadding: dist.small
 };
 
 const snippets = {
@@ -53,29 +69,20 @@ const snippets = {
     font-size: 13px;
   `,
   glossarText: `
-  font-family: 'Roboto Light';
-  line-height: 21px;
-  font-size: 18px;
+    font-family: 'Roboto Light';
+    line-height: 21px;
+    font-size: 18px;
   `,
   gameHuge: `
     font-family: 'Roboto Medium';
     line-height: 6vw;
     font-size: 6vw;  
+  `,
+  standardTextPaddings: `
+    padding: ${dist.named.columnPadding};
+    padding-top: calc(${ dist.named.columnPadding} - ${dist.lineTopDiff});
+    padding-bottom: calc(${ dist.named.columnPadding} - ${dist.lineBottomDiff})
   `
-};
-
-const dist = {
-  tiny: '10px', // #0ff
-  small: '21px', // #f0f
-  medium: '30px', // #0f0
-  large: '40px', // #00f
-  homescreen: '12px', // #ff0
-  lineTopDiff: '0.3em', // distance between upper border of line and capital letter
-  lineBottomDiff: '0.3em' // distance between lower border of line and capital letter
-};
-
-dist.named = {
-  columnPadding: dist.small
 };
 
 export { colors, snippets, dist };

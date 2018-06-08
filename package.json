@@ -40,5 +40,8 @@
     "styled-components": "^2.2.1",
     "uniforms": "^1.21.0",
     "uniforms-antd": "^1.21.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.5.1"
   }
 }

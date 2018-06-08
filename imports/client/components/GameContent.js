@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Slider from 'react-rangeslider';
 import './css/rangeSlider.css';
 
-import { colors } from '../../config/styles';
+import { colors, dist, snippets } from '../../config/styles';
 import { getStartPopupsDelay } from '../../helper/popup';
 import { localeStr, exists } from '../../helper/global';
-import { Image } from '.';
+import GameCharacterImage from './GameCharacterImage';
 
 class GameContent extends React.Component {
   constructor(props) {
@@ -54,16 +54,14 @@ class GameContent extends React.Component {
           selected={selected}
           key={i}
         >
-          <CharacterImage>
-            <Image asset={asset} />
-          </CharacterImage>{' '}
-          {character.name} {character.family}
+          <CharacterImage character={character} />
+          <CharacterName>{character.name} {character.family}</CharacterName>
         </Character>
       );
     }
     return (
       <Content>
-        <SelectContainer>{characters}</SelectContainer>
+        {characters}
       </Content>
     );
   }
@@ -88,18 +86,22 @@ class GameContent extends React.Component {
       title = title.replace(/_num_/g, p);
       return (
         <Content>
-          <div>{title}</div>
-          <div>{doc}</div>
-          {prev}
-          {next}
+          <Title>{title}</Title>
+          <Center paddings>{doc}</Center>
+          <Navigation>
+            {prev}
+            {next}
+          </Navigation>
         </Content>
       );
     }
     return (
       <Content>
-        <div>{this.props.noResult}</div>
-        {prev}
-        {next}
+        <Center paddings>{this.props.noResult}</Center>
+        <Navigation>
+          {prev}
+          {next}
+        </Navigation>
       </Content>
     );
   }
@@ -178,27 +180,13 @@ class GameContent extends React.Component {
             labels={labels}
             orientation="vertical"
           />
-          {line}
+          {/*line*/}
         </div>
       );
     } else {
-      const cols = [
-        colors.verylightgrey,
-        colors.lightgrey,
-        colors.littlelightgrey,
-        colors.mediumgrey,
-        colors.darkgrey,
-        colors.verydarkgrey
-      ];
       for (var i = 0; i < question.answers.length; i++) {
         const answer = question.answers[i];
-        var color = cols[i % cols.length];
         const sel = this.props.selectedAnswers[questionNum];
-        if (exists(sel)) {
-          if (sel == i) {
-            color = colors.orange;
-          }
-        }
         const num = i;
         const n = (
           <AnswerRow
@@ -206,15 +194,15 @@ class GameContent extends React.Component {
               this.changeSel(answer, questionNum, num);
             }}
             key={'_' + i}
-            color={color}
+            selected={sel === i}
           >
-            {answer.text}
+            <span>{answer.text}</span>
           </AnswerRow>
         );
         result.push(n);
       }
     }
-    return <div>{result}</div>;
+    return result;
   }
 
   getQuestions(page) {
@@ -223,10 +211,14 @@ class GameContent extends React.Component {
     const answer = this.getAnswers(page);
     return (
       <Content>
-        <div>{this.props.question.text}</div>
-        {answer}
-        {prev}
-        {next}
+        <Title>{this.props.question.text}</Title>
+        <Center>
+          {answer}
+        </Center>
+        <Navigation>
+          {prev}
+          {next}
+        </Navigation>
       </Content>
     );
   }
@@ -261,42 +253,90 @@ export default GameContent;
 const Content = styled.div`
   background-color: ${colors.white};
   flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 const LosDiv = styled.div`
-  line-height: 1.2em;
-  padding 0.5em 0.5em 0.5em 0.5em;
+  padding: 0 ${dist.named.columnPadding};
+  padding-top: 1em;
+  &:first-child { 
+    padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff}); 
+    ${ snippets.headlineText};
+  }
   background-color: ${colors.white};
 `;
-const Prev = styled.div`
-    position:absolute;
-    line-height: 1.2em;
-    padding 0.1em 0.1em 0.1em 0.1em;
-    width:30%;
-    border-radius: 10px;
-    left:1em;
-    bottom:39%;
-    background-color: ${colors.orange};
-`;
-const Next = styled.div`
-  position:absolute;
-  line-height: 1.2em;
-  padding 0.1em 0.1em 0.1em 0.1em;
-  width:30%;
-  border-radius: 10px;
-  right:1em;
-  bottom:39%;
-  background-color: ${colors.orange};
-`;
-const SelectContainer = styled.div``;
-const Character = styled.div`  
- padding 0.1em 0.1em 0.1em 0.1em;
- background-color: ${props => (props.selected ? colors.orange : colors.white)};
- `;
-const CharacterImage = styled.div`
-  width: 15%;
+
+const Navigation = styled.div`
+  display: flex;
+  > * { 
+    flex: 1;
+    ${ snippets.standardTextPaddings};
+    ${ snippets.headlineText};
+    cursor: pointer;
+  }
+`
+
+const Prev = ({ ...props, children }) => <PrevLarger {...props}><Larger>{children}</Larger></PrevLarger>
+const Next = ({ ...props, children }) => <NextLarger {...props}><Larger>{children}</Larger></NextLarger>
+
+const Larger = styled.span`
+  transform: scale(1.5);
+  display: inline-block;
+`
+
+const PrevLarger = styled.div`
+  background-color: ${colors.lightorange};
 `;
 
-const AnswerRow = styled.div`
-  padding 0.1em 0.1em 0.1em 0.1em;
-  background-color: ${props => props.color};
+const NextLarger = styled.div`
+  background-color: ${colors.orange};
+  text-align:right;
+`;
+
+const Option = styled.div`
+ background-color: ${props => (props.selected ? colors.verypaleblue : "")} !important;
+ &:hover {
+   background-color: ${ colors.verylightgrey};
+ }
+ * {
+    cursor: default;
+  }
+ `
+
+const Character = Option.extend`
+ padding-left: ${dist.tiny}; // using padding contained in the image
+ padding-right: ${dist.named.columnPadding};
+ height: 33.33%;
+ display: flex;
+ `
+
+const CharacterImage = styled(GameCharacterImage) `
+  height: 100%;
+`
+
+const CharacterName = styled.p`
+  align-self: center;
+  flex: 1;
+  padding-left: ${dist.named.columnPadding};
+`
+
+const Title = styled.h2`
+  ${ snippets.standardTextPaddings};
+  ${ snippets.headlineText};
+`
+
+const Center = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  ${ props => props.paddings ? snippets.standardTextPaddings : null}
+`
+
+const AnswerRow = Option.extend`
+  ${ snippets.standardTextPaddings};
+  flex:1;
+  display: flex;
+  > * {
+    align-self: center;
+  }
 `;

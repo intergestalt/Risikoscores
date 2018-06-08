@@ -54,7 +54,7 @@ import GameBar from './GameBar';
 import GameContent from './GameContent';
 import GameBottom from './GameBottom';
 import GamePopup from './GamePopup';
-import GameCharacters from './GameCharacters';
+import GameCharacterImage from './GameCharacterImage';
 
 export {
   MenuIcon,
@@ -107,5 +107,5 @@ export {
   GameBar,
   GameContent,
   GamePopup,
-  GameCharacters
+  GameCharacterImage
 };

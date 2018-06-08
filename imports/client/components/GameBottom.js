@@ -130,7 +130,7 @@ class GameBottom extends React.Component {
 export default GameBottom;
 
 const Bottom = styled.div`
-  background-color: ${colors.turqoise};
+  background-color: ${colors.paleblue};
   height: 33.33%;
   display: flex;
   flex-direction: column;
@@ -146,6 +146,7 @@ const NormalText = styled.div`
 `
 
 const HugeText = (props) => (<Huge {...props}><span>{props.children}</span></Huge>)
+
 const Huge = styled.div`
   ${snippets.gameHuge};
   flex: 1;
@@ -156,16 +157,3 @@ const Huge = styled.div`
   cursor: ${ props => props.clickable ? "pointer" : "auto"};
   ${ props => props.uppercase ? "text-transform: uppercase" : null};
 `
-
-const ResultSatz = styled.div`
-  line-height: 1.1em;
-  height: 50%;
-  width: 100%;
-  font-family: 'Roboto Light';
-`;
-const ResultPercent = styled.div`
-  line-height: 1.1em;
-  height: 50%;
-  width: 100%;
-  font-family: 'Roboto Light';
-`;
