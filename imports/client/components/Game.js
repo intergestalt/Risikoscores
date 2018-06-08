@@ -9,7 +9,7 @@ import {
   getGameConfig
 } from '../../helper/actions';
 import { zuffi, exists } from '../../helper/global';
-import { colors } from '../../config/styles';
+import { colors, snippets } from '../../config/styles';
 
 class Game extends React.Component {
   constructor(props) {
@@ -199,7 +199,7 @@ class Game extends React.Component {
   getStart(page) {
     let data = this.props.data;
     return (
-      <span>
+      <Main>
         <GameBar
           number={data.questions.length}
           page={page}
@@ -215,14 +215,14 @@ class Game extends React.Component {
           los={data.losButton}
           page={page}
         />
-      </span>
+      </Main>
     );
   }
   getSelect(page) {
     var data = this.props.data;
     var resultPercent = this.getResultPercentStr();
     return (
-      <span>
+      <Main>
         <GameBar
           number={data.questions.length}
           page={page}
@@ -243,18 +243,19 @@ class Game extends React.Component {
         <GameBottom
           clickCallback={this.state.selected >= 0 ? this.next : null}
           page={page}
+          selected={this.state.selected}
           resultText={
             this.state.selected == -1 ? data.selectText : data.selectButton
           }
         />
-      </span>
+      </Main>
     );
   }
   getQuestion(page) {
     var resultPercent = this.getResultPercentStr();
     var data = this.props.data;
     return (
-      <span>
+      <Main>
         <GameBar
           number={data.questions.length}
           page={page}
@@ -278,14 +279,14 @@ class Game extends React.Component {
           resultText={data.resultText}
           resultPercent={resultPercent}
         />
-      </span>
+      </Main>
     );
   }
   getAnswer(page) {
     var data = this.props.data;
     var resultPercent = this.getResultPercent();
     return (
-      <span>
+      <Main>
         <GameBar
           number={data.questions.length}
           page={page}
@@ -325,7 +326,7 @@ class Game extends React.Component {
           resultClickedCallBack={this.resultClickedCallback}
           noMatch={data.noMatch}
         />
-      </span>
+      </Main>
     );
   }
   getContent(page) {
@@ -355,7 +356,7 @@ class Game extends React.Component {
             this.endCallback(e);
           }}
         />
-        <Main>{content}</Main>
+        {content}
         <GamePopup
           hideToast={this.state.hideToast}
           toastLeft={this.state.toastLeft}
@@ -384,11 +385,15 @@ const Container = styled.div`
   background-color: ${colors.shade};
   z-index: 11;
 `;
+
 const Main = styled.div`
+  ${ snippets.bodyText};
   position: absolute;
   top: 0;
-  left: 33%;
+  left: 33.33%;
   height: 100% !important;
-  width: 34% !important;
+  width: 33.34% !important;
   background-color: ${colors.white};
+  display: flex;
+  flex-direction: column;
 `;

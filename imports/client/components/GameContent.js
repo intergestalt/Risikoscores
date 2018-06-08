@@ -259,17 +259,13 @@ class GameContent extends React.Component {
 export default GameContent;
 
 const Content = styled.div`
-  line-height: 1.1em;
   background-color: ${colors.white};
-  font-family: 'Roboto Light';
-  width: 100%;
+  flex: 1;
 `;
 const LosDiv = styled.div`
   line-height: 1.2em;
   padding 0.5em 0.5em 0.5em 0.5em;
   background-color: ${colors.white};
-  font-family: 'Roboto Light';
-  font-size:1.5em; 
 `;
 const Prev = styled.div`
     position:absolute;
@@ -280,8 +276,6 @@ const Prev = styled.div`
     left:1em;
     bottom:39%;
     background-color: ${colors.orange};
-    font-family: 'Roboto Light';
-    font-size:1.2em; 
 `;
 const Next = styled.div`
   position:absolute;
@@ -292,8 +286,6 @@ const Next = styled.div`
   right:1em;
   bottom:39%;
   background-color: ${colors.orange};
-  font-family: 'Roboto Light';
-  font-size:1.2em; 
 `;
 const SelectContainer = styled.div``;
 const Character = styled.div`  

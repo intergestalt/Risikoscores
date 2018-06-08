@@ -1,5 +1,5 @@
 const colors = {
-  paleblue: 'rgb(0,175,240)',
+  paleblue: 'rgb(0,200,255)',
   blue: 'rgb(0,0,255)',
   turqoise: 'rgb(0,255,190)',
   violet: 'rgb(150,0,255)',
@@ -56,7 +56,12 @@ const snippets = {
   font-family: 'Roboto Light';
   line-height: 21px;
   font-size: 18px;
-`
+  `,
+  gameHuge: `
+    font-family: 'Roboto Medium';
+    line-height: 6vw;
+    font-size: 6vw;  
+  `
 };
 
 const dist = {

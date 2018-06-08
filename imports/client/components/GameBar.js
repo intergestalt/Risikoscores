@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../config/styles';
+import { colors, dist } from '../../config/styles';
 
 class GameBar extends React.Component {
   render() {
@@ -26,8 +26,8 @@ class GameBar extends React.Component {
 export default GameBar;
 
 const Bar = styled.div`
-  line-height: 1.1em;
   background-color: ${colors.lightgrey};
-  font-family: 'Roboto Light';
-  width: 100%;
+  padding: ${dist.named.columnPadding};
+  padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
+  padding-bottom: calc(${dist.named.columnPadding} - ${dist.lineBottomDiff});
 `;
