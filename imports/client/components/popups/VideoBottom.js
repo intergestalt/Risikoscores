@@ -9,7 +9,7 @@ import { getPopupClosing } from '../../../helper/actions';
 import { getBottomAnimations } from '../../../helper/popup';
 import { exists, localeStr } from '../../../helper/global';
 import { Image, ClosePopup } from '../.';
-import { Link } from '../../../ui/components/content';
+import { Link } from '../../../client/components/content';
 
 class VideoBottom extends React.Component {
   constructor(props) {
