@@ -152,36 +152,33 @@ class GameContent extends React.Component {
       }
 
       return (
-        <div>
-          <Slider
-            min={0}
-            max={question.max}
-            tooltip={false}
-            value={akValue}
-            onChange={this.handleOnChangeSlider}
-            onChangeComplete={() => {
-              const value = this.state.sliderSel;
-              var num = 0;
-              var myAnswer = null;
-              for (var i = 0; i < question.answers.length; i++) {
-                const answer = question.answers[i];
-                var min = -1;
-                if (i > 0) {
-                  const answer2 = question.answers[i - 1];
-                  min = answer2.max;
-                }
-                if (value > min && value <= answer.max) {
-                  num = i;
-                  myAnswer = answer;
-                }
+        <StyledSlider
+          min={0}
+          max={question.max}
+          tooltip={false}
+          value={akValue}
+          onChange={this.handleOnChangeSlider}
+          onChangeComplete={() => {
+            const value = this.state.sliderSel;
+            var num = 0;
+            var myAnswer = null;
+            for (var i = 0; i < question.answers.length; i++) {
+              const answer = question.answers[i];
+              var min = -1;
+              if (i > 0) {
+                const answer2 = question.answers[i - 1];
+                min = answer2.max;
               }
-              this.changeSel(myAnswer, questionNum, value);
-            }}
-            labels={labels}
-            orientation="vertical"
-          />
-          {/*line*/}
-        </div>
+              if (value > min && value <= answer.max) {
+                num = i;
+                myAnswer = answer;
+              }
+            }
+            this.changeSel(myAnswer, questionNum, value);
+          }}
+          labels={labels}
+          orientation="vertical"
+        />
       );
     } else {
       for (var i = 0; i < question.answers.length; i++) {
@@ -340,3 +337,7 @@ const AnswerRow = Option.extend`
     align-self: center;
   }
 `;
+
+const StyledSlider = styled(Slider) `
+  height: 75% !important;
+`
