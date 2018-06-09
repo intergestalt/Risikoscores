@@ -11,7 +11,7 @@ import {
   ServerAudio,
   Piktocomic,
   GameStarter
-} from '../ui/components/content';
+} from '../client/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
 

@@ -47,8 +47,8 @@
                                     "per":"Der Dreck geht halt nie wirklich ab ...",
                                     "score":10}]}
                     ],
-                    "prevText":"<--",
-                     "nextText":"-->",
+                    "prevText":"<<<",
+                     "nextText":">>>",
          "losCaption":"Willkommen",
          "losText":["Risikoscore-Spiel",
                     "Wie hoch ist ihr Risiko, dass Sie sich in den nächsten zehn Jahren zu viel Sorgen machen.",

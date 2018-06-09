@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import { colors } from '../../config/styles';
+import { colors, dist, snippets } from '../../config/styles';
 
 class GameBottom extends React.Component {
   getStr(num) {
@@ -48,15 +48,28 @@ class GameBottom extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const page = this.props.page;
     if (page == 0) {
       return (
-        <Bottom onClick={this.props.clickCallback}>{this.props.los}</Bottom>
+        <Bottom onClick={this.props.clickCallback}>
+          <HugeText clickable uppercase>
+            {this.props.los}
+          </HugeText>
+        </Bottom>
       );
     } else if (page == 1) {
       return (
         <Bottom onClick={this.props.clickCallback}>
-          <ResultSatz>{this.props.resultText}</ResultSatz>
+          {this.props.selected < 0 ?
+            <NormalText>
+              {this.props.resultText}
+            </NormalText>
+            :
+            <HugeText clickable>
+              {this.props.resultText}
+            </HugeText>
+          }
         </Bottom>
       );
     } else if (page == this.props.number + 2) {
@@ -89,26 +102,25 @@ class GameBottom extends React.Component {
       const sub2 = this.props.resultSubtitle2;
 
       return (
-        <Bottom
+        < Bottom
           onClick={() => {
             this.props.toast(cDoc);
             this.props.resultClickedCallBack();
-          }}
+          }
+          }
         >
-          <div>{sub1}</div>
-          <div>{sub2}</div>
-          <div>
-            <br />
-            <br />
-            {sub3}
-          </div>
-        </Bottom>
+          <NormalText clickable={!this.props.resultClicked}>
+            <p>{sub1}</p>
+            <p>{sub2}</p>
+            <p>{sub3}</p>
+          </NormalText>
+        </Bottom >
       );
     } else {
       return (
         <Bottom>
-          <ResultSatz>{this.props.resultText}</ResultSatz>
-          <ResultPercent>{this.props.resultPercent}</ResultPercent>
+          <NormalText>{this.props.resultText}</NormalText>
+          <HugeText>{this.props.resultPercent}</HugeText>
         </Bottom>
       );
     }
@@ -118,23 +130,30 @@ class GameBottom extends React.Component {
 export default GameBottom;
 
 const Bottom = styled.div`
-  position: absolute;
-  line-height: 1.1em;
-  background-color: ${colors.turqoise};
-  height: 38%;
-  bottom: 0;
-  width: 100%;
-  font-family: 'Roboto Light';
+  background-color: ${colors.paleblue};
+  height: 33.33%;
+  display: flex;
+  flex-direction: column;
+  padding: ${dist.named.columnPadding};
+  padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
+  p + p {
+    margin-top: 1em;
+  } 
 `;
-const ResultSatz = styled.div`
-  line-height: 1.1em;
-  height: 50%;
-  width: 100%;
-  font-family: 'Roboto Light';
-`;
-const ResultPercent = styled.div`
-  line-height: 1.1em;
-  height: 50%;
-  width: 100%;
-  font-family: 'Roboto Light';
-`;
+
+const NormalText = styled.div`
+  cursor: ${ props => props.clickable ? "pointer" : "auto"};
+`
+
+const HugeText = (props) => (<Huge {...props}><span>{props.children}</span></Huge>)
+
+const Huge = styled.div`
+  ${snippets.gameHuge};
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  cursor: ${ props => props.clickable ? "pointer" : "auto"};
+  ${ props => props.uppercase ? "text-transform: uppercase" : null};
+`
