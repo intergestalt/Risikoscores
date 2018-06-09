@@ -51,6 +51,7 @@ class AdminEditGlossar extends React.Component {
     return (
       <div className="AdminEditGlossar">
         <h2>Edit Glossar</h2>
+        <div>{'ID: ' + this.props.glossarId}</div>
         <AdminDiyHelpContainer segments={['intro', 'diyMarkdownGlossar']}>
           {this.props.ready ? this.renderForm() : this.renderLoading()}
         </AdminDiyHelpContainer>
@@ -64,6 +65,7 @@ export default withTracker(props => {
   const sub = Meteor.subscribe('glossar', glossar_id);
   return {
     glossar: Glossar.findOne(glossar_id),
+    glossarId: glossar_id,
     ready: sub.ready()
   };
 })(AdminEditGlossar);

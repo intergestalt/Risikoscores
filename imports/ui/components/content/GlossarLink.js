@@ -17,7 +17,8 @@ class GlossarLink extends React.Component {
   render() {
     var dummy = '';
     const doc = this.props.doc;
-    const title = (doc && doc.name && this.props.lang) ? doc.name[this.props.lang] : null
+    const title =
+      doc && doc.name && this.props.lang ? doc.name[this.props.lang] : null;
     return (
       <A
         className="SCGlossarLink"
@@ -29,7 +30,8 @@ class GlossarLink extends React.Component {
           showGlossarDetail(this.props.entry);
         }}
       >
-        {this.props.text}{dummy}
+        {this.props.text}
+        {dummy}
         {!title && '⚠'}
       </A>
     );
@@ -47,20 +49,20 @@ export default withTracker(props => {
     doc: Glossar.findOne({ _id: props.entry }),
     lang: getLanguage(),
     ready: sub.ready()
-  }
+  };
 })(GlossarLink);
 
 const A = styled.a`
   color: ${colors.named.glossar};
   .GlossarArea & {
-    opacity: ${ props => props.highlighted ? 1 : 0.5};
+    opacity: ${props => (props.highlighted ? 1 : 0.5)};
   }
   .GlossarDetail & {
     opacity: 1;
   }
   .GlossarList & {
     color: white;
-  }  
-`
+  }
+`;
 
 // ${ colors.named.glossar}

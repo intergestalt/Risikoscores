@@ -17,6 +17,7 @@ class GamePopup extends React.Component {
     this.state = { popupLoaded: false };
   }
   imageLoaded() {
+    console.log('loaded: ' + this.state.popupLoaded);
     this.setState({ popupLoaded: true });
   }
 

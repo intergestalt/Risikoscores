@@ -9,7 +9,8 @@ class ListItem extends React.Component {
       <span>
         <NavLink to={'/admin/glossar/' + getUrl(this.props.entry._id)}>
           {this.props.entry.name.de}
-        </NavLink>
+        </NavLink>{' '}
+        ({this.props.entry._id})
         <DeleteButton
           collection={this.props.collection}
           id={this.props.entry._id}
