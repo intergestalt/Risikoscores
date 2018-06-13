@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-import { colors, dist } from '../../config/styles';
+import { colors, dist, snippets } from '../../config/styles';
 import { getPopupClosing, getLanguage } from '../../helper/actions';
 import { getLeftAnimations, getRightAnimations } from '../../helper/popup';
 import { exists, localeStr } from '../../helper/global';
@@ -14,10 +14,9 @@ class GamePopup extends React.Component {
   constructor(props) {
     super(props);
     this.imageLoaded = this.imageLoaded.bind(this);
-    this.state = { popupLoaded: false };
+    this.state = { popupLoaded: true };
   }
   imageLoaded() {
-    console.log('loaded: ' + this.state.popupLoaded);
     this.setState({ popupLoaded: true });
   }
 
@@ -28,22 +27,21 @@ class GamePopup extends React.Component {
       name: this.props.image,
       folder: 'game'
     };
-
     image = (
       <div>
         <Image asset={asset} onLoad={this.imageLoaded} />
       </div>
     );
-
     return (
       <PopupDiv
         className="Popup"
         left={this.props.toastLeft}
         popupLoaded={this.state.popupLoaded}
         popupClosing={this.props.hideToast}
+        selectedCharacter={this.props.selectedCharacter}
       >
         {image}
-        <div>{this.props.text}</div>
+        <Comment>{this.props.text}</Comment>
       </PopupDiv>
     );
   }
@@ -51,7 +49,9 @@ class GamePopup extends React.Component {
 
 GamePopup.propTypes = {
   image: PropTypes.string,
-  text: PropTypes.string
+  character: PropTypes.object,
+  text: PropTypes.string,
+  selectedCharacter: PropTypes.number
 };
 
 export default GamePopup;
@@ -75,7 +75,11 @@ var PopupDiv = styled.div`
   z-index: 20;
   bottom: 0;
   cursor: pointer;
-  background-color: ${colors.verylightgrey};
+  background-color: ${props =>
+    props.selectedCharacter >= 1
+      ? props =>
+          props.selectedCharacter == 1 ? colors.turqoise : colors.magenta
+      : colors.orange};
   ${props =>
     props.popupLoaded
       ? props =>
@@ -89,4 +93,14 @@ var PopupDiv = styled.div`
                   ? `animation: ${moveOut2} 200ms ease-in-out;`
                   : `animation: ${moveIn2} 200ms ease-in-out;`
       : ''};
+`;
+
+const Comment = styled.div`
+  ${snippets.standardTextPaddings};
+  background-color: ${colors.verylightgrey};
+  flex: 1;
+  display: flex;
+  > * {
+    align-self: center;
+  }
 `;

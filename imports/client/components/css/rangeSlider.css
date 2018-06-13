@@ -4,22 +4,18 @@
 .rangeslider {
   margin: 20px 0;
   position: relative;
-  background: #e6e6e6;
   -ms-touch-action: none;
   touch-action: none;
 }
 .rangeslider,
 .rangeslider .rangeslider__fill {
   display: block;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 .rangeslider .rangeslider__handle {
-  background: #fff;
   border: 1px solid #ccc;
   cursor: pointer;
   display: inline-block;
   position: absolute;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 -1px 3px rgba(0, 0, 0, 0.4);
 }
 .rangeslider .rangeslider__handle .rangeslider__active {
   opacity: 1;
@@ -78,7 +74,7 @@
   top: 6px;
   left: 6px;
   border-radius: 50%;
-  background-color: #dadada;
+  background-color: #204;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) inset,
     0 -1px 3px rgba(0, 0, 0, 0.4) inset;
 }
@@ -99,8 +95,8 @@
 .rangeslider-vertical {
   margin: 20px auto;
   height: 200px;
-  max-width: 10px;
-  background-color: transparent;
+  max-width: 8px;
+  background-color: #cccccc;
 }
 .rangeslider-vertical .rangeslider__fill,
 .rangeslider-vertical .rangeslider__handle {
@@ -108,14 +104,16 @@
 }
 .rangeslider-vertical .rangeslider__fill {
   width: 100%;
-  background-color: #7cb342;
+  background-color: #cccccc;
   box-shadow: none;
   bottom: 0;
 }
 .rangeslider-vertical .rangeslider__handle {
-  width: 30px;
-  height: 10px;
-  left: -10px;
+  border: 0px;
+  background-color: #000000;
+  width: 18px;
+  height: 8px;
+  left: -5px;
   box-shadow: none;
 }
 .rangeslider-vertical .rangeslider__handle-tooltip {
@@ -154,7 +152,7 @@
   text-align: left;
   width: 250px;
   height: 100%;
-  left: 10px;
+  left: 0px;
 }
 .rangeslider-vertical .rangeslider__labels .rangeslider__label-item {
   position: absolute;
@@ -162,11 +160,11 @@
 }
 .rangeslider-vertical .rangeslider__labels .rangeslider__label-item::before {
   content: '';
-  width: 10px;
-  height: 2px;
-  background: black;
+  width: 0px;
+  height: 0px;
+  background: red;
   position: absolute;
-  left: -14px;
+  left: 0px;
   top: 50%;
   transform: translateY(-50%);
   z-index: -1;

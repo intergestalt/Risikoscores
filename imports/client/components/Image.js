@@ -23,13 +23,17 @@ class Image extends React.Component {
           ? this.props.asset.title[getLanguage()]
           : '';
       const imgSrc = getImageSrc(this.props.asset, this.props.roomVariant);
+      var srcSet = null;
+      if (!imgSrc.endsWith('svg')) {
+        srcSet = getSrcsetString(imgSrc, sizeName);
+      }
       imageEntity = (
         <Img
           key={imgSrc}
           innerRef={this.props.imgRef}
           onLoad={this.props.onLoad}
           src={imgSrc}
-          srcSet={getSrcsetString(imgSrc, sizeName)}
+          srcSet={srcSet}
           title={title}
           alt={title}
           imgStyles={this.props.imgStyles}

@@ -4,14 +4,33 @@ import { getUrlPrefix } from '../helper/uploads';
 
 export function getImageSrc(asset, roomVariant = false) {
   var subfolder = asset.subfolder;
-  if (!asset.name || asset.name.toLowerCase() === "fehlt" || asset.name === "-") {
-    return `//dummyimage.com/600x400/000655/fff&text=${asset.title ? (asset.title.de || asset.title.en) : "(fehlt)"}&ignore=`
+  if (
+    !asset.name ||
+    asset.name.toLowerCase() === 'fehlt' ||
+    asset.name === '-'
+  ) {
+    return `//dummyimage.com/600x400/000655/fff&text=${
+      asset.title ? asset.title.de || asset.title.en : '(fehlt)'
+    }&ignore=`;
+  }
+  var root = '';
+  if (asset.name.endsWith('svg')) {
+    root = '';
+  } else {
+    root = '';
   }
   if (existsString(subfolder)) {
     return (imgSrc =
-      getUrlPrefix(roomVariant) + '/' + asset.folder + '/' + subfolder + '/' + asset.name);
+      getUrlPrefix(roomVariant) +
+      '/' +
+      asset.folder +
+      '/' +
+      subfolder +
+      '/' +
+      asset.name);
   } else {
-    return (imgSrc = getUrlPrefix(roomVariant) + '/' + asset.folder + '/' + asset.name);
+    return (imgSrc =
+      getUrlPrefix(roomVariant) + '/' + asset.folder + '/' + asset.name);
   }
 }
 

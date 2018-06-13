@@ -17,6 +17,7 @@ class Game extends React.Component {
     this.state = {
       page: 0,
       selected: -1,
+      toastSelected: -1,
       toast: false,
       hideToast: false,
       toastImage: '',
@@ -44,6 +45,7 @@ class Game extends React.Component {
     this.setState({
       page: 0,
       selected: -1,
+      toastSelected: -1,
       toast: false,
       hideToast: false,
       toastImage: '',
@@ -68,14 +70,18 @@ class Game extends React.Component {
       toast: true,
       toastLeft: left,
       toastImage: this.props.data.characters[sel].image,
-      popupText: text
+      popupText: text,
+      toastSelected: sel
     });
     this.timer1 = setTimeout(() => {
       this.hideToast();
-    }, 3000);
+    }, 4000);
   }
   hideToast(text) {
+    var tsel = this.state.toastSelected;
+    if (tsel == -1) tsel = this.state.selected;
     this.setState({
+      toastSelected: tsel,
       hideToast: true
     });
     this.timer2 = setTimeout(() => {
@@ -101,7 +107,9 @@ class Game extends React.Component {
     }, 10);
   }
   select(num) {
+    const oldNum = this.state.selected;
     this.setState({
+      toastSelected: oldNum,
       selected: num
     });
   }
@@ -120,10 +128,62 @@ class Game extends React.Component {
     this.hideToast();
   }
 
+  getAnswerComment() {
+    const p = this.getResultPercent();
+    var num = -1;
+    const sel = this.state.selected;
+    const data = this.props.data;
+
+    var doc = '';
+    var m = false;
+    if (p <= 25) {
+      num = 0;
+    } else if (p > 25 && p <= 75) {
+      num = 1;
+    } else {
+      num = 2;
+    }
+
+    if (num == 0) {
+      if (sel == 0) {
+        return data.resultLow.sigi;
+      } else if (sel == 1) {
+        return data.resultLow.riri;
+      } else if (sel == 2) {
+        return data.resultLow.per;
+      }
+    } else if (num == 1) {
+      if (sel == 0) {
+        return data.resultMedium.sigi;
+      } else if (sel == 1) {
+        return data.resultMedium.riri;
+      } else if (sel == 2) {
+        return data.resultMedium.per;
+      }
+    } else if (num == 2) {
+      if (sel == 0) {
+        return data.resultHigh.sigi;
+      } else if (sel == 1) {
+        return data.resultHigh.riri;
+      } else if (sel == 2) {
+        return data.resultHigh.per;
+      }
+    }
+  }
+
   next() {
+    const data = this.props.data;
     var newPage = this.state.page + 1;
     this.setState({ resultClicked: false, page: newPage });
-    this.hideToast();
+    if (newPage == data.questions.length + 2) {
+      if (this.state.allAnswered) {
+        this.toast(this.getAnswerComment());
+      } else {
+        this.toast(data.noResult);
+      }
+    } else {
+      this.hideToast();
+    }
   }
   getAnsweredAll() {
     const questions = this.props.data.questions;
@@ -157,6 +217,7 @@ class Game extends React.Component {
       const question = questions[i];
       const answers = question.answers;
       var akMax = 0;
+      var lastScore = 0;
       var sel = this.state.selectedAnswers[i];
       for (var ii = 0; ii < answers.length; ii++) {
         const answer = answers[ii];
@@ -167,10 +228,15 @@ class Game extends React.Component {
         if (ii > 0) {
           const answer2 = answers[ii - 1];
           min = answer2.max;
+          lastScore = answer2.score;
         }
         if (question.type === 'slider') {
           if (sel > min && sel <= answer.max) {
-            score += answer.score;
+            var range = answer.max - min;
+            var relSel = sel - min;
+            var scoreDiff = answer.score - lastScore;
+            var scoreInc = lastScore + scoreDiff * (relSel / range);
+            score += scoreInc;
           }
         } else {
           if (ii == sel) {
@@ -185,7 +251,7 @@ class Game extends React.Component {
     if (max == 0) {
       return -1;
     }
-    var x = score / max * 100;
+    var x = (score / max) * 100;
     return Math.round(x * 10) / 10;
   }
 
@@ -218,9 +284,9 @@ class Game extends React.Component {
       </Main>
     );
   }
+
   getSelect(page) {
     var data = this.props.data;
-    var resultPercent = this.getResultPercentStr();
     return (
       <Main>
         <GameBar
@@ -284,7 +350,8 @@ class Game extends React.Component {
   }
   getAnswer(page) {
     var data = this.props.data;
-    var resultPercent = this.getResultPercent();
+    var resultPercent = this.getResultPercentStr();
+    var resultPercentNum = this.getResultPercent();
     return (
       <Main>
         <GameBar
@@ -296,7 +363,8 @@ class Game extends React.Component {
           page={page}
           prev={this.prev}
           next={this.next}
-          resultTitle={data.resultTitle}
+          matchYes={data.matchYes}
+          matchNo={data.matchNo}
           resultLow={data.resultLow}
           resultMedium={data.resultMedium}
           resultHigh={data.resultHigh}
@@ -307,14 +375,13 @@ class Game extends React.Component {
           prevText={data.prevText}
           name={this.getName()}
           nextText={data.nextText}
+          selected={this.state.selected}
+          resultPercentNum={resultPercentNum}
         />
         <GameBottom
           page={page}
           resultSubtitle1={data.resultSubtitle1}
           resultSubtitle2={data.resultSubtitle2}
-          resultLow={data.resultLow}
-          resultMedium={data.resultMedium}
-          resultHigh={data.resultHigh}
           resultPercent={resultPercent}
           number={data.questions.length}
           selected={this.state.selected}
@@ -325,6 +392,7 @@ class Game extends React.Component {
           resultClicked={this.state.resultClicked}
           resultClickedCallBack={this.resultClickedCallback}
           noMatch={data.noMatch}
+          resultText={data.resultText}
         />
       </Main>
     );
@@ -348,7 +416,14 @@ class Game extends React.Component {
     }
     var data = this.props.data;
     var content = this.getContent(this.state.page);
-
+    var character = null;
+    var sel = this.state.toastSelected;
+    if (sel == -1) {
+      sel = this.state.selected;
+    }
+    if (sel >= 0) {
+      character = this.props.data.characters[this.state.selected];
+    }
     return (
       <Container className="ImageDetailView">
         <Close
@@ -363,6 +438,8 @@ class Game extends React.Component {
           visible={this.state.toast}
           text={this.state.popupText}
           image={this.state.toastImage}
+          character={character}
+          selectedCharacter={sel}
         />
       </Container>
     );
@@ -387,7 +464,7 @@ const Container = styled.div`
 `;
 
 const Main = styled.div`
-  ${ snippets.bodyText};
+  ${snippets.bodyText};
   position: absolute;
   top: 0;
   left: 33.33%;

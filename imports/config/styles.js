@@ -49,6 +49,11 @@ const snippets = {
     line-height: 21px;
     font-size: 18px;
   `,
+  headlineTextLarger: `
+    font-family: 'Roboto Medium';
+    line-height: 31px;
+    font-size: 27px;
+  `,
   bodyText: `
     font-family: 'Roboto Light';
     line-height: 21px;
@@ -80,8 +85,8 @@ const snippets = {
   `,
   standardTextPaddings: `
     padding: ${dist.named.columnPadding};
-    padding-top: calc(${ dist.named.columnPadding} - ${dist.lineTopDiff});
-    padding-bottom: calc(${ dist.named.columnPadding} - ${dist.lineBottomDiff})
+    padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
+    padding-bottom: calc(${dist.named.columnPadding} - ${dist.lineBottomDiff})
   `
 };
 
