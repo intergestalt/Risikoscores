@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 
-import {
-  setGameStarted,
-  getGameStarted,
-  setGameConfig
-} from '../../../helper/actions';
+import { setGameStarted, setGameConfig } from '../../../helper/actions';
 import { Image } from '../';
 
 class GameStarter extends React.Component {
@@ -82,6 +78,7 @@ const moveIn = keyframes`
                     `;
 
 const Img = styled.div`
+  padding-bottom: 1em;
   width: 25%;
   transform: ${props => (props.selected ? 'scale(1.05)' : 'scale(1)')};
   opacity: ${props => (props.selected ? '0.9' : '1')};

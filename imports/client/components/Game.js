@@ -284,19 +284,23 @@ class Game extends React.Component {
   }
   getStart(page) {
     let data = this.props.data;
+    var layout = this.props.data.layout;
     return (
-      <Main>
+      <Main layout={layout}>
         <GameBar
+          layout={layout}
           number={data.questions.length}
           page={page}
           text={data.losCaption}
         />
         <GameContent
+          layout={layout}
           losText={data.losText}
           page={page}
           number={data.questions.length}
         />
         <GameBottom
+          layout={layout}
           clickCallback={this.next}
           los={data.losButton}
           page={page}
@@ -307,14 +311,17 @@ class Game extends React.Component {
 
   getSelect(page) {
     var data = this.props.data;
+    var layout = this.props.data.layout;
     return (
-      <Main>
+      <Main layout={layout}>
         <GameBar
+          layout={layout}
           number={data.questions.length}
           page={page}
           text={data.selectCaption}
         />
         <GameContent
+          layout={layout}
           page={page}
           prev={this.prev}
           next={this.next}
@@ -327,6 +334,7 @@ class Game extends React.Component {
           toast={this.toast}
         />
         <GameBottom
+          layout={layout}
           clickCallback={this.state.selected >= 0 ? this.next : null}
           page={page}
           selected={this.state.selected}
@@ -340,14 +348,17 @@ class Game extends React.Component {
   getQuestion(page) {
     var resultPercent = this.getResultPercentStr();
     var data = this.props.data;
+    var layout = this.props.data.layout;
     return (
-      <Main>
+      <Main layout={layout}>
         <GameBar
+          layout={layout}
           number={data.questions.length}
           page={page}
           text={data.questionCaption}
         />
         <GameContent
+          layout={layout}
           page={page}
           prev={this.prev}
           next={this.next}
@@ -361,6 +372,7 @@ class Game extends React.Component {
           selectedAnswers={this.state.selectedAnswers}
         />
         <GameBottom
+          layout={layout}
           page={page}
           resultText={data.resultText}
           resultPercent={resultPercent}
@@ -372,14 +384,17 @@ class Game extends React.Component {
     var data = this.props.data;
     var resultPercent = this.getResultPercentStr();
     var resultPercentNum = this.getResultPercent();
+    var layout = data.layout;
     return (
-      <Main>
+      <Main layout={layout}>
         <GameBar
+          layout={layout}
           number={data.questions.length}
           page={page}
           text={data.answerCaption}
         />
         <GameContent
+          layout={layout}
           page={page}
           prev={this.prev}
           next={this.next}
@@ -399,6 +414,7 @@ class Game extends React.Component {
           resultPercentNum={resultPercentNum}
         />
         <GameBottom
+          layout={layout}
           page={page}
           resultSubtitle1={data.resultSubtitle1}
           resultSubtitle2={data.resultSubtitle2}
@@ -514,10 +530,10 @@ const Main = styled.div`
   ${snippets.bodyText};
   position: absolute;
   top: 0;
-  left: 33.33%;
-  height: 100% !important;
-  width: 33.34% !important;
   background-color: ${colors.white};
   display: flex;
   flex-direction: column;
+  left: 33.33%;
+  height: 100% !important;
+  width: 33.34% !important;
 `;

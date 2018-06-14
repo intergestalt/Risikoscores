@@ -22,14 +22,14 @@ class GameContent extends React.Component {
     for (var i = 0; i < divs.length; i++) {
       const div = divs[i];
       div = div.replace(/_num_/g, this.props.number);
-      los.push(<LosDiv key={'_' +i}>{div}</LosDiv>);
+      los.push(<LosDiv layout={this.props.layout} key={'_' +i}>{div}</LosDiv>);
     }
     return los;
   }
 
   getStart() {
     const divs = this.getLos(this.props.losText);
-    return <Content>{divs}</Content>;
+    return <Content layout={this.props.layout}>{divs}</Content>;
   }
 
   getSelect(page) {
@@ -46,7 +46,7 @@ class GameContent extends React.Component {
       };
       const num = i;
       characters.push(
-        <Character
+        <Character layout={this.props.layout}
           onClick={e => {
             this.props.onSelect(num);
             this.props.toast(character.comment);
@@ -54,13 +54,13 @@ class GameContent extends React.Component {
           selected={selected}
           key={'_' +i}
         >
-          <CharacterImage character={character} />
-          <CharacterName>{character.name} {character.family}</CharacterName>
-        </Character>
+          <CharacterImage layout={this.props.layout} character={character} />
+          <CharacterName layout={this.props.layout}>{character.name} {character.family}</CharacterName>
+        </Character >
       );
     }
     return (
-      <Content>
+      <Content layout={this.props.layout}>
         {characters}
       </Content>
     );
@@ -73,10 +73,10 @@ class GameContent extends React.Component {
       const p = this.props.resultPercentNum;
       var doc = '';
       var low=false;medium=false;high=false;
-      if (p <= 25) {
+      if (p <= 30) {
         doc = this.props.resultLow.doc;
         low=true;
-      } else if (p > 25 && p <= 75) {
+      } else if (p > 30 && p <= 70) {
         doc = this.props.resultMedium.doc;
         medium=true;
       } else {
@@ -126,10 +126,10 @@ class GameContent extends React.Component {
       match = match.replace(/_eine_/g, eine);
       match = match.replace(/_keine_/g, keine);
       return (
-        <Content>
-          <Center paddings>{docElems}</Center>
-          <Title>{match}</Title>
-          <Navigation>
+        <Content layout={this.props.layout}>
+          <Center layout={this.props.layout}paddings>{docElems}</Center>
+          <Title layout={this.props.layout}>{match}</Title>
+          <Navigation layout={this.props.layout}>
             {prev}
             {next}
           </Navigation>
@@ -137,10 +137,10 @@ class GameContent extends React.Component {
       );
     }
     return (
-      <Content>           
-        <Title>{this.props.noResult}</Title>
-        <Center>&nbsp;</Center>
-        <Navigation>
+      <Content layout={this.props.layout}>           
+        <Title layout={this.props.layout}>{this.props.noResult}</Title>
+        <Center layout={this.props.layout}>&nbsp;</Center>
+        <Navigation layout={this.props.layout}>
           {prev}
           {next}
         </Navigation>
@@ -217,8 +217,8 @@ class GameContent extends React.Component {
         line = line.replace(/_num_/g, '?');
       }
       return (
-        <Center>
-        <StyledSlider
+        <Center layout={this.props.layout}>
+        <StyledSlider layout={this.props.layout}
           min={0}
           max={question.max}
           tooltip={false}
@@ -252,9 +252,9 @@ class GameContent extends React.Component {
         const answer = question.answers[i];
         const sel = this.props.selectedAnswers[questionNum];
         const num = i;
-        const n = (<Center key={'_' + i}
+        const n = (<Center layout={this.props.layout} key={'_' + i}
         >
-          <AnswerRow
+          <AnswerRow layout={this.props.layout}
             onClick={() => {
               this.changeSel(answer, questionNum, num);
             }}
@@ -274,10 +274,10 @@ class GameContent extends React.Component {
     const next = this.getNext(page);
     const answer = this.getAnswers(page);
     return (
-      <Content>
-        <Title>{this.props.question.text}</Title>
+      <Content layout={this.props.layout}>
+        <Title layout={this.props.layout}>{this.props.question.text}</Title>
           {answer}
-        <Navigation>
+        <Navigation layout={this.props.layout}>
           {prev}
           {next}
         </Navigation>
@@ -286,14 +286,14 @@ class GameContent extends React.Component {
   }
   getPrev(page) {
     if (page == 0) return null;
-    return <Prev onClick={()=>{this.setState({sliderSel: -1});this.props.prev()}}>{this.props.prevText}</Prev>;
+    return <Prev layout={this.props.layout} onClick={()=>{this.setState({sliderSel: -1});this.props.prev()}}>{this.props.prevText}</Prev>;
   }
   getNext(page) {
     if (page == 1) {
       if (this.props.selected == -1) return null;
     }
     if (page == this.props.number + 2) return null;
-    return <Next onClick={()=>{this.setState({sliderSel: -1});this.props.next()}}>{this.props.nextText}</Next>;
+    return <Next layout={this.props.layout} onClick={()=>{this.setState({sliderSel: -1});this.props.next()}}>{this.props.nextText}</Next>;
   }
   render() {
     const page = this.props.page;
@@ -313,28 +313,39 @@ class GameContent extends React.Component {
 export default GameContent;
 
 const Content = styled.div`
-  background-color: ${colors.white};
+${props =>
+  props.layout
+? 
+`background-color: ${colors.white};` 
+: `background-color: ${colors.verypaleblue};` };;
   flex: 1;
   display: flex;
   flex-direction: column;
 `;
 const LosDiv = styled.div`
-  padding: 0 ${dist.named.columnPadding};
+${props =>
+  props.layout
+? 
+`padding: 0 ${dist.named.columnPadding};
   padding-top: 1em;
   &:first-child { 
     padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff}); 
     ${ snippets.headlineText};
   }
-  background-color: ${colors.white};
+  background-color: ${colors.white};` 
+  : ""};;
 `;
 
 const Navigation = styled.div`
-display: flex;
+${props =>
+  props.layout
+? 
+`display: flex;
   > * { 
     flex: 1;
     ${ snippets.headlineTextLarger};
     cursor: pointer;
-  }
+  }` : ""};
 `
 
 const Prev = ({ ...props, children }) => <PrevLarger {...props}>{children}</PrevLarger>
@@ -345,64 +356,88 @@ const Next = ({ ...props, children }) => <NextLarger {...props}>{children}</Next
 
 
 const PrevLarger = styled.div`
-${ snippets.standardTextPaddings};
-background-color: ${colors.lightorange};
-`;
+${props =>
+  props.layout
+    ? `${ snippets.standardTextPaddings};`:""};
+    background-color: ${colors.lightorange};`;
 
 const NextLarger = styled.div`
-${ snippets.standardTextPaddings};
-background-color: ${colors.orange};
-  text-align:right;
+${props =>
+  props.layout
+    ? `${ snippets.standardTextPaddings};
+  text-align:right;`:""};
+  background-color: ${colors.orange};
 `;
 
 const Option = styled.div`
- background-color: ${props => (props.selected ? colors.verypaleblue : "")} !important;
+${props =>
+  props.layout
+    ? `background-color: ${props.selected ? colors.verypaleblue : ""} !important;
  &:hover {
    background-color: ${ colors.verylightgrey};
  }
  * {
     cursor: default;
+  }` :
+  `background-color: ${props.selected ? colors.blue : ""} !important;
+  &:hover {
+    background-color: ${ colors.red};
   }
+  * {
+    cursor: default;
+  }`};
  `
 
 const Character = Option.extend`
- padding-left: ${dist.tiny}; // using padding contained in the image
+${props =>
+  props.layout
+    ? `padding-left: ${dist.tiny}; // using padding contained in the image
  padding-right: ${dist.named.columnPadding};
- height: 33.33%;
- display: flex;
+ display: flex;  height: 33.33%;
+ `: " height: 20%;display: flex;"}; 
  `
 
 const CharacterImage = styled(GameCharacterImage) `
-  height: 100%;
+ height: 100%;};
 `
 
 const CharacterName = styled.p`
-  align-self: center;
+${props =>
+  props.layout
+    ? `align-self: center;
   flex: 1;
-  padding-left: ${dist.named.columnPadding};
+  padding-left: ${dist.named.columnPadding};`:""};
 `
 
 const Title = styled.h2`
-  ${ snippets.standardTextPaddings};
-  ${ snippets.headlineText};
+${props =>
+  props.layout
+    ? `${ snippets.standardTextPaddings};
+  ${ snippets.headlineText};`:""};
 `
 
 const Center = styled.div`
-  flex: 1;
+${props =>
+  props.layout
+    ? `flex: 1;
   display: flex;
   flex-direction: column;
-  ${ props => props.paddings ? snippets.standardTextPaddings : null}
+  ${props.paddings ? snippets.standardTextPaddings : null}`:""};
 `
 
 const AnswerRow = Option.extend`
-  ${ snippets.standardTextPaddings};
+${props =>
+  props.layout
+    ? `${ snippets.standardTextPaddings};
   flex:1;
   display: flex;
   > * {
     align-self: center;
-  }
+  }`:""};
 `;
 
 const StyledSlider = styled(Slider) `
-  height: 75% !important;
+${props =>
+  props.layout
+    ? `height: 75% !important;`:""};
 `

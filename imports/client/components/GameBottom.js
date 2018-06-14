@@ -23,8 +23,12 @@ class GameBottom extends React.Component {
     var grey = false;
     if (page == 0) {
       return (
-        <Bottom grey={grey} onClick={this.props.clickCallback}>
-          <HugeText clickable uppercase>
+        <Bottom
+          layout={this.props.layout}
+          grey={grey}
+          onClick={this.props.clickCallback}
+        >
+          <HugeText layout={this.props.layout} clickable uppercase>
             {this.props.los}
           </HugeText>
         </Bottom>
@@ -32,26 +36,46 @@ class GameBottom extends React.Component {
     } else if (page == 1) {
       if (this.props.selected < 0) grey = true;
       return (
-        <Bottom grey={grey} onClick={this.props.clickCallback}>
+        <Bottom
+          layout={this.props.layout}
+          grey={grey}
+          onClick={this.props.clickCallback}
+        >
           {this.props.selected < 0 ? (
-            <NormalText>{this.props.resultText}</NormalText>
+            <NormalText layout={this.props.layout}>
+              {this.props.resultText}
+            </NormalText>
           ) : (
-            <HugeText clickable>{this.props.resultText}</HugeText>
+            <HugeText layout={this.props.layout} clickable>
+              {this.props.resultText}
+            </HugeText>
           )}
         </Bottom>
       );
     } else if (page == this.props.number + 2) {
       return (
-        <Bottom grey={grey} onClick={this.props.clickCallback}>
-          <NormalText>{this.props.resultText}</NormalText>
-          <HugeText>{this.props.resultPercent}</HugeText>
+        <Bottom
+          layout={this.props.layout}
+          grey={grey}
+          onClick={this.props.clickCallback}
+        >
+          <NormalText layout={this.props.layout}>
+            {this.props.resultText}
+          </NormalText>
+          <HugeText layout={this.props.layout}>
+            {this.props.resultPercent}
+          </HugeText>
         </Bottom>
       );
     } else {
       return (
-        <Bottom grey={grey}>
-          <NormalText>{this.props.resultText}</NormalText>
-          <HugeText>{this.props.resultPercent}</HugeText>
+        <Bottom layout={this.props.layout} grey={grey}>
+          <NormalText layout={this.props.layout}>
+            {this.props.resultText}
+          </NormalText>
+          <HugeText layout={this.props.layout}>
+            {this.props.resultPercent}
+          </HugeText>
         </Bottom>
       );
     }
@@ -61,20 +85,24 @@ class GameBottom extends React.Component {
 export default GameBottom;
 
 const Bottom = styled.div`
-  background-color: ${props =>
-    !props.grey ? colors.paleblue : colors.lightgrey};
-  height: 33.33%;
+  ${props =>
+    props.layout
+      ? `background-color: ${!props.grey ? colors.paleblue : colors.lightgrey};
+  
   display: flex;
   flex-direction: column;
   padding: ${dist.named.columnPadding};
   padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
   p + p {
     margin-top: 1em;
-  }
+  }`
+      : `background-color:${colors.lightorange}`};
+  height: 33.33%;
 `;
 
 const NormalText = styled.div`
-  cursor: ${props => (props.clickable ? 'pointer' : 'auto')};
+  ${props =>
+    props.layout ? `cursor: ${props.clickable ? 'pointer' : 'auto'};` : ''};
 `;
 
 const HugeText = props => (
@@ -84,12 +112,15 @@ const HugeText = props => (
 );
 
 const Huge = styled.div`
-  ${snippets.gameHuge};
+  ${props =>
+    props.layout
+      ? `${snippets.gameHuge};
   flex: 1;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  cursor: ${props => (props.clickable ? 'pointer' : 'auto')};
-  ${props => (props.uppercase ? 'text-transform: uppercase' : null)};
+  cursor: ${props.clickable ? 'pointer' : 'auto'};
+  ${props.uppercase ? 'text-transform: uppercase' : null};`
+      : ''};
 `;

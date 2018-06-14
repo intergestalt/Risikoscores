@@ -1,5 +1,6 @@
 <<<Game: {   
-         "characters":[{"name":"Sigi","family":"Sorglos","image":"Sigi.svg","comment":"Sorgen sind sowas von Grandpa!"}, 
+       "layout":true,
+  "characters":[{"name":"Sigi","family":"Sorglos","image":"Sigi.svg","comment":"Sorgen sind sowas von Grandpa!"}, 
                        {"name":"Riri","family":"Real","image":"Riri.svg","comment":"Wo Sorge und Sorglosigkeit ist, soll Realismus werden!"}, 
                        {"name":"Per","family":"Paranoia","image":"Per.svg","comment":"Sorgenstund hat Gold im Mund!"}],
          "questions":[{"text":"Wie fühlst du dich?",
