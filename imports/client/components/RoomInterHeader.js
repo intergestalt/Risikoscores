@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import { getFragment } from '../../helper/fragment';
 import { dist } from '../../config/styles';
 import { localeStr, exists } from '../../helper/global';
-import Rooms from '../../collections/rooms';
+import { getCachedRooms } from '../../helper/actions';
 
 class RoomInterHeader extends React.Component {
   constructor(props) {
@@ -15,35 +14,21 @@ class RoomInterHeader extends React.Component {
 
   render() {
     var title = getFragment('roomInterTitle');
-    title = '';
-    if (
-      this.props.ready &&
-      exists(this.props.room) &&
-      exists(this.props.room2)
-    ) {
-      title =
-        localeStr(this.props.room.name) +
-        ' -> ' +
-        localeStr(this.props.room2.name);
+    title = ' ';
+    const rooms = getCachedRooms();
+    if (exists(rooms)) {
+      var room1 = rooms[this.props.roomId];
+      var room2 = rooms[this.props.targetId];
+      if (exists(room1) && exists(room2)) {
+        title = localeStr(room1) + ' -> ' + localeStr(room2);
+      }
     }
     return <Header className="RoomQuestionsHeader">{title}</Header>;
   }
 }
 
 export default withTracker(props => {
-  const sub2 = Meteor.subscribe('room');
-  const room = Rooms.findOne({ key: props.roomId });
-  var title = null;
-  if (exists(room)) {
-    title = localeStr(room.name);
-  }
-  const room2 = Rooms.findOne({ key: props.targetId });
-  ready = sub2.ready();
-  return {
-    room: room,
-    room2: room2,
-    ready: ready
-  };
+  return {};
 })(RoomInterHeader);
 const Header = styled.h3`
   padding: 0 ${dist.named.columnPadding};

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 import { Close, GameBar, GameContent, GameBottom, GamePopup } from './';
 import {
@@ -24,10 +25,13 @@ class Game extends React.Component {
       popupText: '',
       selectedAnswers: {},
       resultClicked: false,
-      allAnswered: false
+      allAnswered: false,
+      moveIn: true
     };
     this.timer1 = null;
     this.timer2 = null;
+    this.timer3 = null;
+    this.timer4 = null;
     this.endCallback = this.endCallback.bind(this);
     this.prev = this.prev.bind(this);
     this.next = this.next.bind(this);
@@ -40,21 +44,27 @@ class Game extends React.Component {
     clearTimeout(this.timer1);
     clearTimeout(this.timer2);
     clearTimeout(this.timer3);
+    clearTimeout(this.timer4);
   }
   endCallback(e) {
-    this.setState({
-      page: 0,
-      selected: -1,
-      toastSelected: -1,
-      toast: false,
-      hideToast: false,
-      toastImage: '',
-      popupText: '',
-      selectedAnswers: {},
-      resultClicked: false,
-      allAnswered: false
-    });
-    setGameStarted(false);
+    this.setState({ moveIn: false });
+    this.timer4 = setTimeout(() => {
+      this.setState({
+        page: 0,
+        selected: -1,
+        toastSelected: -1,
+        toast: false,
+        hideToast: false,
+        toastImage: '',
+        popupText: '',
+        selectedAnswers: {},
+        resultClicked: false,
+        allAnswered: false,
+        moveIn: true
+      });
+
+      setGameStarted(false);
+    }, 200);
   }
   resultClickedCallback() {
     this.setState({
@@ -136,39 +146,49 @@ class Game extends React.Component {
 
     var doc = '';
     var m = false;
-    if (p <= 25) {
+    if (p <= 30) {
       num = 0;
-    } else if (p > 25 && p <= 75) {
+    } else if (p > 30 && p <= 70) {
       num = 1;
     } else {
       num = 2;
     }
-
-    if (num == 0) {
-      if (sel == 0) {
-        return data.resultLow.sigi;
-      } else if (sel == 1) {
-        return data.resultLow.riri;
-      } else if (sel == 2) {
-        return data.resultLow.per;
-      }
-    } else if (num == 1) {
-      if (sel == 0) {
-        return data.resultMedium.sigi;
-      } else if (sel == 1) {
-        return data.resultMedium.riri;
-      } else if (sel == 2) {
-        return data.resultMedium.per;
-      }
-    } else if (num == 2) {
-      if (sel == 0) {
-        return data.resultHigh.sigi;
-      } else if (sel == 1) {
-        return data.resultHigh.riri;
-      } else if (sel == 2) {
-        return data.resultHigh.per;
+    result = '';
+    if (exists(data)) {
+      if (num == 0) {
+        if (exists(data.resultLow)) {
+          if (sel == 0) {
+            result = data.resultLow.sigi;
+          } else if (sel == 1) {
+            result = data.resultLow.riri;
+          } else if (sel == 2) {
+            result = data.resultLow.per;
+          }
+        }
+      } else if (num == 1) {
+        if (exists(data.resultMedium)) {
+          if (sel == 0) {
+            result = data.resultMedium.sigi;
+          } else if (sel == 1) {
+            result = data.resultMedium.riri;
+          } else if (sel == 2) {
+            result = data.resultMedium.per;
+          }
+        }
+      } else if (num == 2) {
+        if (exists(data.resultHigh)) {
+          if (sel == 0) {
+            result = data.resultHigh.sigi;
+          } else if (sel == 1) {
+            result = data.resultHigh.riri;
+          } else if (sel == 2) {
+            result = data.resultHigh.per;
+          }
+        }
       }
     }
+    if (exists(result)) return result;
+    return '';
   }
 
   next() {
@@ -425,7 +445,7 @@ class Game extends React.Component {
       character = this.props.data.characters[this.state.selected];
     }
     return (
-      <Container className="ImageDetailView">
+      <Container moveIn={this.state.moveIn} className="ImageDetailView">
         <Close
           onClick={e => {
             this.endCallback(e);
@@ -452,7 +472,30 @@ export default withTracker(props => {
     gameStarted: getGameStarted()
   };
 })(Game);
-
+const moveOut = keyframes`
+                    0% {
+                      transform-origin: bottom right;  
+                      transform: scale(1);
+                      opacity:1;
+                    }
+                    100% {
+                      transform-origin: bottom right;  
+                      transform: scale(0);
+                      opacity:0;
+                    }
+                    `;
+const moveIn = keyframes`
+                    0% {
+                      transform-origin: top left;   
+                      transform: scale(0);
+                      opacity:0;
+                    }
+                    100% {
+                      transform-origin: top left;
+                      transform: scale(1);
+                      opacity:1;
+                    }
+                    `;
 const Container = styled.div`
   position: absolute;
   top: 0;
@@ -461,6 +504,10 @@ const Container = styled.div`
   width: 100% !important;
   background-color: ${colors.shade};
   z-index: 11;
+  ${props =>
+    props.moveIn
+      ? `animation: ${moveIn} 200ms;`
+      : `animation: ${moveOut} 200ms;`};
 `;
 
 const Main = styled.div`

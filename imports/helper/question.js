@@ -69,8 +69,10 @@ export function getQuestions(roomId, targetId) {
           result.push(q);
         }
       } else {
-        if (q.roomId == roomId) {
-          result.push(q);
+        if (!exists(q.originRoomId)) {
+          if (q.roomId == roomId) {
+            result.push(q);
+          }
         }
       }
     }

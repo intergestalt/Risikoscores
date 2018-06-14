@@ -8,8 +8,11 @@ import { StartLeft, StartRight, Loading } from '../../components';
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
+import { storeRooms } from '../../../helper/room';
 import { startPopupsTimeout } from '../../../helper/popup';
 import { setSelectedRoomId, setSelectGraphNode } from '../../../helper/actions';
+import { exists } from '../../../helper/global';
+
 import { startStreamTimeout } from '../../../helper/stream';
 
 class Start extends React.Component {
@@ -34,6 +37,7 @@ class Start extends React.Component {
       return this.renderLoading();
     }
     storeFragments(this.props.fragments);
+    storeRooms(this.props.rooms);
     return (
       <Container className="Start">
         <StartLeft rooms={this.props.rooms} />

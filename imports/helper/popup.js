@@ -34,7 +34,7 @@ export function getPopup(index) {
   }
   return null;
 }
-const popupZuffiDelay = [20, 120, 120];
+const popupZuffiDelay = [240, 240, 240];
 
 export function getStartPopupsDelay() {
   var index = getPopupsIndex();

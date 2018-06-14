@@ -175,13 +175,16 @@ class GameContent extends React.Component {
   changeSel(answer, questionNum, num) {
     this.props.selectCallback(questionNum, num);
     var str = null;
-    if (this.props.selected == 0) {
-      str = answer.sigi;
-    } else if (this.props.selected == 1) {
-      str = answer.riri;
-    } else if (this.props.selected == 2) {
-      str = answer.per;
+    if (exists(answer)){
+      if (this.props.selected == 0) {
+        str = answer.sigi;
+      } else if (this.props.selected == 1) {
+        str = answer.riri;
+      } else if (this.props.selected == 2) {
+        str = answer.per;
+      }
     }
+
     if (exists(str)) {
       this.props.toast(str);
     }

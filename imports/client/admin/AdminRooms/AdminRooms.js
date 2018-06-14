@@ -13,7 +13,7 @@ class AdminRooms extends React.Component {
         {rooms.map(room => {
           return (
             <li key={room._id}>
-              <ListItem room={room} />
+              <ListItem room={room} collection={Rooms} />
             </li>
           );
         })}
@@ -24,7 +24,9 @@ class AdminRooms extends React.Component {
   render() {
     return (
       <div className="AdminRooms">
-        <h2>Rooms &nbsp; <RoomChooser /></h2>
+        <h2>
+          Rooms &nbsp; <RoomChooser />
+        </h2>
         {this.renderRooms(this.props.rooms)}
       </div>
     );
@@ -34,7 +36,7 @@ class AdminRooms extends React.Component {
 // export default AdminRooms;
 
 export default withTracker(props => {
-  const variant = Session.get("roomVariant");
+  const variant = Session.get('roomVariant');
   Meteor.subscribe('rooms.list', variant);
 
   return {

@@ -13,7 +13,7 @@ class AdminGraph extends React.Component {
           {graph.map(entry => {
             return (
               <li key={entry._id}>
-                <ListItem entry={entry} />
+                <ListItem entry={entry} collection={Graph} />
               </li>
             );
           })}

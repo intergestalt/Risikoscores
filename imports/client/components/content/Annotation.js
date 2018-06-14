@@ -7,6 +7,7 @@ import { DetailButton } from './';
 import { DiyMarkdown } from '../';
 import { dist, snippets, colors } from '../../../config/styles';
 import { getLanguage } from '../../../helper/actions';
+import { exists } from '../../../helper/global';
 
 class Annotation extends React.Component {
   constructor(props) {
@@ -14,8 +15,15 @@ class Annotation extends React.Component {
   }
 
   render() {
-    var text = this.props.asset.text;
-    var source = this.props.asset.source;
+    var text = null;
+    var source = null;
+    if (exists(this.props.asset)) {
+      text = this.props.asset.text;
+      source = this.props.asset.source;
+    } else {
+      text = this.props.text;
+      source = this.props.source;
+    }
     var detailButton = null;
     if (this.props.clickCallback) {
       detailButton = (
@@ -42,7 +50,6 @@ Annotation.propTypes = {
   source: PropTypes.string
 };
 
-
 export default withTracker(props => {
   return {
     language: getLanguage()
@@ -58,5 +65,5 @@ const Container = styled.div`
   min-height: 1em;
   *:first-child {
     margin-top: 0 !important;
-  }  
+  }
 `;

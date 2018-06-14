@@ -219,7 +219,15 @@ export function getCachedQuestions() {
   return questions;
 }
 export function setCachedQuestions(value) {
-  const questions = Session.set('cachedQuestions', value);
+  Session.set('cachedQuestions', value);
+}
+
+export function getCachedRooms() {
+  const rooms = Session.get('cachedRooms');
+  return rooms;
+}
+export function setCachedRooms(value) {
+  Session.set('cachedRooms', value);
 }
 
 export function getCachedPopups() {

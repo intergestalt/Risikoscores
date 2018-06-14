@@ -56,7 +56,13 @@ class VideoBottom extends React.Component {
   }
   setVideoSize() {
     var newWidth = this.videoContainerElem.clientWidth;
-    var newHeight = newWidth / 5;
+    var f = null;
+    if (this.props.big) {
+      f = 3;
+    } else {
+      f = 5;
+    }
+    var newHeight = newWidth / f;
     this.iFrameElem.setAttribute('width', newWidth);
     this.iFrameElem.setAttribute(
       'height',
@@ -67,12 +73,24 @@ class VideoBottom extends React.Component {
   render() {
     const popup = this.props.popup;
     var video = null;
+    var p = null;
+    if (this.props.big) {
+      p = {
+        pointerEvents: 'none',
+        transform: 'translateY(-20%) scale(1.05)'
+      };
+    } else {
+      p = {
+        pointerEvents: 'none',
+        transform: 'translateY(-30%) scale(1.05)'
+      };
+    }
     if (exists(popup.image)) {
       const url = localeStr(popup.image);
       const videoUrl =
         'https://www.youtube.com/embed/' +
         url +
-        '?autoplay=1&controls=0&end=25&fs=0&loop=1&modestbranding=1&rel=0&showinfo=0&start=15&color=white&iv_load_policy=3&playlist=' +
+        '?autoplay=1&controls=0&fs=0&loop=1&modestbranding=1&rel=0&showinfo=0&color=white&iv_load_policy=3&playlist=' +
         url;
       image = (
         <iframe
@@ -80,10 +98,7 @@ class VideoBottom extends React.Component {
             this.iFrameElem = elem;
           }}
           onLoad={this.videoLoaded}
-          style={{
-            pointerEvents: 'none',
-            transform: 'translateY(-30%)'
-          }}
+          style={p}
           id="ytplayer"
           type="text/html"
           width="720"

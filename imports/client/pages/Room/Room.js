@@ -18,7 +18,7 @@ import {
   Popup,
   Game
 } from '../../components';
-import { findGlossar } from '../../../helper/room';
+import { findGlossar, storeRooms } from '../../../helper/room';
 import { getDefaultTabId } from '../../../helper/tab';
 import { storeFragments } from '../../../helper/fragment';
 import { storeQuestions } from '../../../helper/question';
@@ -29,7 +29,7 @@ import {
   setSelectGraphNode,
   getSelectedRoomId,
   setLanguage,
-  setPopupActive,
+  getCachedRooms,
   getPlayAudio,
   setPlayAudioAll,
   getPlayAudioFile,
@@ -173,6 +173,8 @@ class Room extends React.Component {
     //}
     storeFragments(this.props.fragments);
     storeQuestions(this.props.questions);
+    storeRooms(this.props.rooms);
+
     var result = (
       <span>
         {this.getSound()}
@@ -186,9 +188,19 @@ class Room extends React.Component {
 export default withTracker(props => {
   const roomId = props.match.params._id;
   const variant = Session.get('roomVariant');
-  const sub = Meteor.subscribe('room', roomId, variant);
   const sub2 = Meteor.subscribe('fragments.list');
   const sub3 = Meteor.subscribe('questions.list');
+  const sub4 = Meteor.subscribe('rooms.list');
+
+  var rooms = null;
+  const sort = {};
+  const language = Session.get('language');
+  sort['name.' + language] = 1;
+  if (!exists(getCachedRooms())) {
+    rooms = Rooms.find({}, { sort }).fetch();
+  }
+
+  const sub = Meteor.subscribe('room', roomId, variant);
   let room = Rooms.findOne({ key: roomId, variant });
 
   if (!room && sub.ready()) {
@@ -226,6 +238,7 @@ export default withTracker(props => {
   }
   return {
     room,
+    rooms,
     selectedTabId: tabId,
     roomColor,
     fragments: TextFragments.find().fetch(),

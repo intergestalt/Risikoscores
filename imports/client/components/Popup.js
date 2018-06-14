@@ -31,8 +31,22 @@ class Popup extends React.Component {
           <BannerBottom popup={popup} popupClosing={this.props.popupClosing} />
         );
       } else if (popup.type == 'videoBottom') {
+        console.log('Small');
         return (
-          <VideoBottom popup={popup} popupClosing={this.props.popupClosing} />
+          <VideoBottom
+            big={false}
+            popup={popup}
+            popupClosing={this.props.popupClosing}
+          />
+        );
+      } else if (popup.type == 'videoBottomBig') {
+        console.log('Big');
+        return (
+          <VideoBottom
+            big={true}
+            popup={popup}
+            popupClosing={this.props.popupClosing}
+          />
         );
       } else if (popup.type == 'bannerTopRight') {
         return (

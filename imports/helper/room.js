@@ -1,6 +1,7 @@
 import { sortTabs } from './tab';
-import { localeStr } from './global';
+import { localeStr, exists } from './global';
 import { findGlossarComponents } from './diyMarkdown';
+import { setCachedRooms, getCachedRooms } from './actions';
 
 export function cleanForSave(room) {
   const result = room;
@@ -27,4 +28,22 @@ export function findGlossar(room) {
   }
 
   return result;
+}
+
+export function storeRooms(rooms) {
+  if (!exists(rooms)) {
+    return;
+  }
+  if (rooms.length <= 0) {
+    return;
+  }
+  if (exists(getCachedRooms())) return;
+  if (Array.isArray(rooms)) {
+    var result = {};
+    for (var i = 0; i < rooms.length; i++) {
+      const r = rooms[i];
+      result[r._id] = r.name;
+    }
+    setCachedRooms(result);
+  }
 }
