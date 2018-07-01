@@ -29,46 +29,26 @@ Tab 1
 >>>
 
 
-Tab 2:
 
-**1960**
-Cigarette smoking found to increase the risk of heart disease
-
-**1961**
-Cholesterol level, blood pressure, and electrocardiogram abnormalities found to increase the risk of heart disease
-
-**1967**
-Physical activity found to reduce the risk of heart disease and obesity to increase the risk of heart disease
-
-**1970**
-High blood pressure found to increase the risk of stroke
-
-**1976**
-Menopause found to increase the risk of heart disease
-
-**1978**
-Psychosocial factors found to affect heart disease
-
-**1988**
-High levels of HDL cholesterol found to reduce risk of death
-
-**1998**
-Development of simple coronary disease prediction algorithm involving risk factor categories to allow physicians to predict multivariate coronary heart disease risk in patients without overt CHD
-
-**1999**
-Lifetime risk at age 40 years of developing coronary heart disease is one in two for men and one in three for women
-
-**2001**
-High-normal blood pressure is associated with an increased risk of cardiovascular disease, emphasizing the need to determine whether lowering high-normal blood pressure can reduce the risk of cardiovascular disease.
-
-**2002**
-Lifetime risk of developing high blood pressure in middle-aged adults is 9 in 10.
-
-**2002**
-Obesity is a risk factor for heart failure.
-
-**2008**
-Discovery by Framingham Heart Study and publication of four risk factors that raise probability of developing precursor of heart failure; new 30-year risk estimates developed for serious cardiac events.
+<<<NewsFeed: {"rows":[
+{"year": "1960", "text": "Cigarette smoking found to increase the risk of heart disease"},
+{"year": "1961", "text": "Cholesterol level, blood pressure, and electrocardiogram abnormalities found to increase the risk of heart disease"},
+{"year": "1967", "text": "Physical activity found to reduce the risk of heart disease and obesity to increase the risk of heart disease"},
+{"year": "1970", "text": "High blood pressure found to increase the risk of stroke"},
+{"year": "1976", "text": "Menopause found to increase the risk of heart disease"},
+{"year": "1978", "text": "Psychosocial factors found to affect heart disease"},
+{"year": "1988", "text": "High levels of HDL cholesterol found to reduce risk of death"},
+{"year": "1998", "text": "Development of simple coronary disease prediction algorithm involving risk factor categories to allow physicians to predict multivariate coronary heart disease risk in patients without overt CHD"},
+{"year": "1999", "text": "Lifetime risk at age 40 years of developing coronary heart disease is one in two for men and one in three for women"},
+{"year": "2001", "text": "High-normal blood pressure is associated with an increased risk of cardiovascular disease, emphasizing the need to determine whether lowering high-normal blood pressure can reduce the risk of cardiovascular disease."},
+{"year": "2002", "text": "Lifetime risk of developing high blood pressure in middle-aged adults is 9 in 10."},
+{"year": "2002", "text": "Obesity is a risk factor for heart failure."},
+{"year": "2008", "text": "Discovery by Framingham Heart Study and publication of four risk factors that raise probability of developing precursor of heart failure; new 30-year risk estimates developed for serious cardiac events."},
+{"year": "2009-2010", "text": "Framingham Heart Study researchers contribute to discovering hundreds of new genes underlying major heart disease risk factors—body mass index, blood cholesterol, cigarette smoking, blood pressure and glucose/diabetes"},
+{"year": "2010", "text": "First definitive evidence that occurrence of stroke by age 65 years in a parent increased risk of stroke in offspring by 3-fold"}
+],
+"context":{"room":"framingham", "tab":"tab2"}}
+>>>
 
 **2009-2010**
 Framingham Heart Study researchers contribute to discovering hundreds of new genes underlying major heart disease risk factors—body mass index, blood cholesterol, cigarette smoking, blood pressure and glucose/diabetes
@@ -76,3 +56,50 @@ Framingham Heart Study researchers contribute to discovering hundreds of new gen
 **2010**
 First definitive evidence that occurrence of stroke by age 65 years in a parent increased risk of stroke in offspring by 3-fold
 
+
+
+
+1960
+Cigarette smoking found to increase the risk of heart disease
+
+1961
+Cholesterol level, blood pressure, and electrocardiogram abnormalities found to increase the risk of heart disease
+
+1967
+Physical activity found to reduce the risk of heart disease and obesity to increase the risk of heart disease
+
+1970
+High blood pressure found to increase the risk of stroke
+
+1976
+Menopause found to increase the risk of heart disease
+
+1978
+Psychosocial factors found to affect heart disease
+
+1988
+High levels of HDL cholesterol found to reduce risk of death
+
+1998
+Development of simple coronary disease prediction algorithm involving risk factor categories to allow physicians to predict multivariate coronary heart disease risk in patients without overt CHD
+
+1999
+Lifetime risk at age 40 years of developing coronary heart disease is one in two for men and one in three for women
+
+2001
+High-normal blood pressure is associated with an increased risk of cardiovascular disease, emphasizing the need to determine whether lowering high-normal blood pressure can reduce the risk of cardiovascular disease.
+
+2002
+Lifetime risk of developing high blood pressure in middle-aged adults is 9 in 10.
+
+2002
+Obesity is a risk factor for heart failure.
+
+2008
+Discovery by Framingham Heart Study and publication of four risk factors that raise probability of developing precursor of heart failure; new 30-year risk estimates developed for serious cardiac events.
+
+2009-2010
+Framingham Heart Study researchers contribute to discovering hundreds of new genes underlying major heart disease risk factors—body mass index, blood cholesterol, cigarette smoking, blood pressure and glucose/diabetes
+
+2010
+First definitive evidence that occurrence of stroke by age 65 years in a parent increased risk of stroke in offspring by 3-fold

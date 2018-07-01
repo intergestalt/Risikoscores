@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import { localeStr, existsString, zuffi } from '../../helper/global';
+import { localeStr, existsString, zuffi, exists } from '../../helper/global';
 import { getLanguage } from '../../helper/actions';
 import { dist, snippets } from '../../config/styles';
 import { DiyMarkdown, Image, StreamLoading } from './';
@@ -37,8 +37,16 @@ class StreamPost extends React.Component {
       return this.renderLoading();
     }
     const question = this.props.question;
-    var text = localeStr(question.text, this.props.lang);
-    var title = localeStr(question.title, this.props.lang);
+    var text = null;
+    var title = null;
+    if (this.props.global) {
+      title = localeStr(question.title, this.props.lang);
+      text = localeStr(question.text, this.props.lang);
+    } else {
+      title = question.title;
+      text = question.text;
+    }
+
     var image = null;
     if (existsString(question.image)) {
       const asset = {
@@ -66,11 +74,20 @@ class StreamPost extends React.Component {
 }
 StreamPost.propTypes = {
   question: PropTypes.object,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  global: PropTypes.bool
 };
 export default withTracker(props => {
+  var global;
+  if (!exists(props.global)) {
+    global = true;
+  } else {
+    global = props.global;
+  }
   return {
-    lang: getLanguage()
+    lang: getLanguage(),
+    global: global,
+    question: props.question
   };
 })(StreamPost);
 
