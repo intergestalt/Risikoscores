@@ -132,6 +132,8 @@ export function getOutgoingEdges(nodeId, realGraph) {
   const nodesHash = realGraph.nodesHash;
   const node = nodesHash[nodeId];
   const result = [];
+  if (!exists(node)) return result;
+  if (!exists(node.neighbours)) return result;
   for (var i = 0; i < node.neighbours.length; i++) {
     const neighbourId = node.neighbours[i];
     const neighbour = nodesHash[neighbourId];
@@ -239,17 +241,21 @@ export function getGraphModes(
   outgoingEdges = null
 ) {
   nodeModes = getDefaultNodeModes(realGraph);
-  if (nodeId !== null) {
-    nodeModes[nodeId].selected = true;
-    for (var i = 0; i < neighbours.length; i++) {
-      const nodeId = neighbours[i];
-      nodeModes[nodeId].neighbour = true;
+  if (exists(nodeModes)) {
+    if (nodeId !== null) {
+      if (exists(nodeModes[nodeId])) {
+        nodeModes[nodeId].selected = true;
+        for (var i = 0; i < neighbours.length; i++) {
+          const nodeId = neighbours[i];
+          nodeModes[nodeId].neighbour = true;
+        }
+      }
     }
   }
 
   edgeModes = getDefaultEdgeModes(nodeId, realGraph);
 
-  if (nodeId !== null) {
+  if (exists(outgoingEdges)) {
     for (var i = 0; i < outgoingEdges.length; i++) {
       const edgeId = outgoingEdges[i];
       edgeModes[edgeId].selected = true;

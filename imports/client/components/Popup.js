@@ -15,7 +15,13 @@ import {
 import { getPopup } from '../../helper/popup';
 import { exists, localeStr } from '../../helper/global';
 import { Image, ClosePopup } from './';
-import { BannerBottom, BannerTopRight, VideoBottom } from './popups';
+import {
+  BannerBottom,
+  BannerTopRight,
+  VideoBottom,
+  ArribaSpiel,
+  PictoComic
+} from './popups';
 
 class Popup extends React.Component {
   constructor(props) {
@@ -26,6 +32,7 @@ class Popup extends React.Component {
     if (this.props.gameStarted) return null;
     if (this.props.popupActive) {
       const popup = this.props.popup;
+      console.log(popup.type);
       if (popup.type == 'bannerBottom') {
         return (
           <BannerBottom popup={popup} popupClosing={this.props.popupClosing} />
@@ -54,6 +61,14 @@ class Popup extends React.Component {
             popup={popup}
             popupClosing={this.props.popupClosing}
           />
+        );
+      } else if (popup.type == 'PictoComic') {
+        return (
+          <PictoComic popup={popup} popupClosing={this.props.popupClosing} />
+        );
+      } else if (popup.type == 'ArribaSpiel') {
+        return (
+          <ArribaSpiel popup={popup} popupClosing={this.props.popupClosing} />
         );
       }
     }

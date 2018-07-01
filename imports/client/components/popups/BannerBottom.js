@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 
 import { colors, dist } from '../../../config/styles';
 import { getPopupClosing, getLanguage } from '../../../helper/actions';
-import { getBottomAnimations } from '../../../helper/popup';
-import { exists, localeStr } from '../../../helper/global';
+import { getBottomAnimations, getPopupUrl } from '../../../helper/popup';
+import { exists, existsString, localeStr } from '../../../helper/global';
 import { Image, ClosePopup } from '../.';
 
 class BannerBottom extends React.Component {
@@ -20,7 +20,20 @@ class BannerBottom extends React.Component {
   clickCallback(e, nodeId) {
     const lang = getLanguage();
     const popup = this.props.popup;
-    const path = '/rooms/' + popup.targetRoomId + '?language=' + lang;
+    const target = getPopupUrl(popup.targetRoomId);
+    var path = null;
+    if (existsString(target.tabId)) {
+      path =
+        '/rooms/' +
+        target.roomId +
+        '?tabId=' +
+        target.tabId +
+        '&language=' +
+        lang;
+    } else {
+      path = '/rooms/' + target.roomId + '?language=' + lang;
+    }
+
     this.props.history.push(path);
   }
   imageLoaded() {

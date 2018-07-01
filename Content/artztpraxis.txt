@@ -28,3 +28,22 @@ Tab 2
 ],
 "context":{"room":"arztpraxis", "tab":"tab2"}}
 >>>
+
+
+<<<Piktocomic: {"normal":{"type":"image","name":"1A_1.png"},"doctor":{"type":"image","name":"1A_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":"Guten Tag!","en":""}},"patient":{"type":"image","name":"1A_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Hallo!","en":""}},"doctorRect":{"top":12,"bottom":100,"left":10,"right":60},"patientRect":{"top":6,"bottom":80,"left":60,"right":95},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"1A_1.png"},"doctor":{"type":"image","name":"1A_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":"Na, wie geht’s uns denn heute?","en":""}},"patient":{"type":"image","name":"1A_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Ach, Herr Doktor ... Gldkans,dnslk bkjxb ! dksbda! ksjdbadjb!!!!! Udsdbsadksa???","en":""}},"doctorRect":{"top":12,"bottom":100,"left":10,"right":60},"patientRect":{"top":6,"bottom":80,"left":60,"right":95},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"2_1.png"},"doctor":{"type":"image","name":"2_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":"Hmmm, hmmmm... ","en":""}},"patient":{"type":"image","name":"2_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Alskahlsn! alsknsans! flihcl! ","en":""}},"doctorRect":{"top":7,"bottom":100,"left":18,"right":50},"patientRect":{"top":6,"bottom":100,"left":50,"right":82},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"3_1.png"},"doctor":{"type":"image","name":"3_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":  "Ach wirklich!!?!?! ","en":""}},"patient":{"type":"image","name":"3_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Hmmm, ja .... Lishlashlakn dskdjbsdkj! alsjanskj!","en":""}},"doctorRect":{"top":10,"bottom":100,"left":18,"right":50},"patientRect":{"top":13,"bottom":100,"left":50,"right":82},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"1C_1.png"},"doctor":{"type":"image","name":"1C_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":  "Ich trage nun Ihre Werte in den Score ein und stelle Ihnen ein paar Fragen!","en":""}},"patient":{"type":"image","name":"1C_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Oh! Nagut.","en":""}},"doctorRect":{"top":6,"bottom":100,"left":10,"right":60},"patientRect":{"top":6,"bottom":80,"left":60,"right":94},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"1B_1.png"},"doctor":{"type":"image","name":"1B_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":  "Machen Sie Sport? Wenn ja wie oft? Essen Sie Salat? Nehmen Sie ASS?","en":""}},"patient":{"type":"image","name":"1B_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Ja. 2x20 Minuten pro 7 Tage. Ja. Nein.","en":""}},"doctorRect":{"top":6,"bottom":100,"left":10,"right":50},"patientRect":{"top":6,"bottom":80,"left":60,"right":94},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"1B_1.png"},"doctor":{"type":"image","name":"1B_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":  "lsdknslkdns? Sdlbdskd? Sdldnlkdns?","en":""}},"patient":{"type":"image","name":"1B_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Ja. Nein. Äh nein. Äh ja. Ja!","en":""}},"doctorRect":{"top":6,"bottom":100,"left":10,"right":50},"patientRect":{"top":6,"bottom":80,"left":60,"right":94},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+<<<Piktocomic: {"normal":{"type":"image","name":"1D_1.png"},"doctor":{"type":"image","name":"1D_3.png", "speaker":{"de":"Doktor","en":""},"text":{"de":  "Hier: ihr Ergebnis. Wenn Sie rauchen, haben Sie dieses Risiko. Wenn Sie nicht rauchen, das hier. Wenn Sie mehr Salat essen passiert, das. Wenn sie weniger Salat essen, könnte das passieren. Entscheiden Sie selbst!","en":""}},"patient":{"type":"image","name":"1D_2.png", "speaker":{"de":"Patient","en":""},"text":{"de":"Ahhhhhhhhhh! ","en":""}},"doctorRect":{"top":6,"bottom":100,"left":10,"right":50},"patientRect":{"top":6,"bottom":80,"left":55,"right":97},"context":{"room":"arztpraxis", "tab":"tab1"}}>>>
+
+

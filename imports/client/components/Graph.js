@@ -66,15 +66,21 @@ class Graph extends React.Component {
     const modeMap = getGraphModes(realGraph, nodeId, neighbours, outgoingEdges);
     // patch modeMap for restricted nativation (TODO: move to getGraphModes())
     if (presentNodeId === nodeId) {
-      modeMap.nodeModes[presentNodeId].neighbour = true;
-      modeMap.nodeModes[presentNodeId].selected = false;
-      if (modeMap.nodeModes[selectedNodeId]) {
-        modeMap.nodeModes[selectedNodeId].neighbour = false;
-        modeMap.nodeModes[selectedNodeId].selected = true;
+      if (exists(modeMap.nodeModes[presentNodeId])) {
+        modeMap.nodeModes[presentNodeId].neighbour = true;
+        modeMap.nodeModes[presentNodeId].selected = false;
+      }
+      if (exists(modeMap.nodeModes[selectedNodeId])) {
+        if (modeMap.nodeModes[selectedNodeId]) {
+          modeMap.nodeModes[selectedNodeId].neighbour = false;
+          modeMap.nodeModes[selectedNodeId].selected = true;
+        }
       }
       for (let i in modeMap.nodeModes) {
-        modeMap.nodeModes[i].passive =
-          !modeMap.nodeModes[i].neighbour && !modeMap.nodeModes[i].selected;
+        if (exists(modeMap.nodeModes[i])) {
+          modeMap.nodeModes[i].passive =
+            !modeMap.nodeModes[i].neighbour && !modeMap.nodeModes[i].selected;
+        }
       }
     }
     return modeMap;

@@ -5,10 +5,9 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
 import { colors, dist } from '../../../config/styles';
-import { getPopupClosing } from '../../../helper/actions';
-import { getBottomAnimations } from '../../../helper/popup';
-import { exists, localeStr } from '../../../helper/global';
-import { Image, ClosePopup } from '../.';
+import { getBottomAnimations, getPopupUrl } from '../../../helper/popup';
+import { exists, existsString, localeStr } from '../../../helper/global';
+import { ClosePopup } from '../.';
 import { Link } from '../../../client/components/content';
 
 class VideoBottom extends React.Component {
@@ -32,7 +31,19 @@ class VideoBottom extends React.Component {
   clickCallback(e, nodeId) {
     const lang = getLanguage();
     const popup = this.props.popup;
-    const path = '/rooms/' + popup.targetRoomId + '?language=' + lang;
+    const target = getPopupUrl(popup.targetRoomId);
+    var path = null;
+    if (existsString(target.tabId)) {
+      path =
+        '/rooms/' +
+        target.roomId +
+        '?tabId=' +
+        target.tabId +
+        '&language=' +
+        lang;
+    } else {
+      path = '/rooms/' + target.roomId + '?language=' + lang;
+    }
     this.props.history.push(path);
   }
 

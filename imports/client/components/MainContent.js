@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import color from 'color';
 
-import { setPopupActive, incPopupsIndex } from '../../helper/actions';
+import {
+  setPopupActive,
+  incPopupsIndex,
+  getPopupRoom,
+  getSelectedRoomId
+} from '../../helper/actions';
 import { localeStr, exists } from '../../helper/global';
 import { splitOptions, getOption } from '../../helper/diyMarkdown';
 import { getImageAsset } from '../../helper/asset';
 import { snippets, dist, colors } from '../../config/styles';
 import { DiyMarkdown, CustomScrollbars } from './';
+import { getPopup, getPopupUrl } from '../../helper/popup';
 
 class MainContent extends React.Component {
   constructor(props) {
@@ -17,8 +23,12 @@ class MainContent extends React.Component {
   }
   clickCallback(e, roomId, tabId) {
     e.preventDefault();
-    setPopupActive(true);
     incPopupsIndex();
+    const popup = getPopup();
+    const url = getPopupUrl(popup.targetRoomId);
+    if (url.roomId != getSelectedRoomId()) {
+      setPopupActive(true);
+    }
   }
   render() {
     var text = null;
