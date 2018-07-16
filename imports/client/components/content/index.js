@@ -13,6 +13,7 @@ import Quote from './Quote';
 import ServerAudio from './ServerAudio';
 import Piktocomic from './Piktocomic';
 import GameStarter from './GameStarter';
+import NewsFeed from './NewsFeed';
 
 export {
   ExternalLink,
@@ -29,5 +30,6 @@ export {
   Quote,
   ServerAudio,
   Piktocomic,
-  GameStarter
+  GameStarter,
+  NewsFeed
 };

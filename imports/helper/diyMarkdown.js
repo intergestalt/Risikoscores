@@ -10,7 +10,8 @@ import {
   Quote,
   ServerAudio,
   Piktocomic,
-  GameStarter
+  GameStarter,
+  NewsFeed
 } from '../client/components/content';
 import { exists, existsString } from '../helper/global';
 import { getId } from '../helper/admin';
@@ -145,6 +146,8 @@ function renderSpecialComponent(specialComponent, id, glossar) {
     );
   } else if (name === 'game') {
     return <GameStarter key={'_' + id} data={options} />;
+  } else if (name === 'newsfeed') {
+    return <NewsFeed key={'_' + id} data={options} />;
   }
 }
 

@@ -2,7 +2,7 @@ import { keyframes } from 'styled-components';
 
 import { localeStr } from './global';
 import { Session } from 'meteor/session';
-import { exists, zuffi } from './global';
+import { exists, existsString, zuffi } from './global';
 import {
   getCachedPopups,
   cachePopups,
@@ -13,7 +13,8 @@ import {
   getPopupActive,
   setPopupActive,
   incPopupsIndex,
-  setPopupClosing
+  setPopupClosing,
+  getSelectedRoomId
 } from './actions';
 import Popups from '../collections/popups';
 
@@ -34,7 +35,7 @@ export function getPopup(index) {
   }
   return null;
 }
-const popupZuffiDelay = [240, 240, 240];
+const popupZuffiDelay = [360, 360, 360, 360, 360, 360];
 
 export function getStartPopupsDelay() {
   var index = getPopupsIndex();
@@ -54,8 +55,12 @@ function popupsTimeout() {
   const delay = getStartPopupsDelay();
   setTimeout(() => {
     if (!getPopupActive()) {
-      setPopupActive(true);
       incPopupsIndex();
+      const popup = getPopup();
+      const url = getPopupUrl(popup.targetRoomId);
+      if (url.roomId != getSelectedRoomId()) {
+        setPopupActive(true);
+      }
     }
     popupsTimeout();
   }, delay);
@@ -80,6 +85,26 @@ export function loadPopups() {
     var popups = Popups.find({}).fetch();
     cachePopups(popups);
   });
+}
+
+export function getPopupUrl(url) {
+  if (!exists(url)) return;
+  var index = url.indexOf(';');
+  var result = {};
+  if (index == -1) {
+    result.roomId = url.trim();
+    result.tabId = '';
+  } else {
+    const substrings = url.split(';');
+    result.roomId = substrings[0];
+    if (substrings.length > 1) {
+      var tabId = substrings[1];
+      if (existsString(tabId)) {
+        result.tabId = tabId.trim();
+      }
+    }
+  }
+  return result;
 }
 
 export function getBottomAnimations() {
