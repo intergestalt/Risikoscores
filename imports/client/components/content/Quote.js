@@ -38,6 +38,7 @@ class Quote extends React.Component {
       <AudioPlayer src={file} />
     );
   }
+
   renderText(text) {
     text = text.replace(/<br\/>/g, '\n');
     const blocks = text.split('\n');
@@ -48,7 +49,7 @@ class Quote extends React.Component {
       if (e == '') entry = <div key={i}>&nbsp;</div>;
       paragraphs.push(entry);
     }
-    return <div>{paragraphs}</div>;
+    return <div className="Text">{paragraphs}</div>;
   }
 
   renderSource() {
@@ -124,6 +125,9 @@ const Container = styled.div`
   margin-bottom: 1em;
   margin-left: ${dist.tiny};
   margin-right: ${dist.tiny};  
+  .AudioPlayer + .Text {
+    margin-top: ${ dist.tiny };
+  }
 `;
 
 const ContentContainer = styled.div`
