@@ -221,7 +221,7 @@ export default withTracker(props => {
   if (exists(tabId)) {
     setSelectedTabId(tabId);
     if (room && room.subsections) {
-      roomColor = tabColorPalette[Session.get('roomVisitCounter') % 3];
+      roomColor = tabColorPalette[Session.get('roomVisitCounter') % (tabColorPalette.length)];
       const tabColorsArray = tabColors(roomColor, room.subsections.length);
       let i = 0;
       for (let s of room.subsections) {
