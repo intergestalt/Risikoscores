@@ -32,6 +32,7 @@ import Image from './Image';
 import CustomScrollbars from './CustomScrollbars';
 import Close from './Close';
 import Loading from './Loading';
+import AudioPlayer from './AudioPlayer';
 
 import StartLeft from './StartLeft';
 import StartRight from './StartRight';
@@ -57,6 +58,7 @@ import GamePopup from './GamePopup';
 import GameCharacterImage from './GameCharacterImage';
 
 export {
+  AudioPlayer,
   MenuIcon,
   ImageDetailView,
   MainColumn,

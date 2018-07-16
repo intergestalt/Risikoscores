@@ -4,7 +4,7 @@ import { Session } from 'meteor/session';
 import { getSelectedTabId, getSelectedRoomId } from '../../../helper/actions';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import LazyLoad from 'react-lazyload';
+import { AudioPlayer } from '../';
 
 import { dist } from '../../../config/styles';
 import { Asset, Annotation } from './';
@@ -33,12 +33,9 @@ class Quote extends React.Component {
   renderAudio() {
     const file = this.props.file;
     if (!file) return false;
-    var playlist = [{ url: file }];
 
     return (
-
-        <AudioPlayer playlist={ playlist } />
-
+      <AudioPlayer src={file} />
     );
   }
   renderText(text) {
@@ -62,7 +59,6 @@ class Quote extends React.Component {
   }
 
   render() {
-    console.log(this.props.text)
     return (
       <Container className="Quote">
         <GfxContainer>
@@ -112,7 +108,6 @@ const GfxContainer = styled.div`
   height: ${ dist.medium };
   overflow: hidden;
 `
-
 
 const Gfx = styled(gfx)`
   width: 100%;
