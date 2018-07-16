@@ -14,9 +14,9 @@ const tabColors = (tabColor, steps) => {
 }
 
 tabColorPalette = [
-  colors.magenta,
+  // colors.magenta,
   colors.turqoise,
-  colors.orange
+  // colors.orange
 ]
 
 export { tabColors, tabColorPalette }
