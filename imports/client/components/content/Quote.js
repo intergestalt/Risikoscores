@@ -106,7 +106,7 @@ export default withTracker(props => {
 
 const GfxContainer = styled.div`
   width: 100%;
-  height: ${ dist.medium };
+  height: ${ dist.small };
   overflow: hidden;
 `
 
@@ -117,7 +117,7 @@ const Gfx = styled(gfx)`
 `
 
 const GfxBottom = styled(Gfx)`
-  transform: translateY(calc( ${ dist.medium } - 100%));
+  transform: translateY(calc( ${ dist.small } - 100%));
 `
 
 const Container = styled.div`
@@ -144,8 +144,8 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
-  margin-top: calc( -${ dist.medium });
-  margin-bottom: calc( -${ dist.medium });
+  margin-top: calc( -${ dist.small });
+  margin-bottom: calc( -${ dist.small });
 `
 
 const Source = styled.small`
@@ -153,4 +153,6 @@ const Source = styled.small`
   margin-top: ${dist.tiny};
   font-size: 80%;
   text-align: left;
+  z-index: 1;
+  position: relative;
 `;
