@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "install:public": "bin/copy-vendor-assets"
+    "postinstall": "bin/copy-vendor-assets"
   },
   "dependencies": {
     "antd": "^2.13.4",

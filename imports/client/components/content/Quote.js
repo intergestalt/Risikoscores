@@ -33,11 +33,12 @@ class Quote extends React.Component {
   renderAudio() {
     const file = this.props.file;
     if (!file) return false;
+    var playlist = [{ url: file }];
 
     return (
-      <LazyLoad height={100}>
-        <audio src={file} controls="controls" />
-      </LazyLoad>
+
+        <AudioPlayer playlist={ playlist } />
+
     );
   }
   renderText(text) {

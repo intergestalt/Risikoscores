@@ -5,6 +5,5 @@ if [ ! -d "public" ]; then
   exit
 fi
 
-mkdir public/vendor
-mkdir public/vendor/antd
+mkdir -p public/vendor/antd
 cp -Rf node_modules/antd/dist/ public/vendor/antd/
