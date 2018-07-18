@@ -12,7 +12,8 @@ Session.setDefault('streamIndex', 0);
 Session.setDefault('popupsIndex', 0);
 Session.setDefault('popupActive', false);
 Session.setDefault('popupClosing', false);
-Session.setDefault('startWelcomeExpanded', true);
+Session.setDefault('startWelcomeExpanded', true); // deprecated
+Session.setDefault('startWelcomeState', 0); // 0: Erster Absatz, 1: Alles, 2: Nur Überschrift, 3: Alles
 Session.setDefault('streamStarted', false);
 Session.setDefault('streamFinished', false);
 Session.setDefault('realGraph', null);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
 import { StreamWelcomeHeader, StreamWelcomeContent, Expander } from './';
@@ -21,9 +22,7 @@ class StreamWelcome extends React.Component {
   }
   render() {
     var content = null;
-    if (this.props.welcomeExpanded) {
-      content = <StreamWelcomeContent />;
-    }
+    content = <StreamWelcomeContent startWelcomeState={this.props.startWelcomeState} />;
     return (
       <LiWelcome key="_welcome" className="StreamWelcome">
         <StreamWelcomeHeader />
@@ -39,8 +38,11 @@ class StreamWelcome extends React.Component {
 }
 
 export default withTracker(props => {
+  const startWelcomeState = Session.get('startWelcomeState')
+  console.log(startWelcomeState)
   return {
-    welcomeExpanded: isStartWelcomeExpanded()
+    startWelcomeState,
+    welcomeExpanded: startWelcomeState == 1 || startWelcomeState == 3
   };
 })(StreamWelcome);
 

@@ -22,9 +22,11 @@ export function toggleQuestions() {
   Session.set('questionsExpanded', !questionsExpanded);
 }
 
-export function toggleStartWelcome() {
-  var expanded = isStartWelcomeExpanded();
-  Session.set('startWelcomeExpanded', !expanded);
+export function toggleStartWelcome() { // 0 -> 1 -> 2 <-> 3
+  var state = Session.get('startWelcomeState');
+  if (state > 2) state--;
+  else state++;
+  Session.set('startWelcomeState', state);
 }
 
 export function closeGlossarDetail() {
@@ -97,13 +99,13 @@ export function setStreamStarted() {
   Session.set('streamStarted', true);
 }
 
-export function setPopupsFinished() {}
+export function setPopupsFinished() { }
 
 export function setPopupsStarted() {
   Session.set('popupsStarted', true);
 }
 
-export function setStreamFinished() {}
+export function setStreamFinished() { }
 export function setRealGraph(realGraph) {
   Session.set('realGraph', realGraph);
 }
