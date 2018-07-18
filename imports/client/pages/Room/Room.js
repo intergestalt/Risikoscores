@@ -41,7 +41,7 @@ import {
 import { exists } from '../../../helper/global';
 import { startPopupsTimeout } from '../../../helper/popup';
 import { startStreamTimeout } from '../../../helper/stream';
-import {} from '../../../helper/actions';
+import { } from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
 import { tabColors, tabColorPalette } from '../../../config/tabColors';
 import { getUrlPrefix } from '../../../helper/uploads';
@@ -75,7 +75,11 @@ class Room extends React.Component {
       this.props.room &&
       nextProps.room._id != this.props.room._id
     ) {
-      Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1);
+      const counter = Session.get('roomVisitCounter')
+      Session.set('roomVisitCounter', counter + 1);
+    }
+    if (Session.get('startWelcomeState') == 3) {
+      Session.set('startWelcomeState', 2); // close open welcome message
     }
   }
 
