@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { getStreamQuestions, setLoading } from '../../helper/question';
 import { StreamWelcome, StreamPost } from './';
 import { getStreamIndex, getLanguage } from '../../helper/actions';
+import { colors } from '../../config/styles';
 
 class Stream extends React.Component {
   constructor(props) {
@@ -41,10 +42,11 @@ class Stream extends React.Component {
       setLoading(i, false);
     }
     const streamVerticalOffset = this.props.startWelcomeState < 2 ? this.state.welcomeHeights.mediumHeight : this.state.welcomeHeights.smallHeight
+    const shade = this.props.startWelcomeState == 1 || this.props.startWelcomeState == 3
     return (
       <div className="Stream">
         <StreamWelcome onHeightChange={this.handleHeightChange} />
-        <Ul verticalOffset={streamVerticalOffset}>
+        <Ul verticalOffset={streamVerticalOffset} shade={shade}>
           {streamPosts}
         </Ul>
       </div>
@@ -67,8 +69,9 @@ export default withTracker(props => {
 
 const Ul = styled.ul`
   height: calc( 100% - ${ props => props.verticalOffset}px );
-  transition: height 0.35s;
+  transition: height 0.35s, background-color 0.25s;
   position: absolute;
   bottom: 0;
   overflow: auto;
+  opacity: ${ props => props.shade ? "0.9" : "1"};
 `
