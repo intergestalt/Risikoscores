@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
+import styled from 'styled-components';
 
 import { getStreamQuestions, setLoading } from '../../helper/question';
 import { StreamWelcome, StreamPost } from './';
@@ -10,6 +11,14 @@ import { getStreamIndex, getLanguage } from '../../helper/actions';
 class Stream extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      welcomeHeights: {}
+    }
+    this.handleHeightChange = this.handleHeightChange.bind(this)
+  }
+
+  handleHeightChange(heights) {
+    this.setState({ welcomeHeights: heights })
   }
 
   render() {
@@ -31,12 +40,13 @@ class Stream extends React.Component {
       streamPosts.push(item);
       setLoading(i, false);
     }
+    const streamVerticalOffset = this.props.startWelcomeState < 2 ? this.state.welcomeHeights.mediumHeight : this.state.welcomeHeights.smallHeight
     return (
       <div className="Stream">
-        <ul>
-          <StreamWelcome />
+        <StreamWelcome onHeightChange={this.handleHeightChange} />
+        <Ul verticalOffset={streamVerticalOffset}>
           {streamPosts}
-        </ul>
+        </Ul>
       </div>
     );
   }
@@ -50,6 +60,12 @@ Stream.propTypes = {
 export default withTracker(props => {
   return {
     streamIndex: getStreamIndex(),
-    lang: getLanguage()
+    lang: getLanguage(),
+    startWelcomeState: Session.get('startWelcomeState')
   };
 })(Stream);
+
+const Ul = styled.ul`
+  margin-top: ${ props => props.verticalOffset}px;
+  transition: margin 0.35s;
+`

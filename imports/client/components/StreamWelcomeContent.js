@@ -30,16 +30,19 @@ class StreamWelcomeContent extends React.Component {
 
   getHeights() {
     const largeHeight = this.elem.scrollHeight
-    const mediumHeight = (this.elem).querySelector('p').scrollHeight;
-    this.setState({
+    const mediumHeight = (this.elem).querySelector('p').scrollHeight + parseInt(getComputedStyle(this.elem).fontSize); // ...fontSize -> add 1em which got lost somewhere in paragraphs...
+    const newHeights = {
       largeHeight,
-      mediumHeight
-    })
+      mediumHeight,
+      smallHeight: 0
+    }
+    this.setState(newHeights)
+    this.props.onHeightChange(newHeights)
   }
 
   getStateHeight(state) { // get the height according to a state
     switch (state) {
-      case 0: return "calc( " + this.state.mediumHeight + "px + 1em)"; break; // yes, the calc 1em is a hack
+      case 0: return this.state.mediumHeight; break;
       case 1: return this.state.largeHeight; break;
       case 2: return this.state.smallHeight; break;
       default: return this.state.largeHeight; break;
@@ -50,7 +53,6 @@ class StreamWelcomeContent extends React.Component {
     var text = getFragment('startInfo', this.props.lang);
     var hidden = this.props.startWelcomeState == 2
     var height = this.getStateHeight(this.props.startWelcomeState)
-    console.log(height)
     return (
       <ResizeAware
         style={{ position: 'relative' }}

@@ -12,11 +12,16 @@ class StreamWelcomeHeader extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    const height = this.elem.offsetHeight
+    this.props.onHeightChange(height)
+  }
+
   render() {
     var title = getFragment('startTitle');
 
     return (
-      <div className="StreamWelcomeHeader">
+      <div className="StreamWelcomeHeader" ref={el => this.elem = el}>
         <Title>{title}</Title>
       </div>
     );
