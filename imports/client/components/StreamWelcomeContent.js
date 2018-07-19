@@ -15,6 +15,7 @@ class StreamWelcomeContent extends React.Component {
       largeHeight: 0,
       mediumHeight: 0,
       smallHeight: 0,
+      width: 0,
     }
     this.getHeights = this.getHeights.bind(this)
     this.getStateHeight = this.getStateHeight.bind(this)
@@ -28,7 +29,13 @@ class StreamWelcomeContent extends React.Component {
     //this.getHeights()
   }
 
-  getHeights() {
+  getHeights(values) {
+    if (values && this.state.width != values.width) {
+      this.setState({ width: values.width })
+    } else if (values) {
+      return
+    }
+    //console.log(values.width)
     const largeHeight = this.elem.scrollHeight
     const mediumHeight = (this.elem).querySelector('p').scrollHeight + parseInt(getComputedStyle(this.elem).fontSize); // ...fontSize -> add 1em which got lost somewhere in paragraphs...
     const newHeights = {
