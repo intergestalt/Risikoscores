@@ -35,7 +35,6 @@ class StreamWelcomeContent extends React.Component {
     } else if (values) {
       return
     }
-    //console.log(values.width)
     const largeHeight = this.elem.scrollHeight
     const mediumHeight = (this.elem).querySelector('p').scrollHeight + parseInt(getComputedStyle(this.elem).fontSize); // ...fontSize -> add 1em which got lost somewhere in paragraphs...
     const newHeights = {

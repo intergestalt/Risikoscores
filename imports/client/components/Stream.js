@@ -66,6 +66,9 @@ export default withTracker(props => {
 })(Stream);
 
 const Ul = styled.ul`
-  margin-top: ${ props => props.verticalOffset}px;
-  transition: margin 0.35s;
+  height: calc( 100% - ${ props => props.verticalOffset}px );
+  transition: height 0.35s;
+  position: absolute;
+  bottom: 0;
+  overflow: auto;
 `
