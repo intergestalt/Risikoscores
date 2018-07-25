@@ -90,8 +90,8 @@ const snippets = {
   `,
   popupHuge: `
     font-family: 'Roboto Medium';
-    line-height: 3vw;
-    font-size: 3vw;  
+    line-height: 3.5vmin;
+    font-size: 3.5vmin;  
   `,
   standardTextPaddings: `
     padding: ${dist.named.columnPadding};

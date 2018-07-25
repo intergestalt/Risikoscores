@@ -47,7 +47,7 @@ class PictoComic extends React.Component {
   startComic() {
     this.timeout = setTimeout(() => {
       this.nextComic();
-    }, 5000);
+    }, 2000);
   }
   nextComic() {
     var num = this.state.imageNum;
