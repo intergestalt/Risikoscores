@@ -83,6 +83,11 @@ const snippets = {
     line-height: 6vw;
     font-size: 6vw;  
   `,
+  popupHuge: `
+    font-family: 'Roboto Medium';
+    line-height: 3vw;
+    font-size: 3vw;  
+  `,
   standardTextPaddings: `
     padding: ${dist.named.columnPadding};
     padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});

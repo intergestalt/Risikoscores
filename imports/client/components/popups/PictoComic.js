@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-import { colors, dist } from '../../../config/styles';
+import { colors, snippets } from '../../../config/styles';
 import {
   getPopupClosing,
   getLanguage,
@@ -139,27 +139,27 @@ class PictoComic extends React.Component {
     );
     var text = (
       <div onClick={this.clickCallback} className="PictoComic">
-        <div>&nbsp; </div>
+        <Text>&nbsp; </Text>
       </div>
     );
     if (this.state.imageNum == 1) {
       text = (
         <div onClick={this.clickCallback} className="PictoComic">
-          <div>{localeStr(popup.text3)}</div>
+          <Text>{localeStr(popup.text3)}</Text>
         </div>
       );
     } else if (this.state.imageNum == 2) {
       text = (
         <div onClick={this.clickCallback} className="PictoComic">
-          <div>{localeStr(popup.text2)}</div>
+          <Text>{localeStr(popup.text2)}</Text>
         </div>
       );
     }
     console.log(
       'LOADED ' +
-        (this.state.popupLoaded1 &&
-          this.state.popupLoaded2 &&
-          this.state.popupLoaded3)
+      (this.state.popupLoaded1 &&
+        this.state.popupLoaded2 &&
+        this.state.popupLoaded3)
     );
     return (
       <PopupDiv
@@ -175,10 +175,10 @@ class PictoComic extends React.Component {
           {image}
           {text}
         </Left>
-        <Right>
-          {localeStr(popup.title)}
-          <br />
-          <br />>>>
+        <Right onClick={this.clickCallback}>
+          <RightText>
+            {localeStr(popup.title)}
+          </RightText>
         </Right>
 
         <ClosePopup />
@@ -203,6 +203,7 @@ var PopupDiv = styled.div`
   bottom: ${props => (props.popupLoaded ? '0px' : '-2000px')};
   opacity: ${props => (props.popupLoaded ? '1' : '0')};
   width: 100%;
+  height: 33.333vh;
   z-index: 20;
   display: flex;
   flex-direction: row;
@@ -210,32 +211,45 @@ var PopupDiv = styled.div`
   ${props =>
     props.popupLoaded
       ? props =>
-          props.popupClosing
-            ? `animation: ${moveOut} 200ms ease-in-out;`
-            : `animation: ${moveIn} 200ms ease-in-out;`
+        props.popupClosing
+          ? `animation: ${moveOut} 200ms ease-in-out;`
+          : `animation: ${moveIn} 200ms ease-in-out;`
       : ''};
 `;
 
 var Right = styled.div`
-  position: relative;
   width: 50%;
+  text-align: center;
   background-color: ${colors.turqoise};
+  display: flex;
+`;
+
+var RightText = styled.div`
+  ${ snippets.popupHuge};
+  margin: auto;
+  &:after {
+    content: "\\A>>>";
+    white-space: pre;
+    font-size: 500%;    
+    position: relative;
+    display: block;
+    padding-top: 0.1ex;
+  }
 `;
 
 var Left = styled.div`
   position: relative;
   width: 50%;
-  background-color: ${colors.verylightgrey};
+  background-color: ${colors.orange};
 `;
 var PiktoDiv = styled.div`
   position: relative;
-  width: 80%;
-  heigth: 100px;
 `;
 
 var ImageSpan2 = styled.span`
   position: relative;
   width: 100%;
+  display: block;
   opacity: ${props => (props.visible ? '1' : '0')};
 `;
 var ImageSpan = styled.span`
@@ -245,6 +259,10 @@ var ImageSpan = styled.span`
   width: 100%;
   opacity: ${props => (props.visible ? '1' : '0')};
 `;
+
+var Text = styled.div`
+  ${ snippets.standardTextPaddings};
+`
 
 /*
           <Image
