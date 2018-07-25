@@ -59,6 +59,11 @@ const snippets = {
     line-height: 21px;
     font-size: 18px;
   `,
+  bodyTextStrong: `
+    font-family: 'Roboto Regular';
+    line-height: 21px;
+    font-size: 18px;
+  `,
   smallText: `
     font-family: 'Roboto Regular';
     line-height: 21px;

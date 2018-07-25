@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
-import { colors, dist } from '../../../config/styles';
+import { colors, snippets } from '../../../config/styles';
 import { getPopupClosing, getLanguage } from '../../../helper/actions';
 import { getBottomAnimations, getPopupUrl } from '../../../helper/popup';
 import { exists, existsString, localeStr } from '../../../helper/global';
@@ -73,7 +73,7 @@ class ArribaSpiel extends React.Component {
     };
     console.log(asset3);
     image = (
-      <div onClick={this.clickCallback} className="BannerImage">
+      <Banner onClick={this.clickCallback} className="BannerImage">
         <ImagesDiv>
           <ImageDiv1>
             <Character>
@@ -92,13 +92,13 @@ class ArribaSpiel extends React.Component {
           </ImageDiv3>
         </ImagesDiv>
         <Title>{localeStr(popup.title)}</Title>
-      </div>
+      </Banner>
     );
     console.log(
       'LOADED ' +
-        (this.state.popupLoaded1 &&
-          this.state.popupLoaded2 &&
-          this.state.popupLoaded3)
+      (this.state.popupLoaded1 &&
+        this.state.popupLoaded2 &&
+        this.state.popupLoaded3)
     );
     return (
       <PopupDiv
@@ -134,20 +134,29 @@ var PopupDiv = styled.div`
   bottom: ${props => (props.popupLoaded ? '0px' : '-2000px')};
   opacity: ${props => (props.popupLoaded ? '1' : '0')};
   width: 100%;
+  height: 33.333vh;
   z-index: 20;
 
   cursor: pointer;
   ${props =>
     props.popupLoaded
       ? props =>
-          props.popupClosing
-            ? `animation: ${moveOut} 200ms ease-in-out;`
-            : `animation: ${moveIn} 200ms ease-in-out;`
+        props.popupClosing
+          ? `animation: ${moveOut} 200ms ease-in-out;`
+          : `animation: ${moveIn} 200ms ease-in-out;`
       : ''};
 `;
+
+var Banner = styled.div`
+  display:flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
 var ImagesDiv = styled.div`
   display: flex;
   flex-direction: row;
+  flex: 1;
 `;
 var ImageDiv1 = styled.div`
   display: block;
@@ -171,12 +180,26 @@ var Title = styled.div`
   display: block;
   position: relative;
   width: 100%;
+  box-sizing: border-box;
+
   background-color: ${colors.verylightgrey};
+  ${ snippets.standardTextPaddings};
+  ${ snippets.bodyTextStrong};
+  @media screen and (min-width: 44em) {
+    padding-left: 16%;
+    padding-right: 16%;
+  }
+  text-align: center;
 `;
-const CharacterImage = styled(GameCharacterImage)``;
+const CharacterImage = styled(GameCharacterImage)`
+  height: 100%;
+  width: auto;
+  display: inline-block;
+`;
 
 const Character = styled.div`
-  display: flex;
+  height: 100%;
+  text-align: center;
 `;
 /*
           <Image

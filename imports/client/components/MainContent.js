@@ -53,6 +53,7 @@ class MainContent extends React.Component {
       <Container>
         <a
           href={'#'}
+          style={{ position: "absolute", right: "1em", top: "1em", opacity: 0.5, zIndex: 10 }}
           onClick={e => {
             this.clickCallback(e);
           }}
