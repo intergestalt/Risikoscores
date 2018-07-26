@@ -82,6 +82,6 @@ const Welcome = styled.div`
   & .Expander {
     position: absolute;
     right:${ dist.tiny};
-    bottom:1.1em;
+    bottom:1em;
   }    
 `;
