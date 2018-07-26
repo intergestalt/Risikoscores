@@ -37,7 +37,7 @@ const A = styled.a`
   width: 1em;
   height: calc(${dist.lineTopDiff} + 1em);
   width: calc(${dist.lineTopDiff} + 1em);
-  line-height: calc(${dist.lineTopDiff} + 1em);
+  line-height: calc(${dist.lineTopDiff} + 1.1em);
   text-align: center;
   &:hover {
     text-decoration: none;
