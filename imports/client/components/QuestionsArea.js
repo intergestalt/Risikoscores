@@ -94,7 +94,7 @@ const Area = styled.div`
   & .Expander {
     position: absolute;
     right:0.5em;
-    top:0.5em;
+    top:1em;
     z-index:1; // because of the scrollbars
   }
 `;

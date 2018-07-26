@@ -67,7 +67,7 @@ class GraphArea extends React.Component {
     e.preventDefault();
     toggleGraph(e);
   }
-  soundFinished() {}
+  soundFinished() { }
   graphCallback(roomId) {
     if (exists(roomId)) {
       setSelectGraphNode(roomId);
@@ -156,6 +156,6 @@ const Area = styled.div`
   & .Expander {
     position: absolute;
     right:0.5em;
-    top:0.5em;
+    top:1em;
   }  
-}`;
+`;
