@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import { getFragment } from '../../helper/fragment';
-import { dist } from '../../config/styles';
+import { dist, snippets } from '../../config/styles';
 import { localeStr, exists } from '../../helper/global';
 import { getCachedRooms } from '../../helper/actions';
 
@@ -30,6 +30,8 @@ class RoomInterHeader extends React.Component {
 export default withTracker(props => {
   return {};
 })(RoomInterHeader);
+
 const Header = styled.h3`
   padding: 0 ${dist.named.columnPadding};
+  ${ snippets.headlineText}
 `;

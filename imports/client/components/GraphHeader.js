@@ -5,6 +5,7 @@ import { Session } from 'meteor/session';
 import Rooms from '../../collections/rooms';
 import styled from 'styled-components';
 import { getFragment } from '../../helper/fragment';
+import { snippets } from '../../config/styles';
 
 class GraphHeader extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class GraphHeader extends React.Component {
     var title = this.props.title || getFragment('graphTitle');
     return (
       <Container className="GraphHeader">
-        <h3>{title}</h3>
+        <Header>{title}</Header>
       </Container>
     );
   }
@@ -35,3 +36,7 @@ export default withTracker(props => {
 const Container = styled.div`
   position: absolute;
 `;
+
+const Header = styled.h3`
+  ${ snippets.headlineText}
+`

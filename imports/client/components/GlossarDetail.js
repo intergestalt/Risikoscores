@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { localeStr } from '../../helper/global';
 import { GlossarClose, DiyMarkdown } from './';
-import { dist } from '../../config/styles';
+import { dist, snippets } from '../../config/styles';
 
 class GlossarDetail extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class GlossarDetail extends React.Component {
     var title = localeStr(this.props.entry.name);
     return (
       <Container className="GlossarContent GlossarDetail">
-        <h1>{title}</h1>
+        <Header>{title}</Header>
         <GlossarClose />
         <DiyMarkdown>{text}</DiyMarkdown>
       </Container>
@@ -37,3 +37,7 @@ const Container = styled.div`
     padding-right: 0;
   }
 `;
+
+const Header = styled.h3`
+  ${ snippets.headlineText}
+`
