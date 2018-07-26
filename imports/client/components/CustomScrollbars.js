@@ -110,7 +110,9 @@ class CustomScrollbars extends React.Component {
 }
 
 CustomScrollbars.propTypes = {
-  blind: PropTypes.bool
+  blind: PropTypes.bool,
+  shadeColor: PropTypes.string,
+  scrollbarsRef: PropTypes.func
 };
 
 export default CustomScrollbars;

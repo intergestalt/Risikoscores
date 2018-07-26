@@ -25,27 +25,6 @@ class GlossarArea extends React.Component {
   }
 
   renderGlossar() {
-    var content = null;
-    var done = false;
-    if (existsString(this.props.glossarDetailId)) {
-      const glossarEntry = getGlossarEntry(
-        this.props.glossar,
-        this.props.glossarDetailId
-      );
-      if (exists(glossarEntry)) {
-        content = <GlossarDetail entry={glossarEntry} />;
-        done = true;
-      }
-    }
-    if (!done) {
-      content = (
-        <GlossarList
-          glossar={this.props.glossar}
-          roomGlossar={this.props.roomGlossar}
-        />
-      );
-    }
-
     //graphExpanded == true && questionsExpanded == true => height:7%
     //graphExpanded == true && questionsExpanded == false => height:34%
     //graphExpanded == false && questionsExpanded == true => height:33%
@@ -65,11 +44,28 @@ class GlossarArea extends React.Component {
       }
     }
 
+    var content = null;
+    var done = false;
+    if (existsString(this.props.glossarDetailId)) {
+      const glossarEntry = getGlossarEntry(
+        this.props.glossar,
+        this.props.glossarDetailId
+      );
+      if (exists(glossarEntry)) {
+        content = <GlossarDetail entry={glossarEntry} relativeHeight={height} />;
+        done = true;
+      }
+    }
+
     return (
       <Area relativeHeight={height} className="GlossarArea">
         <CustomScrollbars autoHide>
           <InnerContainer>
             {content}
+            < GlossarList
+              glossar={this.props.glossar}
+              roomGlossar={this.props.roomGlossar}
+            />
           </InnerContainer>
         </CustomScrollbars>
       </Area>
