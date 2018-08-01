@@ -4,24 +4,26 @@ import { Session } from 'meteor/session';
 import { getSelectedTabId, getSelectedRoomId } from '../../../helper/actions';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { AudioPlayer } from '../';
 
+import { AudioPlayer } from '../';
 import { dist } from '../../../config/styles';
 import { Asset, Annotation } from './';
 import { getUrlPrefix } from '../../../helper/uploads';
 
+/**** config ****/
+
+const gfxTopDist = "21px"
+const gfxBottomDist = "38px"
+const bgColor= "rgba(255, 255, 255, 0.8)";
+
+/**** component *****/
+
 const gfx = (props) => (
-    <svg {...props} version="1.0" xmlns="http://www.w3.org/2000/svg"
-      width="416.000000pt" height="367.000000pt" viewBox="0 0 416.000000 367.000000"
-      preserveAspectRatio="xMidYMid meet">
-      <g transform="translate(0.000000,367.000000) scale(0.100000,-0.100000)"
-      fill="#000000" stroke="none">
-      <path d="M135 3646 c-59 -28 -98 -66 -119 -118 -14 -33 -16 -218 -16 -1685 0
-      -1636 1 -1648 21 -1693 23 -52 61 -95 104 -118 28 -16 191 -17 2033 -22 1101
-      -3 2002 -2 2002 3 0 4 -12 7 -27 7 -38 1 -103 32 -132 63 l-23 25 31 46 c65
-      94 61 -27 61 1726 0 1725 3 1637 -51 1710 -13 16 -45 41 -73 55 l-50 25 -1855
-      0 -1856 0 -50 -24z"/>
-      </g>
+    <svg {...props} version="1.0" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-141 -9 417 366" xmlSpace="preserve">
+      <path d="M274.4,356.2c-9.4,0-13.6-9.6-15.6-20.5c4.3-6.9,7.2-16,7.2-28.1V16.1c0,0,0-25.1-25-25.1h-356.7
+        c0,0-25.3,0.1-25.3,25.1V332c0,0,0.3,25,25.3,25h330.2c0,0,15.3,0.6,29.2-7.2c8.1,6.3,23.2,7.2,29.2,7.2c1.5,0,3.1-0.2,3.1-0.4
+        C276,356.4,275.5,356.2,274.4,356.2z"/>
     </svg>
   )
 
@@ -60,21 +62,23 @@ class Quote extends React.Component {
   }
 
   render() {
+    const onlyAudio = !this.props.text && !this.props.source
+    console.log(onlyAudio)
     return (
       <Container className="Quote">
         <GfxContainer>
           <Gfx />
         </GfxContainer>
-        <ContentContainer>
+        <ContentContainer onlyAudio={onlyAudio}>
           <Content>
             {this.renderAudio()}
             {this.props.text && this.renderText(this.props.text)}
             {this.renderSource()}
           </Content>
         </ContentContainer>
-        <GfxContainer>
+        <GfxBottomContainer>
           <GfxBottom />
-        </GfxContainer>  
+        </GfxBottomContainer>  
       </Container>
     );
   }
@@ -104,23 +108,10 @@ export default withTracker(props => {
   };
 })(Quote);
 
-const GfxContainer = styled.div`
-  width: 100%;
-  height: ${ dist.small };
-  overflow: hidden;
-`
-
-const Gfx = styled(gfx)`
-  width: 100%;
-  height: auto;
-  path {fill: rgba(255, 255, 255, 0.8);}
-`
-
-const GfxBottom = styled(Gfx)`
-  transform: translateY(calc( ${ dist.small } - 100%));
-`
+/***** styles *****/
 
 const Container = styled.div`
+  position: relative;
   opacity: 0.85;
   margin-bottom: 1em;
   margin-left: ${dist.tiny};
@@ -130,13 +121,36 @@ const Container = styled.div`
   }
 `;
 
+const GfxContainer = styled.div`
+  width: 100%;
+  height: ${ gfxTopDist };
+  overflow: hidden;
+`
+
+const GfxBottomContainer = styled(GfxContainer)`
+  height: ${ gfxBottomDist };
+`
+
+const Gfx = styled(gfx)`
+  width: 100%;
+  height: auto;
+  path {fill: ${bgColor} }
+`
+
+const GfxBottom = styled(Gfx)`
+  transform: translateY(calc( ${ gfxBottomDist } - 100%));
+`
+
 const ContentContainer = styled.div`
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: ${ bgColor };
+  position: relative;
+  z-index: 1;
   padding-top: ${dist.tiny};
   padding-bottom: ${dist.tiny};
   padding-left: ${dist.tiny};
   padding-right: ${dist.tiny};
   margin-right: 2.4%; /* ${dist.tiny}; */
+  ${ (props) => (props.onlyAudio ? "position:absolute; right:0; left:0; background-color:transparent;" : "")}
   & audio {
     margin-bottom: ${dist.tiny};
     display: block;
@@ -144,8 +158,8 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
-  margin-top: calc( -${ dist.small });
-  margin-bottom: calc( -${ dist.small });
+  margin-top: calc( -${ gfxTopDist });
+  margin-bottom: calc( -${ gfxBottomDist });
 `
 
 const Source = styled.small`
