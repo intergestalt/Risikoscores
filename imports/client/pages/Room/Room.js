@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import styled from 'styled-components';
@@ -144,7 +145,7 @@ class Room extends React.Component {
           className="Room"
           powerOn={this.props.powerOn}
         >
-          <MainColumn room={room} />
+          <MainColumn room={room} authenticated={this.props.authenticated} />
           <TabColumn
             selectedTabId={selectedTabId}
             tabs={subsections}
@@ -159,11 +160,13 @@ class Room extends React.Component {
         </RoomElem>
         <MenuIcon />
         <ImageDetailView />
-        <RoomChooserFixed className="RoomChooserFixed">
-          <RoomChooser roomKey={roomId} disableNonExistingVariants />
-        </RoomChooserFixed>
+        {this.props.authenticated &&
+          <RoomChooserFixed className="RoomChooserFixed">
+            <RoomChooser roomKey={roomId} disableNonExistingVariants />
+          </RoomChooserFixed>
+        }
         <Game />
-        <Popup />
+        {this.props.powerOn && <Popup />}
       </span>
     );
   }
@@ -248,6 +251,7 @@ export default withTracker(props => {
     fragments: TextFragments.find().fetch(),
     questions: Questions.find().fetch(),
     ready: sub.ready() && sub2.ready(), // && room,
+    authenticated: Meteor.userId() !== null,
     powerOn: Session.get('powerOn'),
     playAudio: getPlayAudio() || getPlayAudioFirst(),
     beamOut: getBeamOut()

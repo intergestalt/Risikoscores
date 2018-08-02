@@ -51,15 +51,17 @@ class MainContent extends React.Component {
     }
     return (
       <Container>
-        <a
-          href={'#'}
-          style={{ position: "absolute", right: "1em", top: "1em", opacity: 0.5, zIndex: 10 }}
-          onClick={e => {
-            this.clickCallback(e);
-          }}
-        >
-          Störer
-        </a>
+        {this.props.authenticated &&
+          <a
+            href={'#'}
+            style={{ position: "absolute", right: "1em", top: "1em", opacity: 0.5, zIndex: 10 }}
+            onClick={e => {
+              this.clickCallback(e);
+            }}
+          >
+            Störer
+          </a>
+        }
         <CustomScrollbars autoHide shadeColor={colors.lightgrey}>
           <Content className="MainContent">
             <Headline>{title}</Headline>
@@ -72,7 +74,8 @@ class MainContent extends React.Component {
 }
 
 MainContent.propTypes = {
-  room: PropTypes.object
+  room: PropTypes.object,
+  authenticated: PropTypes.bool
 };
 
 export default MainContent;

@@ -21,13 +21,14 @@ class MainColumn extends React.Component {
     return (
       <Column className="MainColumn">
         <MainImages roomFolder={roomFolder} images={images} />
-        <MainContent style={{ overflow: 'auto' }} room={this.props.room} />
+        <MainContent style={{ overflow: 'auto' }} room={this.props.room} authenticated={this.props.authenticated} />
       </Column>
     );
   }
 }
 MainColumn.propTypes = {
-  room: PropTypes.object
+  room: PropTypes.object,
+  authenticated: PropTypes.bool
 };
 
 export default MainColumn;
