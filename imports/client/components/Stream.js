@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
 import { getStreamQuestions, setLoading } from '../../helper/question';
-import { StreamWelcome, StreamPost } from './';
+import { StreamWelcome, StreamPost, CustomScrollbars } from './';
 import { getStreamIndex, getLanguage } from '../../helper/actions';
 import { colors } from '../../config/styles';
 
@@ -46,9 +46,13 @@ class Stream extends React.Component {
     return (
       <div className="Stream">
         <StreamWelcome onHeightChange={this.handleHeightChange} />
-        <Ul verticalOffset={streamVerticalOffset} shade={shade}>
-          {streamPosts}
-        </Ul>
+        <UlContainer verticalOffset={streamVerticalOffset}>
+          <CustomScrollbars autoHide>
+            <Ul shade={shade}>
+              {streamPosts}
+            </Ul>
+          </CustomScrollbars>
+        </UlContainer>
       </div>
     );
   }
@@ -67,11 +71,15 @@ export default withTracker(props => {
   };
 })(Stream);
 
-const Ul = styled.ul`
+const UlContainer = styled.div`
   height: calc( 100% - ${ props => props.verticalOffset}px );
+  width:100%;
   transition: height 0.35s, background-color 0.25s;
   position: absolute;
   bottom: 0;
   overflow: auto;
+`
+
+const Ul = styled.ul`
   opacity: ${ props => props.shade ? "0.9" : "1"};
 `
