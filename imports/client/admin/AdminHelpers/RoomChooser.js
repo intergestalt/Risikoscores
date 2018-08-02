@@ -23,7 +23,7 @@ class RoomChooser extends React.Component {
     if (
       !confirm(
         `Overwrite ${
-          this.props.roomVariant
+        this.props.roomVariant
         } version of this room with content of the normal version?`
       )
     )
@@ -37,7 +37,7 @@ class RoomChooser extends React.Component {
     if (
       !confirm(
         `Overwrite normal version of this room with content of the ${
-          this.props.roomVariant
+        this.props.roomVariant
         }  version? Cannot be undone!`
       )
     )
@@ -66,6 +66,10 @@ class RoomChooser extends React.Component {
   }
 
   render() {
+    if (!this.props.authenticated) {
+      return null;
+    }
+
     if (
       this.props.disableNonExistingVariants &&
       (this.props.existingVariants && this.props.existingVariants.length <= 1)
@@ -137,21 +141,33 @@ RoomChooser.propTypes = {
 
 export default withTracker(props => {
   const userId = Meteor.userId();
-  const roomVariant = Session.get('roomVariant');
-  const existingVariants = variants;
-  if (props.roomKey && props.disableNonExistingVariants) {
-    const sub = Meteor.subscribe('room.variants.list');
-    const docs = Rooms.find({ key: props.roomKey }).fetch();
-    existingVariants = docs.map(doc => doc.variant);
-  }
+  const authenticated = userId || false;
+  if (!authenticated) {
 
-  return {
-    userId,
-    authenticated: userId || false,
-    roomVariant,
-    existingVariants,
-    normalEnabled: Meteor.user() && Meteor.user().username == 'admin'
-  };
+    return {
+      authenticated
+    }
+
+  } else {
+
+    const roomVariant = Session.get('roomVariant');
+    const existingVariants = variants;
+    if (props.roomKey && props.disableNonExistingVariants) {
+      const sub = Meteor.subscribe('room.variants.list');
+      const docs = Rooms.find({ key: props.roomKey }).fetch();
+      existingVariants = docs.map(doc => doc.variant);
+    }
+
+
+    return {
+      userId,
+      authenticated,
+      roomVariant,
+      existingVariants,
+      normalEnabled: Meteor.user() && Meteor.user().username == 'admin'
+    };
+
+  }
 })(RoomChooser);
 
 const Container = styled.div`
