@@ -79,7 +79,7 @@ const moveIn = keyframes`
 
 const Img = styled.div`
   padding-bottom: 1em;
-  width: 25%;
+  width: 100%;
   transform: ${props => (props.selected ? 'scale(1.05)' : 'scale(1)')};
   opacity: ${props => (props.selected ? '0.9' : '1')};
   cursor: pointer;
