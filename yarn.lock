@@ -634,6 +634,10 @@ destroy@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
 
+detect-browser@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/detect-browser/-/detect-browser-3.0.0.tgz#3fc232002c56d427410a9e1ac3b3e8c3a80bb848"
+
 diffie-hellman@^5.0.0:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/diffie-hellman/-/diffie-hellman-5.0.2.tgz#b5835739270cfe26acf632099fded2a07f209e5e"

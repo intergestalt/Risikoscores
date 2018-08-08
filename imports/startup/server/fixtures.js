@@ -47,7 +47,10 @@ const textFragments = [
   'menuIcon',
   'aboutLink',
   'aboutText',
-  'languageLink'
+  'languageLink',
+  'oldBrowserWarning',
+  'smallScreenWarning',
+  'dismiss'
 ];
 
 const glossar = getInitialGlossar();

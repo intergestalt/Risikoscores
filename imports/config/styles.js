@@ -93,6 +93,11 @@ const snippets = {
     line-height: 3.5vmin;
     font-size: 3.5vmin;  
   `,
+  overlayNotes: `
+    font-family: 'Roboto Medium';
+    line-height: 7.5vmin;
+    font-size: 5vmin;  
+  `,
   standardTextPaddings: `
     padding: ${dist.named.columnPadding};
     padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});

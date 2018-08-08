@@ -7,6 +7,8 @@ import { Session } from 'meteor/session';
 import { Start } from '../../pages/Start';
 import { Room } from '../../pages/Room';
 
+import { OverlayNotes } from '../../components';
+
 import { AdminRooms } from '../../admin/AdminRooms';
 import { AdminEditRoom } from '../../admin/AdminEditRoom';
 import { AdminOverview } from '../../admin/AdminOverview';
@@ -157,6 +159,7 @@ const App = appProps => (
           component={AdminUploads}
         />
       </Switch>
+      <OverlayNotes />
     </div>
   </Router>
 );

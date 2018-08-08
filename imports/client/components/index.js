@@ -57,6 +57,8 @@ import GameBottom from './GameBottom';
 import GamePopup from './GamePopup';
 import GameCharacterImage from './GameCharacterImage';
 
+import OverlayNotes from './OverlayNotes';
+
 export {
   AudioPlayer,
   MenuIcon,
@@ -109,5 +111,6 @@ export {
   GameBar,
   GameContent,
   GamePopup,
-  GameCharacterImage
+  GameCharacterImage,
+  OverlayNotes
 };
