@@ -15,7 +15,7 @@ class Image extends React.Component {
   }
 
   render() {
-    const sizeName = this.props.size || false;
+    const sizeName = this.props.size || this.props.defaultSize || false;
     var imageEntity = null;
     if (exists(this.props.asset)) {
       const title =
@@ -61,12 +61,14 @@ Image.propTypes = {
   clickCallback: PropTypes.func,
   imgStyles: PropTypes.string,
   imgRef: PropTypes.func,
-  onLoad: PropTypes.func
+  onLoad: PropTypes.func,
+  size: PropTypes.string
 };
 
 export default withTracker(props => {
   return {
-    roomVariant: Session.get('roomVariant')
+    roomVariant: Session.get('roomVariant'),
+    defaultSize: Session.get('imageLayout'),
   };
 })(Image);
 

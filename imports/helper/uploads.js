@@ -88,7 +88,7 @@ function convertImages(force = false) {
           srcPath: file,
           dstPath: destFile,
           strip: true,
-          customArgs: ['-bordercolor', 'none', '-border', '1x1', '-trim', '-auto-orient', '+repage', '-density', '75'],
+          customArgs: ['-bordercolor', 'none', '-border', '1x1', '-trim', '-auto-orient', '+repage'],
           width: targetWidth,
           quality: sizeObj.quality,
         });

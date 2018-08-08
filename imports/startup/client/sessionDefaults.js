@@ -29,3 +29,4 @@ Session.setDefault('playAudioFirst', true);
 Session.setDefault('playAudioFile', '');
 Session.setDefault('beamOut', false);
 Session.setDefault('gameStarted', false);
+Session.setDefault('imageLayout', false); // give a clue whether image widths are "half" of the screen or "third"

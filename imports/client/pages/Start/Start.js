@@ -24,6 +24,10 @@ class Start extends React.Component {
     startPopupsTimeout();
   }
 
+  componentWillMount() {
+    Session.set('imageLayout', "half");
+  }
+
   componentWillUnmount() {
     document.documentElement.classList.toggle('noscroll', false);
   }

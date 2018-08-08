@@ -68,6 +68,7 @@ class Room extends React.Component {
 
   componentWillMount() {
     Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1);
+    Session.set('imageLayout', "third");
   }
 
   componentWillReceiveProps(nextProps) {

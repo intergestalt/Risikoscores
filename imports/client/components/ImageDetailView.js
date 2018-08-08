@@ -100,6 +100,7 @@ class ImageDetailView extends React.Component {
             >
               <Image
                 imgStyles={imgStyles}
+                size="fullscreen"
                 asset={asset}
                 imgRef={(elem) => { this.imgElem = elem; }}
                 onLoad={(this.handleImgLoad)}
@@ -157,7 +158,7 @@ const Figure = styled.figure`
   align-items: center;
 `
 
-const ImgContainer = styled(ResizeAware) `
+const ImgContainer = styled(ResizeAware)`
   display: flex;
   overflow: hidden;
 `
