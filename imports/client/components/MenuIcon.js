@@ -8,7 +8,13 @@ import { getLanguage } from '../../helper/actions';
 class MenuIcon extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      mounted: false
+    }
     this.clickCallback = this.clickCallback.bind(this);
+  }
+  componentDidMount() {
+    this.setState({ mounted: true }) // this doesn't work as expected because the router does not dismount
   }
   clickCallback(e) {
     e.preventDefault();
@@ -19,7 +25,7 @@ class MenuIcon extends React.Component {
   render() {
     var lang = getLanguage();
     return (
-      <FloatMenu>
+      <FloatMenu mounted={this.state.mounted}>
         <a
           href="#"
           onClick={e => {
@@ -80,8 +86,9 @@ const FloatMenu = styled.nav`
     z-index: 10;
     display: block;
     pointer-events: none;
-    -webkit-filter: drop-shadow(12px 12px 4px rgba(0, 0, 0, 0.55));
-    filter: drop-shadow(12px 12px 4px rgba(0, 0, 0, 0.55));
+    transition: all 1s 0.8s;  
+    -webkit-filter: drop-shadow(${ props => props.mounted ? "12" : "4"}px ${props => props.mounted ? "12" : "4"}px 5px rgba(0, 0, 0, 0.75));
+    filter: drop-shadow(${ props => props.mounted ? "12" : "4"}px ${props => props.mounted ? "12" : "4"}px 5px rgba(0, 0, 0, 0.75));
   }
 `;
 
