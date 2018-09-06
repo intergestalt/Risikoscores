@@ -21,7 +21,11 @@ class GlossarArea extends React.Component {
   }
 
   renderLoading() {
-    return <div className="GlossarArea"><Loading /></div>;
+    return (
+      <LoadingContainer style={{ height: "33.333%" }} className="GlossarArea">
+        <Loading />
+      </LoadingContainer>
+    )
   }
 
   renderGlossar() {
@@ -96,6 +100,11 @@ export default withTracker(props => {
     ready: sub.ready()
   };
 })(GlossarArea);
+
+const LoadingContainer = styled.div`
+  height: "33.333%";
+  background-color: ${colors.darkgrey};
+`
 
 const Area = styled.div`
   height: ${props => props.relativeHeight}%;

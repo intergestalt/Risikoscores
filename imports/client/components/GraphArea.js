@@ -82,9 +82,9 @@ class GraphArea extends React.Component {
 
   renderLoading() {
     return (
-      <div className="GraphArea">
+      <LoadingContainer className="GraphArea">
         <Loading />
-      </div>
+      </LoadingContainer>
     );
   }
   render() {
@@ -145,6 +145,10 @@ export default withTracker(props => {
   };
 })(GraphArea);
 
+const LoadingContainer = styled.div`
+  height: 33.333%;
+  background-color: ${colors.mediumgrey};
+`
 const Area = styled.div`
   height: ${props => props.relativeHeight}%;
   //flex:  ${props => props.relativeHeight};
