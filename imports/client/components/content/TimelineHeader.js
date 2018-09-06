@@ -16,19 +16,26 @@ class TimelineHeader extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.scrollPos) {
-      if (!this.props.isScrollLeader && nextProps.scrollPos) {
-        this.scrollTo(this.timelineScrollPosToHeaderScrollPos(nextProps.scrollPos))
+    if (nextProps.scrollPosElem != undefined || nextProps.scrollPosElemOffset != undefined) {
+      if (!this.props.isScrollLeader && nextProps.scrollPosElem != undefined && nextProps.scrollPosElemOffset != undefined) {
+        this.scrollTo(this.timelineScrollPosToHeaderScrollPos(
+          nextProps.scrollPosElem,
+          nextProps.scrollPosElemOffset
+        ))
       }
       return false
     }
     return true;
   }
 
-  timelineScrollPosToHeaderScrollPos([elemNumber, elemOffsetRel]) {
-    const el = Array.from(this.yearsElems.values())[elemNumber]
+  timelineScrollPosToHeaderScrollPos(elemNumber, elemOffsetRel) {
+    if (this.yearsElems.size == elemNumber) {
+      elemNumber--; elemOffsetRel = 1
+    }
+    const el = Array.from(this.yearsElems.values())[Math.floor(elemNumber)]
     const left = el.offsetLeft;
     const width = el.offsetWidth;
+    if (Math.floor(elemNumber) != elemNumber) elemOffsetRel = elemNumber - Math.floor(elemNumber)
     const x = left + (width * elemOffsetRel)
     return x;
   }
@@ -113,6 +120,6 @@ const Year = styled.a`
     &:first-child { padding-left: 4em }
     &:last-child { padding-right: 4em }
     pointer-events: all;
-    color: white;
+    color: black;
     cursor: pointer;
  `;

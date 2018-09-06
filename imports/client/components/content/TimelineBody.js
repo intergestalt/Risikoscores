@@ -18,10 +18,13 @@ class TimelineBody extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.scrollPos) {
-      if (!this.props.isScrollLeader && nextProps.scrollPos) {
+    if (nextProps.scrollPosElem != undefined || nextProps.scrollPosElemOffset != undefined) {
+      if (!this.props.isScrollLeader && nextProps.scrollPosElem != undefined && nextProps.scrollPosElemOffset != undefined) {
         this.scrollTo(
-          this.timelineScrollPosToBodyScrollPos(nextProps.scrollPos)
+          this.timelineScrollPosToBodyScrollPos(
+            nextProps.scrollPosElem,
+            nextProps.scrollPosElemOffset
+          )
         );
       }
       return false;
@@ -33,15 +36,21 @@ class TimelineBody extends React.Component {
     const scrollbars = this.scrollbars;
     scrollbars.scrollTop(
       y *
-        (scrollbars.getScrollHeight() /
-          (scrollbars.getScrollHeight() + scrollbars.getClientHeight()))
+      (scrollbars.getScrollHeight() /
+        (scrollbars.getScrollHeight() + scrollbars.getClientHeight()))
     );
   }
 
-  timelineScrollPosToBodyScrollPos([elemNumber, elemOffsetRel]) {
-    const el = Array.from(this.yearsElems.values())[elemNumber];
+  timelineScrollPosToBodyScrollPos(elemNumber, elemOffsetRel) {
+    if (this.yearsElems.size == elemNumber) {
+      elemNumber--; elemOffsetRel = 1
+    }
+    const el = Array.from(this.yearsElems.values())[Math.floor(elemNumber)];
     const top = el.offsetTop;
     const height = el.offsetHeight;
+    if (Math.floor(elemNumber) != elemNumber) {
+      elemOffsetRel = elemNumber - Math.floor(elemNumber)
+    }
     const y = top + height * elemOffsetRel;
     return y;
   }

@@ -13,7 +13,8 @@ class Timeline extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      scrollPos: [0, 0],
+      scrollPosElem: 0,
+      scrollPosElemOffset: 0,
       scrollLeader: "Body"
     }
     this.headerTakeLead = this.headerTakeLead.bind(this)
@@ -51,12 +52,26 @@ class Timeline extends React.Component {
 
   handleScroll(timelineScrollPos) {
     //console.log(timelineScrollPos)
-    this.setState({ scrollPos: timelineScrollPos });
+    this.setState({
+      scrollPosElem: timelineScrollPos[0],
+      scrollPosElemOffset: timelineScrollPos[1]
+    });
   }
 
   handleYearClick(index) {
-    this.setState({ scrollLeader: 'Anim' })
-    this._animate.linearInOut('scrollPos', [index, 0], 1000)
+    // console.log("scroll to index", index)
+    if (this.state.scrollPosElem == index) return;
+    this.setState({
+      scrollLeader: "Parent",
+      scrollPosElemOffset: 0,
+      scrollPosElem: this.state.scrollPosElem + this.state.scrollPosElemOffset
+    }, () => {
+      this._animate.cubicInOut('scrollPosElem', index, 1000).then(() => {
+        this.setState({
+          scrollLeader: "Body",
+        })
+      })
+    })
   }
 
   headerTakeLead(e) {
@@ -67,16 +82,33 @@ class Timeline extends React.Component {
 
   bodyTakeLead(e) {
     //console.log("B")
-    this.setState({ scrollLeader: 'Body' });
+    if (this.state.scrollLeader != "Parent") {
+      this.setState({ scrollLeader: 'Body' });
+    }
   }
 
   render() {
     const data = this.reorganiseData(this.props.data);
-    //console.log(data);
     return (
       <Container className="SCTimeline">
-        <TimelineHeader data={data} isScrollLeader={this.state.scrollLeader === "Header"} scrollPos={this.state.scrollPos} onScroll={this.handleScroll} onMouseEnter={this.headerTakeLead} onYearClick={this.handleYearClick} />
-        <TimelineBody data={data} isScrollLeader={this.state.scrollLeader === "Body"} scrollPos={this.state.scrollPos} onScroll={this.handleScroll} onMouseEnter={this.bodyTakeLead} ref={instance => { this.body = instance }} />
+        <TimelineHeader
+          data={data}
+          isScrollLeader={this.state.scrollLeader === "Header"}
+          scrollPosElem={this.state.scrollPosElem}
+          scrollPosElemOffset={this.state.scrollPosElemOffset}
+          onScroll={this.handleScroll}
+          onMouseEnter={this.headerTakeLead}
+          onYearClick={this.handleYearClick}
+        />
+        <TimelineBody
+          data={data}
+          isScrollLeader={this.state.scrollLeader === "Body"}
+          scrollPosElem={this.state.scrollPosElem}
+          scrollPosElemOffset={this.state.scrollPosElemOffset}
+          onScroll={this.handleScroll}
+          onMouseEnter={this.bodyTakeLead}
+          ref={instance => { this.body = instance }}
+        />
       </Container>
     );
   }
