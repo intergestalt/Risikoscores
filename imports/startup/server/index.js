@@ -10,3 +10,6 @@ import './methods';
 import './migrations';
 import './fixtures';
 import './uploads';
+
+// config users
+import '../accounts-config.js';
