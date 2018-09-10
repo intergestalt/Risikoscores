@@ -15,7 +15,7 @@ import { colors, snippets } from '../../config/styles';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       page: 0,
       selected: -1,
       toastSelected: -1,
@@ -28,6 +28,7 @@ class Game extends React.Component {
       allAnswered: false,
       moveIn: true
     };
+    this.state = this.initialState;
     this.timer1 = null;
     this.timer2 = null;
     this.timer3 = null;
@@ -136,6 +137,10 @@ class Game extends React.Component {
     var newPage = this.state.page - 1;
     this.setState({ resultClicked: false, page: newPage });
     this.hideToast();
+  }
+
+  resetGame = () => {
+    this.setState(this.initialState)
   }
 
   getAnswerComment() {
@@ -298,6 +303,7 @@ class Game extends React.Component {
           losText={data.losText}
           page={page}
           number={data.questions.length}
+          onResetGame={this.resetGame}
         />
         <GameBottom
           layout={layout}
@@ -332,6 +338,7 @@ class Game extends React.Component {
           selected={this.state.selected}
           onSelect={this.select}
           toast={this.toast}
+          onResetGame={this.resetGame}
         />
         <GameBottom
           layout={layout}
@@ -370,6 +377,7 @@ class Game extends React.Component {
           selected={this.state.selected}
           selectCallback={this.selectAnswer}
           selectedAnswers={this.state.selectedAnswers}
+          onResetGame={this.resetGame}
         />
         <GameBottom
           layout={layout}
@@ -412,6 +420,7 @@ class Game extends React.Component {
           nextText={data.nextText}
           selected={this.state.selected}
           resultPercentNum={resultPercentNum}
+          onResetGame={this.resetGame}
         />
         <GameBottom
           layout={layout}

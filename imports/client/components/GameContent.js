@@ -172,6 +172,7 @@ class GameContent extends React.Component {
     }
     this.props.selectCallback(questionNum, value);
   };
+
   changeSel(answer, questionNum, num) {
     this.props.selectCallback(questionNum, num);
     var str = null;
@@ -189,10 +190,15 @@ class GameContent extends React.Component {
       this.props.toast(str);
     }
   }
+
+  getQuestionNum(page) {
+    return page - 2
+  }
+
   getAnswers(page) {
     const question = this.props.question;
     var result = [];
-    const questionNum = page - 2;
+    const questionNum = this.getQuestionNum(page);
 
     if (question.type == 'slider') {
       var labels = {};
@@ -292,8 +298,15 @@ class GameContent extends React.Component {
     if (page == 1) {
       if (this.props.selected == -1) return null;
     }
-    if (page == this.props.number + 2) return null;
-    return <Next layout={this.props.layout} onClick={() => { this.setState({ sliderSel: -1 }); this.props.next() }}>{this.props.nextText}</Next>;
+    if (page < this.props.number + 2) {
+      const isAnswered = this.props.selectedAnswers[this.getQuestionNum(this.props.page)] !== undefined
+      if (isAnswered) {
+        return <Next layout={this.props.layout} disabled={!isAnswered} onClick={() => { this.setState({ sliderSel: -1 }); this.props.next() }}>{this.props.nextText}</Next>;
+      }
+    }
+    if (page == this.props.number + 2) {
+      return <Next title="Play Again" layout={this.props.layout} onClick={this.props.onResetGame}>{this.props.nextText}</Next>;
+    }
   }
   render() {
     const page = this.props.page;
