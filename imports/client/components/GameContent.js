@@ -300,9 +300,8 @@ class GameContent extends React.Component {
     }
     if (page < this.props.number + 2) {
       const isAnswered = this.props.selectedAnswers[this.getQuestionNum(this.props.page)] !== undefined
-      if (isAnswered) {
-        return <Next layout={this.props.layout} disabled={!isAnswered} onClick={() => { this.setState({ sliderSel: -1 }); this.props.next() }}>{this.props.nextText}</Next>;
-      }
+      const eventProp = isAnswered ? { onClick: () => { this.setState({ sliderSel: -1 }); this.props.next() } } : {}
+      return <Next layout={this.props.layout} disabled={!isAnswered} {...eventProp}>{this.props.nextText}</Next>;
     }
     if (page == this.props.number + 2) {
       return <Next title="Play Again" layout={this.props.layout} onClick={this.props.onResetGame}>{this.props.nextText}</Next>;
@@ -381,6 +380,8 @@ ${props =>
       ? `${snippets.standardTextPaddings};
   text-align:right;`: ""};
   background-color: ${colors.orange};
+  ${ props => props.disabled ? "cursor:not-allowed" : ""};
+  ${ props => props.disabled ? "color:rgba(0,0,0,0.5)" : ""};
 `;
 
 const Option = styled.div`
