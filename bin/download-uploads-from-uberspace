@@ -13,4 +13,7 @@ echo "----------------------"
 cat uberspace.config
 echo "----------------------"
 
-scp -r $uberspace_username@$uberspace_host:~/var/uploads var
+rsync -r -v --delete -e ssh --exclude='*.dropbox.attr' $uberspace_username@$uberspace_host:~/var/uploads var
+
+echo ""
+echo "Regenerating Cache may be required - http://localhost:3000/admin/uploads/"
