@@ -67,7 +67,7 @@ const snippets = {
   smallText: `
     font-family: 'Roboto Regular';
     line-height: 21px;
-    font-size: 10px;
+    font-size: 11px;
   `,
   annotationText: `
     font-family: 'Roboto Regular';
