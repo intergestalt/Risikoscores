@@ -160,6 +160,7 @@ function getSpanComponent(md, text, id) {
   if (text.endsWith(' ')) {
     postfix = ' ';
   }
+  text = text.replace(/([a-zA-Z]+)(\*)([a-zA-Z]+)/g, '$1&ast;$3'); // Binnen-Sternchen
   text = md.render(text);
   text = stripOuterP(text);
   return (
@@ -261,9 +262,6 @@ function diyMarkdownBlock(text, blockId, glossar = true) {
 
 export function diyMarkdown(text, glossar = true) {
   if (!text) return;
-  text = text.replace(/\*\*/g, 'XXX');
-  text = text.replace(/\*/g, '&ast;');
-  text = text.replace(new RegExp('XXX', 'g'), '**');
 
   const blocks = text.split('\n\n');
   const components = [];
