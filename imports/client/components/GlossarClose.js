@@ -16,13 +16,14 @@ class GlossarClose extends React.Component {
     return (
       <div className="GlossarClose">
         <a
+          style={{ color: 'white' }}
           href="#"
           onClick={e => {
             e.preventDefault();
             closeGlossarDetail();
           }}
         >
-          {glossarCloseText}
+          {"<<<"} {glossarCloseText}
         </a>
       </div>
     );

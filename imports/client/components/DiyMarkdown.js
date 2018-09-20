@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { getLanguage } from '../../helper/actions';
 import { diyMarkdown } from '../../helper/diyMarkdown';
-import { dist } from '../../config/styles';
+import { dist, snippets } from '../../config/styles';
 
 class DiyMarkdown extends React.Component {
     constructor(props) {
@@ -60,5 +60,8 @@ const Styled = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
+  }
+  .StreamPostHeader {
+    ${snippets.tabText};
   }  
 `;
