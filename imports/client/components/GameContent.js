@@ -325,6 +325,7 @@ class GameContent extends React.Component {
 export default GameContent;
 
 const Content = styled.div`
+overflow: hidden;
 ${props =>
     props.layout
       ?
