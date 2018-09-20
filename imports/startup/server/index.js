@@ -10,6 +10,8 @@ import './methods';
 import './migrations';
 import './fixtures';
 import './uploads';
+import './database-backups';
+import './express';
 
 // config users
 import '../accounts-config.js';

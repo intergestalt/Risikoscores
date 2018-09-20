@@ -10,6 +10,8 @@ import { imageSizes } from '../config/imagesSizes';
 import { uploads_dir, cache_dir, url_prefix } from '../config/uploads';
 import { variants } from '../config/variants';
 
+const debug_info = false
+
 const wrapWithPromise = wrappedFunction => (...args) => (
   new Promise((resolve, reject) => {
     wrappedFunction(...args, (err, result) => {
@@ -59,10 +61,10 @@ function convertImages(force = false) {
         const destFile = cache_dir + generateFilepath(dirRelativeToUploads + '/' + p.base, sizeObj);
         mkdir.mkdirSync(path.dirname(destFile));
 
-        process.stdout.write(`processing ${dirRelativeToUploads}/${p.base} -> ${path.basename(destFile)} ...`);
+        if (debug_info) process.stdout.write(`processing ${dirRelativeToUploads}/${p.base} -> ${path.basename(destFile)} ...`);
 
         if (!force && fs.existsSync(destFile)) {
-          console.log("destination file exists, skipping")
+          if (debug_info) console.log("destination file exists, skipping")
           continue;
         }
 
@@ -75,14 +77,14 @@ function convertImages(force = false) {
         const dimensions = await getImageDimensions(file);
 
         if (sizeObj.width > dimensions.width) {
-          process.stdout.write("too small, using original dimensions ...");
+          if (debug_info) process.stdout.write("too small, using original dimensions ...");
           //continue;
           targetWidth = dimensions.width;
         } else {
           targetWidth = sizeObj.width;
         }
 
-        process.stdout.write("" + targetWidth + "w ...")
+        if (debug_info) process.stdout.write("" + targetWidth + "w ...")
 
         const result = await resizePromise({
           srcPath: file,
@@ -93,7 +95,7 @@ function convertImages(force = false) {
           quality: sizeObj.quality,
         });
 
-        console.log("done");
+        if (debug_info) console.log("done");
       }
 
     }

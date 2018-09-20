@@ -1,11 +1,11 @@
 
 // configure uploads directory using environment variable
-var_dir = process.env.RISIKOSCORES_VAR_DIR || process.env.PWD + '/var';
+const var_dir = process.env.RISIKOSCORES_VAR_DIR || process.env.PWD + '/var';
 
-uploads_dir = var_dir + "/uploads";
-cache_dir = var_dir + "/cache";
+const uploads_dir = var_dir + "/uploads";
+const cache_dir = var_dir + "/cache";
 
-url_prefix = "/uploads";
+const url_prefix = "/uploads";
 
 export {
   uploads_dir,

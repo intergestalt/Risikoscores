@@ -1,10 +1,8 @@
 import fs from 'fs';
-import serveStatic from 'serve-static';
-import express from 'express';
 import { Meteor } from 'meteor/meteor';
 import { convertImages } from '../../helper/uploads';
 import Rooms from '../../collections/rooms';
-import { uploads_dir, cache_dir, url_prefix } from '../../config/uploads';
+import { uploads_dir, cache_dir } from '../../config/uploads';
 
 console.log("uploads directory: " + uploads_dir)
 console.log("cache directory: " + cache_dir)
@@ -20,18 +18,6 @@ if (!fs.existsSync(cache_dir)) {
   console.log("creating cache directory ")
   fs.mkdirSync(cache_dir);
 }
-
-// create express server
-var app = express()
-
-// serve static files
-app.use(url_prefix, serveStatic(cache_dir, { 'index': false })) // check cache dir first
-app.use(url_prefix, serveStatic(uploads_dir, { 'index': false })) // then uploads
-
-// connect express to meteor app
-WebApp.connectHandlers.use(app);
-
-/* alternatively run on different port: app.listen(3002) */
 
 // listen to saves and regenerate missing
 Rooms.find().observeChanges({

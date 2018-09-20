@@ -6,15 +6,16 @@ import {
   clearRoomVariant,
   deleteRoomVariant
 } from '../../helper/variants';
+import { getFiles, doBackup } from '../../helper/database-backups';
 
 Meteor.methods({
-  'uploads.clearCache'({}) {
+  'uploads.clearCache'({ }) {
     clearCache();
   },
-  'uploads.regenerateMissingImages'({}) {
+  'uploads.regenerateMissingImages'({ }) {
     convertImages();
   },
-  'uploads.regenerateImages'({}) {
+  'uploads.regenerateImages'({ }) {
     convertImages(true);
   },
   initRoomVariant({ key, variant }) {
@@ -28,5 +29,17 @@ Meteor.methods({
   },
   setRoomVariantNormal({ key, variant }) {
     setRoomVariantNormal(key, variant);
+  },
+  'backups.getFiles'() {
+    return getFiles()
+  },
+  'backups.doBackup'(item) {
+    return doBackup(item)
+  },
+  'backups.doRestore'(item) {
+    return doRestore(item)
+  },
+  'backups.delete'(item) {
+    return doDelete(item)
   }
 });

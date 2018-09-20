@@ -30,6 +30,7 @@ import {
 } from '../../admin/AdminQuestion';
 import { AdminGraph, AdminEditGraph } from '../../admin/AdminGraph';
 import { AdminUploads } from '../../admin/AdminUploads';
+import { AdminDatabase } from '../../admin/AdminDatabase';
 import AdminRoute from '../../containers/AdminRoute';
 
 const App = appProps => (
@@ -157,6 +158,12 @@ const App = appProps => (
           name="admin-uploads-index"
           path="/admin/uploads"
           component={AdminUploads}
+        />
+        <AdminRoute
+          exact
+          name="admin-backups-index"
+          path="/admin/backups"
+          component={AdminDatabase}
         />
       </Switch>
       <OverlayNotes />

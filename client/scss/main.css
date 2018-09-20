@@ -91,6 +91,26 @@
   background-color: lightcoral;
 }
 
+.AdminWrapper .DeleteButton,
+.AdminWrapper .WarnButton {
+  padding-left: 0.5ex;
+  padding-right: 0.5ex;
+  color: darkred;
+  border: 1px darkred solid;
+  border-radius: 0.5ex;
+  cursor: pointer;
+}
+
+.AdminWrapper .WarnButton {
+  color: Magenta;
+  border: 1px Magenta solid;
+}
+
+.AdminWrapper .restored {
+  color: Magenta;
+  font-weight: bold;
+}
+
 /*** CLIENT ***/
 
 /*** Room ***/
