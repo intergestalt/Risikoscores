@@ -4,6 +4,7 @@ if [ ! -f uberspace.config ]; then
   exit
 fi
 
+set -e
 source uberspace.config
 
 echo "using following uberspace.config:"
@@ -22,10 +23,11 @@ node_path=/package/host/localhost/nodejs-$uberspace_node_version/bin
 buildname=$uberspace_servicename-build
 
 echo "Building..."
+export GZIP=-9
 meteor build --architecture os.linux.x86_64 $TMPDIR/$buildname
 
 echo "Uploading..."
-scp -rCp $TMPDIR$buildname $uberspace_username@$uberspace_host:~/tmp/build
+scp -rp $TMPDIR$buildname $uberspace_username@$uberspace_host:~/tmp/build
 
 echo "Cleaning up..."
 rm -rf $TMPDIR$buildname
@@ -36,6 +38,8 @@ echo "Continuing remotely:"
 ssh $uberspace_username@$uberspace_host /bin/bash << EOF
 
 source ~/.bash_profile
+
+set -e
 
 echo node_path: $node_path
 echo -n nodejs version...
