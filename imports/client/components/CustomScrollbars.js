@@ -19,6 +19,7 @@ class CustomScrollbars extends React.Component {
       shadowRightOpacity: 0,
     };
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.renderThumb = this.renderThumb.bind(this);
   }
 
   handleUpdate(values) {
@@ -37,7 +38,7 @@ class CustomScrollbars extends React.Component {
 
   renderThumb({ style, ...props }) {
     const thumbStyle = {
-      backgroundColor: `rgba(0,0,255,0.25)`,
+      backgroundColor: (this.props.thumbColor || `rgba(0,0,255,0.25)`),
     };
     return (
       <div
@@ -79,7 +80,7 @@ class CustomScrollbars extends React.Component {
 
 
   render() {
-    const { shadeColor, scrollbarsRef, blind, ...rest } = this.props;
+    const { shadeColor, thumbColor, scrollbarsRef, blind, ...rest } = this.props;
     const scrollbars = <Scrollbars
       autoHide
       renderThumbHorizontal={blind ? this.renderBlind : this.renderThumb}
@@ -112,6 +113,7 @@ class CustomScrollbars extends React.Component {
 CustomScrollbars.propTypes = {
   blind: PropTypes.bool,
   shadeColor: PropTypes.string,
+  thumbColor: PropTypes.string,
   scrollbarsRef: PropTypes.func
 };
 

@@ -8,6 +8,7 @@ class Close extends React.Component {
   render() {
     return (
       <Button
+        style={{ ...this.props.style }}
         href="#"
         onClick={e => {
           this.props.onClick(e);

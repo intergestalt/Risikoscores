@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
 import { getFragment } from '../../helper/fragment';
-import { DiyMarkdown, Close } from './';
+import { DiyMarkdown, Close, CustomScrollbars } from './';
 import { getLanguage } from '../../helper/actions';
 import { dist, colors } from '../../config/styles';
 
@@ -21,8 +21,12 @@ class StartAbout extends React.Component {
     var text = getFragment('aboutText', this.props.lang);
     return (
       <Container className="StartAbout" show={this.props.show}>
-        <Close onClick={this.handleClose} />
-        <DiyMarkdown>{text}</DiyMarkdown>
+        <Close style={{ zIndex: 1 }} onClick={this.handleClose} />
+        <CustomScrollbars thumbColor="rgba(255,255,255,0.5)">
+          <Content>
+            <DiyMarkdown>{text}</DiyMarkdown>
+          </Content>
+        </CustomScrollbars>
       </Container>
     );
   }
@@ -46,6 +50,11 @@ const Container = styled.div`
   transition: all 0.5s;
   transform: translateX(${props => props.show ? "0" : "-100%"});
   box-sizing: border-box;
-  padding-top: calc( ${ dist.small} - ${dist.lineTopDiff} );
-  padding-bottom: calc( ${ dist.small} - ${dist.lineBottomDiff} );
+  // padding-top: calc( ${ dist.small} - ${dist.lineTopDiff} );
+  // padding-bottom: calc( ${ dist.small} - ${dist.lineBottomDiff} );
 `
+
+const Content = styled.div`
+  // padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
+  padding-bottom: calc(4em - ${dist.lineBottomDiff}); // not sure why 4em, sorry
+`;
