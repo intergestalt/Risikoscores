@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
+import { getFragment } from '../../helper/fragment';
 import { getLanguage } from '../../helper/actions';
 
 class MenuIcon extends React.Component {
@@ -56,7 +57,7 @@ class MenuIcon extends React.Component {
             </defs>
             <polygon points="120,50 88,100 28,100 0,50 28,0 88,0" />
           </IconSvg>
-          <Text>Menu</Text>
+          <Text>{getFragment('menuIcon')}</Text>
         </a>
       </FloatMenu>
     );
