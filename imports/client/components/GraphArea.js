@@ -71,10 +71,10 @@ class GraphArea extends React.Component {
   graphCallback(roomId) {
     if (exists(roomId)) {
       setSelectGraphNode(roomId);
-      setPlayAudioFile('tos-computer-01.mp3');
-      setPlayAudio(true);
+      //setPlayAudioFile('tos-computer-01.mp3');
+      //setPlayAudio(true);
     } else {
-      setPlayAudio(false);
+      //setPlayAudio(false);
       setSelectGraphNode(getSelectedRoomId());
     }
     this.setState({ selectedRoomId: roomId });
