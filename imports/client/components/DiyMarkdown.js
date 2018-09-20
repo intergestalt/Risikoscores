@@ -7,24 +7,24 @@ import { diyMarkdown } from '../../helper/diyMarkdown';
 import { dist } from '../../config/styles';
 
 class DiyMarkdown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    const blockId = this.props.key;
-    const glossar = !this.props.noGlossar
-    const textBlocks = diyMarkdown(this.props.children, blockId, glossar);
-    return (
-      <Styled className="DiyMarkdown" {...this.props}>
-        {textBlocks}
-      </Styled>)
-  }
+    render() {
+        const blockId = this.props.key;
+        const glossar = !this.props.noGlossar
+        const textBlocks = diyMarkdown(this.props.children, blockId, glossar);
+        return (
+            <Styled className="DiyMarkdown" {...this.props}>
+                {textBlocks}
+            </Styled>)
+    }
 }
 
 DiyMarkdown.propTypes = {
-  noGlossar: PropTypes.bool,
-  key: PropTypes.string,
+    noGlossar: PropTypes.bool,
+    key: PropTypes.string,
 };
 
 export default DiyMarkdown;
@@ -39,6 +39,13 @@ const Styled = styled.div`
   }
   & > *:not(.SCTimeline):first-child {
     margin-top: 1em;
+  }
+  > ol, > p > span > ol {
+    counter-reset: ol-counter;
+    li:before {
+      counter-increment: ol-counter;
+      content: counter(ol-counter) ". ";
+    }
   }
   .responsive-iframe-wrapper {
     position: relative;
