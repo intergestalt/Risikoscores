@@ -26,7 +26,7 @@ const RoomSchema = new SimpleSchema(
     subsections: {
       type: [Object],
       minCount: 1,
-      defaultValue: [{ text: { de: "Beispiel", en: "Example" } }]
+      defaultValue: [{ text: { de: 'Beispiel', en: 'Example' } }]
     },
 
     images: {
@@ -56,6 +56,11 @@ const RoomSchema = new SimpleSchema(
     'subsections.$.order': {
       type: Number,
       optional: true
+    },
+    'subsections.$.blockPopups': {
+      type: Boolean,
+      optional: false,
+      defaultValue: false
     }
   },
   {

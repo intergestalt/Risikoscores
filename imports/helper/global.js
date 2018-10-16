@@ -83,7 +83,7 @@ export function zuffi(max) {
 }
 
 export function percentFromValue(value, unit) {
-  var x = value / unit * 100;
+  var x = (value / unit) * 100;
   return x;
 }
 

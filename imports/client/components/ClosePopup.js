@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 import { colors, dist } from '../../config/styles';
-import {
-  setPopupActive,
-  setPopupClosing,
-  incPopupsIndex
-} from '../../helper/actions';
 import { closePopup } from '../../helper/popup';
 import { Image } from '.';
 

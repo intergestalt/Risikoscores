@@ -42,7 +42,7 @@ import {
 import { exists } from '../../../helper/global';
 import { startPopupsTimeout } from '../../../helper/popup';
 import { startStreamTimeout } from '../../../helper/stream';
-import { } from '../../../helper/actions';
+import {} from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
 import { tabColors, tabColorPalette } from '../../../config/tabColors';
 import { getUrlPrefix } from '../../../helper/uploads';
@@ -68,7 +68,7 @@ class Room extends React.Component {
 
   componentWillMount() {
     Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1);
-    Session.set('imageLayout', "third");
+    Session.set('imageLayout', 'third');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -77,7 +77,7 @@ class Room extends React.Component {
       this.props.room &&
       nextProps.room._id != this.props.room._id
     ) {
-      const counter = Session.get('roomVisitCounter')
+      const counter = Session.get('roomVisitCounter');
       Session.set('roomVisitCounter', counter + 1);
     }
     if (Session.get('startWelcomeState') == 3) {
@@ -161,13 +161,15 @@ class Room extends React.Component {
         </RoomElem>
         <MenuIcon />
         <ImageDetailView />
-        {this.props.authenticated &&
+        {this.props.authenticated && (
           <RoomChooserFixed className="RoomChooserFixed">
             <RoomChooser roomKey={roomId} disableNonExistingVariants />
           </RoomChooserFixed>
-        }
+        )}
         <Game />
-        {this.props.powerOn && <Popup />}
+        {this.props.powerOn && (
+          <Popup selectedTabId={selectedTabId} tabs={subsections} />
+        )}
       </span>
     );
   }
@@ -229,7 +231,10 @@ export default withTracker(props => {
   if (exists(tabId)) {
     setSelectedTabId(tabId);
     if (room && room.subsections) {
-      roomColor = tabColorPalette[Session.get('roomVisitCounter') % (tabColorPalette.length)];
+      roomColor =
+        tabColorPalette[
+          Session.get('roomVisitCounter') % tabColorPalette.length
+        ];
       const tabColorsArray = tabColors(roomColor, room.subsections.length);
       let i = 0;
       for (let s of room.subsections) {

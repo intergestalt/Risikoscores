@@ -23,7 +23,6 @@ export function getSelectedTab(selectedTabId, tabs) {
   if (tabs.length === 0) {
     return null;
   }
-
   if (existsString(selectedTabId)) {
     for (var i = 0; i < tabs.length; i++) {
       const tab = tabs[i];

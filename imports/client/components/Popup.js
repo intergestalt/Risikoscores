@@ -13,8 +13,8 @@ import {
   getGameStarted
 } from '../../helper/actions';
 import { getPopup } from '../../helper/popup';
-import { exists, localeStr } from '../../helper/global';
-import { Image, ClosePopup } from './';
+import { getSelectedTab } from '../../helper/tab';
+import { exists } from '../../helper/global';
 import {
   BannerBottom,
   BannerTopRight,
@@ -28,17 +28,32 @@ class Popup extends React.Component {
     super(props);
   }
 
+  blocked() {
+    var tab = getSelectedTab(this.props.selectedTabId, this.props.tabs);
+    if (exists(tab)) {
+      if (exists(tab.blockPopups)) {
+        return tab.blockPopups;
+      }
+    }
+    return false;
+  }
+
   render() {
-    if (this.props.gameStarted) return null;
+    if (this.props.gameStarted) {
+      setPopupActive(false);
+      return null;
+    }
+    if (this.blocked()) {
+      setPopupActive(false);
+      return null;
+    }
     if (this.props.popupActive) {
       const popup = this.props.popup;
-      console.log(popup.type);
       if (popup.type == 'bannerBottom') {
         return (
           <BannerBottom popup={popup} popupClosing={this.props.popupClosing} />
         );
       } else if (popup.type == 'videoBottom') {
-        console.log('Small');
         return (
           <VideoBottom
             big={false}
@@ -47,7 +62,6 @@ class Popup extends React.Component {
           />
         );
       } else if (popup.type == 'videoBottomBig') {
-        console.log('Big');
         return (
           <VideoBottom
             big={true}
@@ -76,7 +90,10 @@ class Popup extends React.Component {
   }
 }
 
-Popup.propTypes = {};
+Popup.propTypes = {
+  tabs: PropTypes.array,
+  selectedTabId: PropTypes.string
+};
 
 export default withTracker(props => {
   var active = getPopupActive();
