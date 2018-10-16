@@ -20,7 +20,7 @@ class RoomInterHeader extends React.Component {
       var room1 = rooms[this.props.roomId];
       var room2 = rooms[this.props.targetId];
       if (exists(room1) && exists(room2)) {
-        title = localeStr(room1) + ' -> ' + localeStr(room2);
+        title = localeStr(room1) + ' <-> ' + localeStr(room2);
       }
     }
     return <Header className="RoomQuestionsHeader">{title}</Header>;
@@ -33,5 +33,5 @@ export default withTracker(props => {
 
 const Header = styled.h3`
   padding: 0 ${dist.named.columnPadding};
-  ${ snippets.headlineText}
+  ${snippets.headlineText};
 `;

@@ -37,6 +37,11 @@ const PopupSchema = new SimpleSchema(
     image: {
       type: MultilingualOptionalStringSchema,
       optional: true
+    },
+    soundPopup: {
+      type: Boolean,
+      optional: false,
+      defaultValue: false
     }
   },
   {

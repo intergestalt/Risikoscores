@@ -42,7 +42,7 @@ export function storeRooms(rooms) {
     var result = {};
     for (var i = 0; i < rooms.length; i++) {
       const r = rooms[i];
-      result[r._id] = r.name;
+      result[r.key] = r.name;
     }
     setCachedRooms(result);
   }

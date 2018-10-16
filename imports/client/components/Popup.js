@@ -32,7 +32,15 @@ class Popup extends React.Component {
     var tab = getSelectedTab(this.props.selectedTabId, this.props.tabs);
     if (exists(tab)) {
       if (exists(tab.blockPopups)) {
-        return tab.blockPopups;
+        if (tab.blockPopups) {
+          if (exists(this.props.popup)) {
+            if (exists(this.props.popup.soundPopup)) {
+              if (this.props.popup.soundPopup) {
+                return true;
+              }
+            }
+          }
+        }
       }
     }
     return false;

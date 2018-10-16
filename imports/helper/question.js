@@ -54,16 +54,19 @@ export function setLoading() {
       last[i].loading = false;
     }
     var index = getStreamIndex();
-
-    last[index - 1].loading = true;
     if (getGraphNodeSelected() != 1) {
-      setSelectGraphNode(last[index - 1].roomId);
+      setSelectGraphNode(null);
     }
+    last[index - 1].loading = true;
+
     setTimeout(() => {
       setNotLoading();
-      if (getGraphNodeSelected() == 0) {
-        setSelectGraphNode(null);
+      if (getGraphNodeSelected() != 1) {
+        setSelectGraphNode(last[index - 1].roomId);
       }
+      /* if (getGraphNodeSelected() == 0) {
+        setSelectGraphNode(null);
+      }*/
       switchStreamShuffeled();
     }, zuffi(2000) + 500);
     cacheStreamQuestions(last);
