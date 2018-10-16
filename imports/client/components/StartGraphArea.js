@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Graph, Loading } from './';
-import { setSelectGraphNode } from '../../helper/actions';
+import { setSelectGraphNode, setGraphNodeSelected } from '../../helper/actions';
 import { exists } from '../../helper/global';
 import { dist, colors } from '../../config/styles';
 
@@ -14,8 +14,10 @@ class StartGraphArea extends React.Component {
   }
   graphCallback(roomId) {
     if (exists(roomId)) {
+      setGraphNodeSelected(1);
       setSelectGraphNode(roomId);
     } else {
+      setGraphNodeSelected(0);
       setSelectGraphNode(null);
     }
   }

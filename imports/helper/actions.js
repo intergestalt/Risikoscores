@@ -1,5 +1,5 @@
 import { Session } from 'meteor/session';
-import { exists, zuffi, shuffleArray } from './global';
+import { exists, shuffleArray } from './global';
 
 export function toggleLanguage() {
   var language = Session.get('language');
@@ -22,7 +22,8 @@ export function toggleQuestions() {
   Session.set('questionsExpanded', !questionsExpanded);
 }
 
-export function toggleStartWelcome() { // 0 -> 1 -> 2 <-> 3
+export function toggleStartWelcome() {
+  // 0 -> 1 -> 2 <-> 3
   var state = Session.get('startWelcomeState');
   if (state > 2) state--;
   else state++;
@@ -99,13 +100,16 @@ export function setStreamStarted() {
   Session.set('streamStarted', true);
 }
 
-export function setPopupsFinished() { }
+export function setPopupsFinished() {}
 
 export function setPopupsStarted() {
   Session.set('popupsStarted', true);
 }
 
-export function setStreamFinished() { }
+export function setStreamFinished() {
+  Session.set('streamFinished', true);
+}
+
 export function setRealGraph(realGraph) {
   Session.set('realGraph', realGraph);
 }
@@ -165,6 +169,18 @@ export function getStreamIndex() {
   const value = Session.get('streamIndex');
   return value;
 }
+export function getStreamShuffeled() {
+  const value = Session.get('streamShuffeld');
+  return value;
+}
+export function switchStreamShuffeled() {
+  const value = Session.get('streamShuffeld');
+  if (value) {
+    Session.set('streamShuffeld', false);
+  } else {
+    Session.set('streamShuffeld', true);
+  }
+}
 export function getPopupsIndex() {
   const value = Session.get('popupsIndex');
   return value;
@@ -211,11 +227,25 @@ export function setPlayAudioFile(name) {
 export function setPopupClosing(closing) {
   Session.set('popupClosing', closing);
 }
-
+export function setGraphNodeSelected(no) {
+  Session.set('graphNodeSelected', no);
+}
+export function getGraphNodeSelected() {
+  const r = Session.get('graphNodeSelected');
+  return r;
+}
 export function getCachedStreamQuestions() {
   const questions = Session.get('cachedStreamQuestions');
   return questions;
 }
+
+export function shiftStream() {
+  var questions = getCachedStreamQuestions();
+  var first = questions.shift();
+  questions.push(first);
+  cacheStreamQuestions(questions);
+}
+
 export function getCachedQuestions() {
   const questions = Session.get('cachedQuestions');
   return questions;

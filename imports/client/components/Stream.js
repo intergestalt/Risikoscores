@@ -4,9 +4,13 @@ import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
-import { getStreamQuestions, setLoading } from '../../helper/question';
+import { getStreamQuestions } from '../../helper/question';
 import { StreamWelcome, StreamPost, CustomScrollbars } from './';
-import { getStreamIndex, getLanguage } from '../../helper/actions';
+import {
+  getStreamIndex,
+  getLanguage,
+  getStreamShuffeled
+} from '../../helper/actions';
 import { colors } from '../../config/styles';
 
 class Stream extends React.Component {
@@ -14,12 +18,12 @@ class Stream extends React.Component {
     super(props);
     this.state = {
       welcomeHeights: {}
-    }
-    this.handleHeightChange = this.handleHeightChange.bind(this)
+    };
+    this.handleHeightChange = this.handleHeightChange.bind(this);
   }
 
   handleHeightChange(heights) {
-    this.setState({ welcomeHeights: heights })
+    this.setState({ welcomeHeights: heights });
   }
 
   render() {
@@ -29,7 +33,9 @@ class Stream extends React.Component {
       this.props.rooms,
       this.props.streamIndex
     );
-    for (var i = myQuestions.length - 1; i >= 0; i--) {
+    minIndex = myQuestions.length - 10;
+    if (minIndex < 0) minIndex = 0;
+    for (var i = myQuestions.length - 1; i >= minIndex; i--) {
       const question = myQuestions[i];
       const item = (
         <StreamPost
@@ -39,18 +45,19 @@ class Stream extends React.Component {
         />
       );
       streamPosts.push(item);
-      setLoading(i, false);
     }
-    const streamVerticalOffset = this.props.startWelcomeState < 2 ? this.state.welcomeHeights.mediumHeight : this.state.welcomeHeights.smallHeight
-    const shade = this.props.startWelcomeState == 1 || this.props.startWelcomeState == 3
+    const streamVerticalOffset =
+      this.props.startWelcomeState < 2
+        ? this.state.welcomeHeights.mediumHeight
+        : this.state.welcomeHeights.smallHeight;
+    const shade =
+      this.props.startWelcomeState == 1 || this.props.startWelcomeState == 3;
     return (
       <div className="Stream">
         <StreamWelcome onHeightChange={this.handleHeightChange} />
         <UlContainer verticalOffset={streamVerticalOffset}>
           <CustomScrollbars autoHide>
-            <Ul shade={shade}>
-              {streamPosts}
-            </Ul>
+            <Ul shade={shade}>{streamPosts}</Ul>
           </CustomScrollbars>
         </UlContainer>
       </div>
@@ -66,20 +73,21 @@ Stream.propTypes = {
 export default withTracker(props => {
   return {
     streamIndex: getStreamIndex(),
+    streamShuffeled: getStreamShuffeled(),
     lang: getLanguage(),
     startWelcomeState: Session.get('startWelcomeState')
   };
 })(Stream);
 
 const UlContainer = styled.div`
-  height: calc( 100% - ${ props => props.verticalOffset}px );
-  width:100%;
+  height: calc(100% - ${props => props.verticalOffset}px);
+  width: 100%;
   transition: height 0.35s, background-color 0.25s;
   position: absolute;
   bottom: 0;
-  overflow: auto;
-`
+  overflow: hidden;
+`;
 
 const Ul = styled.ul`
-  opacity: ${ props => props.shade ? "0.9" : "1"};
-`
+  opacity: ${props => (props.shade ? '0.9' : '1')};
+`;

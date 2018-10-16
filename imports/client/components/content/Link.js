@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
@@ -10,8 +9,9 @@ import {
   getSelectedRoomId,
   setPreSelectedTabId,
   getLanguage,
-  setPopupActive
+  setGraphNodeSelected
 } from '../../../helper/actions';
+
 import { exists } from '../../../helper/global';
 
 class Link extends React.Component {
@@ -34,6 +34,7 @@ class Link extends React.Component {
 
   clickCallback(e, roomId, tabId) {
     e.preventDefault();
+    setGraphNodeSelected(0);
     this.props.history.push(this.path);
   }
 
@@ -45,9 +46,11 @@ class Link extends React.Component {
       }
     }
     setSelectGraphNode(roomId);
+    setGraphNodeSelected(2);
   }
   leaveCallback(e) {
     setSelectGraphNode(getSelectedRoomId());
+    setGraphNodeSelected(0);
     setPreSelectedTabId(null);
   }
 

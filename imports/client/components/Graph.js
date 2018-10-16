@@ -21,7 +21,8 @@ import {
   getBeamOut,
   setPlayAudio,
   setPlayAudioFile,
-  setPlayAudioAll
+  setPlayAudioAll,
+  setGraphNodeSelected
 } from '../../helper/actions';
 import { colors } from '../../config/styles';
 
@@ -37,6 +38,7 @@ class Graph extends React.Component {
     clearTimeout(this.timer);
   }
   clickCallback(e, nodeId) {
+    setGraphNodeSelected(0);
     if (getBeamOut()) return;
     if (getSelectedRoomId() == nodeId) return;
     if (!this.props.start) {

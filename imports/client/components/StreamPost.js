@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import { localeStr, existsString, zuffi, exists } from '../../helper/global';
+import { localeStr, zuffi, exists } from '../../helper/global';
 import { getLanguage } from '../../helper/actions';
 import { dist, snippets } from '../../config/styles';
 import { DiyMarkdown, Image, StreamLoading } from './';
@@ -12,17 +11,9 @@ import { DiyMarkdown, Image, StreamLoading } from './';
 class StreamPost extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { stillLoading: props.loading };
-    this.timer = null;
   }
-  componentDidMount() {
-    this.timer = setTimeout(() => {
-      this.setState({ stillLoading: false });
-    }, zuffi(2000) + 500);
-  }
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
+  componentDidMount() {}
+  componentWillUnmount() {}
 
   renderLoading() {
     return (
@@ -33,7 +24,7 @@ class StreamPost extends React.Component {
   }
 
   render() {
-    if (this.state.stillLoading) {
+    if (this.props.loading) {
       return this.renderLoading();
     }
     const question = this.props.question;
@@ -47,24 +38,9 @@ class StreamPost extends React.Component {
       text = question.text;
     }
 
-    var image = null;
-    if (existsString(question.image)) {
-      const asset = {
-        name: question.image,
-        subfolder: 'questions',
-        folder: question.roomId
-      };
-      image = (
-        <div className="StreamPostImage">
-          <Image asset={asset} />
-        </div>
-      );
-    }
-
     return (
       <Li className="StreamPost">
         <Header className="StreamPostHeader">@{title}</Header>
-        {image}
         <Content className="StreamPostContent">
           <DiyMarkdown>{text}</DiyMarkdown>
         </Content>

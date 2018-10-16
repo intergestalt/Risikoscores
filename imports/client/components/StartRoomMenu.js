@@ -9,14 +9,10 @@ import { localeStr } from '../../helper/global';
 import {
   setSelectGraphNode,
   getSelectGraphNode,
-  getLanguage
+  getLanguage,
+  setGraphNodeSelected
 } from '../../helper/actions';
-import {
-  getGraphColors,
-  getTheRealGraph,
-  getNeighbours,
-  getColor
-} from '../../helper/graph';
+import { getTheRealGraph, getNeighbours, getColor } from '../../helper/graph';
 import { dist } from '../../config/styles';
 
 class StartRoomMenu extends React.Component {
@@ -32,10 +28,12 @@ class StartRoomMenu extends React.Component {
   }
 
   enterCallback(e, roomId) {
+    setGraphNodeSelected(1);
     setSelectGraphNode(roomId);
   }
 
   leaveCallback(e) {
+    setGraphNodeSelected(0);
     setSelectGraphNode(null);
   }
 
@@ -82,6 +80,9 @@ class StartRoomMenu extends React.Component {
           <LinkStyled
             to={this.roomPath(roomId)}
             style={{ color: color }}
+            onClick={e => {
+              setGraphNodeSelected(0);
+            }}
             onMouseEnter={e => {
               this.enterCallback(e, roomId);
             }}
