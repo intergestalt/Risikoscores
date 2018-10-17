@@ -1,0 +1,44 @@
+subline
+
+- Feed endlos und schneller und keine Überschneidungen. Kein Scroll. Bilder raus. Bei neuer Frage soll Netzwerk aufblinken
+- Ubble-Video, Pizza-Video soll nicht von selbst angehen.  Bei Tabwechsel doch! Aber nicht direkt per Link auf neuer Seite
+- mail christene vom 4.10.
+- Störer mit Ton sollen video nicht stören 
+- Pizza-Link vom eigenen Kanal nehmen und Link zu anderem Youtube kanal nehmen.  
+- Tabs sollen wie folgt angeordnet werden: Ubble/Gym/Pizza/Digital Epi/Analoge Vermittlung (Bitte Tabs auch so nennen, wie hier geschrieben) 
+- Arriba keine Captuin interconnection bug
+- Wechselwirkungspfeil in den Interconnections statt Pfeil. 
+- Was die Bildrechte angeht, haben wir mit den Bildern links oben PRobleme, da können wir nicht direkt dahin schreiben, von woher die sind - ich denke, die müssen dann doch über einen Button "bildrechte" abgedeckt werden oder gibt es da eine bessere Lösung?   
+- Du hast den Text aus den Excel-Tabellen doch leicht umgewandelt nicht wahr? Das heißt, der zu übersetzende Text liegt mir in Dokumenten-Form nicht mehr vor. Mein Vorschlag ist, der Übersetzerin die Zugangsdaten zum BackEnd zu geben, damit sie, ihre Übersetzung direkt da einfügen kann. Was denkt ihr? Holger: Ich halte das für eine optimale Lösung Oder ihr einfach den entsprechenden Teil des Backends geben... Sie muß dann aber gut arbeiten, damit die Datenstruktur nicht kaputt geht :) 
+
+
+
+
+
+
+
+Fehlen noch Interconnections
+Untersuchungen -> Studienzentrum  
+Algorithmic live -> Gestaltung
+
+Feed auf Startseite:
+
+- Feed  unendlich
+- Einträge auf 10 reduziert. Die genaue Größe ist schwer zu ermitteln. Scroll nicht deaktiviert, aber normalerweise sollten die Fragen auf einen Bildschirm passen
+- Graph wird automatisch angewählt nach laden einer neuen Frage. Und außer man wählt gerade manuell einen Raum an.
+- Keine Bilder.
+
+Da wir das nicht dynamisch steuern, gehen sie auch bei einem Tabwechsel nicht an. Ubble geht jetzt nicht automatisch an, das Pizza schon
+
+Copyrights aus Mail vom 4.10.
+
+Störer mit Ton stören leider den anderen Ton. Sehe keine gute Möglichkeit, zu testen, ob irgendein Audio oder Video gerade läuft. Würde vorschlagen, wir lassen es so oder nehmen den Störer mit Ton raus. 
+
+- Popups mit Ton werden in Räumen mit möglichem Sound nicht angezeigt. (Auf Popupebene und Tabebene konfigurierbar)
+
+- Pizzavideo verlinkt auf kopie im Netz
+
+- Bildrechte linksoben: Beispiel Bioprobenlager: Einfach als Mouseover Text in Backend eintragen.
+
+
+
