@@ -35,6 +35,6 @@ export default withTracker(props => {
   Meteor.subscribe('fragments.list');
 
   return {
-    fragments: TextFragments.find().fetch()
+    fragments: TextFragments.find({}, { sort: { _id: 1 } }).fetch()
   };
 })(AdminFragment);

@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
 import { getFragment } from '../../helper/fragment';
-import { DiyMarkdown, Close, CustomScrollbars } from './';
+import { DiyMarkdown, Close, CustomScrollbars } from '.';
 import { getLanguage } from '../../helper/actions';
 import { dist, colors } from '../../config/styles';
 
@@ -15,10 +15,11 @@ class StartAbout extends React.Component {
 
   handleClose() {
     Session.set('showAbout', false)
+    Session.set('showImprint', false)
   }
 
   render() {
-    var text = getFragment('aboutText', this.props.lang);
+    var text = getFragment(this.props.textKey, this.props.lang)
     return (
       <Container className="StartAbout" show={this.props.show}>
         <Close style={{ zIndex: 1 }} onClick={this.handleClose} />
@@ -33,7 +34,9 @@ class StartAbout extends React.Component {
 }
 
 export default withTracker(props => {
+  const textKey = Session.equals('showImprint', true) ? "imprintText" : "aboutText"
   return {
+    textKey,
     lang: getLanguage()
   };
 })(StartAbout);

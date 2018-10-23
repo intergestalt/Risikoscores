@@ -29,7 +29,7 @@ class StartRight extends React.Component {
           graph={this.props.graph}
         />
         <StartGeneralMenuArea />
-        <StartAbout show={this.props.showAbout} />
+        <StartAbout show={this.props.showAbout | this.props.showImprint} />
       </Container>
     );
   }
@@ -46,6 +46,7 @@ export default withTracker(props => {
     graph: GraphDB.find().fetch(),
     ready: sub.ready(),
     showAbout: Session.get('showAbout'),
+    showImprint: Session.get('showImprint'),
   };
 })(StartRight);
 

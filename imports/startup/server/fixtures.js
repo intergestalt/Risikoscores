@@ -46,6 +46,8 @@ const textFragments = [
   'startInfo',
   'menuIcon',
   'aboutLink',
+  'imprintLink',
+  'imprintText',
   'aboutText',
   'languageLink',
   'oldBrowserWarning',
