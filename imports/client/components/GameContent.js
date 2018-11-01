@@ -304,7 +304,7 @@ class GameContent extends React.Component {
       return <Next layout={this.props.layout} disabled={!isAnswered} {...eventProp}>{this.props.nextText}</Next>;
     }
     if (page == this.props.number + 2) {
-      return <Next title="Play Again" layout={this.props.layout} onClick={this.props.onResetGame}>{this.props.nextText}</Next>;
+      return <Next title="Play Again" layout={this.props.layout} onClick={this.props.onResetGame}>{this.props.playAgain}</Next>;
     }
   }
   render() {

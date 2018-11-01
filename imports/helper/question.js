@@ -61,8 +61,10 @@ export function setLoading() {
 
     setTimeout(() => {
       setNotLoading();
-      if (getGraphNodeSelected() != 1) {
-        setSelectGraphNode(last[index - 1].roomId);
+      if (getSelectedRoomId() == null) {
+        if (getGraphNodeSelected() != 1) {
+          setSelectGraphNode(last[index - 1].roomId);
+        }
       }
       /* if (getGraphNodeSelected() == 0) {
         setSelectGraphNode(null);
