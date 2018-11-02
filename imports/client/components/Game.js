@@ -140,8 +140,20 @@ class Game extends React.Component {
   }
 
   resetGame = () => {
-    this.setState(this.initialState)
-  }
+    this.setState({
+      page: 0,
+      selected: -1,
+      toastSelected: -1,
+      toast: false,
+      hideToast: false,
+      toastImage: '',
+      popupText: '',
+      selectedAnswers: {},
+      resultClicked: false,
+      allAnswered: false,
+      moveIn: true
+    });
+  };
 
   getAnswerComment() {
     const p = this.getResultPercent();
@@ -335,6 +347,7 @@ class Game extends React.Component {
           characters={data.characters}
           prevText={data.prevText}
           nextText={data.nextText}
+          playAgain={data.playAgain}
           selected={this.state.selected}
           onSelect={this.select}
           toast={this.toast}
@@ -372,6 +385,7 @@ class Game extends React.Component {
           number={data.questions.length}
           prevText={data.prevText}
           nextText={data.nextText}
+          playAgain={data.playAgain}
           toast={this.toast}
           question={data.questions[page - 2]}
           selected={this.state.selected}
@@ -418,6 +432,7 @@ class Game extends React.Component {
           prevText={data.prevText}
           name={this.getName()}
           nextText={data.nextText}
+          playAgain={data.playAgain}
           selected={this.state.selected}
           resultPercentNum={resultPercentNum}
           onResetGame={this.resetGame}

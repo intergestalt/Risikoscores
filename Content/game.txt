@@ -155,6 +155,7 @@ Erkunden Sie hier, wie ein Risiko-Score funktioniert und testen Sie Ihre Selbste
                     ],
                     "prevText":"<<<",
                      "nextText":">>>",
+                     "playAgain":"Again",
          "losCaption":"Willkommen",
          "losText":["Ein Score in Action",
                     "Erkunden Sie hier, wie ein Risiko-Score funktioniert und testen Sie ihre Selbsteinschätzung",
