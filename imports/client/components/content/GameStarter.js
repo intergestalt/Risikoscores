@@ -32,7 +32,7 @@ class GameStarter extends React.Component {
   render() {
     const icon = {
       type: 'image',
-      name: 'game.png',
+      name: 'game' + (this.props.data.layout ? "" : "_dev") + '.png',
       folder: 'game'
     };
     return (
