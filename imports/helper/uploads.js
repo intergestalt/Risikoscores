@@ -22,7 +22,7 @@ const wrapWithPromise = wrappedFunction => (...args) => (
 
 function convertableImagesIgnoreFunc(file, stats) {
   // ignore files that are not images that should get converted
-  const allow = ['.jpg', '.png', '.jpeg'];
+  const allow = ['.jpg', '.png', '.jpeg', '.gif'];
   console.log(file)
   return /*stats.isDirectory() ||*/ allow.indexOf(path.extname(file)) === -1;
 }
@@ -39,7 +39,7 @@ function convertImages(force = false) {
   console.log("processing images")
   recursive(uploads_dir, async function (err, files) {
     // filter images
-    const validFiles = files.filter((file) => (['.jpg', '.png', '.jpeg'].indexOf(path.extname(file)) > -1))
+    const validFiles = files.filter((file) => (['.jpg', '.png', '.jpeg', '.gif'].indexOf(path.extname(file)) > -1))
 
     // update status
     updateStatus({ processing: true })
@@ -73,6 +73,12 @@ function convertImages(force = false) {
         Uploads.upsert({ _id: uploadId }, {
           $set: { _id: uploadId }
         })
+
+        if (path.extname(file) === ".gif") {
+          // copy gif without prcessing
+          fs.copyFileSync(file, destFile)
+          continue;
+        }
 
         const dimensions = await getImageDimensions(file);
 
