@@ -44,7 +44,7 @@ class StartAbout extends React.Component {
 
 export default withTracker(props => {
   const textKey = Session.equals('showImprint', true) ? "imprintText" : "aboutText"
-  const showLogo = Session.equals('showImprint', false)
+  const showLogo = Session.equals('showAbout', true)
   return {
     textKey,
     showLogo,
