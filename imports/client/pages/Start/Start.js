@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
 import styled from 'styled-components';
 
-import { StartLeft, StartRight, Loading } from '../../components';
+import { StartLeft, StartRight, Loading, Logo } from '../../components';
 import Rooms from '../../../collections/rooms';
 import TextFragments from '../../../collections/textFragments';
 import { storeFragments } from '../../../helper/fragment';
@@ -12,6 +12,7 @@ import { storeRooms } from '../../../helper/room';
 import { startPopupsTimeout } from '../../../helper/popup';
 import { setSelectedRoomId, setSelectGraphNode } from '../../../helper/actions';
 import { exists } from '../../../helper/global';
+import { dist } from '../../../config/styles';
 
 import { startStreamTimeout } from '../../../helper/stream';
 
@@ -46,6 +47,9 @@ class Start extends React.Component {
       <Container className="Start">
         <StartLeft rooms={this.props.rooms} />
         <StartRight rooms={this.props.rooms} />
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
       </Container>
     );
   }
@@ -72,5 +76,16 @@ const Container = styled.div`
   & > * {
     flex: 1;
     height: 100%;
+  }
+`;
+
+const LogoContainer = styled.div`
+  height: auto;
+  position: fixed;
+  right: ${ dist.small };
+  bottom: ${ dist.small};
+  @media screen and (max-width: 65em) {
+    /*bottom: calc( 1em + ${ dist.medium } );*/
+    left: calc( 50vw );
   }
 `;

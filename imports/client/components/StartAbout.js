@@ -4,7 +4,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import styled from 'styled-components';
 
 import { getFragment } from '../../helper/fragment';
-import { DiyMarkdown, Close, CustomScrollbars } from '.';
+import { DiyMarkdown, Close, CustomScrollbars, Logo } from '.';
 import { getLanguage } from '../../helper/actions';
 import { dist, colors } from '../../config/styles';
 
@@ -18,6 +18,14 @@ class StartAbout extends React.Component {
     Session.set('showImprint', false)
   }
 
+  renderLogo() {
+    if (!this.props.showLogo) return
+
+    return <LogoContainer>
+      <Logo style="white" />
+    </LogoContainer>
+  }
+
   render() {
     var text = getFragment(this.props.textKey, this.props.lang)
     return (
@@ -26,6 +34,7 @@ class StartAbout extends React.Component {
         <CustomScrollbars thumbColor="rgba(255,255,255,0.5)">
           <Content>
             <DiyMarkdown>{text}</DiyMarkdown>
+            { this.renderLogo() }
           </Content>
         </CustomScrollbars>
       </Container>
@@ -35,8 +44,10 @@ class StartAbout extends React.Component {
 
 export default withTracker(props => {
   const textKey = Session.equals('showImprint', true) ? "imprintText" : "aboutText"
+  const showLogo = Session.equals('showImprint', false)
   return {
     textKey,
+    showLogo,
     lang: getLanguage()
   };
 })(StartAbout);
@@ -61,3 +72,8 @@ const Content = styled.div`
   // padding-top: calc(${dist.named.columnPadding} - ${dist.lineTopDiff});
   padding-bottom: calc(4em - ${dist.lineBottomDiff}); // not sure why 4em, sorry
 `;
+
+const LogoContainer = styled.div`
+  margin-top: 1em;
+  margin-left: ${ dist.small};
+`

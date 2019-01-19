@@ -48,6 +48,7 @@ import StartGraphArea from './StartGraphArea';
 import StartGeneralMenu from './StartGeneralMenu';
 import StartRoomMenu from './StartRoomMenu';
 import StartAbout from './StartAbout';
+import Logo from './Logo';
 import Popup from './Popup';
 import ClosePopup from './ClosePopup';
 import Game from './Game';
@@ -102,6 +103,7 @@ export {
   StartRoomMenu,
   StartAbout,
   Image,
+  Logo,
   Close,
   Loading,
   Popup,

@@ -43,7 +43,7 @@ class StartRoomMenu extends React.Component {
     return path;
   }
 
-  getRooms() {
+  renderRooms() {
     var result = [];
     const neighbourHash = {};
 
@@ -75,7 +75,7 @@ class StartRoomMenu extends React.Component {
         color = getColor('neighbourColor');
       }
 
-      const neu = (
+      const item = (
         <Li key={'_' + i}>
           <LinkStyled
             to={this.roomPath(roomId)}
@@ -94,14 +94,15 @@ class StartRoomMenu extends React.Component {
           </LinkStyled>
         </Li>
       );
-      result.push(neu);
+      result.push(item);
     }
     return <Ul>{result}</Ul>;
   }
 
   render() {
-    const rooms = this.getRooms();
-    return <Container className="StartRoomMenu">{rooms}</Container>;
+    return <Container className="StartRoomMenu">
+      {this.renderRooms()}
+    </Container>;
   }
 }
 
