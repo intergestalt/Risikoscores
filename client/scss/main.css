@@ -1,4 +1,3 @@
-
 /***************************************************************
  * Obsolete. Style definitions should be inside of components  *
  * using styled-components.                                    *
@@ -6,7 +5,6 @@
  * *************************************************************/
 
 /*** ADMIN ***/
-
 
 .AdminWrapper {
   padding: 1rem;
@@ -36,7 +34,7 @@
 
 .AdminWrapper h1,
 .AdminWrapper h2 {
-  font-size:28px;  
+  font-size: 28px;
 }
 
 .AdminWrapper h2 i {
@@ -73,12 +71,14 @@
   border-color: darkgrey;
 }
 
-.AdminWrapper form button[type=submit] {
-  position:fixed; top: 1.5em; right: 3em;
+.AdminWrapper form button[type='submit'] {
+  position: fixed;
+  top: 1.5em;
+  right: 3em;
 }
 
-.AdminWrapper form button[type=submit]:hover {
-  background-color:yellow;
+.AdminWrapper form button[type='submit']:hover {
+  background-color: yellow;
 }
 
 .AdminWrapper button {
@@ -160,6 +160,10 @@
 /* start*/
 
 .Start {
+}
+
+.Start strong {
+  font-weight: 900;
 }
 
 .StartLeft {
