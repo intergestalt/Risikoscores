@@ -82,6 +82,6 @@ Link.propTypes = {
 
 export default withTracker(props => {
   return {
-    color: Session.get('selectedTabColor')
+    color: Session.get('selectedTabLinkColor')
   };
 })(withRouter(Link));

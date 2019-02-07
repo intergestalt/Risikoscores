@@ -18,7 +18,7 @@ const colors = {
   mediumgrey: 'rgb(128,128,128)',
   darkgrey: 'rgb(89,89,89)',
   verydarkgrey: 'rgb(50,50,50)',
-  shade: 'rgba(0,0,0,0.9)',
+  shade: 'rgba(50,50,50,0.96)',
   white: 'rgb(255,255,255)'
 };
 

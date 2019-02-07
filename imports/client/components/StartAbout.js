@@ -22,7 +22,7 @@ class StartAbout extends React.Component {
     if (!this.props.showLogo) return
 
     return <LogoContainer>
-      <Logo style="white" />
+      <Logo/>
     </LogoContainer>
   }
 

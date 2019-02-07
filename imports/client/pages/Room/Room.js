@@ -27,6 +27,7 @@ import {
   setSelectedTabId,
   setSelectedRoomId,
   setSelectedTabColor,
+  setSelectedTabLinkColor,
   setSelectGraphNode,
   getSelectedRoomId,
   setLanguage,
@@ -44,7 +45,7 @@ import { startPopupsTimeout } from '../../../helper/popup';
 import { startStreamTimeout } from '../../../helper/stream';
 import {} from '../../../helper/actions';
 import { RoomCooser, RoomChooser } from '../../admin/AdminHelpers';
-import { tabColors, tabColorPalette } from '../../../config/tabColors';
+import { tabColors, tabColorPalette, tabLinkColorPalette } from '../../../config/tabColors';
 import { getUrlPrefix } from '../../../helper/uploads';
 
 class Room extends React.Component {
@@ -223,6 +224,7 @@ export default withTracker(props => {
   const parsed = queryString.parse(props.location.search);
   var tabId = parsed.tabId;
   var roomColor = 'grey';
+  var roomLinkColor = 'grey';
   if (!tabId) {
     if (room && room.subsections) {
       tabId = room.subsections[0].identifier; // set default tab
@@ -235,6 +237,10 @@ export default withTracker(props => {
         tabColorPalette[
           Session.get('roomVisitCounter') % tabColorPalette.length
         ];
+      roomLinkColor =
+        tabLinkColorPalette[
+          Session.get('roomVisitCounter') % tabColorPalette.length
+        ];        
       const tabColorsArray = tabColors(roomColor, room.subsections.length);
       let i = 0;
       for (let s of room.subsections) {
@@ -242,6 +248,7 @@ export default withTracker(props => {
         i++;
       }
       setSelectedTabColor(roomColor);
+      setSelectedTabLinkColor(roomLinkColor);
     }
   }
   setSelectedRoomId(roomId);

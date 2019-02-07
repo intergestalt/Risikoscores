@@ -13,10 +13,18 @@ const tabColors = (tabColor, steps) => {
   return out;
 }
 
+// choose the alternating colors of the rooms
 tabColorPalette = [
   // colors.magenta,
   colors.turqoise,
   // colors.orange
 ]
 
-export { tabColors, tabColorPalette }
+// choose the corresponding text colors of the rooms
+tabLinkColorPalette = [
+  // colors.magenta,
+  color(colors.turqoise).darken(0.4).string(),
+  // colors.orange
+]
+
+export { tabColors, tabColorPalette, tabLinkColorPalette }

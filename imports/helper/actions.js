@@ -46,8 +46,12 @@ export function setSelectedTabId(id) {
   Session.set('selectedTabId', id);
 }
 
-export function setSelectedTabColor(id) {
-  Session.set('selectedTabColor', id);
+export function setSelectedTabColor(color) {
+  Session.set('selectedTabColor', color);
+}
+
+export function setSelectedTabLinkColor(color) {
+  Session.set('selectedTabLinkColor', color);
 }
 
 export function setSelectedRoomId(id) {
