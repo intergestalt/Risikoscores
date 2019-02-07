@@ -52,19 +52,20 @@ class ImageDetailView extends React.Component {
 
   prev(e) {
     e.stopPropagation();
-    this.setState({ positioned: false });
     const n = getTabSlider().list.length;
     const i = getTabDetailIndex();
     const new_i = i > 1 ? i - 1 : n - 1;
+    this.setState({ positioned: false });
     setTabDetailIndex(new_i)
   }
 
   next(e) {
     e.stopPropagation();
-    this.setState({ positioned: false });
     const n = getTabSlider().list.length;
+    if (n<=1) return;
     const i = getTabDetailIndex();
     const new_i = i < n - 1 ? i + 1 : 0;
+    this.setState({ positioned: false });
     setTabDetailIndex(new_i)
   }
 
@@ -154,6 +155,7 @@ const LoadingContainer = styled.div`
 const Figure = styled.figure`
   width:70%; 
   max-height:100%;
+  height: 100%;
   margin:auto;
   display: flex;
   flex-direction: column;
@@ -163,6 +165,8 @@ const Figure = styled.figure`
 const ImgContainer = styled(ResizeAware)`
   display: flex;
   overflow: hidden;
+  height: 100%;
+  width:100%;
 `
 
 const imgStyles = `
@@ -182,7 +186,7 @@ const Figcaption = styled.figcaption`
   margin-bottom: calc( -1em + ${ dist.lineBottomDiff});
   p {
     padding-left: 0 !important;
-    padding-right 0 !important;
+    padding-right: 0 !important;
   }
 `
 
