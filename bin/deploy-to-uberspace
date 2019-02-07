@@ -26,6 +26,15 @@ echo "Building..."
 export GZIP=-9
 meteor build --architecture os.linux.x86_64 $TMPDIR/$buildname
 
+ssh $uberspace_username@$uberspace_host /bin/bash << EOF
+
+echo "Removing previous builds..."
+cd ~/tmp
+rm -r build
+
+EOF
+
+
 echo "Uploading..."
 scp -rp $TMPDIR$buildname $uberspace_username@$uberspace_host:~/tmp/build
 
