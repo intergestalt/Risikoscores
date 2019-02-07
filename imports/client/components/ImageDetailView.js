@@ -50,7 +50,8 @@ class ImageDetailView extends React.Component {
     this.setState({ captionTopOffset: (-topOffset / 2) + 'px', positioned: true })
   }
 
-  prev() {
+  prev(e) {
+    e.stopPropagation();
     this.setState({ positioned: false });
     const n = getTabSlider().list.length;
     const i = getTabDetailIndex();
@@ -58,7 +59,8 @@ class ImageDetailView extends React.Component {
     setTabDetailIndex(new_i)
   }
 
-  next() {
+  next(e) {
+    e.stopPropagation();
     this.setState({ positioned: false });
     const n = getTabSlider().list.length;
     const i = getTabDetailIndex();
@@ -84,7 +86,7 @@ class ImageDetailView extends React.Component {
     //this is the start index.
     const asset = slider.list[startIndex];
     return (
-      <Container className="ImageDetailView">
+      <Container className="ImageDetailView" onClick={this.next}>
         <Close onClick={e => {
           this.clickCallback(e);
         }}
