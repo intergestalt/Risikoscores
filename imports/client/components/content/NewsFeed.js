@@ -18,17 +18,22 @@ class NewsFeed extends React.Component {
       question.loading = true;
       this.questions.push(question);
     }
-    this.state = { feedIndex: 1 };
-    this.timeout = null;
+    this.state = { feedIndex: 1, loading: true };
+    this.waitTimeOut = null;
+    this.loadingTimeOut = null;
   }
   componentDidMount() {
-    this.timeOut();
+    this.setLoadingTimeOut();
   }
 
   componentWillUnmount() {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
-      this.timeout = null;
+    if (this.waitTimeOut) {
+      clearTimeout(this.waitTimeOut);
+      this.waitTimeOut = null;
+    }
+    if (this.loadingTimeOut) {
+      clearTimeout(this.loadingTimeOut);
+      this.loadingTimeOut = null;
     }
   }
   getDelay() {
@@ -40,10 +45,30 @@ class NewsFeed extends React.Component {
   }
   timeOut() {
     this.timeout = setTimeout(() => {
-      this.incFeedIndex();
-      this.timeOut();
-    }, 5000);
+      this.setWaitTimeOut();
+    }, this.getDelay() / 2);
   }
+
+  setWaitTimeOut() {
+    this.waitTimeOut = setTimeout(() => {
+      this.setState({
+        loading: true
+      });
+      this.incFeedIndex();
+      this.setLoadingTimeOut();
+    }, this.getDelay());
+  }
+
+  setLoadingTimeOut() {
+    this.loadingTimeOut = setTimeout(() => {
+      var i = this.state.feedIndex - 1;
+      this.setState({
+        loading: false
+      });
+      this.setWaitTimeOut();
+    }, this.getDelay());
+  }
+
   incFeedIndex() {
     var i = this.state.feedIndex;
     i++;
@@ -52,9 +77,7 @@ class NewsFeed extends React.Component {
     }
     this.setState({ feedIndex: i });
   }
-  setLoading(index, yes) {
-    this.questions[index].loading = yes;
-  }
+
   getStreamQuestions(index) {
     if (index > this.questions.length) {
       index = this.questions.length;
@@ -65,19 +88,26 @@ class NewsFeed extends React.Component {
   render() {
     var streamPosts = [];
     var myQuestions = this.getStreamQuestions(this.state.feedIndex);
+    var first = true;
     for (var i = myQuestions.length - 1; i >= 0; i--) {
+      var loading = false;
+      if (first) {
+        first = false;
+        if (this.state.loading) {
+          loading = true;
+        }
+      }
       const question = myQuestions[i];
 
       const item = (
         <StreamPost
-          loading={question.loading}
+          loading={loading}
           key={'_' + i}
           question={question}
           global={false}
         />
       );
       streamPosts.push(item);
-      this.setLoading(i, false);
     }
 
     return (
