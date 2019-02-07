@@ -23,7 +23,7 @@ class ServerAudio extends React.Component {
     this.handlePowerButtonPress = this.handlePowerButtonPress.bind(this);
     this.handleVolumeButtonPress = this.handleVolumeButtonPress.bind(this);
     this._animate = new ReactStateAnimation(this);
-    this.maxVol = 0.5;
+    this.maxVol = 0.6;
     this.minVol = 0.02; // must be different from initial value
   }
 
