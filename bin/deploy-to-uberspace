@@ -30,7 +30,7 @@ ssh $uberspace_username@$uberspace_host /bin/bash << EOF
 
 echo "Removing previous builds..."
 cd ~/tmp
-rm -r build
+rm -rf build
 
 EOF
 
