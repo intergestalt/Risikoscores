@@ -31,8 +31,8 @@ class OverlayNotes extends React.Component {
   }
 
   handleResize({ width, height }) {
-    sw = window.screen.width
-    sh = window.screen.height
+    const sw = window.screen.width
+    const sh = window.screen.height
     if (sw <= 375 || sh <= 375) {
       this.setState({ small: true })
     }
@@ -53,7 +53,7 @@ class OverlayNotes extends React.Component {
       ? <Text>{this.props.fragments.oldBrowserWarning}</Text>
       : null
 
-    visible = ieText || smallText
+    const visible = ieText || smallText
 
     return (
       <ResizeAware

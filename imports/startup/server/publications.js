@@ -16,7 +16,7 @@ Meteor.publish('rooms.list', function (variant = 'live') {
   return Rooms.find({ variant }, { fields: { name: 1, _id: 1, key: 1 } });
 });
 
-Meteor.publish('room', function (key, variant = 'live') {
+Meteor.publish('room', function (key = "", variant = 'live') {
   if (!Meteor.userId()) {
     variant = 'live'
   }

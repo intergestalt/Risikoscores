@@ -116,13 +116,15 @@ export function getNeighbours(nodeId, realGraph) {
   for (var i = 0; i < node.neighbours.length; i++) {
     const neighbourId = node.neighbours[i];
     const neighbour = nodesHash[neighbourId];
-    if (neighbour.pseudo) {
-      const nextNode = getNextRealNode(neighbour, nodeId, realGraph);
-      if (exists(nextNode)) {
-        result.push(nextNode.id);
+    if (neighbour) {
+      if (neighbour.pseudo) {
+        const nextNode = getNextRealNode(neighbour, nodeId, realGraph);
+        if (exists(nextNode)) {
+          result.push(nextNode.id);
+        }
+      } else {
+        result.push(neighbour.id);
       }
-    } else {
-      result.push(neighbour.id);
     }
   }
   return result;

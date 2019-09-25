@@ -18,7 +18,8 @@ class AdminRoute extends React.Component {
   }
 
   render() {
-    ({ component, ...rest } = this.props);
+
+    let { component, ...rest } = this.props;
 
     return (
       <AdminWrapper

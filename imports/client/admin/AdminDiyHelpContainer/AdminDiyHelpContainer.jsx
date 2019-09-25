@@ -9,7 +9,7 @@ class AdminDiyHelpContainer extends React.Component {
   }
 
   render() {
-    const source = "";
+    let source = "";
     for (let seg of this.props.segments) {
       source += helpTexts[seg]
     }

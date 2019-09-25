@@ -22,7 +22,7 @@ class TabContent extends React.Component {
     }, 100);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     var id1 = null;
     var id2 = null;
     if (exists(this.props.tab)) {

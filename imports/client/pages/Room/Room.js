@@ -67,12 +67,12 @@ class Room extends React.Component {
     document.documentElement.classList.toggle('noscroll', false);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     Session.set('roomVisitCounter', Session.get('roomVisitCounter') + 1);
     Session.set('imageLayout', 'third');
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       nextProps.room &&
       this.props.room &&
@@ -176,7 +176,7 @@ class Room extends React.Component {
   }
 
   render() {
-    var page = null;
+    let page = null;
     /* if (!this.props.ready) {
       page = this.renderLoading();
     } else {*/
@@ -263,7 +263,7 @@ export default withTracker(props => {
     roomColor,
     fragments: TextFragments.find().fetch(),
     questions: Questions.find().fetch(),
-    ready: sub.ready() && sub2.ready(), // && room,
+    ready: sub.ready() && sub2.ready(),
     authenticated: Meteor.userId() !== null,
     powerOn: Session.get('powerOn'),
     playAudio: getPlayAudio() || getPlayAudioFirst(),

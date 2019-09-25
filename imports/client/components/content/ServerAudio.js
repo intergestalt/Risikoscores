@@ -79,7 +79,7 @@ class ServerAudio extends React.Component {
     return true;
   }
 
-  componentWillUpdate(newProps, newState) {
+  UNSAFE_componentWillUpdate(newProps, newState) {
     if (this.props.powerOn != newProps.powerOn) {
       this._animate.stop();
       this._animate.linearInOut('volume', newProps.powerOn * this.maxVol, 500);
@@ -94,7 +94,7 @@ class ServerAudio extends React.Component {
   }
 
   renderPowerButton() {
-    style = {
+    let style = {
       fill: this.props.powerOn ? 'green' : 'red',
       cursor: 'hand',
       WebkitCursor: 'hand'

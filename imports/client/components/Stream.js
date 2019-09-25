@@ -33,7 +33,7 @@ class Stream extends React.Component {
       this.props.rooms,
       this.props.streamIndex
     );
-    minIndex = myQuestions.length - 10;
+    let minIndex = myQuestions.length - 10;
     if (minIndex < 0) minIndex = 0;
     for (var i = myQuestions.length - 1; i >= minIndex; i--) {
       const question = myQuestions[i];

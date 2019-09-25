@@ -61,7 +61,7 @@ class Graph extends React.Component {
     }
   }
   selectNode(selectedNodeId, presentNodeId = null) {
-    nodeId = presentNodeId || selectedNodeId;
+    let nodeId = presentNodeId || selectedNodeId;
     const realGraph = getTheRealGraph(this.props.graph);
     const neighbours = getNeighbours(nodeId, realGraph);
     const outgoingEdges = getOutgoingEdges(nodeId, realGraph);
@@ -89,7 +89,7 @@ class Graph extends React.Component {
   }
 
   getEdges(realGraph, modeMap) {
-    edges = [];
+    const edges = [];
 
     for (var i = 0; i < realGraph.edges.length; i++) {
       const edge = realGraph.edges[i];
@@ -118,7 +118,7 @@ class Graph extends React.Component {
   }
 
   getNodes(realGraph, modeMap) {
-    nodes = [];
+    const nodes = [];
 
     for (var i = 0; i < realGraph.nodes.length; i++) {
       const node = realGraph.nodes[i];

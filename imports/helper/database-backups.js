@@ -24,7 +24,7 @@ restoreSync = Meteor.wrapAsync((options, callback) => {
   })
 });
 
-getFiles = () => {
+const getFiles = () => {
   let files = []
   console.log(backups_dir, Meteor.isServer)
   const items = fs.readdirSync(backups_dir)
@@ -40,7 +40,7 @@ getFiles = () => {
   return files;
 }
 
-doBackup = () => {
+const doBackup = () => {
   console.log("backup DB")
   const filename = file_prefix + dateformat(new Date(), dateformat_backup) + '.tar'
   let result = backupSync({
@@ -53,7 +53,7 @@ doBackup = () => {
   return result
 }
 
-doRestore = (item) => {
+const doRestore = (item) => {
   const uri = mongoUri.parse(mongo_url)
   const db_name = uri.database
   const conf = {
@@ -70,7 +70,7 @@ doRestore = (item) => {
   return result
 }
 
-doDelete = (item) => {
+const doDelete = (item) => {
   fs.unlinkSync(backups_dir + "/" + item.name)
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { NavLink } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Session } from 'meteor/session';
@@ -25,7 +26,7 @@ class Start extends React.Component {
     startPopupsTimeout();
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     Session.set('imageLayout', "half");
   }
 

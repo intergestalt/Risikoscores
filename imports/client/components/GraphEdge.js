@@ -9,6 +9,8 @@ class GraphEdge extends React.Component {
   }
 
   render() {
+    if (!this.props.node1 || !this.props.node2) return null
+
     var color = getColor('defaultEdgeColor');
     if (this.props.selected) {
       color = getColor('selectedEdgeColor');

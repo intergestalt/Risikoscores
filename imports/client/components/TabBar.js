@@ -22,11 +22,11 @@ class TabBar extends React.Component {
         const tab = this.props.tabs[i];
         var className = 'Tab';
 
-        isSelected = selectedTabId === tab.identifier;
+        let isSelected = selectedTabId === tab.identifier;
 
         if (isSelected) {
           className = 'SelectedTab';
-          content = localeStr(tab.title);
+          let content = localeStr(tab.title);
         }
         const entry = (
           <Tab

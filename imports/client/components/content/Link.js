@@ -22,7 +22,7 @@ class Link extends React.Component {
     this.clickCallback = this.clickCallback.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const selectedRoomId = getSelectedRoomId();
     const lang = getLanguage();
     this.sameRoom = selectedRoomId == this.props.room;

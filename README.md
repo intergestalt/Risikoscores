@@ -3,9 +3,7 @@
 ```
 git clone https://github.com/intergestalt/Risikoscores
 cd Risikoscores
-meteor npm install -g yarn
-meteor yarn install
-meteor yarn run install:public
+meteor npm install
 ```
 
 ## Run

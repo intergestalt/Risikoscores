@@ -14,14 +14,14 @@ const tabColors = (tabColor, steps) => {
 }
 
 // choose the alternating colors of the rooms
-tabColorPalette = [
+const tabColorPalette = [
   // colors.magenta,
   colors.turqoise,
   // colors.orange
 ]
 
 // choose the corresponding text colors of the rooms
-tabLinkColorPalette = [
+const tabLinkColorPalette = [
   // colors.magenta,
   color(colors.turqoise).darken(0.4).string(),
   // colors.orange

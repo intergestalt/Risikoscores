@@ -18,9 +18,9 @@ class GameContent extends React.Component {
     this.changeSel = this.changeSel.bind(this);
   }
   getLos(divs) {
-    los = [];
+    let los = [];
     for (var i = 0; i < divs.length; i++) {
-      const div = divs[i];
+      let div = divs[i];
       div = div.replace(/_num_/g, this.props.number);
       los.push(<LosDiv layout={this.props.layout} key={'_' + i}>{div}</LosDiv>);
     }
@@ -33,7 +33,7 @@ class GameContent extends React.Component {
   }
 
   getSelect(page) {
-    characters = [];
+    let characters = [];
     for (var i = 0; i < this.props.characters.length; i++) {
       var selected = false;
       if (i == this.props.selected) {
@@ -72,7 +72,7 @@ class GameContent extends React.Component {
     if (this.props.allAnswered) {
       const p = this.props.resultPercentNum;
       var doc = '';
-      var low = false; medium = false; high = false;
+      var low = false; var medium = false; var high = false;
       if (p <= 30) {
         doc = this.props.resultLow.doc;
         low = true;
@@ -362,8 +362,8 @@ ${props =>
   }` : ""};
 `
 
-const Prev = ({ ...props, children }) => <PrevLarger {...props}>{children}</PrevLarger>
-const Next = ({ ...props, children }) => <NextLarger {...props}>{children}</NextLarger>
+const Prev = ({children, ...props }) => <PrevLarger {...props}>{children}</PrevLarger>
+const Next = ({children, ...props }) => <NextLarger {...props}>{children}</NextLarger>
 
 //  ${ snippets.standardTextPaddings};
 
