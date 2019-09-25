@@ -24,13 +24,60 @@ Edit array in `meteor/imports/startup/server/fixtures`
 
 `meteor reset`
 
-## get live database
+## uberspace 6
+### get live database
 
 `bin/download-db-from-uberspace`
 
-## deploy to production
+### deploy to production
 
 `bin/deploy-to-uberspace`
+
+## dokku
+###setup
+
+````
+dokku apps:create risiko
+#dokku config:set risiko ROOT_URL="https://wegedeswissens.net"
+dokku config:set risiko ROOT_URL="https://risiko.intergestalt.monster"
+
+#sudo dokku plugin:install https://github.com/dokku/dokku-mongo.git mongo
+dokku mongo:create mongo_risiko
+dokku mongo:link mongo_risiko risiko
+dokku config:set risiko BUILDPACK_URL="https://github.com/AdmitHub/meteor-buildpack-horse"  DISABLE_WEBSOCKETS=1 RISIKOSCORES_VAR_DIR=/app/var
+dokku config:set risiko NODEJS_PARAMS="--optimize_for_size\ --max_old_space_size=460\ --gc_interval=100"
+dokku storage:mount risiko /var/lib/dokku/data/storage/risiko:/app/var
+
+git remote add dokku dokku@intergestalt.dev:risiko
+git push dokku
+
+dokku letsencrypt risiko
+````
+### upload database to live
+````
+export OLD_DB=mongo_risiko_blue
+export NEW_DB=mongo_risiko_red  # choose a new color
+export DUMP=mongodb-backups-uberspace/2019-09-24-23-24-27/dump.gz
+
+# prepare new db
+dokku mongo:create $NEW_DB
+dokku mongo:import $NEW_DB < $DUMP
+
+# swap
+dokku ps:stop risiko
+dokku mongo:unlink $OLD_DB risiko
+dokku mongo:link $NEW_DB risiko
+dokku ps:start risiko
+
+# clean up
+dokku mongo:destroy $OLD_DB
+````
+
+### upload var files
+````
+scp -r var/* root@intergestalt.monster:/var/lib/dokku/data/storage/risiko/
+````
+
 
 ## environment variables
 
