@@ -7,4 +7,4 @@ fi
 
 echo "copying vendor assets"
 mkdir -p public/vendor/antd
-cp -Rf node_modules/antd/dist/ public/vendor/antd/
+cp -Rf node_modules/antd/dist/* public/vendor/antd/
