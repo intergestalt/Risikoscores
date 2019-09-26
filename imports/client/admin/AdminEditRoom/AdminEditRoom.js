@@ -117,6 +117,6 @@ export default withTracker(props => {
     room,
     room_id,
     ready: sub.ready(),
-    formDisabled: Meteor.user() && Meteor.user().username != "admin" && roomVariant == "live"
+    formDisabled: Meteor.user() && Meteor.user().username != "admin" && Meteor.user().username != "adminrecovery" && roomVariant == "live"
   };
 })(AdminEditRoom);
