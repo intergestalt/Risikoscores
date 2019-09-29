@@ -76,10 +76,23 @@ dokku mongo:destroy $OLD_DB
 scp -r var/* root@intergestalt.monster:/var/lib/dokku/data/storage/risiko/
 ````
 
+### install cloudcmd
+note: `"postinstall": "madrun heroku-postbuild"` added to package.json as a workaround to install on dokku
+
+````
+dokku apps:create risiko-uploads
+dokku storage:mount risiko-uploads /var/lib/dokku/data/storage/risiko:/app/var
+dokku config:set risiko-uploads CLOUDCMD_ONE_FILE_PANEL=true CLOUDCMD_ROOT=/app/var/uploads NPM_CONFIG_PRODUCTION=false CLOUDCMD_AUTH=true CLOUDCMD_USERNAME=admin CLOUDCMD_PASSWORD=$PASSWORD
+dokku proxy:ports-set risiko-uploads http:80:5000
+# sudo dokku plugin:install https://github.com/Zeilenwerk/dokku-nginx-max-upload-size.git
+dokku config:set risiko-uploads MAX_UPLOAD_SIZE=20M
+dokku letsencrypt risiko-uploads
+````
+
 
 ## environment variables
 
-RISIKOSCORES_VAR_DIR sets the path to the var directory which contains uploads. it is not required on a dev system, only when running a bundled version. should point to a directory outside of the bundle, writable by node.
+`RISIKOSCORES_VAR_DIR` sets the path to the var directory which contains uploads. it is not required on a dev system, only when running a bundled version. should point to a directory outside of the bundle, writable by node.
 
 ## Routes
 
